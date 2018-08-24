@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA1D8414212B01FA0003F976 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA1D8413212B01FA0003F976 /* Alamofire.framework */; };
+		FA1D841F212F12330003F976 /* QRGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D841E212F12330003F976 /* QRGeneratorTests.swift */; };
 		FA25F66C2124E90D007F5A4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25F66B2124E90D007F5A4A /* AppDelegate.swift */; };
 		FA25F66E2124E90D007F5A4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA25F66D2124E90D007F5A4A /* ViewController.swift */; };
 		FA25F6712124E90D007F5A4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA25F66F2124E90D007F5A4A /* Main.storyboard */; };
@@ -15,8 +16,21 @@
 		FA25F6762124E913007F5A4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA25F6742124E913007F5A4A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FA1D8421212F12330003F976 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA25F6602124E90D007F5A4A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA25F6672124E90D007F5A4A;
+			remoteInfo = QRGenerator;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		FA1D8413212B01FA0003F976 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		FA1D841C212F12320003F976 /* QRGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QRGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA1D841E212F12330003F976 /* QRGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGeneratorTests.swift; sourceTree = "<group>"; };
+		FA1D8420212F12330003F976 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA25F6682124E90D007F5A4A /* QRGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QRGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA25F66B2124E90D007F5A4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA25F66D2124E90D007F5A4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,6 +41,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA1D8419212F12320003F976 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA25F6652124E90D007F5A4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,10 +67,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA1D841D212F12330003F976 /* QRGeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA1D841E212F12330003F976 /* QRGeneratorTests.swift */,
+				FA1D8420212F12330003F976 /* Info.plist */,
+			);
+			path = QRGeneratorTests;
+			sourceTree = "<group>";
+		};
 		FA25F65F2124E90D007F5A4A = {
 			isa = PBXGroup;
 			children = (
 				FA25F66A2124E90D007F5A4A /* QRGenerator */,
+				FA1D841D212F12330003F976 /* QRGeneratorTests */,
 				FA25F6692124E90D007F5A4A /* Products */,
 				FA1D8412212B01FA0003F976 /* Frameworks */,
 			);
@@ -59,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				FA25F6682124E90D007F5A4A /* QRGenerator.app */,
+				FA1D841C212F12320003F976 /* QRGeneratorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +111,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA1D841B212F12320003F976 /* QRGeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA1D8423212F12330003F976 /* Build configuration list for PBXNativeTarget "QRGeneratorTests" */;
+			buildPhases = (
+				FA1D8418212F12320003F976 /* Sources */,
+				FA1D8419212F12320003F976 /* Frameworks */,
+				FA1D841A212F12320003F976 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA1D8422212F12330003F976 /* PBXTargetDependency */,
+			);
+			name = QRGeneratorTests;
+			productName = QRGeneratorTests;
+			productReference = FA1D841C212F12320003F976 /* QRGeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		FA25F6672124E90D007F5A4A /* QRGenerator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA25F67A2124E913007F5A4A /* Build configuration list for PBXNativeTarget "QRGenerator" */;
@@ -107,6 +157,10 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Jacob Ross Dobson";
 				TargetAttributes = {
+					FA1D841B212F12320003F976 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = FA25F6672124E90D007F5A4A;
+					};
 					FA25F6672124E90D007F5A4A = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -126,11 +180,19 @@
 			projectRoot = "";
 			targets = (
 				FA25F6672124E90D007F5A4A /* QRGenerator */,
+				FA1D841B212F12320003F976 /* QRGeneratorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA1D841A212F12320003F976 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA25F6662124E90D007F5A4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -162,6 +224,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA1D8418212F12320003F976 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA1D841F212F12330003F976 /* QRGeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FA25F6642124E90D007F5A4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,6 +242,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA1D8422212F12330003F976 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA25F6672124E90D007F5A4A /* QRGenerator */;
+			targetProxy = FA1D8421212F12330003F976 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FA25F66F2124E90D007F5A4A /* Main.storyboard */ = {
@@ -193,6 +271,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FA1D8424212F12330003F976 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R3W67YCVBM;
+				INFOPLIST_FILE = QRGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JRD.QRGeneratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QRGenerator.app/QRGenerator";
+			};
+			name = Debug;
+		};
+		FA1D8425212F12330003F976 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R3W67YCVBM;
+				INFOPLIST_FILE = QRGeneratorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JRD.QRGeneratorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QRGenerator.app/QRGenerator";
+			};
+			name = Release;
+		};
 		FA25F6782124E913007F5A4A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -354,6 +472,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA1D8423212F12330003F976 /* Build configuration list for PBXNativeTarget "QRGeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA1D8424212F12330003F976 /* Debug */,
+				FA1D8425212F12330003F976 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FA25F6632124E90D007F5A4A /* Build configuration list for PBXProject "QRGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
