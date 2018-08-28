@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QRGenerator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MOX-MV-ijB">
+                                <rect key="frame" x="74" y="154" width="172" height="172"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MOX-MV-ijB" secondAttribute="height" multiplier="1:1" id="o3A-uf-Rti"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gR1-vs-SKD">
+                                <rect key="frame" x="20" y="412" width="280" height="48"/>
+                                <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="7o4-fT-zaK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <state key="normal" title="Generate">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="generateQRCodeButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l5z-o4-xGa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MOX-MV-ijB" secondAttribute="trailing" constant="16" id="Dci-oq-7vl"/>
+                            <constraint firstItem="gR1-vs-SKD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Tbo-6T-Vv9"/>
+                            <constraint firstItem="MOX-MV-ijB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Tfo-AQ-k0G"/>
+                            <constraint firstItem="gR1-vs-SKD" firstAttribute="top" secondItem="MOX-MV-ijB" secondAttribute="bottom" constant="16" id="ZEO-KN-O4v"/>
+                            <constraint firstItem="MOX-MV-ijB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="f2z-uW-Jhd"/>
+                            <constraint firstAttribute="trailing" secondItem="gR1-vs-SKD" secondAttribute="trailing" constant="16" id="vK4-A0-0rf"/>
+                            <constraint firstAttribute="bottom" secondItem="gR1-vs-SKD" secondAttribute="bottom" constant="16" id="zhu-Ld-9rQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="QRCodeImageView" destination="MOX-MV-ijB" id="Jj8-eg-H6R"/>
+                        <outlet property="generateQRCodeButton" destination="gR1-vs-SKD" id="Kpa-PM-PT8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-80.625" y="132.5"/>
+        </scene>
+    </scenes>
+</document>
