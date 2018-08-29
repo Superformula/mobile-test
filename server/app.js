@@ -11,11 +11,15 @@ app.listen(port, () => {
 app.get("/seed", (req, res, error) => {
 
     let json = {};
-    //This is very generic and not so secure.  For an actual production app, probably want to use better security
-    json.seed = crypto.createHash("sha1").update(getExpirationDate().toISOString()).digest("hex");
+
+    json.seed = crypto.createHash("sha1").update(crypto.randomBytes(64)).digest("hex");
     json.expires_at = getExpirationDate().toISOString();
 
     res.json(json);
+});
+
+app.post("/seed", (req, res, error) => {
+    res.json({valid: false})
 });
 
 function getExpirationDate() {
