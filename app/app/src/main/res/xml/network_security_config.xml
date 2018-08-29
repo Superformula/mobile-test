@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Only being done since server is run locally.  Should delete for production -->
+        <domain includeSubdomains="true">192.168.86.22</domain>
+    </domain-config>
+</network-security-config>
