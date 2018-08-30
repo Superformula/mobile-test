@@ -24,7 +24,7 @@ app.post("/seed", (req, res, error) => {
 
 function getExpirationDate() {
     let date = new Date().getTime();
-    //add an hour
-    date += (60 * 60 * 1000);
+    //set expiration to 10s
+    date += 10000;
     return new Date(date);
 }
