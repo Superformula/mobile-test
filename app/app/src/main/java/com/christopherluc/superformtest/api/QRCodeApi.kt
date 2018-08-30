@@ -19,17 +19,20 @@ object QRCodeService {
             .build()
     }
 
-    fun getSeed(): Single<Seed> {
+    fun getSeed(): Single<QRCodeSeed> {
         return seedClient.create(QRCodeEndpoints::class.java).getSeed()
             .subscribeOn(Schedulers.io())
+            .map { result ->
+                QRCodeSeed(result.seed, result.expires_at)
+            }
     }
 
 }
 
-interface QRCodeEndpoints {
+private interface QRCodeEndpoints {
 
     @GET("/seed")
     fun getSeed(): Single<Seed>
 }
 
-data class Seed(val seed: String?, val expires_at: String?)
+private data class Seed(val seed: String?, val expires_at: String?)
