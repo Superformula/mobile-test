@@ -57,4 +57,14 @@ class QRCodeTest {
         }
         fail("Pixels all matched")
     }
+
+    @Test
+    fun different_widths_generate_different_bitmaps() {
+        val bitmap1 = encodeAsBitmap("test", 300)!!
+        val bitmap2 = encodeAsBitmap("test", 200)!!
+
+        Assertions.assertThat(bitmap1.width).isNotEqualTo(bitmap2.width)
+        Assertions.assertThat(bitmap1.height).isNotEqualTo(bitmap2.height)
+
+    }
 }
