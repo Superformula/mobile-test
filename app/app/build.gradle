@@ -18,15 +18,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "NODE_SERVER", "\"http://192.168.86.22:3000\""
+        }
+        debug {
+            buildConfigField "String", "NODE_SERVER", "\"http://192.168.86.22:3000\""
         }
     }
     dataBinding {
         enabled = true
     }
-}
-
-androidExtensions {
-    experimental = true
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {

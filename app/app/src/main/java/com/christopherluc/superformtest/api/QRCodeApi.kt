@@ -1,5 +1,6 @@
 package com.christopherluc.superformtest.api
 
+import com.christopherluc.superformtest.BuildConfig
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
@@ -15,7 +16,6 @@ import java.util.*
  */
 object QRCodeService {
 
-    private const val BASE_URL = "http://192.168.86.22:3000"
     private const val ISO_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
 
@@ -24,7 +24,7 @@ object QRCodeService {
      */
     private val seedClient: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.NODE_SERVER)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

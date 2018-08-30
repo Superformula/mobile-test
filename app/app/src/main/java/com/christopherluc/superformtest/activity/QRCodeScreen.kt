@@ -64,6 +64,7 @@ class QRCodeActivity : AppCompatActivity() {
     private fun retrieveApiData() {
         viewModel.subText.set(getString(R.string.launch_screen_loading))
         viewModel.bitmap.set(null)
+        //TODO Could use dagger to inject the service, which would allow that to be mocked out in testing
         disposable.add(QRCodeService.getSeed().observeOn(AndroidSchedulers.mainThread()).subscribe(this::handleApiSuccess, this::handleApiFailure))
     }
 
