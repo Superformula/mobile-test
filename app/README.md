@@ -1,8 +1,10 @@
 Configuration
+
 Please update app/build.gradle NODE_SERVER field to point to wherever the server is running.
 Furthermore, update network_security_config in the XML resource folder to also point to the server
 
 Addendum - Other Capabilities
+
 Caching:  
 I mentioned in a TODO that LiveData or Realm could be used to cache the QR code string/expiration and use that to 
 load the QR code on launch.  The exipration time could be used to clear those out.
@@ -14,6 +16,7 @@ further enhanced using various other methods, such as a passphrase salted, etc. 
 the qr code back to a string, which would be validated against that endpoint.
 
 Addendum - Testing
+
 I am somewhat unfamiliar with automation.  While I have used uiautomator in the past, I am not completely familiar on how to
 set it up.  One of my goals for this year was to change that. Given more time, I would have liked to set up a wiremock server
 to provide faked api data, and use that to verify that the QR code displays, along with the auto-refresh feature.
