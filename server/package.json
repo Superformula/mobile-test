@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server for superformula test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christopher Luc",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "lodash": "^4.17.10"
+  }
+}

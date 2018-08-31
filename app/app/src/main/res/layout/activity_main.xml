@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.christopherluc.superformtest.screens.MainActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.MainActivity">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/qrcode_fab_label"
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:layout_constraintBottom_toBottomOf="@+id/qrFab"
+            app:layout_constraintEnd_toStartOf="@+id/qrFab"
+            app:layout_constraintTop_toTopOf="@+id/qrFab" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/scan_fab_label"
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:layout_constraintBottom_toBottomOf="@+id/scanFab"
+            app:layout_constraintEnd_toStartOf="@+id/scanFab"
+            app:layout_constraintTop_toTopOf="@+id/scanFab" />
+
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </FrameLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/qrFab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_add_black_24dp"
+            android:tint="@android:color/white"
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/mainFab"
+            app:layout_constraintEnd_toEndOf="@+id/mainFab"
+            app:layout_constraintStart_toStartOf="@+id/mainFab" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scanFab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_add_black_24dp"
+            android:tint="@android:color/white"
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/qrFab"
+            app:layout_constraintEnd_toEndOf="@+id/qrFab"
+            app:layout_constraintStart_toStartOf="@+id/qrFab" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/mainFab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_add_black_24dp"
+            android:tint="@android:color/white"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
