@@ -109,6 +109,7 @@ class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         qrCodeDataLabel.textAlignment = .center
         qrCodeDataLabel.font = UIFont(name: "Helvetica-Bold", size: 22)
         qrCodeDataLabel.adjustsFontSizeToFitWidth = true
+        qrCodeDataLabel.text = "Scan a QR Code."
         view.addSubview(qrCodeDataLabel)
     }
     
