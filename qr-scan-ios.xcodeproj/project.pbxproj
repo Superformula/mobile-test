@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		716C80082139966A00DDD0BB /* QRGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C80072139966A00DDD0BB /* QRGenerator.swift */; };
 		717AB93D2138DEC60047FDD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717AB93C2138DEC60047FDD4 /* AppDelegate.swift */; };
 		717AB93F2138DEC60047FDD4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717AB93E2138DEC60047FDD4 /* HomeViewController.swift */; };
 		717AB9422138DEC60047FDD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717AB9402138DEC60047FDD4 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		716C80072139966A00DDD0BB /* QRGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRGenerator.swift; sourceTree = "<group>"; };
 		717AB9392138DEC60047FDD4 /* qr-scan-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "qr-scan-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		717AB93C2138DEC60047FDD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		717AB93E2138DEC60047FDD4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				718F62C0213900FA00D71449 /* Constants.swift */,
+				716C80072139966A00DDD0BB /* QRGenerator.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				718F62B32138EE0D00D71449 /* MaterialButton.swift in Sources */,
 				718F62BE2138F6D300D71449 /* ScanQRViewController.swift in Sources */,
 				718F62C42139017500D71449 /* NetworkController.swift in Sources */,
+				716C80082139966A00DDD0BB /* QRGenerator.swift in Sources */,
 				718F62C1213900FA00D71449 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
