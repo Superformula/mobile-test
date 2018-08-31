@@ -112,11 +112,7 @@ class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         qrCodeDataLabel.text = "Scan a QR Code."
         view.addSubview(qrCodeDataLabel)
     }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
+        
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
