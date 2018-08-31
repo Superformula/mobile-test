@@ -1,18 +1,19 @@
 package com.christopherluc.superformtest.activity
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ObservableField
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.ObservableField
 import com.christopherluc.superformtest.R
 import com.christopherluc.superformtest.api.QRCodeSeed
 import com.christopherluc.superformtest.api.QRCodeService
-import com.christopherluc.superformtest.databinding.ActivityLaunchBinding
+import com.christopherluc.superformtest.databinding.FragmentQrCodeBinding
 import com.christopherluc.superformtest.qrcode.encodeAsBitmap
+import com.google.android.material.snackbar.Snackbar
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,22 +23,20 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
- * Activity that retrieves a QR code string from the API and displays it as a bitmap
+ * Fragment that retrieves a QR code string from the API and displays it as a bitmap
  *
  */
-class QRCodeActivity : AppCompatActivity() {
+class QRCodeFragment : androidx.fragment.app.Fragment() {
 
-    private lateinit var binding: ActivityLaunchBinding
+    private lateinit var binding: FragmentQrCodeBinding
     private val viewModel = ViewModel()
     private val disposable = CompositeDisposable()
     private var timer: Disposable? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_launch)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_launch)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentQrCodeBinding.inflate(inflater)
         binding.viewModel = viewModel
+        return binding.root
     }
 
     override fun onDestroy() {
@@ -74,7 +73,7 @@ class QRCodeActivity : AppCompatActivity() {
     private fun handleApiSuccess(data: QRCodeSeed) {
         viewModel.bitmap.set(encodeAsBitmap(data.seed, resources.getDimensionPixelSize(R.dimen.qr_code_dimen)))
         //TODO Instead of formatting an expiration date, a repeating completable can be used to update the remaining time.  But that seems wasteful unless the codes expires in less than a minute
-        viewModel.setFormattedDate(data.expires_at, this)
+        viewModel.setFormattedDate(data.expires_at, requireContext())
         scheduleTimeout(data.expires_at)
     }
 
@@ -84,7 +83,7 @@ class QRCodeActivity : AppCompatActivity() {
     private fun handleApiFailure(exception: Throwable) {
         Snackbar.make(binding.root, getString(R.string.launch_screen_error_snack_bar, RETRY_TIME_SECONDS), Snackbar.LENGTH_LONG).show()
         disposable.add(Completable.timer(RETRY_TIME_SECONDS, TimeUnit.SECONDS).subscribe { retrieveApiData() })
-        Log.e(QRCodeActivity::class.java.simpleName, "Exception: ", exception)
+        Log.e(QRCodeFragment::class.java.simpleName, "Exception: ", exception)
 
     }
 
