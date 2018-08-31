@@ -13,6 +13,8 @@
 		717AB9442138DEC70047FDD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 717AB9432138DEC70047FDD4 /* Assets.xcassets */; };
 		717AB9472138DEC70047FDD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 717AB9452138DEC70047FDD4 /* LaunchScreen.storyboard */; };
 		718F62B32138EE0D00D71449 /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62B22138EE0D00D71449 /* MaterialButton.swift */; };
+		718F62BC2138F6C700D71449 /* GenerateQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62BB2138F6C700D71449 /* GenerateQRViewController.swift */; };
+		718F62BE2138F6D300D71449 /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62BD2138F6D300D71449 /* ScanQRViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		717AB9462138DEC70047FDD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		717AB9482138DEC70047FDD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		718F62B22138EE0D00D71449 /* MaterialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		718F62BB2138F6C700D71449 /* GenerateQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQRViewController.swift; sourceTree = "<group>"; };
+		718F62BD2138F6D300D71449 /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,6 @@
 		717AB93B2138DEC60047FDD4 /* qr-scan-ios */ = {
 			isa = PBXGroup;
 			children = (
-				718F62B02138ED9900D71449 /* Model */,
 				718F62AF2138ED9700D71449 /* View */,
 				718F62AE2138ED9000D71449 /* Controller */,
 				717AB93C2138DEC60047FDD4 /* AppDelegate.swift */,
@@ -72,6 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				717AB93E2138DEC60047FDD4 /* HomeViewController.swift */,
+				718F62BB2138F6C700D71449 /* GenerateQRViewController.swift */,
+				718F62BD2138F6D300D71449 /* ScanQRViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -82,14 +87,6 @@
 				718F62B22138EE0D00D71449 /* MaterialButton.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		718F62B02138ED9900D71449 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +162,9 @@
 			files = (
 				717AB93F2138DEC60047FDD4 /* HomeViewController.swift in Sources */,
 				717AB93D2138DEC60047FDD4 /* AppDelegate.swift in Sources */,
+				718F62BC2138F6C700D71449 /* GenerateQRViewController.swift in Sources */,
 				718F62B32138EE0D00D71449 /* MaterialButton.swift in Sources */,
+				718F62BE2138F6D300D71449 /* ScanQRViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

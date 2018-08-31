@@ -66,7 +66,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="AGd-l5-8Y1"/>
+                    <navigationItem key="navigationItem" title="Home" id="AGd-l5-8Y1">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="hm1-2Q-In1"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="plusBtn" destination="a8k-73-ycw" id="g13-mO-Z08"/>
                         <outletCollection property="qrButtons" destination="GYZ-p3-aFJ" collectionClass="NSMutableArray" id="csB-2X-utv"/>
@@ -76,6 +78,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="887" y="791"/>
+        </scene>
+        <!--GenerateQR View Controller-->
+        <scene sceneID="7yi-dH-Raq">
+            <objects>
+                <viewController storyboardIdentifier="GenerateQRViewController" id="T6n-2p-frD" customClass="GenerateQRViewController" customModule="qr_scan_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AaW-0l-cf3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dyw-za-zgo">
+                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="a0a-0s-9zw"/>
+                                    <constraint firstAttribute="height" constant="250" id="gCT-K0-92N"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dyw-za-zgo" firstAttribute="centerY" secondItem="AaW-0l-cf3" secondAttribute="centerY" id="4SW-Yx-RwM"/>
+                            <constraint firstItem="dyw-za-zgo" firstAttribute="centerX" secondItem="AaW-0l-cf3" secondAttribute="centerX" id="Nxc-Zq-sIm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pHt-ug-e5u"/>
+                    </view>
+                    <connections>
+                        <outlet property="qrCodeImageView" destination="dyw-za-zgo" id="Aoo-D1-wdj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iuk-Jh-u0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676" y="1220"/>
+        </scene>
+        <!--ScanQR View Controller-->
+        <scene sceneID="KOm-Sg-bLi">
+            <objects>
+                <viewController storyboardIdentifier="ScanQRViewController" id="GwE-HC-Uyh" customClass="ScanQRViewController" customModule="qr_scan_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UxQ-YH-rCc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="248-9u-WW1">
+                                <rect key="frame" x="20" y="587" width="335" height="60"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aEA-Cr-jb4">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2jl-wq-Yi7"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JQz-G7-X5h" firstAttribute="trailing" secondItem="248-9u-WW1" secondAttribute="trailing" constant="20" id="IHL-qB-Jmg"/>
+                            <constraint firstItem="JQz-G7-X5h" firstAttribute="bottom" secondItem="248-9u-WW1" secondAttribute="bottom" constant="20" id="f6V-9U-PT0"/>
+                            <constraint firstItem="248-9u-WW1" firstAttribute="leading" secondItem="JQz-G7-X5h" secondAttribute="leading" constant="20" id="ylJ-u5-TpC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JQz-G7-X5h"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="903-o2-e60" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1661.5999999999999" y="534.78260869565224"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7q2-ec-XVw">
@@ -103,4 +169,5 @@
     <resources>
         <image name="plus" width="80" height="80"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

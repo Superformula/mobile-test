@@ -19,20 +19,30 @@ class HomeViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     @IBAction func plusBtnWasPressed(_ sender: Any) {
         animateButtons()
     }
     
     @IBAction func generateBtnWasPressed(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "GenerateQRViewController") as? GenerateQRViewController {
+            vc.navigationItem.title = "Generate QR Code"
+            if let navController = navigationController {
+                navController.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     @IBAction func scanBtnWasPressed(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "ScanQRViewController") as? ScanQRViewController {
+            vc.navigationItem.title = "Scan QR Code"
+            if let navController = navigationController {
+                navController.pushViewController(vc, animated: true)
+            }
+        }
     }
-    
+}
+
+extension HomeViewController {
     func animateButtons() {
         UIView.animate(withDuration: 0.2) {
             self.qrButtons.forEach {
@@ -40,6 +50,4 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
 }
-
