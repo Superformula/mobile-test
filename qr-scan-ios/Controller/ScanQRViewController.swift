@@ -14,7 +14,7 @@ class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     
-    let qrCodeDataLabel = UILabel()
+    var qrCodeDataLabel: UILabel!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,12 +101,14 @@ class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     }
     
     func addQRCodeDataLabel() {
+        qrCodeDataLabel = UILabel()
         let frame = CGRect(x: 0, y: view.frame.maxY - 100, width: view.frame.width, height: 100)
         qrCodeDataLabel.frame = frame
         qrCodeDataLabel.textColor = .black
         qrCodeDataLabel.backgroundColor = UIColor.init(white: 1.0, alpha: 0.75)
         qrCodeDataLabel.textAlignment = .center
         qrCodeDataLabel.font = UIFont(name: "Helvetica-Bold", size: 22)
+        qrCodeDataLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(qrCodeDataLabel)
     }
     

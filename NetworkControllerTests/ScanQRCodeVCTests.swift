@@ -7,27 +7,45 @@
 //
 
 import XCTest
+@testable import qr_scan_ios
 
 class ScanQRCodeVCTests: XCTestCase {
+    
+    var controllerUnderTest: ScanQRViewController!
+    var testString = "test string"
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        controllerUnderTest = ScanQRViewController()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        controllerUnderTest = nil
+    }
+    
+    func testCaptureSessionIsNotNil() {
+        controllerUnderTest.viewDidLoad()
+        XCTAssertNotNil(controllerUnderTest.captureSession)
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testScanLabelIsNotNil() {
+        controllerUnderTest.viewWillAppear(true)
+        XCTAssertNotNil(controllerUnderTest.qrCodeDataLabel)
     }
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testPreviewLayerIsNotNil() {
+        controllerUnderTest.viewDidLoad()
+        XCTAssertNotNil(controllerUnderTest.previewLayer)
     }
-
+    
+    func testScanFailureDoesResetCaptureSession() {
+        controllerUnderTest.viewDidLoad()
+        controllerUnderTest.failed()
+        XCTAssertNil(controllerUnderTest.captureSession)
+    }
+    
+    func testQRScanDoesSetText() {
+        controllerUnderTest.viewDidLoad()
+        controllerUnderTest.found(code: testString)
+        XCTAssertEqual(controllerUnderTest.qrCodeDataLabel.text, testString)
+    }
 }
