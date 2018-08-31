@@ -11,11 +11,19 @@ import UIKit
 class GenerateQRViewController: UIViewController {
 
     @IBOutlet weak var qrCodeImageView: UIImageView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            self.qrCodeImageView.image = self.generateQRCode(from: "asdhfwhjerf98wjer0di9q2j3e0")
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        
+        NetworkController().loadQRCodeSeed { (seed) in
+            guard let seedData = seed else { return }
+            DispatchQueue.main.async {
+                self.qrCodeImageView.image = self.generateQRCode(from: seedData)
+                self.spinner.stopAnimating()
+            }
         }
     }
     

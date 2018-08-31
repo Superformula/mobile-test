@@ -13,7 +13,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="qr_scan_ios" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="Hom">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Home" customClass="Home">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -94,16 +94,23 @@
                                     <constraint firstAttribute="height" constant="250" id="gCT-K0-92N"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vWO-ol-nn2">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.2784313725" green="0.31764705879999999" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dyw-za-zgo" firstAttribute="centerY" secondItem="AaW-0l-cf3" secondAttribute="centerY" id="4SW-Yx-RwM"/>
+                            <constraint firstItem="vWO-ol-nn2" firstAttribute="centerX" secondItem="AaW-0l-cf3" secondAttribute="centerX" id="9l9-zg-35i"/>
                             <constraint firstItem="dyw-za-zgo" firstAttribute="centerX" secondItem="AaW-0l-cf3" secondAttribute="centerX" id="Nxc-Zq-sIm"/>
+                            <constraint firstItem="vWO-ol-nn2" firstAttribute="centerY" secondItem="AaW-0l-cf3" secondAttribute="centerY" id="cTd-EH-wKE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pHt-ug-e5u"/>
                     </view>
                     <connections>
                         <outlet property="qrCodeImageView" destination="dyw-za-zgo" id="Aoo-D1-wdj"/>
+                        <outlet property="spinner" destination="vWO-ol-nn2" id="PgD-dS-Xth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iuk-Jh-u0M" userLabel="First Responder" sceneMemberID="firstResponder"/>

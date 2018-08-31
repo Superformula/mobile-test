@@ -15,7 +15,22 @@
 		718F62B32138EE0D00D71449 /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62B22138EE0D00D71449 /* MaterialButton.swift */; };
 		718F62BC2138F6C700D71449 /* GenerateQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62BB2138F6C700D71449 /* GenerateQRViewController.swift */; };
 		718F62BE2138F6D300D71449 /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62BD2138F6D300D71449 /* ScanQRViewController.swift */; };
+		718F62C1213900FA00D71449 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62C0213900FA00D71449 /* Constants.swift */; };
+		718F62C42139017500D71449 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F62C32139017500D71449 /* NetworkController.swift */; };
+		7191CF5321390E2C002206DF /* NetworkControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7191CF5221390E2C002206DF /* NetworkControllerTests.swift */; };
+		71E510D3213911380062CDD4 /* GenerateQRCodeVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E510D2213911380062CDD4 /* GenerateQRCodeVCTests.swift */; };
+		71E510D5213911480062CDD4 /* ScanQRCodeVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E510D4213911480062CDD4 /* ScanQRCodeVCTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7191CF5521390E2C002206DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 717AB9312138DEC60047FDD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 717AB9382138DEC60047FDD4;
+			remoteInfo = "qr-scan-ios";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		717AB9392138DEC60047FDD4 /* qr-scan-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "qr-scan-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,10 +43,24 @@
 		718F62B22138EE0D00D71449 /* MaterialButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
 		718F62BB2138F6C700D71449 /* GenerateQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQRViewController.swift; sourceTree = "<group>"; };
 		718F62BD2138F6D300D71449 /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
+		718F62C0213900FA00D71449 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		718F62C32139017500D71449 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		7191CF5021390E2C002206DF /* NetworkControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7191CF5221390E2C002206DF /* NetworkControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkControllerTests.swift; sourceTree = "<group>"; };
+		7191CF5421390E2C002206DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71E510D2213911380062CDD4 /* GenerateQRCodeVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateQRCodeVCTests.swift; sourceTree = "<group>"; };
+		71E510D4213911480062CDD4 /* ScanQRCodeVCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRCodeVCTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		717AB9362138DEC60047FDD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7191CF4D21390E2C002206DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				717AB93B2138DEC60047FDD4 /* qr-scan-ios */,
+				7191CF5121390E2C002206DF /* NetworkControllerTests */,
 				717AB93A2138DEC60047FDD4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				717AB9392138DEC60047FDD4 /* qr-scan-ios.app */,
+				7191CF5021390E2C002206DF /* NetworkControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +91,8 @@
 		717AB93B2138DEC60047FDD4 /* qr-scan-ios */ = {
 			isa = PBXGroup;
 			children = (
+				718F62C22139016900D71449 /* Networking */,
+				718F62BF213900EF00D71449 /* Resources */,
 				718F62AF2138ED9700D71449 /* View */,
 				718F62AE2138ED9000D71449 /* Controller */,
 				717AB93C2138DEC60047FDD4 /* AppDelegate.swift */,
@@ -89,6 +122,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		718F62BF213900EF00D71449 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				718F62C0213900FA00D71449 /* Constants.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		718F62C22139016900D71449 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				718F62C32139017500D71449 /* NetworkController.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		7191CF5121390E2C002206DF /* NetworkControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				71E510D4213911480062CDD4 /* ScanQRCodeVCTests.swift */,
+				71E510D2213911380062CDD4 /* GenerateQRCodeVCTests.swift */,
+				7191CF5221390E2C002206DF /* NetworkControllerTests.swift */,
+				7191CF5421390E2C002206DF /* Info.plist */,
+			);
+			path = NetworkControllerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,6 +169,24 @@
 			productReference = 717AB9392138DEC60047FDD4 /* qr-scan-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7191CF4F21390E2C002206DF /* NetworkControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7191CF5721390E2C002206DF /* Build configuration list for PBXNativeTarget "NetworkControllerTests" */;
+			buildPhases = (
+				7191CF4C21390E2C002206DF /* Sources */,
+				7191CF4D21390E2C002206DF /* Frameworks */,
+				7191CF4E21390E2C002206DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7191CF5621390E2C002206DF /* PBXTargetDependency */,
+			);
+			name = NetworkControllerTests;
+			productName = NetworkControllerTests;
+			productReference = 7191CF5021390E2C002206DF /* NetworkControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -121,6 +199,10 @@
 				TargetAttributes = {
 					717AB9382138DEC60047FDD4 = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					7191CF4F21390E2C002206DF = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 717AB9382138DEC60047FDD4;
 					};
 				};
 			};
@@ -138,6 +220,7 @@
 			projectRoot = "";
 			targets = (
 				717AB9382138DEC60047FDD4 /* qr-scan-ios */,
+				7191CF4F21390E2C002206DF /* NetworkControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -153,6 +236,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7191CF4E21390E2C002206DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -165,10 +255,30 @@
 				718F62BC2138F6C700D71449 /* GenerateQRViewController.swift in Sources */,
 				718F62B32138EE0D00D71449 /* MaterialButton.swift in Sources */,
 				718F62BE2138F6D300D71449 /* ScanQRViewController.swift in Sources */,
+				718F62C42139017500D71449 /* NetworkController.swift in Sources */,
+				718F62C1213900FA00D71449 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7191CF4C21390E2C002206DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7191CF5321390E2C002206DF /* NetworkControllerTests.swift in Sources */,
+				71E510D3213911380062CDD4 /* GenerateQRCodeVCTests.swift in Sources */,
+				71E510D5213911480062CDD4 /* ScanQRCodeVCTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7191CF5621390E2C002206DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 717AB9382138DEC60047FDD4 /* qr-scan-ios */;
+			targetProxy = 7191CF5521390E2C002206DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		717AB9402138DEC60047FDD4 /* Main.storyboard */ = {
@@ -342,6 +452,50 @@
 			};
 			name = Release;
 		};
+		7191CF5821390E2C002206DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = HLCDLFXF5Y;
+				INFOPLIST_FILE = NetworkControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stultzapps.NetworkControllerTests;
+				PRODUCT_MODULE_NAME = NetworkControllerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/qr-scan-ios.app/qr-scan-ios";
+			};
+			name = Debug;
+		};
+		7191CF5921390E2C002206DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
+				DEVELOPMENT_TEAM = HLCDLFXF5Y;
+				INFOPLIST_FILE = NetworkControllerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stultzapps.NetworkControllerTests;
+				PRODUCT_MODULE_NAME = NetworkControllerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/qr-scan-ios.app/qr-scan-ios";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -359,6 +513,15 @@
 			buildConfigurations = (
 				717AB94C2138DEC70047FDD4 /* Debug */,
 				717AB94D2138DEC70047FDD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7191CF5721390E2C002206DF /* Build configuration list for PBXNativeTarget "NetworkControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7191CF5821390E2C002206DF /* Debug */,
+				7191CF5921390E2C002206DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
