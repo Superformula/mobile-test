@@ -21,10 +21,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="@string/qrcode_fab_label"
-            android:visibility="@{viewModel.subFabVisibility, default=gone}"
-            app:layout_constraintBottom_toBottomOf="@+id/scannerFab"
-            app:layout_constraintEnd_toStartOf="@+id/scannerFab"
-            app:layout_constraintTop_toTopOf="@+id/scannerFab" />
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:layout_constraintBottom_toBottomOf="@+id/qrFab"
+            app:layout_constraintEnd_toStartOf="@+id/qrFab"
+            app:layout_constraintTop_toTopOf="@+id/qrFab" />
 
         <TextView
             android:id="@+id/textView"
@@ -32,10 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="@string/scan_fab_label"
-            android:visibility="@{viewModel.subFabVisibility, default=gone}"
-            app:layout_constraintBottom_toBottomOf="@+id/qrFab"
-            app:layout_constraintEnd_toStartOf="@+id/qrFab"
-            app:layout_constraintTop_toTopOf="@+id/qrFab" />
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:layout_constraintBottom_toBottomOf="@+id/scanFab"
+            app:layout_constraintEnd_toStartOf="@+id/scanFab"
+            app:layout_constraintTop_toTopOf="@+id/scanFab" />
 
         <FrameLayout
             android:id="@+id/fragmentContainer"
@@ -50,20 +50,6 @@
         </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/scannerFab"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_add_black_24dp"
-            android:tint="@android:color/white"
-            android:visibility="@{viewModel.subFabVisibility, default=gone}"
-            app:fabSize="mini"
-            app:layout_constraintBottom_toTopOf="@+id/mainFab"
-            app:layout_constraintEnd_toEndOf="@+id/mainFab"
-            app:layout_constraintStart_toStartOf="@+id/mainFab" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/qrFab"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:layout_width="wrap_content"
@@ -71,11 +57,25 @@
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_add_black_24dp"
             android:tint="@android:color/white"
-            android:visibility="@{viewModel.subFabVisibility, default=gone}"
+            android:visibility="@{viewModel.subFabVisibility}"
             app:fabSize="mini"
-            app:layout_constraintBottom_toTopOf="@+id/scannerFab"
+            app:layout_constraintBottom_toTopOf="@+id/mainFab"
             app:layout_constraintEnd_toEndOf="@+id/mainFab"
             app:layout_constraintStart_toStartOf="@+id/mainFab" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/scanFab"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_add_black_24dp"
+            android:tint="@android:color/white"
+            android:visibility="@{viewModel.subFabVisibility}"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/qrFab"
+            app:layout_constraintEnd_toEndOf="@+id/qrFab"
+            app:layout_constraintStart_toStartOf="@+id/qrFab" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/mainFab"

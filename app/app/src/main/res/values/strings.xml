@@ -3,7 +3,7 @@
     <string name="launch_screen_expires_at">Expires at %s</string>
     <string name="launch_screen_error_snack_bar">Failure getting code data.  Reattempt in %ds</string>
     <string name="launch_screen_loading">Loading</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">QR Code</string>
     <string name="qrcode_fab_label">QRCode</string>
     <string name="scan_fab_label">Scan</string>
 </resources>

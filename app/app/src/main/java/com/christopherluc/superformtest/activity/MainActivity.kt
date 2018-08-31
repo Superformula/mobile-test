@@ -23,8 +23,12 @@ class MainActivity : AppCompatActivity() {
             viewModel = this@MainActivity.viewModel
             mainFab.setOnClickListener { toggleVisibility() }
             qrFab.setOnClickListener { setQRCodeFragment() }
-            scannerFab.setOnClickListener { setScannerFragment() }
+            scanFab.setOnClickListener { setScannerFragment() }
         }
+    }
+
+    override fun onBackPressed() {
+        supportFragmentManager?.takeIf { it.backStackEntryCount > 0 }?.popBackStack() ?: super.onBackPressed()
     }
 
     /**
@@ -41,7 +45,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setQRCodeFragment() {
         when (supportFragmentManager.findFragmentById(R.id.fragmentContainer)) {
-            !is QRCodeFragment -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, QRCodeFragment()).commitNow()
+            !is QRCodeFragment -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, QRCodeFragment()).addToBackStack(null).commit()
         }
         toggleVisibility()
     }
