@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.christopherluc.superformtest.activity.MainActivityViewModel" />
+            type="com.christopherluc.superformtest.screens.MainActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.MainActivity">
+        tools:context=".screens.MainActivity">
 
         <TextView
             android:id="@+id/textView2"

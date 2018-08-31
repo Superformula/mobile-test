@@ -1,4 +1,4 @@
-package com.christopherluc.superformtest.activity
+package com.christopherluc.superformtest.screens
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -39,15 +39,19 @@ class QRCodeFragment : androidx.fragment.app.Fragment() {
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         disposable.takeUnless { it.isDisposed }?.dispose()
+        viewModel.bitmap.get()?.takeUnless { it.isRecycled }?.recycle()
     }
 
     override fun onStop() {
         super.onStop()
         //Cancel the timer so that it doesn't execute while backgrounded
-        timer?.takeUnless { it.isDisposed }?.dispose()
+        timer?.takeUnless { it.isDisposed }?.run {
+            dispose()
+            timer = null
+        }
     }
 
     override fun onStart() {
@@ -62,7 +66,6 @@ class QRCodeFragment : androidx.fragment.app.Fragment() {
      */
     private fun retrieveApiData() {
         viewModel.subText.set(getString(R.string.launch_screen_loading))
-        viewModel.bitmap.set(null)
         //TODO Could use dagger to inject the service, which would allow that to be mocked out in testing
         disposable.add(QRCodeService.getSeed().observeOn(AndroidSchedulers.mainThread()).subscribe(this::handleApiSuccess, this::handleApiFailure))
     }
@@ -71,7 +74,7 @@ class QRCodeFragment : androidx.fragment.app.Fragment() {
      * Handles a successful api response
      */
     private fun handleApiSuccess(data: QRCodeSeed) {
-        viewModel.bitmap.set(encodeAsBitmap(data.seed, resources.getDimensionPixelSize(R.dimen.qr_code_dimen)))
+        viewModel.bitmap.set(encodeAsBitmap(data.seed, resources.getDimensionPixelSize(R.dimen.qr_code_dimen), viewModel.bitmap.get()))
         //TODO Instead of formatting an expiration date, a repeating completable can be used to update the remaining time.  But that seems wasteful unless the codes expires in less than a minute
         viewModel.setFormattedDate(data.expires_at, requireContext())
         scheduleTimeout(data.expires_at)

@@ -9,7 +9,7 @@ import com.google.zxing.MultiFormatWriter
  * Takes an input string and width
  * and returns a square QR code in bitmap format
  */
-fun encodeAsBitmap(str: String?, width: Int): Bitmap? {
+fun encodeAsBitmap(str: String?, width: Int, reusableBitmap: Bitmap? = null): Bitmap? {
 
     val bitMatrix = try {
         MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, width, width, null)
@@ -27,6 +27,11 @@ fun encodeAsBitmap(str: String?, width: Int): Bitmap? {
         for (x in 0 until bitMatrixWidth) {
             pixels[offset + x] = if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE
         }
+    }
+
+    reusableBitmap?.takeUnless { it.isRecycled || it.width != width || it.height != it.height }?.let {
+        it.setPixels(pixels, 0, width, 0, 0, bitMatrixWidth, bitMatrixHeight)
+        return it
     }
 
     return Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.RGB_565).apply {

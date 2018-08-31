@@ -1,6 +1,6 @@
 package com.christopherluc.superformtest
 
-import com.christopherluc.superformtest.activity.ViewModel
+import com.christopherluc.superformtest.screens.ViewModel
 import org.assertj.core.api.Assertions
 import org.junit.Test
 import org.junit.runner.RunWith

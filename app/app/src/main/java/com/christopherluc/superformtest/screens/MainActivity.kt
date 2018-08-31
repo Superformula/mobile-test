@@ -1,11 +1,11 @@
-package com.christopherluc.superformtest.activity
+package com.christopherluc.superformtest.screens
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableInt
+import androidx.fragment.app.Fragment
 import com.christopherluc.superformtest.R
 import com.christopherluc.superformtest.databinding.ActivityMainBinding
 
@@ -44,8 +44,9 @@ class MainActivity : AppCompatActivity() {
      * Launches the QRCodeFragment if not currently displayed
      */
     private fun setQRCodeFragment() {
-        when (supportFragmentManager.findFragmentById(R.id.fragmentContainer)) {
-            !is QRCodeFragment -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, QRCodeFragment()).addToBackStack(null).commit()
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+        when (fragment) {
+            !is QRCodeFragment -> setOrReplaceFragment(fragment, QRCodeFragment())
         }
         toggleVisibility()
     }
@@ -54,10 +55,23 @@ class MainActivity : AppCompatActivity() {
      * Dummy method where the scanner fragment would be launched from
      */
     private fun setScannerFragment() {
-        Toast.makeText(this, "Not yet implemented", Toast.LENGTH_LONG).show()
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+
+        when (fragment) {
+            !is ScannerFragment -> setOrReplaceFragment(fragment, ScannerFragment())
+        }
         toggleVisibility()
     }
 
+    private fun setOrReplaceFragment(oldFragment: Fragment?, newFragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction().apply {
+            oldFragment?.let {
+                remove(it)
+                supportFragmentManager.popBackStack()
+            }
+        }
+        transaction.replace(R.id.fragmentContainer, newFragment).addToBackStack(null).commit()
+    }
 }
 
 /**

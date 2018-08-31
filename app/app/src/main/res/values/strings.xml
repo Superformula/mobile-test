@@ -6,4 +6,7 @@
     <string name="title_activity_main">QR Code</string>
     <string name="qrcode_fab_label">QRCode</string>
     <string name="scan_fab_label">Scan</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="dummy_text">This is where the scanner would go</string>
 </resources>
