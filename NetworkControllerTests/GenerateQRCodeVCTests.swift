@@ -11,19 +11,19 @@ import XCTest
 
 class GenerateQRCodeVCTests: XCTestCase {
     
-    var controllerUnderTest: GenerateQRViewController!
+    var generatorUnderTest: QRGenerator!
     var testString = "test string"
 
     override func setUp() {
-        controllerUnderTest = GenerateQRViewController()
+        generatorUnderTest = QRGenerator()
     }
 
     override func tearDown() {
-        controllerUnderTest = nil
+        generatorUnderTest = nil
     }
-
+    
     func testGenerateQRCodeIsNotNil() {
-        let qrCode = controllerUnderTest.generateQRCode(from: testString)
+        let qrCode = generatorUnderTest.generateQRCode(from: testString)
         XCTAssertNotNil(qrCode)
     }
 }

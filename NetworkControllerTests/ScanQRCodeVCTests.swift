@@ -45,6 +45,7 @@ class ScanQRCodeVCTests: XCTestCase {
     
     func testQRScanDoesSetText() {
         controllerUnderTest.viewDidLoad()
+        controllerUnderTest.viewWillAppear(true)
         controllerUnderTest.found(code: testString)
         XCTAssertEqual(controllerUnderTest.qrCodeDataLabel.text, testString)
     }

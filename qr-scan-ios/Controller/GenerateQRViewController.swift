@@ -15,8 +15,8 @@ class GenerateQRViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        spinner.hidesWhenStopped = true
         spinner.startAnimating()
+        spinner.hidesWhenStopped = true
         
         NetworkController().loadQRCodeSeed { (seed) in
             guard let seedData = seed else { return }
