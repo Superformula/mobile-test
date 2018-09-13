@@ -7,15 +7,15 @@ Be sure to read **all** of this document carefully, and follow the guidelines wi
 ## Context
 
 - A client needs to display a QR code in their App.
-- The App is a typical membership App, which can be used to access features of one's membership.
-- The QR code can be used to identify one's membership or feature.
+- The QR code can be used to identify one's profile or a certain feature.
 
 ## Requirements
 
 ### Tasks
 
-1.  Build a simple API server that provides an endpoint which generates a random seed used to create QR code.
+1.  Build a simple API server that provides an endpoint which generates a random seed used to create QR code. (if you cannot build an API server, we can supply a lambda to do this for you)
 2.  Build a simple App that can call the seed endpoint and generate a QR code based on the seed.
+3.  Be sure the app will use the below UI and will have a navigation patterb present.
 
 ### UI
 
@@ -72,5 +72,6 @@ components:
 These may be used for additional challenges. You can freely skip these if you are not asked to do them; feel free to try them out if you're up for it.
 
 - Provide an auto-refresh strategy, for example with the `expires_at` value.
+- (Android) Use DI with Dagger2
 - Provide an offline QR code access strategy, for example with a cache.
 - Build a "Scan" feature that can demonstrate how it works (see the mock) and how it could be validated with another endpoint.
