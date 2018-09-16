@@ -57,6 +57,12 @@ dependencies {
   // UI
   implementation 'com.getbase:floatingactionbutton:1.10.1'
 
+  // QR Code
+  //noinspection GradleDependency
+  implementation 'com.google.zxing:core:3.2.1'
+  //noinspection GradleDependency
+  implementation 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+
   // Testing
   testImplementation 'junit:junit:4.12'
   testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
