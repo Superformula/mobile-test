@@ -23,33 +23,35 @@ class ScanFragment : BaseFragment() {
 
   private var lastScanResult: String = ""
 
+  private val callback = object : BarcodeCallback {
+    override fun barcodeResult(result: BarcodeResult) {
+      if (result.text == null || result.text == lastScanResult) {
+        // Prevent duplicate scans
+        return
+      }
+      lastScanResult = result.text
+      Toast.makeText(requireContext(), lastScanResult, Toast.LENGTH_LONG).show()
+      beepManager.playBeepSound()
+    }
+
+    override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>) {
+      // no-op
+    }
+
+  }
+
   override fun getActionBarTitle(): Int = R.string.scan
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    return inflater.inflate(R.layout.fragment_scan, container, false);
+    return inflater.inflate(R.layout.fragment_scan, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    beepManager = BeepManager(requireActivity())
     val formats = Arrays.asList(BarcodeFormat.QR_CODE, BarcodeFormat.CODE_39)
     barcodeScanner.barcodeView.decoderFactory = DefaultDecoderFactory(formats)
-    barcodeScanner.decodeContinuous(object : BarcodeCallback {
-      override fun barcodeResult(result: BarcodeResult) {
-        if (result.text == null || result.text == lastScanResult) {
-          // Prevent duplicate scans
-          return
-        }
-        lastScanResult = result.text
-        Toast.makeText(requireContext(), lastScanResult, Toast.LENGTH_LONG).show()
-        beepManager.playBeepSound()
-      }
-
-      override fun possibleResultPoints(resultPoints: MutableList<ResultPoint>) {
-        // no-op
-      }
-
-    })
-    beepManager = BeepManager(requireActivity());
+    barcodeScanner.decodeContinuous(callback)
   }
 
   override fun onResume() {
