@@ -1,57 +1,34 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+### Gradle
+.gradle
+build
 
-# C extensions
-*.so
+### IntelliJ IDEA
+.idea
+**.iml
 
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
+### Local configuration file (sdk path, etc)
+local.properties
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+### Android
+*.jks
+*.dex
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+### Android Studio
+captures/
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*,cover
+### Java
+*.class
 
-# Translations
-*.mo
-*.pot
+### Windows
+Desktop.ini
+Thumbs.db
+ehthumbs.db
 
-# Django stuff:
-*.log
+### OSX
+.DS_Store
 
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
+### Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
