@@ -50,6 +50,9 @@ dependencies {
   // Logging
   implementation 'com.jakewharton.timber:timber:4.7.1'
 
+  // UI
+  implementation 'com.getbase:floatingactionbutton:1.10.1'
+
   // Testing
   testImplementation 'junit:junit:4.12'
   testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'

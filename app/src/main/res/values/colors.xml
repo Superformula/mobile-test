@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#3F51B5</color>
-  <color name="colorPrimaryDark">#303F9F</color>
-  <color name="colorAccent">#FF4081</color>
+  <!-- App Colors -->
+  <color name="colorPrimary">#88dec3</color>
+  <color name="colorPrimaryDark">#8ccab7</color>
+  <color name="colorAccent">#5b4a41</color>
+
+  <!-- FloatingActionButton -->
+  <color name="fabLabelBackground">#99000000</color>
+  <color name="fabBackground">#77000000</color>
+
+  <!-- Other Colors -->
+  <color name="white">#FFFFFFFF</color>
 </resources>
