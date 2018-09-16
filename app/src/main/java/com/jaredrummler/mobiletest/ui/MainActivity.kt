@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.view.MenuItem
 import android.widget.Toast
 import com.jaredrummler.mobiletest.R
 import com.jaredrummler.mobiletest.ui.home.HomeFragment
+import com.jaredrummler.mobiletest.ui.qrcode.QrCodeFragment
 import kotlinx.android.synthetic.main.main_activity_toolbar_title.toolbarTitle
 
 class MainActivity : AppCompatActivity(), MainView {
@@ -22,6 +24,16 @@ class MainActivity : AppCompatActivity(), MainView {
     }
   }
 
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    return when (item.itemId) {
+      android.R.id.home -> {
+        onBackPressed()
+        true
+      }
+      else -> super.onOptionsItemSelected(item)
+    }
+  }
+
   override fun onBackPressed() {
     (supportFragmentManager.findFragmentById(android.R.id.content) as? BaseFragment)?.let { fragment ->
       if (fragment.handleOnBackPressed()) {
@@ -29,7 +41,11 @@ class MainActivity : AppCompatActivity(), MainView {
         return
       }
     }
-    super.onBackPressed()
+    if (supportFragmentManager.backStackEntryCount > 0) {
+      supportFragmentManager.popBackStack()
+    } else {
+      super.onBackPressed()
+    }
   }
 
   override fun setTitle(title: CharSequence?) {
@@ -41,11 +57,23 @@ class MainActivity : AppCompatActivity(), MainView {
   }
 
   override fun showQrCode() {
-    Toast.makeText(applicationContext, "Not implemented", Toast.LENGTH_LONG).show()
+    supportFragmentManager.beginTransaction()
+        .replace(android.R.id.content, QrCodeFragment.newInstance())
+        .addToBackStack(null)
+        .commit()
+    supportActionBar?.setDisplayHomeAsUpEnabled(true)
   }
 
   override fun scanQrCode() {
     Toast.makeText(applicationContext, "Not implemented", Toast.LENGTH_LONG).show()
+  }
+
+  private fun updateTitle() {
+    supportFragmentManager.findFragmentById(android.R.id.content).let { fragment ->
+      if (fragment is BaseFragment) {
+        setTitle(fragment.getActionBarTitle())
+      }
+    }
   }
 
   @SuppressLint("InflateParams")
@@ -60,6 +88,11 @@ class MainActivity : AppCompatActivity(), MainView {
       val view = layoutInflater.inflate(R.layout.main_activity_toolbar_title, null)
       actionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
       actionBar.setCustomView(view, params)
+      // Update the title when a fragment is added
+      supportFragmentManager.addOnBackStackChangedListener {
+        actionBar.setDisplayHomeAsUpEnabled(supportFragmentManager.backStackEntryCount > 0)
+        updateTitle()
+      }
     }
   }
 

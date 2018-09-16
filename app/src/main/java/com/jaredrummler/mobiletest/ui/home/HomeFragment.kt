@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_home.floatingActions
 
 class HomeFragment : BaseFragment() {
 
+  override fun getActionBarTitle(): Int = R.string.home
+
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
     return inflater.inflate(R.layout.fragment_home, container, false)
   }
