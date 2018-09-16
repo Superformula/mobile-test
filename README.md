@@ -1,29 +1,31 @@
-# Superformula Mobile Developer Coding Test
+# Superformula QR-Scan Mobile Developer Coding Test
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+![](./app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
-## Requirements
+### Building
 
-There is only one test here currently, please review and get back to us.
+1) Download and setup the Android SDK and Android Studio
+2) Clone this [repository](https://github.com/surf2b1/mobile-test)
+3) Build and deploy the app to an emulator or device
 
-## What We Care About
+### Server
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+The backend is using Google Firebase Functions.
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+You can run firebase commands locally:
 
-Here's what you should strive for:
+```bash
+firebase serve --only functions
+```
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+And deploy the cloud functions to your project:
 
-## Q&A
+```bash
+firebase deploy --only functions
+```
 
-> Where should I send back the result when I'm done?
+More information on setting up Firebase and running cloud functions can be found [here](https://cloud.google.com/functions/docs/tutorials/).
 
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
+### App
 
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
+The app uses [Dagger2](https://github.com/google/dagger), [RxJava](https://github.com/ReactiveX/RxJava), and [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/) for a clean, solid, and maintainable code. [Mockito](https://site.mockito.org/) and [JUnit](https://junit.org/junit4/) are used for unit tests. The app has a single activity and uses fragments. A ViewModel and LiveData are used to avoid memory leaks and handling orientation changes.
