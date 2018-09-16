@@ -1,15 +1,19 @@
 package com.jaredrummler.mobiletest.ui
 
+import android.Manifest.permission
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.PermissionChecker
+import android.support.v4.content.PermissionChecker.checkSelfPermission
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.MenuItem
-import android.widget.Toast
 import com.jaredrummler.mobiletest.R
 import com.jaredrummler.mobiletest.ui.home.HomeFragment
 import com.jaredrummler.mobiletest.ui.qrcode.QrCodeFragment
+import com.jaredrummler.mobiletest.ui.scan.ScanFragment
 import kotlinx.android.synthetic.main.main_activity_toolbar_title.toolbarTitle
 
 class MainActivity : AppCompatActivity(), MainView {
@@ -48,6 +52,15 @@ class MainActivity : AppCompatActivity(), MainView {
     }
   }
 
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    if (permissions.contains(permission.CAMERA) && requestCode == REQUEST_CAMERA_CODE) {
+      if (grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
+        scanQrCode()
+      }
+    }
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+  }
+
   override fun setTitle(title: CharSequence?) {
     toolbarTitle?.text = title
   }
@@ -61,11 +74,17 @@ class MainActivity : AppCompatActivity(), MainView {
         .replace(android.R.id.content, QrCodeFragment.newInstance())
         .addToBackStack(null)
         .commit()
-    supportActionBar?.setDisplayHomeAsUpEnabled(true)
   }
 
   override fun scanQrCode() {
-    Toast.makeText(applicationContext, "Not implemented", Toast.LENGTH_LONG).show()
+    if (checkSelfPermission(this, permission.CAMERA) != PermissionChecker.PERMISSION_GRANTED) {
+      ActivityCompat.requestPermissions(this, arrayOf(permission.CAMERA), REQUEST_CAMERA_CODE)
+      return
+    }
+    supportFragmentManager.beginTransaction()
+        .replace(android.R.id.content, ScanFragment.newInstance())
+        .addToBackStack(null)
+        .commit()
   }
 
   private fun updateTitle() {
@@ -94,6 +113,10 @@ class MainActivity : AppCompatActivity(), MainView {
         updateTitle()
       }
     }
+  }
+
+  companion object {
+    private const val REQUEST_CAMERA_CODE = 327
   }
 
 }
