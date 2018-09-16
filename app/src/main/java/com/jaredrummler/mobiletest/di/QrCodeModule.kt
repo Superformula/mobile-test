@@ -6,7 +6,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-object QrCodeModule {
+class QrCodeModule {
 
   @Provides
   @Singleton

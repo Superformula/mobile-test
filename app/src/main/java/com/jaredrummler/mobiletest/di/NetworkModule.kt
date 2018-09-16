@@ -18,10 +18,7 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
-object NetworkModule {
-
-  private const val SCHEDULER_IO = "SCHEDULER_IO"
-  private const val SCHEDULER_UI = "SCHEDULER_UI"
+class NetworkModule {
 
   @Provides
   @Singleton
@@ -62,5 +59,10 @@ object NetworkModule {
   fun provideSeedApi(service: ApiService,
       @Named(SCHEDULER_IO) ioScheduler: Scheduler,
       @Named(SCHEDULER_UI) uiScheduler: Scheduler): SeedApi = SeedApi(service, ioScheduler, uiScheduler)
+
+  companion object {
+    private const val SCHEDULER_IO = "SCHEDULER_IO"
+    private const val SCHEDULER_UI = "SCHEDULER_UI"
+  }
 
 }
