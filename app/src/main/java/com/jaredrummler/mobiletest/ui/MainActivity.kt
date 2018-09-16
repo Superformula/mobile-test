@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.widget.Toast
 import com.jaredrummler.mobiletest.R
 import com.jaredrummler.mobiletest.ui.home.HomeFragment
 import kotlinx.android.synthetic.main.main_activity_toolbar_title.toolbarTitle
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -37,6 +38,14 @@ class MainActivity : AppCompatActivity() {
 
   override fun setTitle(titleId: Int) {
     title = getString(titleId)
+  }
+
+  override fun showQrCode() {
+    Toast.makeText(applicationContext, "Not implemented", Toast.LENGTH_LONG).show()
+  }
+
+  override fun scanQrCode() {
+    Toast.makeText(applicationContext, "Not implemented", Toast.LENGTH_LONG).show()
   }
 
   @SuppressLint("InflateParams")
