@@ -10,5 +10,6 @@
   <color name="fabBackground">#77000000</color>
 
   <!-- Other Colors -->
+  <color name="ic_launcher_background">#88DEC3</color>
   <color name="white">#FFFFFFFF</color>
 </resources>
