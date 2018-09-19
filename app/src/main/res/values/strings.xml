@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">Mobile Test</string>
+  <string name="scan">Scan</string>
+  <string name="qr_code">QR-Code</string>
+  <string name="home">Home</string>
+  <string name="msg_result_failed_to_load">Error retrieving QR-Code</string>
+</resources>
