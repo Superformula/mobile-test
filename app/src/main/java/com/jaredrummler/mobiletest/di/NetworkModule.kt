@@ -32,17 +32,16 @@ class NetworkModule {
 
   @Provides
   @Singleton
-  fun provideOkHttpClient(): OkHttpClient {
-    val builder = OkHttpClient.Builder()
-    builder.connectTimeout(30, TimeUnit.SECONDS)
-    builder.readTimeout(30, TimeUnit.SECONDS)
-    builder.writeTimeout(30, TimeUnit.SECONDS)
-    if (BuildConfig.DEBUG) {
-      builder.addInterceptor(HttpLoggingInterceptor()
-          .setLevel(HttpLoggingInterceptor.Level.BODY))
-    }
-    return builder.build()
-  }
+  fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+      .connectTimeout(30, TimeUnit.SECONDS)
+      .readTimeout(30, TimeUnit.SECONDS)
+      .writeTimeout(30, TimeUnit.SECONDS)
+      .also {
+        if (BuildConfig.DEBUG) {
+          it.addInterceptor(HttpLoggingInterceptor()
+              .setLevel(HttpLoggingInterceptor.Level.BODY))
+        }
+      }.build()
 
   @Provides
   @Singleton
