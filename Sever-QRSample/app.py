@@ -4,9 +4,7 @@ from flask import Response
 import randomwordgenerator
 import primary
 import backup
-import socket
 import json
-import os
 
 
 app = Flask(__name__)

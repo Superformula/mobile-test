@@ -8,27 +8,46 @@
 
 import XCTest
 @testable import QRSample
+import OHHTTPStubs
 
 class QRSampleTests: XCTestCase {
 
+    //MARK: - Properties
+    var host: String!
+    var path: String!
+    var stubbedJSON: [String : Any]!
+    let serverURL = "http://localhost:5000"
+    let connectionTimeout = Environment().configuration(PlistKey.ConnectionTimeout)
+    let connectionProtocol = Environment().configuration(PlistKey.ConnectionProtocol)
+    let networkingQueue = DispatchQueue.global(qos: .background)
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
     }
-
+    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.host = ""
+        self.path = ""
+        self.stubbedJSON = [:]
+        OHHTTPStubs.removeAllStubs()
+        super.tearDown()
     }
+    
+    func testGetSeed() {
+        self.host = "\(self.connectionProtocol)://" + "\(self.serverURL)"
+        self.path = "/seed"
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        // Expectation
+        let sExpectation = self.expectation(description: "We expected the method's completion handler to be called.")
+        
+        // Code Under Test
+        let network = Networking()
+        network.getSeed(completion: { (seed, resultStatus) in
+            XCTAssertNotNil(seed)
+            XCTAssert(resultStatus == .success)
+            sExpectation.fulfill()
+        })
+        self.waitForExpectations(timeout: 5.0, handler: .none)
     }
 
 }
