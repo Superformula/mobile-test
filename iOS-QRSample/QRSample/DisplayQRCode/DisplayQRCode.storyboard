@@ -24,15 +24,18 @@
                                     <constraint firstAttribute="height" constant="250" id="OLA-1S-2G9"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEb-2J-tFf">
-                                <rect key="frame" x="187.5" y="178.5" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEb-2J-tFf">
+                                <rect key="frame" x="150" y="158" width="75" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJJ-Wu-8HA">
-                                <rect key="frame" x="167.5" y="488.5" width="40" height="30"/>
-                                <state key="normal" title="Share"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJJ-Wu-8HA">
+                                <rect key="frame" x="105.5" y="488.5" width="164" height="30"/>
+                                <state key="normal" title="Generate New QR Code"/>
+                                <connections>
+                                    <action selector="onTouchGenerateNew:" destination="qvh-TL-cvG" eventType="touchUpInside" id="BKG-V6-x2l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -48,9 +51,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="98G-tp-jRK"/>
                     <connections>
+                        <outlet property="generateButton" destination="nJJ-Wu-8HA" id="Vcq-Qu-Iw2"/>
                         <outlet property="imageView" destination="65N-W6-DhP" id="Npp-32-icZ"/>
                         <outlet property="seedLabel" destination="yEb-2J-tFf" id="5at-44-aif"/>
-                        <outlet property="shareButton" destination="nJJ-Wu-8HA" id="2iM-ax-FR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJT-nT-dq7" userLabel="First Responder" sceneMemberID="firstResponder"/>

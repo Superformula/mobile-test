@@ -11,7 +11,7 @@ import Foundation
 struct Seed: Codable {
     
     //MARK: - Properties
-    var seed: String?
+    var value: String?
     
     //MARK: - Coding Keys enum
     private enum CodingKeys: String, CodingKey {
@@ -21,12 +21,12 @@ struct Seed: Codable {
     //MARK: - LifeCycle
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.seed = try container.decodeIfPresent(String.self, forKey: .seed)
+        self.value = try container.decodeIfPresent(String.self, forKey: .seed)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(self.seed, forKey: .seed)
+        try container.encodeIfPresent(self.value, forKey: .seed)
     }
     
 }
