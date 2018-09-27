@@ -22,7 +22,6 @@ class ScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        self.fetchData()
     }
     
     //MARK: - Setup
@@ -53,39 +52,6 @@ class ScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         self.view.bringSubviewToFront(self.containerView)
     }
     
-    //MARK: - Fetch
-    private func fetchData() {
-        
-    }
-    
-    //MARK: - Utilities
-    private func displayWebVC(withLink link: String) {
-        
-    }
-    
-    //MARK: - onTouch
-    @IBAction func onTouchShareButton(_ sender: UIButton) {
-        
-    }
-    
-    func shareTextButton(text: String) {
-        let text = "This is some text that I want to share."
-        let textToShare = [ text ]
-        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        activityViewController.excludedActivityTypes = [ .airDrop, .postToFacebook, .mail, .message ]
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    func shareImage(image: UIImage) {
-        let imageToShare = [ image ]
-        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
-        activityViewController.excludedActivityTypes = [ .airDrop, .postToFacebook, .mail, .message ]
-        self.present(activityViewController, animated: true, completion: nil)
-    }
-    
-    
     //MARK: - AVCaptureMetadataOutputObjectsDelegate
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count < 1 {
@@ -97,12 +63,9 @@ class ScanVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
         let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
         self.containerView.frame = barCodeObject!.bounds
         if let urlString = metadataObj.stringValue {
-            self.displayAlertController(withAlertStyle: .alert, withTitle: "", withMesssage: "Show Web Site?", withActions: [UIAlertAction(title: "Yes", style: .default, handler: { action in
-                if let url = URL(string: urlString) {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }
+            self.displayAlertController(withAlertStyle: .alert, withTitle: "", withMesssage: "Show Web Site?", withActions: [UIAlertAction(title: "Yes", style: .default, handler: { [weak self] action in
+                guard let strongSelf = self else { return }
+                strongSelf.displayWebVC(withLink: urlString)
             }), UIAlertAction(title: "No", style: .cancel, handler: nil)])
             self.statusLabel.text = metadataObj.stringValue
         }

@@ -62,6 +62,7 @@ class DisplayQRCodeVC: UIViewController {
         self.imageView.image = UIImage(ciImage: transformedImage)
         self.seedLabel.text = "Seed: \(seedValue)"
         self.generateButton.isHidden = false
+        self.displayWebVC(withLink: seedValue)
     }
     
     //MARK: - Actions

@@ -45,6 +45,15 @@ extension UIViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
+
+    func displayWebVC(withLink link: String) {
+        if let url = URL(string: link) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
 }
 
 //MARK: - UIColor
