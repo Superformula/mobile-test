@@ -28,18 +28,13 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.34901960780000002" green="0.71764705880000002" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0C-NO-lag">
                                 <rect key="frame" x="187.5" y="429.5" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aq1-z4-nU7">
-                                <rect key="frame" x="187.5" y="237.5" width="0.0" height="0.0"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,9 +43,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CAG-Bl-URJ" firstAttribute="centerY" secondItem="jpM-Cq-nWd" secondAttribute="centerY" id="6th-q7-3FX"/>
-                            <constraint firstItem="CAG-Bl-URJ" firstAttribute="top" secondItem="aq1-z4-nU7" secondAttribute="bottom" constant="32" id="7jI-F4-RkQ"/>
                             <constraint firstItem="D0C-NO-lag" firstAttribute="centerX" secondItem="jpM-Cq-nWd" secondAttribute="centerX" id="FyU-To-3QI"/>
-                            <constraint firstItem="aq1-z4-nU7" firstAttribute="centerX" secondItem="jpM-Cq-nWd" secondAttribute="centerX" id="Mwh-lx-kcr"/>
                             <constraint firstItem="CAG-Bl-URJ" firstAttribute="centerX" secondItem="jpM-Cq-nWd" secondAttribute="centerX" id="R9m-73-yq1"/>
                             <constraint firstItem="D0C-NO-lag" firstAttribute="top" secondItem="CAG-Bl-URJ" secondAttribute="bottom" constant="32" id="qcu-3d-dZe"/>
                         </constraints>
@@ -59,7 +52,6 @@
                     <navigationItem key="navigationItem" id="Y3h-dP-RMe"/>
                     <connections>
                         <outlet property="containerView" destination="CAG-Bl-URJ" id="7RG-FB-VRe"/>
-                        <outlet property="seedLabel" destination="aq1-z4-nU7" id="ShK-Vl-aRc"/>
                         <outlet property="statusLabel" destination="D0C-NO-lag" id="fxk-Dr-cyC"/>
                     </connections>
                 </viewController>
