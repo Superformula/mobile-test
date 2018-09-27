@@ -16,10 +16,42 @@
                     <view key="view" contentMode="scaleToFill" id="pAb-8C-M14">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="65N-W6-DhP">
+                                <rect key="frame" x="62.5" y="208.5" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="4ZK-PR-1nr"/>
+                                    <constraint firstAttribute="height" constant="250" id="OLA-1S-2G9"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEb-2J-tFf">
+                                <rect key="frame" x="187.5" y="178.5" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nJJ-Wu-8HA">
+                                <rect key="frame" x="167.5" y="488.5" width="40" height="30"/>
+                                <state key="normal" title="Share"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="65N-W6-DhP" firstAttribute="centerX" secondItem="pAb-8C-M14" secondAttribute="centerX" id="3If-Rl-TLd"/>
+                            <constraint firstItem="nJJ-Wu-8HA" firstAttribute="top" secondItem="65N-W6-DhP" secondAttribute="bottom" constant="30" id="4uj-uV-EVW"/>
+                            <constraint firstItem="nJJ-Wu-8HA" firstAttribute="centerX" secondItem="pAb-8C-M14" secondAttribute="centerX" id="SLO-Rt-6wS"/>
+                            <constraint firstItem="65N-W6-DhP" firstAttribute="top" secondItem="yEb-2J-tFf" secondAttribute="bottom" constant="30" id="TL5-lQ-1JG"/>
+                            <constraint firstItem="yEb-2J-tFf" firstAttribute="centerX" secondItem="pAb-8C-M14" secondAttribute="centerX" id="bEC-UX-5B4"/>
+                            <constraint firstItem="65N-W6-DhP" firstAttribute="centerY" secondItem="pAb-8C-M14" secondAttribute="centerY" id="u4T-kw-MUk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xsL-uF-7Zc"/>
                     </view>
                     <navigationItem key="navigationItem" id="98G-tp-jRK"/>
+                    <connections>
+                        <outlet property="imageView" destination="65N-W6-DhP" id="Npp-32-icZ"/>
+                        <outlet property="seedLabel" destination="yEb-2J-tFf" id="5at-44-aif"/>
+                        <outlet property="shareButton" destination="nJJ-Wu-8HA" id="2iM-ax-FR3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UJT-nT-dq7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

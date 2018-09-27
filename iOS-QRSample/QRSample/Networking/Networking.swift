@@ -24,7 +24,6 @@ class Networking: NSObject {
     
     //MARK: - GET
     func getSeed(completion: @escaping (Seed?, ResultStatus) -> ()) {
-//        let url = "\(self.connectionProtocol)://" + ""
         let url = "http://127.0.0.1:5000/seed"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = HTTPMethod.get.rawValue

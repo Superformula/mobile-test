@@ -13,7 +13,8 @@ class DisplayQRCodeVC: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var seedLabel: UILabel!
     @IBOutlet weak var shareButton: UIButton!
-    
+    @IBOutlet weak var imageView: UIImageView!
+
     private var viewModel: DisplayQRCodeViewModel!
     //MARK: - LifeCycle
     override func viewDidLoad() {
