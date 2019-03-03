@@ -56,6 +56,8 @@ components:
 
 - API
   - Use anything for the backend. We generally use Node.js, so this is prefered but not required.
+- Cross platform
+  - Use Flutter
 - Android
   - Use Kotlin
 - iOS
