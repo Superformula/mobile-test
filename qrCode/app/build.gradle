@@ -48,6 +48,7 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
     implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.github.w9jds:FloatingActionMenu:v0.1.0-alpha'
 
     // testing
     testImplementation 'junit:junit:4.12'

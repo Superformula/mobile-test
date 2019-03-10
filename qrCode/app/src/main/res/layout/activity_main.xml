@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.superformula.qrcode.MainActivity">
+    tools:context="com.superformula.qrcode.views.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,12 +23,35 @@
 
     <include layout="@layout/content_main"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.w9jds.FloatingActionMenu
+        android:id="@+id/action_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        app:base_src="@drawable/ic_positive"
+        app:base_background="@color/colorAccent"
+        app:base_marginEnd="8dp"
+        app:base_marginBottom="8dp"
+        app:overlay_color="#66000000"
+        app:item_spacing="16dp"
+        app:label_marginEnd="8dp">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/scan_qr"
+            app:backgroundTint="@android:color/white"
+            android:src="@drawable/ic_scanner_white_24dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:contentDescription="Scan Qr Code" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/generate_qr"
+            app:backgroundTint="@android:color/white"
+            android:src="@drawable/ic_code_white_24dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:contentDescription="Generate Code" />
+
+    </com.w9jds.FloatingActionMenu>
 
 </android.support.design.widget.CoordinatorLayout>
