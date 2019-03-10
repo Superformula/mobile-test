@@ -1,6 +1,7 @@
 package com.superformula.qrcode.viewModels
 
 import android.graphics.Bitmap
+import android.util.Log
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
@@ -22,6 +23,7 @@ class QrViewModel:BaseViewModel() {
 
     fun isQrCodeValid(qrCodeData: String) : Boolean {
         val dataParts = qrCodeData.split("|")
+        Log.e("QrVM", "dateParts-->" + dataParts[1])
         val currentDate = DateTime(DateTimeZone.UTC)
         val expireDate = DateTime.parse(dataParts[1])
 

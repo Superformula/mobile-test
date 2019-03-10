@@ -39,7 +39,7 @@
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/scan_qr"
             app:backgroundTint="@android:color/white"
-            android:src="@drawable/ic_scanner_white_24dp"
+            android:src="@drawable/ic_scanner_black_24dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:contentDescription="Scan Qr Code" />
@@ -47,7 +47,7 @@
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/generate_qr"
             app:backgroundTint="@android:color/white"
-            android:src="@drawable/ic_code_white_24dp"
+            android:src="@drawable/ic_code_black_24dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:contentDescription="Generate Code" />

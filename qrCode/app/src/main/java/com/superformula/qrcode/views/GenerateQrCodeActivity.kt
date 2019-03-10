@@ -11,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_generate.*
 import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
 
 class GenerateQrCodeActivity : AppCompatActivity() {
 
@@ -32,9 +33,9 @@ class GenerateQrCodeActivity : AppCompatActivity() {
         qrImage.setImageBitmap(viewModel.generateQrCode(seed))
         progressSpinner.visibility = View.GONE
         qrImage.visibility = View.VISIBLE
-        val expireDate = DateTime.parse((seed.expiresAt))
+        val expireDate = DateTime(seed.expiresAt, DateTimeZone.getDefault())
 
-        expireText.text = String.format("Expires: %s", expireDate.toLocalDateTime().toString("MM/dd/yyyy HH:mm:ss"))
+        expireText.text = String.format("Expires: %s", expireDate.toString("MM/dd/yyyy HH:mm:ss"))
     }
 
 }
