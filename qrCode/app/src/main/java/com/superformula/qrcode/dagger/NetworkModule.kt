@@ -30,7 +30,7 @@ object NetworkModule {
     @JvmStatic
     internal fun provideRetrofitInterface(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://192.168.86.21:3000")
+                .baseUrl("https://sf-code-challenge.herokuapp.com")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .build()
