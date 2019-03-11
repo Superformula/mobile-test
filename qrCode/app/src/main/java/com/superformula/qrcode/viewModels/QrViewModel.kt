@@ -31,10 +31,10 @@ class QrViewModel:BaseViewModel() {
     }
 
     fun generateQrCode(seed: Seed) : Bitmap {
-        var contents = seed.seed + "|" + seed.expiresAt
-        var multiFormateWriter = MultiFormatWriter()
-        var bitMatrix = multiFormateWriter.encode(contents,BarcodeFormat.QR_CODE, 1000, 1000)
-        var barcodeEncoder = BarcodeEncoder()
+        val contents = seed.seed + "|" + seed.expiresAt
+        val multiFormateWriter = MultiFormatWriter()
+        val bitMatrix = multiFormateWriter.encode(contents,BarcodeFormat.QR_CODE, 1000, 1000)
+        val barcodeEncoder = BarcodeEncoder()
         return barcodeEncoder.createBitmap(bitMatrix)
     }
 }
