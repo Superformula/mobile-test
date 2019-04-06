@@ -47,7 +47,7 @@ class QRCodeScreenBloc extends BlocBase {
   QRCodeScreenBloc(Env env) : super(env);
 
   Observable<String> fetchSeed() {
-    DataMgr dataMgr = getManager(Env.DATA_MGR_KEY);
+    DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
     dataMgr.fetchSeed().then((seed) => _seedFetcher.sink.add(seed));
     return seeds;
   }

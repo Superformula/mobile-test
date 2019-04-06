@@ -17,7 +17,7 @@ main() {
 
     QRCodeScreenBloc bloc = QRCodeScreenBloc(env);
 
-    when(env.getManager(Env.DATA_MGR_KEY)).thenReturn(dataMgr);
+    when(env.getManager(Env.MGR_KEY_DATA)).thenReturn(dataMgr);
     when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value(expectedSeed));
 
     Stream<String> stream = bloc.fetchSeed();
@@ -29,7 +29,7 @@ main() {
 
     // create env and add TestDataMgr that will return seed
     Env env = Env();
-    env.registerManager(Env.DATA_MGR_KEY, TestDataMgr(expectedSeed));
+    env.registerManager(Env.MGR_KEY_DATA, TestDataMgr(expectedSeed));
 
     QRCodeScreenBloc bloc = QRCodeScreenBloc(env);
     Stream<String> stream = bloc.fetchSeed();

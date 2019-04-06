@@ -1,4 +1,5 @@
 import 'package:qrcode/env/data_mgr.dart';
+import 'package:qrcode/env/remote_storage.dart';
 
 ///
 /// Base Manager class.  A manager wraps similar functionality or an external component, ie
@@ -12,8 +13,9 @@ class Manager {}
 /// Contains Managers for a given Environment
 ///
 class Env {
-  static const String DEVICE_MGR_KEY = "mgr-key-device";
-  static const String DATA_MGR_KEY = "mgr-key-datamgr";
+  static const String MGR_KEY_DEVICE = "mgr-key-device";
+  static const String MGR_KEY_DATA = "mgr-key-datamgr";
+  static const String MGR_KEY_REMOTE_STORAGE = "mgr-key-remote-storage";
 
   Map<String, Manager> _mgrMap = new Map();
 
@@ -32,6 +34,7 @@ class Env {
 
 class DevEnv extends Env {
   DevEnv() {
-    registerManager(Env.DATA_MGR_KEY, DevDataMgr());
+    registerManager(Env.MGR_KEY_DATA, DevDataMgr());
+    registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseRemoteStorageMgr());
   }
 }

@@ -18,7 +18,7 @@ class QRCodeApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // set the environment for the app
-    Env env = DevEnv();
+    App.setEnv(DevEnv());
 
     return MaterialApp(
       title: 'QRCode App',
@@ -28,8 +28,16 @@ class QRCodeApp extends StatelessWidget {
       home: HomeScreen(title: 'Home'),
       routes: {
         NAV_SCAN_SCREEN: (context) => ScanScreen(),
-        NAV_QRCODE_SCREEN: (context) => BlocProvider<QRCodeScreenBloc>(bloc: QRCodeScreenBloc(env), child: QRCodeScreen())
+        NAV_QRCODE_SCREEN: (context) => BlocProvider<QRCodeScreenBloc>(bloc: QRCodeScreenBloc(App.getEnv()), child: QRCodeScreen())
       },
     );
   }
+}
+
+class App {
+  static Env _env;
+
+  static setEnv(Env env) => _env = env;
+
+  static Env getEnv() => _env;
 }

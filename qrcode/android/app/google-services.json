@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "123219571619",
+    "firebase_url": "https://superformulaqrcode.firebaseio.com",
+    "project_id": "superformulaqrcode",
+    "storage_bucket": "superformulaqrcode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123219571619:android:eab33de7c9311bf0",
+        "android_client_info": {
+          "package_name": "com.mmaitlen.qrcode"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyR66ZAVdW-N2Lb0i828zwdl2IYPINE2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123219571619-9rer9idqk89g5gp9p011tkp26pkvg9e1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

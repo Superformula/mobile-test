@@ -16,7 +16,7 @@ main() {
     Env env = _MockEnv();
     DataMgr dataMgr = _MockDataMgr();
 
-    when(env.getManager(Env.DATA_MGR_KEY)).thenReturn(dataMgr);
+    when(env.getManager(Env.MGR_KEY_DATA)).thenReturn(dataMgr);
     when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value("aaa 111"));
 
     await tester.pumpWidget(
