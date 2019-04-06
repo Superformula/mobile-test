@@ -38,13 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: _handleQRCodePressed,
             child: Text("QR Code"),
           ),
-          Center(
-
-              child: QrImage(
-                data: "bobdog was here",
-                size: 200.0,
-              )
-          ),
         ],
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qrcode/core/bloc.dart';
 import 'package:qrcode/env/env.dart';
 import 'package:qrcode/ui/home_screen.dart';
@@ -7,11 +6,8 @@ import 'package:qrcode/ui/qrcode_screen.dart';
 import 'package:qrcode/ui/scan_screen.dart';
 
 void main() => runApp(
-
     QRCodeApp()
 );
-
-
 
 class QRCodeApp extends StatelessWidget {
 
@@ -20,6 +16,8 @@ class QRCodeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // set the environment for the app
     Env env = DevEnv();
 
     return MaterialApp(

@@ -3,18 +3,38 @@ import 'package:qrcode/core/bloc.dart';
 import 'package:qrcode/env/data_mgr.dart';
 import 'package:qrcode/env/env.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 ///
 /// Screen used to display QRCode from external seed
 ///
 class QRCodeScreen extends StatelessWidget {
+
+  Widget getSeedDisplayWidget(String seed) {
+    return QrImage(
+      data: seed,
+      size: 200.0,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final QRCodeScreenBloc bloc = BlocProvider.of<QRCodeScreenBloc>(context);
 
     return Scaffold(
       appBar: AppBar(title: Text("QRCode"),),
-      body: Text("hello"),
+      body: StreamBuilder(
+        stream: bloc.fetchSeed(),
+        builder: (context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.hasData) {
+            return Center(
+                child: getSeedDisplayWidget(snapshot.data)
+            );
+          } else {
+            return Text("waiting");
+          }
+        },
+      )
     );
   }
 }
