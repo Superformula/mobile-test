@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qrcode/core/bloc.dart';
+import 'package:qrcode/env/env.dart';
 import 'package:qrcode/ui/home_screen.dart';
 import 'package:qrcode/ui/qrcode_screen.dart';
 import 'package:qrcode/ui/scan_screen.dart';
 
-void main() => runApp(QRCodeApp());
+void main() => runApp(
+
+    QRCodeApp()
+);
 
 
 
@@ -15,6 +20,8 @@ class QRCodeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Env env = DevEnv();
+
     return MaterialApp(
       title: 'QRCode App',
       theme: ThemeData(
@@ -23,7 +30,7 @@ class QRCodeApp extends StatelessWidget {
       home: HomeScreen(title: 'Home'),
       routes: {
         NAV_SCAN_SCREEN: (context) => ScanScreen(),
-        NAV_QRCODE_SCREEN: (context) => QRCodeScreen(),
+        NAV_QRCODE_SCREEN: (context) => BlocProvider<QRCodeScreenBloc>(bloc: QRCodeScreenBloc(env), child: QRCodeScreen())
       },
     );
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
+/// Screen used to scan QRCodes
+///
 class ScanScreen extends StatefulWidget {
   @override
   _ScanScreenState createState() => _ScanScreenState();
