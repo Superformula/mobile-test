@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:qrcode/core/bloc.dart';
 import 'package:qrcode/env/data_mgr.dart';
 import 'package:qrcode/env/env.dart';
+import 'package:qrcode/model/model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -26,26 +27,34 @@ class QRCodeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("QRCode"),),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           StreamBuilder(
             stream: bloc.fetchSeed(),
-            builder: (context, AsyncSnapshot<String> snapshot) {
+            builder: (context, AsyncSnapshot<Seed> snapshot) {
               if (snapshot.hasData) {
-                return Center(
-                    child: getSeedDisplayWidget(snapshot.data)
-                );
+                if (snapshot.data.success) {
+                  return Center(
+                      child: getSeedDisplayWidget(snapshot.data.seed)
+                  );
+                } else {
+                  return Center(
+                      child: Text("Error Fetching Seed!")
+                  );
+                }
               } else {
-                return Text("waiting");
+                return Center(
+                    child: Text("Fetching Seed")
+                );
               }
             },
           ),
+          SizedBox(height: 25),
           StreamBuilder(
             stream: bloc.fetchTimer(),
             builder: (context, AsyncSnapshot<int> snapshot) {
               if (snapshot.hasData) {
-                return Center(
-                    child: Text(snapshot.data.toString())
-                );
+                return Text(snapshot.data.toString(), style: TextStyle(fontSize: 28));
               } else {
                 return Container();
               }
@@ -60,8 +69,8 @@ class QRCodeScreen extends StatelessWidget {
 
 class QRCodeScreenBloc extends BlocBase {
 
-  final _seedFetcher = PublishSubject<String>();
-  Observable<String> get seeds => _seedFetcher.stream;
+  final _seedFetcher = PublishSubject<Seed>();
+  Observable<Seed> get seeds => _seedFetcher.stream;
 
   final _expiresAtTimer = PublishSubject<int>();
   Observable<int> get expiresAt => _expiresAtTimer.stream;
@@ -71,10 +80,12 @@ class QRCodeScreenBloc extends BlocBase {
 
   QRCodeScreenBloc(Env env) : super(env);
 
-  Observable<String> fetchSeed() {
+  Observable<Seed> fetchSeed() {
     DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
-    dataMgr.fetchSeed().then((seed) { _seedFetcher.sink.add(seed);
-    startTimer();});
+    dataMgr.fetchSeed().then((seed) {
+      _seedFetcher.sink.add(seed);
+      startTimer();
+    });
 
     return seeds;
   }

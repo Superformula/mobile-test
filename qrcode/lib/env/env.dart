@@ -1,5 +1,5 @@
 import 'package:qrcode/env/data_mgr.dart';
-import 'package:qrcode/env/remote_storage.dart';
+import 'package:qrcode/env/backend_mgr.dart';
 
 ///
 /// Base Manager class.  A manager wraps similar functionality or an external component, ie
@@ -35,6 +35,6 @@ class Env {
 class DevEnv extends Env {
   DevEnv() {
     registerManager(Env.MGR_KEY_DATA, DevDataMgr());
-    registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseRemoteStorageMgr());
+    registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseBackendMgr());
   }
 }

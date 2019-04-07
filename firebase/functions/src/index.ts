@@ -5,7 +5,7 @@ const uuidv1 = require('uuid/v1');
 
 export const fetchSeed = functions.https.onRequest((request, response) => {
 
-    const milliseconds = (new Date).getTime();
+    const milliseconds = (new Date).getTime() + (1000 * 120);
 
     return response
             .status(200)
