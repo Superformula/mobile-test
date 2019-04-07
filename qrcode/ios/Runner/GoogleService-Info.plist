@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>123219571619-qjmmt6irik1n4mq2e4tb9eg7c85pu9hk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.123219571619-qjmmt6irik1n4mq2e4tb9eg7c85pu9hk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDaIpYQ1QFslrr4ipPFn8zGUE41qWgV8U8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>123219571619</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.flutter.flutter.app</string>
+	<key>PROJECT_ID</key>
+	<string>superformulaqrcode</string>
+	<key>STORAGE_BUCKET</key>
+	<string>superformulaqrcode.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:123219571619:ios:0b1453d00d02202a</string>
+	<key>DATABASE_URL</key>
+	<string>https://superformulaqrcode.firebaseio.com</string>
+</dict>
+</plist>
