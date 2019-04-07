@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:qrcode/core/bloc.dart';
 import 'package:qrcode/env/data_mgr.dart';
 import 'package:qrcode/env/env.dart';
+import 'package:qrcode/model/model.dart';
 import 'package:qrcode/ui/qrcode_screen.dart';
 
 class _MockEnv extends Mock implements Env{}
@@ -17,7 +18,7 @@ main() {
     DataMgr dataMgr = _MockDataMgr();
 
     when(env.getManager(Env.MGR_KEY_DATA)).thenReturn(dataMgr);
-    when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value("aaa 111"));
+    when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value(Seed.success("aaa 111", 0)));
 
     await tester.pumpWidget(
         new MaterialApp(

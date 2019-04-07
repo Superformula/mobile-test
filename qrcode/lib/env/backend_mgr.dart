@@ -1,8 +1,8 @@
 import 'package:qrcode/env/env.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qrcode/model/model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 abstract class BackendMgr extends Manager {
   Future<Seed> fetchSeed();
