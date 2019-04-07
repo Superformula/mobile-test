@@ -4,20 +4,28 @@ import 'package:qrcode/model/model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
+///
+/// Manager to contain the information to communicating with the backend server
+///
 abstract class BackendMgr extends Manager {
+  ///
+  /// Fetch the seed from the backend server
+  ///
   Future<Seed> fetchSeed();
 }
 
+///
+/// BackendMgr which utilizes Firebase
+///
 class FirebaseBackendMgr extends BackendMgr {
 
+  static const URL_FETCH_SEED = 'https://us-central1-superformulaqrcode.cloudfunctions.net/fetchSeed';
   static const FIELD_SEED = "seed";
   static const FIELD_EXPIRES_AT = "expires_at";
 
   @override
   Future<Seed> fetchSeed() async {
-
-    var url = 'https://us-central1-superformulaqrcode.cloudfunctions.net/fetchSeed';
-    var response = await http.get(url);
+    var response = await http.get(URL_FETCH_SEED);
 
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);

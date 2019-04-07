@@ -90,7 +90,7 @@ class QRCodeScreenBloc extends BlocBase {
     dataMgr.fetchSeed().then((seed) {
       _seedFetcher.sink.add(seed);
       print("now ${DateTime.now().millisecondsSinceEpoch.toString()}");
-      _start = 5; //((seed.expiresAt - DateTime.now().millisecondsSinceEpoch) / 1000).toInt();
+      _start = ((seed.expiresAt - DateTime.now().millisecondsSinceEpoch) / 1000).toInt();
       startTimer();
     });
   }
