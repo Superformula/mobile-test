@@ -56,7 +56,7 @@ class QRCodeScreen extends StatelessWidget {
               if (snapshot.hasData) {
                 return Text(snapshot.data.toString(), style: TextStyle(fontSize: 28));
               } else {
-                return Container();
+                return Text("", style: TextStyle(fontSize: 28));
               }
             },
           ),
@@ -67,6 +67,10 @@ class QRCodeScreen extends StatelessWidget {
   }
 }
 
+///
+/// Bloc to control business logic of screen.  Supplies a stream to supply an updated seed and
+/// amount of time left in seconds till the seed expires.
+///
 class QRCodeScreenBloc extends BlocBase {
 
   final _seedFetcher = PublishSubject<Seed>();
@@ -76,17 +80,23 @@ class QRCodeScreenBloc extends BlocBase {
   Observable<int> get expiresAt => _expiresAtTimer.stream;
 
   Timer _timer;
-  int _start = 10;
+  int _start = 0;
 
   QRCodeScreenBloc(Env env) : super(env);
 
-  Observable<Seed> fetchSeed() {
+  _fetchSeed() {
     DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
+    print("fetch seed");
     dataMgr.fetchSeed().then((seed) {
       _seedFetcher.sink.add(seed);
+      print("now ${DateTime.now().millisecondsSinceEpoch.toString()}");
+      _start = 5; //((seed.expiresAt - DateTime.now().millisecondsSinceEpoch) / 1000).toInt();
       startTimer();
     });
+  }
 
+  Observable<Seed> fetchSeed() {
+    _fetchSeed();
     return seeds;
   }
 
@@ -96,14 +106,15 @@ class QRCodeScreenBloc extends BlocBase {
         oneSec,
             (Timer timer) {
               if (_start < 1) {
+                // once the time gets to zero, restart
                 timer.cancel();
+                _fetchSeed();
               } else {
                 _start = _start - 1;
                 _expiresAtTimer.sink.add(_start);
               }
             });
   }
-
 
   Observable<int> fetchTimer() {
     return expiresAt;
@@ -113,41 +124,5 @@ class QRCodeScreenBloc extends BlocBase {
   void dispose() {
     _timer.cancel();
     _seedFetcher.close();
-  }
-
-}
-
-class TimerWidget extends StatefulWidget {
-  @override
-  _TimerWidgetState createState() => _TimerWidgetState();
-}
-
-class _TimerWidgetState extends State<TimerWidget> {
-  Timer _timer;
-  int _start = 10;
-
-  void startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    _timer = new Timer.periodic(
-        oneSec,
-            (Timer timer) => setState(() {
-          if (_start < 1) {
-            timer.cancel();
-          } else {
-            _start = _start - 1;
-          }
-        }));
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Text("$_start");
   }
 }
