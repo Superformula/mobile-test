@@ -33,7 +33,7 @@ class Env {
 }
 
 class ProdEnv extends Env {
-  DevEnv() {
+  ProdEnv() {
     registerManager(Env.MGR_KEY_DATA, DefaultDataMgr());
     registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseBackendMgr());
   }
