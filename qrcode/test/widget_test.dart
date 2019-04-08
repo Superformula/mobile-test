@@ -37,5 +37,10 @@ main() {
 /// Change QRCodeScreen to show seed value instead of QRCode image
 class TestQRCodeScreen extends QRCodeScreen {
   @override
-  Widget getSeedDisplayWidget(String seed) => Text(seed);
+  SeedWidgetBuilder getSeedDisplayWidgetBuilder() => TestWidgetBuilder();
+}
+
+class TestWidgetBuilder extends SeedWidgetBuilder {
+  @override
+  Widget buildWidget(BuildContext context, String seed) => Text(seed);
 }

@@ -11,24 +11,37 @@ import 'package:qr_flutter/qr_flutter.dart';
 /// Screen used to display QRCode from external seed
 ///
 class QRCodeScreen extends StatefulWidget {
+
+  SeedWidgetBuilder getSeedDisplayWidgetBuilder() => QrImageWigetBuilder();
+
   @override
-  _QRCodeScreenState createState() => _QRCodeScreenState();
+  _QRCodeScreenState createState() => _QRCodeScreenState(getSeedDisplayWidgetBuilder());
+}
+
+abstract class SeedWidgetBuilder {
+  Widget buildWidget(BuildContext context, String seed);
+}
+
+class QrImageWigetBuilder extends SeedWidgetBuilder {
+  @override
+  Widget buildWidget(BuildContext context, String seed) {
+    return QrImage(
+      data: seed,
+      size: 200.0,
+    );
+  }
 }
 
 class _QRCodeScreenState extends State<QRCodeScreen> {
   QRCodeScreenBloc bloc;
+  SeedWidgetBuilder _displayWidget;
+
+  _QRCodeScreenState(this._displayWidget);
 
   @override
   dispose() {
     bloc.dispose();
     super.dispose();
-  }
-
-  Widget getSeedDisplayWidget(String seed) {
-    return QrImage(
-      data: seed,
-      size: 200.0,
-    );
   }
 
   @override
@@ -45,7 +58,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                 if (snapshot.hasData) {
                   if (snapshot.data.success) {
                     return Center(
-                        child: getSeedDisplayWidget(snapshot.data.seed)
+                        child: _displayWidget.buildWidget(context, snapshot.data.seed)
                     );
                   } else {
                     return Center(
