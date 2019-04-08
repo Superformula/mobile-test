@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:qrcode/core/bloc.dart';
 import 'package:qrcode/env/data_mgr.dart';
@@ -11,7 +10,19 @@ import 'package:qr_flutter/qr_flutter.dart';
 ///
 /// Screen used to display QRCode from external seed
 ///
-class QRCodeScreen extends StatelessWidget {
+class QRCodeScreen extends StatefulWidget {
+  @override
+  _QRCodeScreenState createState() => _QRCodeScreenState();
+}
+
+class _QRCodeScreenState extends State<QRCodeScreen> {
+  QRCodeScreenBloc bloc;
+
+  @override
+  dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
 
   Widget getSeedDisplayWidget(String seed) {
     return QrImage(
@@ -22,47 +33,46 @@ class QRCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final QRCodeScreenBloc bloc = BlocProvider.of<QRCodeScreenBloc>(context);
-
+    bloc = BlocProvider.of<QRCodeScreenBloc>(context);
     return Scaffold(
-      appBar: AppBar(title: Text("QRCode"),),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          StreamBuilder(
-            stream: bloc.fetchSeed(),
-            builder: (context, AsyncSnapshot<Seed> snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data.success) {
-                  return Center(
-                      child: getSeedDisplayWidget(snapshot.data.seed)
-                  );
+        appBar: AppBar(title: Text("QRCode"),),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            StreamBuilder(
+              stream: bloc.fetchSeed(),
+              builder: (context, AsyncSnapshot<Seed> snapshot) {
+                if (snapshot.hasData) {
+                  if (snapshot.data.success) {
+                    return Center(
+                        child: getSeedDisplayWidget(snapshot.data.seed)
+                    );
+                  } else {
+                    return Center(
+                        child: Text("Error Fetching Seed!")
+                    );
+                  }
                 } else {
                   return Center(
-                      child: Text("Error Fetching Seed!")
+                      child: Text("Fetching Seed")
                   );
                 }
-              } else {
-                return Center(
-                    child: Text("Fetching Seed")
-                );
-              }
-            },
-          ),
-          SizedBox(height: 25),
-          StreamBuilder(
-            stream: bloc.fetchTimer(),
-            builder: (context, AsyncSnapshot<int> snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data.toString(), style: TextStyle(fontSize: 28));
-              } else {
-                return Text("", style: TextStyle(fontSize: 28));
-              }
-            },
-          ),
+              },
+            ),
+            SizedBox(height: 25),
+            StreamBuilder(
+              stream: bloc.fetchTimer(),
+              builder: (context, AsyncSnapshot<int> snapshot) {
+                if (snapshot.hasData) {
+                  return Text(snapshot.data.toString(), style: TextStyle(fontSize: 28));
+                } else {
+                  return Text("", style: TextStyle(fontSize: 28));
+                }
+              },
+            ),
 
-        ],
-      )
+          ],
+        )
     );
   }
 }
@@ -86,7 +96,6 @@ class QRCodeScreenBloc extends BlocBase {
 
   _fetchSeed() {
     DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
-    print("fetch seed");
     dataMgr.fetchSeed().then((seed) {
       _seedFetcher.sink.add(seed);
       print("now ${DateTime.now().millisecondsSinceEpoch.toString()}");
