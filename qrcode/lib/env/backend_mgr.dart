@@ -12,6 +12,11 @@ abstract class BackendMgr extends Manager {
   /// Fetch the seed from the backend server
   ///
   Future<Seed> fetchSeed();
+
+  ///
+  /// Determines if the passed in seed matches the last retrieved seed
+  ///
+  Future<bool> confirmLatestSeed(String seed);
 }
 
 ///
@@ -22,6 +27,9 @@ class FirebaseBackendMgr extends BackendMgr {
   static const URL_FETCH_SEED = 'https://us-central1-superformulaqrcode.cloudfunctions.net/fetchSeed';
   static const FIELD_SEED = "seed";
   static const FIELD_EXPIRES_AT = "expires_at";
+
+  static const QRCODE_DATA_PATH = "data/qrcode";
+  static const FIELD_LATEST_SEED = "latest_seed";
 
   @override
   Future<Seed> fetchSeed() async {
@@ -37,15 +45,16 @@ class FirebaseBackendMgr extends BackendMgr {
       print("Request failed with status: ${response.statusCode}.");
       return Seed.failure();
     }
-
-
-//    DocumentSnapshot docSnapshot = await Firestore.instance.document('data/qrcode').get();
-//    if (docSnapshot.exists) {
-//      return Future.value(docSnapshot.data["seed"].toString());
-//    } else {
-//      return Future.value("ERROR");
-//    }
-
   }
 
+  @override
+  Future<bool> confirmLatestSeed(String seed) async {
+
+    DocumentSnapshot docSnapshot = await Firestore.instance.document(QRCODE_DATA_PATH).get();
+    if (docSnapshot.exists) {
+      return Future.value(docSnapshot.data["latest_seed"]);
+    } else {
+      return Future.value(false);
+    }
+  }
 }

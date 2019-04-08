@@ -12,4 +12,14 @@ that holds a Map of Managers responsible for encapsulating specific functionalit
 ![General Architecture](https://github.com/mmaitlen/mobile-test/blob/master/docs/qrcode_architecture.png)
 
 The Managers utilized in the QRCode app are as follows
-- DataMgr: Responsible
+- DataMgr: Responsible for encapsulating data management whether it's from a local cache or a remote
+backend.
+- BackendMgr: Responsible for retrieving data from backend server
+
+Possible Future Managers
+- DeviceMgr: Determine if user is able to connect to network
+- LocalStorageMgr: Responsible for caching local data
+- StringsMgr: Centralized location for copy displayed to user.  Allows for localization if required.
+
+The main benefit of using the Env/Mgr architecture is that it provides a means of dependency injection.
+This allows different managers to be injected during development, test or production.
