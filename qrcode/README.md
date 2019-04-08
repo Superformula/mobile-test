@@ -16,5 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-![General Architecture](https://drive.google.com/file/d/1Zqp2dmpqEvdvbwNgPDcF_Y8YtO8X7z-v)
+![General Architecture](https://github.com/mmaitlen/mobile-test/blob/master/docs/qrcode_architecture.png)
 
