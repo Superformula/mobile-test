@@ -18,7 +18,7 @@ class QRCodeApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // set the environment for the app
-    App.setEnv(ProdEnv());
+    App.setEnv(DevEnv());
 
     return MaterialApp(
       title: 'QRCode App',

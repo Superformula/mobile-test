@@ -31,6 +31,27 @@ main() {
 
     expect(find.text('aaa 111'), findsOneWidget);
   });
+
+  testWidgets('test that ui reports failed seed fetch', (WidgetTester tester) async {
+
+    Env env = _MockEnv();
+    DataMgr dataMgr = _MockDataMgr();
+
+    when(env.getManager(Env.MGR_KEY_DATA)).thenReturn(dataMgr);
+    when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value(Seed.failure()));
+
+    await tester.pumpWidget(
+        new MaterialApp(
+          home: Container(
+            child: BlocProvider<QRCodeScreenBloc>(bloc: QRCodeScreenBloc(env), child: TestQRCodeScreen()),
+          ),
+        )
+    );
+    await tester.pump(Duration.zero);
+
+    expect(find.text(QRCodeScreen.ERROR_MSG_FAILED_SEED_FETCH), findsOneWidget);
+  });
+
 }
 
 ///

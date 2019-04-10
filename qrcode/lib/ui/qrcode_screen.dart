@@ -11,6 +11,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 /// Screen used to display QRCode from external seed
 ///
 class QRCodeScreen extends StatefulWidget {
+  static const ERROR_MSG_FAILED_SEED_FETCH = "Error Fetching Seed!";
 
   SeedWidgetBuilder getSeedDisplayWidgetBuilder() => QrImageWigetBuilder();
 
@@ -33,6 +34,8 @@ class QrImageWigetBuilder extends SeedWidgetBuilder {
 }
 
 class _QRCodeScreenState extends State<QRCodeScreen> {
+
+
   QRCodeScreenBloc bloc;
   SeedWidgetBuilder _displayWidget;
 
@@ -62,7 +65,7 @@ class _QRCodeScreenState extends State<QRCodeScreen> {
                     );
                   } else {
                     return Center(
-                        child: Text("Error Fetching Seed!")
+                        child: Text(QRCodeScreen.ERROR_MSG_FAILED_SEED_FETCH)
                     );
                   }
                 } else {
@@ -111,9 +114,16 @@ class QRCodeScreenBloc extends BlocBase {
     DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
     dataMgr.fetchSeed().then((seed) {
       _seedFetcher.sink.add(seed);
-      print("now ${DateTime.now().millisecondsSinceEpoch.toString()}");
-      _start = ((seed.expiresAt - DateTime.now().millisecondsSinceEpoch) / 1000).toInt();
-      startTimer();
+      if (seed.success) {
+        print("now ${DateTime
+            .now()
+            .millisecondsSinceEpoch
+            .toString()}");
+        _start = ((seed.expiresAt - DateTime
+            .now()
+            .millisecondsSinceEpoch) / 1000).toInt();
+        startTimer();
+      }
     });
   }
 
@@ -144,7 +154,7 @@ class QRCodeScreenBloc extends BlocBase {
 
   @override
   void dispose() {
-    _timer.cancel();
-    _seedFetcher.close();
+    _timer?.cancel();
+    _seedFetcher?.close();
   }
 }

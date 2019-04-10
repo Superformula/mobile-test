@@ -36,6 +36,13 @@ main() {
     Stream<Seed> stream = bloc.fetchSeed();
     expect(stream.map((seed) => seed), emits(expectedSeed));
   });
+  
+  test("test seed fetched from local cache if not connected", () {
+    Env env = _MockEnv();
+    DataMgr dataMgr = DefaultDataMgr();
+    
+//    when(env.getManager(Env.MGR_KEY_REMOTE_STORAGE))
+  });
 }
 
 

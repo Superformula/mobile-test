@@ -1,5 +1,6 @@
 import 'package:qrcode/env/data_mgr.dart';
 import 'package:qrcode/env/backend_mgr.dart';
+import 'package:qrcode/env/localstorage_mgr.dart';
 
 ///
 /// Base Manager class.  A manager wraps similar functionality or an external component, ie
@@ -16,6 +17,7 @@ class Env {
   static const String MGR_KEY_DEVICE = "mgr-key-device";
   static const String MGR_KEY_DATA = "mgr-key-datamgr";
   static const String MGR_KEY_REMOTE_STORAGE = "mgr-key-remote-storage";
+  static const String MGR_KEY_LOCAL_STORAGE = "mgr-key-local-storage";
 
   Map<String, Manager> _mgrMap = new Map();
 
@@ -36,12 +38,15 @@ class ProdEnv extends Env {
   ProdEnv() {
     registerManager(Env.MGR_KEY_DATA, DefaultDataMgr());
     registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseBackendMgr());
+    registerManager(Env.MGR_KEY_LOCAL_STORAGE, SharedPrefsStorageMgr());
   }
 }
 
 class DevEnv extends Env {
   DevEnv() {
+    print("\n**********\n*\n*     !!! DEV ENV !!!\n*\n**********\n");
     registerManager(Env.MGR_KEY_DATA, DevDataMgr());
     registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseBackendMgr());
+    registerManager(Env.MGR_KEY_LOCAL_STORAGE, DevLocalStorageMgr());
   }
 }
