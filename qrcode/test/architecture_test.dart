@@ -17,7 +17,8 @@ class _MockLocalStorageMgr extends Mock implements LocalStorageMgr{}
 main() {
 
   test("test basic fetch seed with mocks", () {
-    Seed expectedSeed = Seed.success("abc123", 123456);
+    var expires = DateTime.now().millisecondsSinceEpoch + 1000;
+    Seed expectedSeed = Seed.success("abc123", expires);
     Env env = _MockEnv();
     DataMgr dataMgr = _MockDataMgr();
 
@@ -31,7 +32,8 @@ main() {
   });
 
   test("test fetch seed, from bloc to datamgr", () {
-    Seed expectedSeed = Seed.success("bobdog was here", 123456);
+    var expires = DateTime.now().millisecondsSinceEpoch + 1000;
+    Seed expectedSeed = Seed.success("bobdog was here", expires);
 
     // create env and add TestDataMgr that will return seed
     Env env = Env();

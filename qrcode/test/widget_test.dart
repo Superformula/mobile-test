@@ -17,8 +17,10 @@ main() {
     Env env = _MockEnv();
     DataMgr dataMgr = _MockDataMgr();
 
+    var expires = DateTime.now().millisecondsSinceEpoch + 1000;
+
     when(env.getManager(Env.MGR_KEY_DATA)).thenReturn(dataMgr);
-    when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value(Seed.success("aaa 111", 0)));
+    when(dataMgr.fetchSeed()).thenAnswer((_) => Future.value(Seed.success("aaa 111", expires)));
 
     await tester.pumpWidget(
         new MaterialApp(
