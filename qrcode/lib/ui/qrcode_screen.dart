@@ -113,8 +113,11 @@ class QRCodeScreenBloc extends BlocBase {
   _fetchSeed() {
     DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
     dataMgr.fetchSeed().then((seed) {
-      _seedFetcher.sink.add(seed);
-      if (seed.success) {
+
+      // make sure we don't get into a loop of continuously pulling local value if offline.
+      // time will expire and we should stop trying to fetch
+      if (seed.success && seed.expiresAt > DateTime.now().millisecondsSinceEpoch) {
+        _seedFetcher.sink.add(seed);
         print("now ${DateTime
             .now()
             .millisecondsSinceEpoch
@@ -123,6 +126,8 @@ class QRCodeScreenBloc extends BlocBase {
             .now()
             .millisecondsSinceEpoch) / 1000).toInt();
         startTimer();
+      } else {
+        _seedFetcher.sink.add(Seed.failure());
       }
     });
   }
