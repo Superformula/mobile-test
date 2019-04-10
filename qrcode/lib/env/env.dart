@@ -14,9 +14,8 @@ class Manager {}
 /// Contains Managers for a given Environment
 ///
 class Env {
-  static const String MGR_KEY_DEVICE = "mgr-key-device";
   static const String MGR_KEY_DATA = "mgr-key-datamgr";
-  static const String MGR_KEY_REMOTE_STORAGE = "mgr-key-remote-storage";
+  static const String MGR_KEY_BACKEND_MGR = "mgr-key-backend_mgr";
   static const String MGR_KEY_LOCAL_STORAGE = "mgr-key-local-storage";
 
   Map<String, Manager> _mgrMap = new Map();
@@ -37,7 +36,7 @@ class Env {
 class ProdEnv extends Env {
   ProdEnv() {
     registerManager(Env.MGR_KEY_DATA, DefaultDataMgr());
-    registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseBackendMgr());
+    registerManager(Env.MGR_KEY_BACKEND_MGR, FirebaseBackendMgr());
     registerManager(Env.MGR_KEY_LOCAL_STORAGE, SharedPrefsStorageMgr());
   }
 }
@@ -46,7 +45,7 @@ class DevEnv extends Env {
   DevEnv() {
     print("\n**********\n*\n*     !!! DEV ENV !!!\n*\n**********\n");
     registerManager(Env.MGR_KEY_DATA, DevDataMgr());
-    registerManager(Env.MGR_KEY_REMOTE_STORAGE, FirebaseBackendMgr());
+    registerManager(Env.MGR_KEY_BACKEND_MGR, FirebaseBackendMgr());
     registerManager(Env.MGR_KEY_LOCAL_STORAGE, DevLocalStorageMgr());
   }
 }

@@ -8,6 +8,8 @@ class Seed {
   String seed;
   // the epoch which the seed expires
   int expiresAt;
+  // failure message
+  String failureMessage;
 
   ///
   /// load a successful seed and it expiration time

@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:qrcode/env/env.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qrcode/model/model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
-import 'dart:io';
+import 'package:connectivity/connectivity.dart';
 
 ///
 /// Manager to contain the information to communicating with the backend server
@@ -38,20 +39,15 @@ class FirebaseBackendMgr extends BackendMgr {
   static const FIELD_LATEST_SEED = "latest_seed";
 
   Future<bool> isConnected() async {
-    try {
-      print("checking connection");
-      final result = await InternetAddress.lookup("google.com");
 
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print("conntected!");
-        return Future.value(true);
-      } else {
-        print("NOT conntected!");
-        return Future.value(false);
-      }
-    } on SocketException catch (_) {
-      print("unable to connect to backend");
+    print("checking connection");
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      print("NOT conntected!");
       return Future.value(false);
+    } else {
+      print("conntected!");
+      return Future.value(true);
     }
   }
 
@@ -71,7 +67,7 @@ class FirebaseBackendMgr extends BackendMgr {
         return Seed.failure();
       }
     } else {
-      print("oops");
+      print("Request failed, not connected to backend");
       return Seed.failure();
     }
   }
@@ -87,24 +83,3 @@ class FirebaseBackendMgr extends BackendMgr {
     }
   }
 }
-
-//class DevBackendMgr extends BackendMgr {
-//  @override
-//  Future<bool> confirmLatestSeed(String seed) {
-//    // TODO: implement confirmLatestSeed
-//    return null;
-//  }
-//
-//  @override
-//  Future<Seed> fetchSeed() {
-//    // TODO: implement fetchSeed
-//    return null;
-//  }
-//
-//  @override
-//  Future<bool> isConnected() {
-//    // TODO: implement isConnected
-//    return null;
-//  }
-//
-//}

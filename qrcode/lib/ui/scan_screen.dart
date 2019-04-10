@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:qrcode/env/backend_mgr.dart';
+import 'package:qrcode/env/env.dart';
 import 'dart:async';
+
+import 'package:qrcode/main.dart';
 
 ///
 /// Screen used to scan QRCodes
@@ -18,11 +22,25 @@ class ScanScreen extends StatefulWidget {
 ///
 class _ScanScreenState extends State<ScanScreen> {
   String barcode = "";
+  String matchesLatestMsg = "-";
 
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      setState(() => this.barcode = barcode);
+      setState(() {
+        this.barcode = barcode;
+      });
+
+      // Determine if barcode matches latest stored in backend
+      BackendMgr backendMgr = App.getEnv().getManager(Env.MGR_KEY_BACKEND_MGR);
+      bool matchesLatest = await backendMgr.confirmLatestSeed(barcode);
+      setState(() {
+        if (matchesLatest) {
+          matchesLatestMsg = "Barcode MATCHES latest seed";
+        } else {
+          matchesLatestMsg = "Barcode DOES NOT match latest seed";
+        }
+      });
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
@@ -51,6 +69,7 @@ class _ScanScreenState extends State<ScanScreen> {
                 padding: const EdgeInsets.all(8.0),
             ),
             new Text(barcode),
+            new Text(matchesLatestMsg),
           ],
         ),
     ));

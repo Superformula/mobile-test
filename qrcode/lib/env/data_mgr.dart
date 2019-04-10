@@ -8,7 +8,7 @@ import 'package:qrcode/model/model.dart';
 /// Manager which abstracts the means of fetching the seed information
 ///
 abstract class DataMgr extends Manager {
-  BackendMgr getBackendMgr() => App.getEnv().getManager(Env.MGR_KEY_REMOTE_STORAGE);
+  BackendMgr getBackendMgr() => App.getEnv().getManager(Env.MGR_KEY_BACKEND_MGR);
   LocalStorageMgr getLocalStorageMgr() => App.getEnv().getManager(Env.MGR_KEY_LOCAL_STORAGE);
 
   Future<Seed> fetchSeed();
@@ -20,14 +20,17 @@ abstract class DataMgr extends Manager {
 class DefaultDataMgr extends DataMgr {
   @override
   Future<Seed> fetchSeed() async {
-    Seed seed = await getBackendMgr().fetchSeed();
-    if (!seed.success) {
-      getLocalStorageMgr().persistLatestSeed(seed);
+    if (await getBackendMgr().isConnected()) {
+      Seed seed = await getBackendMgr().fetchSeed();
+      if (seed.success) {
+        getLocalStorageMgr().persistLatestSeed(seed);
+        return Future.value(seed);
+      } else {
+        return getLocalStorageMgr().fetchLatestSeed();
+      }
     } else {
-      seed = await getLocalStorageMgr().fetchLatestSeed();
+      return getLocalStorageMgr().fetchLatestSeed();
     }
-
-    return Future.value(seed);
   }
 }
 
