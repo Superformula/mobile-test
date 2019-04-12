@@ -19,10 +19,18 @@ class QRCodeScreen extends StatefulWidget {
   _QRCodeScreenState createState() => _QRCodeScreenState(getSeedDisplayWidgetBuilder());
 }
 
+///
+/// Assists the build of the QRCode image.  It's kept external from the rest of the UI so it can
+/// be overridden by the tests inorder to test the functionality of the screen.  The test replaces
+/// the image with the text value of the seed.
+///
 abstract class SeedWidgetBuilder {
   Widget buildWidget(BuildContext context, String seed);
 }
 
+///
+/// Implementation of SeedWidgetBuilder which displays the QRCode
+///
 class QrImageWigetBuilder extends SeedWidgetBuilder {
   @override
   Widget buildWidget(BuildContext context, String seed) {
@@ -33,8 +41,10 @@ class QrImageWigetBuilder extends SeedWidgetBuilder {
   }
 }
 
+///
+/// State object which supports the QRCodeScreen
+///
 class _QRCodeScreenState extends State<QRCodeScreen> {
-
 
   QRCodeScreenBloc bloc;
   SeedWidgetBuilder _displayWidget;
@@ -114,19 +124,15 @@ class QRCodeScreenBloc extends BlocBase {
     DataMgr dataMgr = getManager(Env.MGR_KEY_DATA);
     dataMgr.fetchSeed().then((seed) {
 
-      // make sure we don't get into a loop of continuously pulling local value if offline.
-      // time will expire and we should stop trying to fetch
+      // Make sure we don't get into a loop of continuously pulling local value if offline.
+      // When time expires we should stop trying to fetch
       if (seed.success && seed.expiresAt > DateTime.now().millisecondsSinceEpoch) {
+        /// report the seed value to listeners
         _seedFetcher.sink.add(seed);
-        print("now ${DateTime
-            .now()
-            .millisecondsSinceEpoch
-            .toString()}");
-        _start = ((seed.expiresAt - DateTime
-            .now()
-            .millisecondsSinceEpoch) / 1000).toInt();
+        _start = ((seed.expiresAt - DateTime.now().millisecondsSinceEpoch) / 1000).toInt();
         startTimer();
       } else {
+        /// report failure to listeners
         _seedFetcher.sink.add(Seed.failure());
       }
     });
@@ -143,11 +149,13 @@ class QRCodeScreenBloc extends BlocBase {
         oneSec,
             (Timer timer) {
               if (_start < 1) {
-                // once the time gets to zero, restart
+                /// once the time gets to zero, restart
                 timer.cancel();
+                /// refetch seed
                 _fetchSeed();
               } else {
                 _start = _start - 1;
+                /// report time left till seed expiration to listeners
                 _expiresAtTimer.sink.add(_start);
               }
             });
