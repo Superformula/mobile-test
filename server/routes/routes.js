@@ -13,6 +13,7 @@ let makeSeed = (length) => {
 
 let appRouter = (app) => {
   app.get("/seed", (req, res) => {
+    console.debug('Generating seed');
     res.status(200).send(makeSeed(20));
   });
 }
