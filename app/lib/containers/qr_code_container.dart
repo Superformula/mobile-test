@@ -19,6 +19,7 @@ class QRCodeContainer extends StatelessWidget {
         return QrCode(
           loading: vm.loading,
           seed: vm.activeSeed,
+          timerDurationSeconds: vm.timerDurationSeconds,
           fetchQRCode: vm.fetchQRCode,
         );
       },

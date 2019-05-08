@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:supercode/empty_state.dart';
+import 'package:supercode/widgets/empty_state.dart';
 import 'package:supercode/widgets/supercode_app_bar.dart';
 
 class Home extends StatelessWidget {
