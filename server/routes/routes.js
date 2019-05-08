@@ -3,7 +3,7 @@ let moment = require('moment');
 
 let makeSeed = (length) => {
   let seed = crypto.randomBytes(length).toString('hex');
-  let expiresAt = moment.utc().add(2, 'hours').format()
+  let expiresAt = moment.utc().add(15, 'seconds').format()
 
   return {
     seed,

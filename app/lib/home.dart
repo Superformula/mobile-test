@@ -6,6 +6,7 @@ import 'package:supercode/models.dart';
 class Home extends StatefulWidget {
   final bool loading;
   final Seed activeSeed;
+  final int timerDurationSeconds;
   final Function() fetchQRCode;
 
   const Home({
@@ -13,6 +14,7 @@ class Home extends StatefulWidget {
     this.activeSeed,
     this.loading,
     this.fetchQRCode,
+    this.timerDurationSeconds,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Widget _buildEmptyState() {
     return EmptyState(
-      icon: Icons.pages,
+      icon: Icons.announcement,
       title: 'No QR Code',
       description: 'Tap the + to generate a QR Code',
     );
@@ -32,24 +34,26 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Supercode'),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset('assets/superformula.png'),
+            Text('uper Code')
+          ],
+        ),
       ),
-      body: Column(
-        children: <Widget>[
-          Center(
-            child: Container(
-              height: 200,
-              width: 200,
-              child: widget.loading
-                  ? CircularProgressIndicator()
-                  : widget.activeSeed != null
-                      ? QrImage(
-                          data: '${widget.activeSeed.seed}',
-                        )
-                      : _buildEmptyState(),
-            ),
-          ),
-        ],
+      body: Center(
+        child: Container(
+          height: 200,
+          width: 200,
+          child: widget.loading
+              ? CircularProgressIndicator()
+              : widget.activeSeed != null
+                  ? QrImage(
+                      data: '${widget.activeSeed.seed}',
+                    )
+                  : _buildEmptyState(),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

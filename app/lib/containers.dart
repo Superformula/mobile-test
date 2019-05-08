@@ -16,6 +16,7 @@ class ActiveQRSeed extends StatelessWidget {
           activeSeed: vm.activeSeed,
           loading: vm.loading,
           fetchQRCode: vm.fetchQRCode,
+          timerDurationSeconds: vm.timerDurationSeconds,
         );
       },
     );
@@ -25,12 +26,14 @@ class ActiveQRSeed extends StatelessWidget {
 class _ViewModel {
   final bool loading;
   final Seed activeSeed;
+  final int timerDurationSeconds;
   final Function() fetchQRCode;
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
         activeSeed: store.state.activeSeed,
         loading: store.state.loading,
+        timerDurationSeconds: store.state.timerDurationSeconds,
         fetchQRCode: () {
           store.dispatch(
             FetchQRSeed(),
@@ -41,6 +44,7 @@ class _ViewModel {
   _ViewModel({
     this.activeSeed,
     this.loading,
+    this.timerDurationSeconds,
     this.fetchQRCode,
   });
 

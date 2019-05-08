@@ -12,7 +12,11 @@ AppState fetchQRSeedReducer(AppState state, FetchQRSeed action) {
 }
 
 AppState fetchQRSeedSuccessReducer(AppState state, FetchQRSeedSuccess action) {
+  final timerDurationSeconds = (action.seed.expiresAt.millisecondsSinceEpoch -
+          DateTime.now().millisecondsSinceEpoch) ~/
+      1000;
   return state.rebuild((b) => b
     ..loading = false
+    ..timerDurationSeconds = timerDurationSeconds
     ..activeSeed = action.seed);
 }
