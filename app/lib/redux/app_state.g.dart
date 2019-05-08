@@ -10,16 +10,20 @@ class _$AppState extends AppState {
   @override
   final bool loading;
   @override
-  final Seed activeSeed;
+  final int timerDurationSeconds;
   @override
-  final Timer timer;
+  final Seed activeSeed;
 
   factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.loading, this.activeSeed, this.timer}) : super._() {
+  _$AppState._({this.loading, this.timerDurationSeconds, this.activeSeed})
+      : super._() {
     if (loading == null) {
       throw new BuiltValueNullFieldError('AppState', 'loading');
+    }
+    if (timerDurationSeconds == null) {
+      throw new BuiltValueNullFieldError('AppState', 'timerDurationSeconds');
     }
   }
 
@@ -35,22 +39,22 @@ class _$AppState extends AppState {
     if (identical(other, this)) return true;
     return other is AppState &&
         loading == other.loading &&
-        activeSeed == other.activeSeed &&
-        timer == other.timer;
+        timerDurationSeconds == other.timerDurationSeconds &&
+        activeSeed == other.activeSeed;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, loading.hashCode), activeSeed.hashCode), timer.hashCode));
+    return $jf($jc($jc($jc(0, loading.hashCode), timerDurationSeconds.hashCode),
+        activeSeed.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('AppState')
           ..add('loading', loading)
-          ..add('activeSeed', activeSeed)
-          ..add('timer', timer))
+          ..add('timerDurationSeconds', timerDurationSeconds)
+          ..add('activeSeed', activeSeed))
         .toString();
   }
 }
@@ -62,21 +66,22 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   bool get loading => _$this._loading;
   set loading(bool loading) => _$this._loading = loading;
 
+  int _timerDurationSeconds;
+  int get timerDurationSeconds => _$this._timerDurationSeconds;
+  set timerDurationSeconds(int timerDurationSeconds) =>
+      _$this._timerDurationSeconds = timerDurationSeconds;
+
   Seed _activeSeed;
   Seed get activeSeed => _$this._activeSeed;
   set activeSeed(Seed activeSeed) => _$this._activeSeed = activeSeed;
-
-  Timer _timer;
-  Timer get timer => _$this._timer;
-  set timer(Timer timer) => _$this._timer = timer;
 
   AppStateBuilder();
 
   AppStateBuilder get _$this {
     if (_$v != null) {
       _loading = _$v.loading;
+      _timerDurationSeconds = _$v.timerDurationSeconds;
       _activeSeed = _$v.activeSeed;
-      _timer = _$v.timer;
       _$v = null;
     }
     return this;
@@ -99,7 +104,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   _$AppState build() {
     final _$result = _$v ??
         new _$AppState._(
-            loading: loading, activeSeed: activeSeed, timer: timer);
+            loading: loading,
+            timerDurationSeconds: timerDurationSeconds,
+            activeSeed: activeSeed);
     replace(_$result);
     return _$result;
   }

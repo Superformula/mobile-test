@@ -16,9 +16,3 @@ AppState fetchQRSeedSuccessReducer(AppState state, FetchQRSeedSuccess action) {
     ..loading = false
     ..activeSeed = action.seed);
 }
-
-AppState cancelTimerReducer(AppState state, CancelTimer action) {
-  return state.rebuild((b) => b..timer = null);
-}
-
-AppState updateTimer(AppState )
