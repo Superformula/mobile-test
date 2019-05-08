@@ -30,6 +30,17 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Widget _buildQRCode(String seed) {
+    return Container(
+      width: 200,
+      height: 200,
+      child: QrImage(
+        data: seed,
+        foregroundColor: Colors.white,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,25 +49,20 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset('assets/superformula.png'),
-            Text('uper Code')
+            Text('uperCode')
           ],
         ),
       ),
       body: Center(
-        child: Container(
-          height: 200,
-          width: 200,
-          child: widget.loading
-              ? CircularProgressIndicator()
-              : widget.activeSeed != null
-                  ? QrImage(
-                      data: '${widget.activeSeed.seed}',
-                    )
-                  : _buildEmptyState(),
-        ),
+        child: widget.loading
+            ? CircularProgressIndicator()
+            : widget.activeSeed != null
+                ? _buildQRCode(widget.activeSeed.seed)
+                : _buildEmptyState(),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
+        tooltip: 'Generate QR Code',
         onPressed: () {
           widget.fetchQRCode();
         },

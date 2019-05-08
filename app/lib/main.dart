@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:supercode/colors.dart';
 import 'package:supercode/containers.dart';
 import 'package:supercode/redux/app_state.dart';
 import 'package:supercode/redux/middleware.dart';
@@ -26,8 +27,9 @@ class SupercodeApp extends StatelessWidget {
       store: store,
       child: MaterialApp(
         theme: ThemeData(
-          primaryColor: Colors.deepPurple,
-          accentColor: Colors.deepPurpleAccent,
+          primarySwatch: Colors.grey,
+          accentColor: superformulaTeal,
+          brightness: Brightness.dark,
         ),
         home: ActiveQRSeed(),
       ),
