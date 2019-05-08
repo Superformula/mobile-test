@@ -10,12 +10,14 @@ class UpdateTimer {
   UpdateTimer(this.timer);
 }
 
-class FetchQRSeed {}
+class FetchQRCode {}
 
-class FetchQRSeedSuccess {
+class FetchQRCodeSuccess {
   final Seed seed;
 
-  FetchQRSeedSuccess(this.seed);
+  FetchQRCodeSuccess(this.seed);
 }
+
+class NavigateToQRCode {}
 
 class TimerTick {}

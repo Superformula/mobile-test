@@ -3,15 +3,15 @@ import 'package:supercode/redux/actions.dart';
 import 'package:supercode/redux/app_state.dart';
 
 final appReducer = combineReducers<AppState>([
-  TypedReducer<AppState, FetchQRSeed>(fetchQRSeedReducer),
-  TypedReducer<AppState, FetchQRSeedSuccess>(fetchQRSeedSuccessReducer),
+  TypedReducer<AppState, FetchQRCode>(fetchQRCodeReducer),
+  TypedReducer<AppState, FetchQRCodeSuccess>(fetchQRCodeSuccessReducer),
 ]);
 
-AppState fetchQRSeedReducer(AppState state, FetchQRSeed action) {
+AppState fetchQRCodeReducer(AppState state, FetchQRCode action) {
   return state.rebuild((b) => b..loading = true);
 }
 
-AppState fetchQRSeedSuccessReducer(AppState state, FetchQRSeedSuccess action) {
+AppState fetchQRCodeSuccessReducer(AppState state, FetchQRCodeSuccess action) {
   final timerDurationSeconds = (action.seed.expiresAt.millisecondsSinceEpoch -
           DateTime.now().millisecondsSinceEpoch) ~/
       1000;

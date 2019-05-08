@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:supercode/home.dart';
 import 'package:supercode/models.dart';
 import 'package:supercode/redux/actions.dart';
 import 'package:supercode/redux/app_state.dart';
+import 'package:supercode/widgets/qr_code.dart';
 
-class ActiveQRSeed extends StatelessWidget {
+class QRCodeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
+      distinct: true,
+      onInit: (store) {
+        store.dispatch(FetchQRCode());
+      },
       converter: _ViewModel.fromStore,
       builder: (context, vm) {
-        return Home(
-          activeSeed: vm.activeSeed,
+        return QrCode(
           loading: vm.loading,
+          seed: vm.activeSeed,
           fetchQRCode: vm.fetchQRCode,
-          timerDurationSeconds: vm.timerDurationSeconds,
         );
       },
     );
@@ -36,7 +39,7 @@ class _ViewModel {
         timerDurationSeconds: store.state.timerDurationSeconds,
         fetchQRCode: () {
           store.dispatch(
-            FetchQRSeed(),
+            FetchQRCode(),
           );
         });
   }
