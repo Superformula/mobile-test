@@ -6,7 +6,7 @@ let proto = {
   makeSeed(length) {
     console.debug('Generating seed');
     let data = crypto.randomBytes(length).toString('hex');
-    let expiresAt = moment.utc().add(15, 'seconds').format()
+    let expiresAt = moment.utc().add(1, 'minute').format()
 
     let seed = {
       seed: data,
@@ -14,8 +14,19 @@ let proto = {
     }
 
     this.seeds[data] = seed;
-    console.log(this.seeds);
+
     return seed;
+  },
+  validateCode(data) {
+    let seed = this.seeds[data];
+
+    if (seed) {
+      let seedExpirationMoment = moment(seed.expires_at);
+      let now = moment().utc();
+      return now.isBefore(seedExpirationMoment);
+    } else {
+      throw new Error('Seed not found');
+    }
   }
 }
 
