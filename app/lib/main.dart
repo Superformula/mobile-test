@@ -19,7 +19,7 @@ class SupercodeApp extends StatelessWidget {
     initialState: AppState.initial(),
     middleware: createMiddleware(
       navigatorKey: _navigatorKey,
-      service: SeedService(
+      service: SeedServiceImpl(
         host: 'http://localhost:3000',
       ),
     ),

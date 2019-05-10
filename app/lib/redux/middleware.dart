@@ -44,7 +44,7 @@ class NavigateToQRCodeMiddleware
 
 class FetchQRSeedMiddleware
     extends TypedMiddlewareClass<AppState, FetchQRCode> {
-  final SeedService seedService;
+  final SeedServiceImpl seedService;
 
   FetchQRSeedMiddleware({@required this.seedService});
 
