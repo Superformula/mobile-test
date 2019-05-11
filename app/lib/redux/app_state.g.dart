@@ -10,6 +10,10 @@ class _$AppState extends AppState {
   @override
   final bool loading;
   @override
+  final bool validating;
+  @override
+  final bool codeIsValid;
+  @override
   final int timerDurationSeconds;
   @override
   final Seed activeSeed;
@@ -17,10 +21,18 @@ class _$AppState extends AppState {
   factory _$AppState([void Function(AppStateBuilder) updates]) =>
       (new AppStateBuilder()..update(updates)).build();
 
-  _$AppState._({this.loading, this.timerDurationSeconds, this.activeSeed})
+  _$AppState._(
+      {this.loading,
+      this.validating,
+      this.codeIsValid,
+      this.timerDurationSeconds,
+      this.activeSeed})
       : super._() {
     if (loading == null) {
       throw new BuiltValueNullFieldError('AppState', 'loading');
+    }
+    if (validating == null) {
+      throw new BuiltValueNullFieldError('AppState', 'validating');
     }
     if (timerDurationSeconds == null) {
       throw new BuiltValueNullFieldError('AppState', 'timerDurationSeconds');
@@ -39,13 +51,19 @@ class _$AppState extends AppState {
     if (identical(other, this)) return true;
     return other is AppState &&
         loading == other.loading &&
+        validating == other.validating &&
+        codeIsValid == other.codeIsValid &&
         timerDurationSeconds == other.timerDurationSeconds &&
         activeSeed == other.activeSeed;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, loading.hashCode), timerDurationSeconds.hashCode),
+    return $jf($jc(
+        $jc(
+            $jc($jc($jc(0, loading.hashCode), validating.hashCode),
+                codeIsValid.hashCode),
+            timerDurationSeconds.hashCode),
         activeSeed.hashCode));
   }
 
@@ -53,6 +71,8 @@ class _$AppState extends AppState {
   String toString() {
     return (newBuiltValueToStringHelper('AppState')
           ..add('loading', loading)
+          ..add('validating', validating)
+          ..add('codeIsValid', codeIsValid)
           ..add('timerDurationSeconds', timerDurationSeconds)
           ..add('activeSeed', activeSeed))
         .toString();
@@ -65,6 +85,14 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   bool _loading;
   bool get loading => _$this._loading;
   set loading(bool loading) => _$this._loading = loading;
+
+  bool _validating;
+  bool get validating => _$this._validating;
+  set validating(bool validating) => _$this._validating = validating;
+
+  bool _codeIsValid;
+  bool get codeIsValid => _$this._codeIsValid;
+  set codeIsValid(bool codeIsValid) => _$this._codeIsValid = codeIsValid;
 
   int _timerDurationSeconds;
   int get timerDurationSeconds => _$this._timerDurationSeconds;
@@ -80,6 +108,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   AppStateBuilder get _$this {
     if (_$v != null) {
       _loading = _$v.loading;
+      _validating = _$v.validating;
+      _codeIsValid = _$v.codeIsValid;
       _timerDurationSeconds = _$v.timerDurationSeconds;
       _activeSeed = _$v.activeSeed;
       _$v = null;
@@ -105,6 +135,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     final _$result = _$v ??
         new _$AppState._(
             loading: loading,
+            validating: validating,
+            codeIsValid: codeIsValid,
             timerDurationSeconds: timerDurationSeconds,
             activeSeed: activeSeed);
     replace(_$result);

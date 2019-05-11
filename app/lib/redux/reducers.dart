@@ -5,6 +5,8 @@ import 'package:supercode/redux/app_state.dart';
 final appReducer = combineReducers<AppState>([
   TypedReducer<AppState, FetchQRCode>(fetchQRCodeReducer),
   TypedReducer<AppState, FetchQRCodeSuccess>(fetchQRCodeSuccessReducer),
+  TypedReducer<AppState, ValidateCode>(validateCodeReducer),
+  TypedReducer<AppState, ValidateCodeSuccess>(validateCodeSuccessReducer)
 ]);
 
 AppState fetchQRCodeReducer(AppState state, FetchQRCode action) {
@@ -19,4 +21,17 @@ AppState fetchQRCodeSuccessReducer(AppState state, FetchQRCodeSuccess action) {
     ..loading = false
     ..timerDurationSeconds = timerDurationSeconds
     ..activeSeed = action.seed);
+}
+
+AppState validateCodeReducer(AppState state, ValidateCode action) {
+  return state.rebuild((b) => b..validating = true);
+}
+
+AppState validateCodeSuccessReducer(
+  AppState state,
+  ValidateCodeSuccess action,
+) {
+  return state.rebuild((b) => b
+    ..validating = false
+    ..codeIsValid = action.codeIsValid);
 }

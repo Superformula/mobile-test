@@ -17,6 +17,7 @@ List<Middleware<AppState>> createMiddleware({
   return [
     NavigateToQRCodeMiddleware(navigatorKey: navigatorKey),
     FetchQRSeedMiddleware(seedService: service),
+    ValidateCodeMiddleware(seedService: service),
   ];
 }
 
@@ -62,5 +63,26 @@ class FetchQRSeedMiddleware
     } catch (e) {
       print(e);
     }
+  }
+}
+
+class ValidateCodeMiddleware
+    extends TypedMiddlewareClass<AppState, ValidateCode> {
+  final SeedService seedService;
+
+  ValidateCodeMiddleware({@required this.seedService});
+
+  @override
+  FutureOr<void> handler(
+    Store<AppState> store,
+    ValidateCode action,
+    NextDispatcher next,
+  ) async {
+    next(action);
+
+    try {
+      final isValid = await seedService.validateCode(action.code);
+      store.dispatch(ValidateCodeSuccess(isValid));
+    } catch (e) {}
   }
 }

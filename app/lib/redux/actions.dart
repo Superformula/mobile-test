@@ -21,3 +21,15 @@ class FetchQRCodeSuccess {
 class NavigateToQRCode {}
 
 class TimerTick {}
+
+class ValidateCode {
+  final String code;
+
+  ValidateCode(this.code);
+}
+
+class ValidateCodeSuccess {
+  final bool codeIsValid;
+
+  ValidateCodeSuccess(this.codeIsValid);
+}
