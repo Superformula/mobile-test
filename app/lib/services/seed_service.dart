@@ -36,7 +36,7 @@ class SeedServiceImpl implements SeedService {
     final response = await _client.get('$_host/validate?code=$data');
     if (response.statusCode == 200) {
       Map<String, dynamic> rawJson = json.decode(response.body);
-      return rawJson['isValid'];
+      return rawJson['is_valid'];
     } else {
       throw new Exception('Error validating code');
     }

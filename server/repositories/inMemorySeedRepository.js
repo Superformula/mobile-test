@@ -10,7 +10,7 @@ let proto = {
 
     let seed = {
       seed: data,
-      expiresAt
+      expires_at: expiresAt
     }
 
     this.seeds[data] = seed;

@@ -6,7 +6,7 @@ class Seed {
 
   Seed.fromJson(Map<String, dynamic> json)
       : seed = json['seed'],
-        expiresAt = DateTime.parse(json['expiresAt']);
+        expiresAt = DateTime.parse(json['expires_at']);
 
   @override
   bool operator ==(Object other) =>
