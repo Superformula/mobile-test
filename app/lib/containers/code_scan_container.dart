@@ -34,8 +34,8 @@ class _ViewModel {
     return _ViewModel(
       validating: store.state.validating,
       codeIsValid: store.state.codeIsValid,
-      validateCode: (code) {
-        store.dispatch(ValidateCode(code));
+      validateCode: (code, {onError}) {
+        store.dispatch(ValidateCode(code, onError: onError));
       },
     );
   }

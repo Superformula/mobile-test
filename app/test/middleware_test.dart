@@ -97,10 +97,10 @@ void main() {
         expect(middleware.handlesAction(FetchQRCode()), isTrue);
       });
       test('should fetch the qr code - success', () async {
-        when(mockSeedService.fetchSeed())
-            .thenAnswer((_) => Future.value(Seed('abc123', DateTime(2020))));
+        final seed = Seed('abc123', DateTime(2020));
+        when(mockSeedService.fetchSeed()).thenAnswer((_) => Future.value(seed));
         await middleware.handler(mockStore, FetchQRCode(), (_) {});
-        verify(mockStore.dispatch(isInstanceOf<FetchQRCodeSuccess>()));
+        verify(mockStore.dispatch(FetchQRCodeSuccess(seed)));
       });
     });
     group('ValidateCodeMiddleware', () {

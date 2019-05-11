@@ -20,8 +20,13 @@ iPhone Xs • D5BC90F2-B17F-42A0-86F8-7015DDA7FEC0 • ios
 ```
 2. Run `flutter run -d <device_id>` where `device_id` is the alpha-numeric value output from the previous command
 
+### Development
+- This application uses [built_value](https://github.com/google/built_value.dart) for immutable state which requires code to be generated
+- To generate the code run `flutter packages pub run build_runner <watch|build>` from the `app/` directory when making changes 
+to [app_state.dart](lib/redux/app_state.dart)
+
 ### Troubleshooting
-- Ensure that the address of the server is pointing to the right host
+- Ensure that the address of the server is pointing to the right host, see `Prerequisites`
 - If running on a real device, ensure your computer and device are on the same
 network
 

@@ -11,9 +11,6 @@ class QRCodeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
       distinct: true,
-      onInit: (store) {
-        store.dispatch(FetchQRCode());
-      },
       converter: _ViewModel.fromStore,
       builder: (context, vm) {
         return QrCode(
@@ -31,18 +28,19 @@ class _ViewModel {
   final bool loading;
   final Seed activeSeed;
   final int timerDurationSeconds;
-  final Function() fetchQRCode;
+  final Function({Function() onError}) fetchQRCode;
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
-        activeSeed: store.state.activeSeed,
-        loading: store.state.loading,
-        timerDurationSeconds: store.state.timerDurationSeconds,
-        fetchQRCode: () {
-          store.dispatch(
-            FetchQRCode(),
-          );
-        });
+      activeSeed: store.state.activeSeed,
+      loading: store.state.loading,
+      timerDurationSeconds: store.state.timerDurationSeconds,
+      fetchQRCode: ({onError}) {
+        store.dispatch(
+          FetchQRCode(onError: onError),
+        );
+      },
+    );
   }
 
   _ViewModel({

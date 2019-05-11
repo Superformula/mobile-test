@@ -85,7 +85,10 @@ class FetchQRSeedMiddleware
       final seed = await seedService.fetchSeed();
       store.dispatch(FetchQRCodeSuccess(seed));
     } catch (e) {
-      // TODO handle error
+      store.dispatch(FetchQRCodeError());
+      if (action.onError != null) {
+        action.onError();
+      }
     }
   }
 }
@@ -108,7 +111,10 @@ class ValidateCodeMiddleware
       final isValid = await seedService.validateCode(action.code);
       store.dispatch(ValidateCodeSuccess(isValid));
     } catch (e) {
-      // TODO handle error
+      store.dispatch(ValidateCodeError());
+      if (action.onError != null) {
+        action.onError();
+      }
     }
   }
 }

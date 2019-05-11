@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CodeScan extends StatefulWidget {
   final bool validating;
   final bool codeIsValid;
-  final Function(String) validateCode;
+  final Function(String, {Function() onError}) validateCode;
 
   CodeScan({
     Key key,
@@ -18,6 +18,8 @@ class CodeScan extends StatefulWidget {
 }
 
 class _CodeScanState extends State<CodeScan> {
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -28,7 +30,16 @@ class _CodeScanState extends State<CodeScan> {
     String code = await BarcodeScanner.scan();
 
     if (code != null) {
-      widget.validateCode(code);
+      widget.validateCode(
+        code,
+        onError: () {
+          _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: Text('Failed to validate QR Code. Please try again.'),
+            ),
+          );
+        },
+      );
     }
   }
 
@@ -46,6 +57,7 @@ class _CodeScanState extends State<CodeScan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Scan'),
       ),

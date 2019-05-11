@@ -5,7 +5,7 @@ import 'package:supercode/models.dart';
 class QrCode extends StatefulWidget {
   final bool loading;
   final Seed seed;
-  final Function() fetchQRCode;
+  final Function({Function() onError}) fetchQRCode;
   final int timerDurationSeconds;
 
   const QrCode(
@@ -21,36 +21,56 @@ class QrCode extends StatefulWidget {
 }
 
 class _QrCodeState extends State<QrCode> with TickerProviderStateMixin {
-  AnimationController _contoller;
+  AnimationController _controller;
+  GlobalKey<ScaffoldState> _scaffoldKey;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchQRCode();
+    _scaffoldKey = GlobalKey<ScaffoldState>();
+  }
 
   @override
   void didUpdateWidget(QrCode oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    _contoller?.dispose();
-    _contoller = null;
+    _controller?.dispose();
+    _controller = null;
 
     if (oldWidget.seed != widget.seed && widget.seed != null) {
-      _contoller = AnimationController(
+      _controller = AnimationController(
           vsync: this,
           duration: Duration(seconds: widget.timerDurationSeconds));
 
-      _contoller.addStatusListener(_animationListener);
+      _controller.addStatusListener(_animationListener);
 
-      _contoller.forward();
+      _controller.forward();
     }
   }
 
   @override
   void dispose() {
-    _contoller?.dispose();
+    _controller?.dispose();
     super.dispose();
+  }
+
+  void _fetchQRCode() {
+    widget.fetchQRCode(
+      onError: () {
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text('Failed to fetch QR Code. Please try again.'),
+          ),
+        );
+      },
+    );
   }
 
   void _animationListener(AnimationStatus status) {
     switch (status) {
       case AnimationStatus.completed:
-        widget.fetchQRCode();
+        _fetchQRCode();
         break;
       default:
         break;
@@ -58,6 +78,10 @@ class _QrCodeState extends State<QrCode> with TickerProviderStateMixin {
   }
 
   Widget _buildQRCode() {
+    if (widget.seed == null) {
+      return null;
+    }
+
     return Center(
       child: Container(
         width: 200,
@@ -73,13 +97,14 @@ class _QrCodeState extends State<QrCode> with TickerProviderStateMixin {
   Widget _buildCountDown() {
     return Countdown(
       animation: StepTween(begin: widget.timerDurationSeconds, end: 0)
-          .animate(_contoller),
+          .animate(_controller),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('QR Code'),
       ),

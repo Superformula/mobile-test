@@ -6,11 +6,17 @@ import 'package:supercode/redux/app_state.dart';
 final appReducer = combineReducers<AppState>([
   TypedReducer<AppState, FetchQRCode>(fetchQRCodeReducer),
   TypedReducer<AppState, FetchQRCodeSuccess>(fetchQRCodeSuccessReducer),
+  TypedReducer<AppState, FetchQRCodeError>(fetchQRCodeErrorReducer),
   TypedReducer<AppState, ValidateCode>(validateCodeReducer),
-  TypedReducer<AppState, ValidateCodeSuccess>(validateCodeSuccessReducer)
+  TypedReducer<AppState, ValidateCodeSuccess>(validateCodeSuccessReducer),
+  TypedReducer<AppState, ValidateCodeError>(validateCodeErrorReducer),
+  TypedReducer<AppState, ResetValidate>(resetValidateReducer)
 ]);
 
-AppState fetchQRCodeReducer(AppState state, FetchQRCode action) {
+AppState fetchQRCodeReducer(
+  AppState state,
+  FetchQRCode action,
+) {
   return state.rebuild((b) => b..loading = true);
 }
 
@@ -28,7 +34,17 @@ AppState fetchQRCodeSuccessReducer(
     ..activeSeed = action.seed);
 }
 
-AppState validateCodeReducer(AppState state, ValidateCode action) {
+AppState fetchQRCodeErrorReducer(
+  AppState state,
+  FetchQRCodeError action,
+) {
+  return state.rebuild((b) => b..loading = false);
+}
+
+AppState validateCodeReducer(
+  AppState state,
+  ValidateCode action,
+) {
   return state.rebuild((b) => b..validating = true);
 }
 
@@ -41,7 +57,17 @@ AppState validateCodeSuccessReducer(
     ..codeIsValid = action.codeIsValid);
 }
 
-AppState resetValidateReducer(AppState state, ResetValidate action) {
+AppState validateCodeErrorReducer(
+  AppState state,
+  ValidateCodeError action,
+) {
+  return state.rebuild((b) => b..validating = false);
+}
+
+AppState resetValidateReducer(
+  AppState state,
+  ResetValidate action,
+) {
   return state.rebuild((b) => b
     ..validating = false
     ..codeIsValid = null);

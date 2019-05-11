@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
     return EmptyState(
       icon: Icons.announcement,
       title: 'Welcome!',
-      description: 'Tap the + to scan or generate a QR Code',
+      description: 'Tap the menu icon to scan or generate a QR Code',
     );
   }
 
