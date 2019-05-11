@@ -14,11 +14,12 @@ See https://flutter.dev/docs/get-started/install.
 
 ### Instructions
 - All commands are run from the `app/` directory
-1. From the `app/` run `flutter devices` which will yield an output like so:
-```
-iPhone Xs • D5BC90F2-B17F-42A0-86F8-7015DDA7FEC0 • ios
-```
-2. Run `flutter run -d <device_id>` where `device_id` is the alpha-numeric value output from the previous command
+1. Run `flutter packages get`
+2. Run `flutter devices` which will yield an output like so:
+    ```
+    iPhone Xs • D5BC90F2-B17F-42A0-86F8-7015DDA7FEC0 • ios
+    ```
+3. Run `flutter run -d <device_id>` where `device_id` is the alpha-numeric value output from the previous command
 
 ### Development
 - This application uses [built_value](https://github.com/google/built_value.dart) for immutable state which requires code to be generated
@@ -34,6 +35,3 @@ network
 - To run the unit tests, run `flutter test`
 - Test QR Codes are in the [test_codes](../test_codes) directory which can be used to test
 Scan feature of the application.
-
-
-
