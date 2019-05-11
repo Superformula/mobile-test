@@ -12,6 +12,9 @@ class QRCodeContainer extends StatelessWidget {
     return StoreConnector<AppState, _ViewModel>(
       distinct: true,
       converter: _ViewModel.fromStore,
+      onDispose: (store) {
+        store.dispatch(ResetQRCode());
+      },
       builder: (context, vm) {
         return QrCode(
           loading: vm.loading,
@@ -55,8 +58,11 @@ class _ViewModel {
       identical(this, other) ||
       other is _ViewModel &&
           runtimeType == other.runtimeType &&
-          activeSeed == other.activeSeed;
+          loading == other.loading &&
+          activeSeed == other.activeSeed &&
+          timerDurationSeconds == other.timerDurationSeconds;
 
   @override
-  int get hashCode => activeSeed.hashCode;
+  int get hashCode =>
+      loading.hashCode ^ activeSeed.hashCode ^ timerDurationSeconds.hashCode;
 }

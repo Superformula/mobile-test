@@ -1,7 +1,10 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CodeScan extends StatefulWidget {
+  static const String defaultErrorMessage =
+      'Failed to validate QR Code. Please try again.';
   final bool validating;
   final bool codeIsValid;
   final Function(String, {Function() onError}) validateCode;
@@ -27,20 +30,29 @@ class _CodeScanState extends State<CodeScan> {
   }
 
   Future<void> _scan() async {
-    String code = await BarcodeScanner.scan();
+    try {
+      String code = await BarcodeScanner.scan();
+      if (code != null) {
+        widget.validateCode(
+          code,
+          onError: _showErrorSnackBar,
+        );
+      }
+    } on PlatformException catch (e) {
+      if (e.code == BarcodeScanner.CameraAccessDenied) {
+        _showErrorSnackBar('Please give access to the camera to scan codes.');
+      } else {
+        _showErrorSnackBar();
+      }
+    } catch (e) {}
+  }
 
-    if (code != null) {
-      widget.validateCode(
-        code,
-        onError: () {
-          _scaffoldKey.currentState.showSnackBar(
-            SnackBar(
-              content: Text('Failed to validate QR Code. Please try again.'),
-            ),
-          );
-        },
-      );
-    }
+  void _showErrorSnackBar([String errorText = CodeScan.defaultErrorMessage]) {
+    _scaffoldKey?.currentState?.showSnackBar(
+      SnackBar(
+        content: Text(errorText),
+      ),
+    );
   }
 
   Widget _buildImageIsValid() {

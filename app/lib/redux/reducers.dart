@@ -10,7 +10,8 @@ final appReducer = combineReducers<AppState>([
   TypedReducer<AppState, ValidateCode>(validateCodeReducer),
   TypedReducer<AppState, ValidateCodeSuccess>(validateCodeSuccessReducer),
   TypedReducer<AppState, ValidateCodeError>(validateCodeErrorReducer),
-  TypedReducer<AppState, ResetValidate>(resetValidateReducer)
+  TypedReducer<AppState, ResetValidate>(resetValidateReducer),
+  TypedReducer<AppState, ResetQRCode>(resetQRCode),
 ]);
 
 AppState fetchQRCodeReducer(
@@ -32,6 +33,15 @@ AppState fetchQRCodeSuccessReducer(
     ..loading = false
     ..timerDurationSeconds = timerDurationSeconds < 0 ? 0 : timerDurationSeconds
     ..activeSeed = action.seed);
+}
+
+AppState resetQRCode(
+  AppState state,
+  ResetQRCode action,
+) {
+  return state.rebuild((b) => b
+    ..activeSeed = null
+    ..timerDurationSeconds = 0);
 }
 
 AppState fetchQRCodeErrorReducer(

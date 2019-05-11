@@ -58,7 +58,7 @@ class _QrCodeState extends State<QrCode> with TickerProviderStateMixin {
   void _fetchQRCode() {
     widget.fetchQRCode(
       onError: () {
-        _scaffoldKey.currentState.showSnackBar(
+        _scaffoldKey?.currentState?.showSnackBar(
           SnackBar(
             content: Text('Failed to fetch QR Code. Please try again.'),
           ),
@@ -95,6 +95,10 @@ class _QrCodeState extends State<QrCode> with TickerProviderStateMixin {
   }
 
   Widget _buildCountDown() {
+    if (_controller == null) {
+      return Container();
+    }
+
     return Countdown(
       animation: StepTween(begin: widget.timerDurationSeconds, end: 0)
           .animate(_controller),

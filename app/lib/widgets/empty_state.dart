@@ -6,7 +6,7 @@ class EmptyState extends StatelessWidget {
 
   final String title;
   final String description;
-  final IconData icon;
+  final Widget icon;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +15,7 @@ class EmptyState extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Icon(
-              icon,
-              size: 50.0,
-            ),
-          ),
+          Padding(padding: const EdgeInsets.all(16.0), child: icon),
           Text(
             title,
             textAlign: TextAlign.center,

@@ -4,6 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:redux/redux.dart';
 import 'package:supercode/containers/code_scan_container.dart';
 import 'package:supercode/containers/qr_code_container.dart';
+import 'package:supercode/helpers.dart';
 import 'package:supercode/models.dart';
 import 'package:supercode/redux/actions.dart';
 import 'package:supercode/redux/app_state.dart';
@@ -81,7 +82,7 @@ void main() {
       test('should navigate to the CodeScanContainer', () async {
         await middleware.handler(mockStore, NavigateToScan(), (_) {});
         final route = verify(mockNavigatorState.push(captureAny)).captured.first
-            as MaterialPageRoute;
+            as NoEnterTransitionRoute;
 
         expect(route.builder(null), isInstanceOf<CodeScanContainer>());
         expect(route.fullscreenDialog, isTrue);

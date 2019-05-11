@@ -4,12 +4,8 @@ let appRouter = (app, seedRepo) => {
   });
 
   app.get('/validate', (req, res) => {
-    try {
-      let isValid = seedRepo.validateCode(req.query.code);
-      res.status(200).send({ is_valid: isValid });
-    } catch (e) {
-      res.status(404).send(e.message);
-    }
+    let isValid = seedRepo.validateCode(req.query.code);
+    res.status(200).send({ is_valid: isValid });
   });
 }
 

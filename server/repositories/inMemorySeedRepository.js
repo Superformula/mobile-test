@@ -25,7 +25,7 @@ let proto = {
       let now = moment().utc();
       return now.isBefore(seedExpirationMoment);
     } else {
-      throw new Error('Seed not found');
+      return false;
     }
   }
 }

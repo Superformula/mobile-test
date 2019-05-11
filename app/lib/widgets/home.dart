@@ -19,7 +19,10 @@ class Home extends StatelessWidget {
 
   Widget _buildEmptyState() {
     return EmptyState(
-      icon: Icons.announcement,
+      icon: Icon(
+        Icons.pan_tool,
+        size: 48,
+      ),
       title: 'Welcome!',
       description: 'Tap the menu icon to scan or generate a QR Code',
     );

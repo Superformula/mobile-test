@@ -66,3 +66,5 @@ class ValidateCodeSuccess {
 class ValidateCodeError {}
 
 class ResetValidate {}
+
+class ResetQRCode {}

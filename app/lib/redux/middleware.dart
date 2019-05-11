@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:redux/redux.dart';
 import 'package:supercode/containers/code_scan_container.dart';
 import 'package:supercode/containers/qr_code_container.dart';
+import 'package:supercode/helpers.dart';
 import 'package:supercode/redux/actions.dart';
 import 'package:supercode/redux/app_state.dart';
 import 'package:supercode/redux/helpers.dart';
@@ -38,6 +39,7 @@ class NavigateToQRCodeMiddleware
     next(action);
     navigatorKey.currentState.push(
       MaterialPageRoute(
+        settings: RouteSettings(),
         builder: (_) => QRCodeContainer(),
         fullscreenDialog: true,
       ),
@@ -58,8 +60,10 @@ class NavigateToScanMiddleware
     NextDispatcher next,
   ) async {
     next(action);
+    // Using NoEnterTransitionRoute to reduce jank when barcode scanner
+    // is shown immediately when the CodeScanContainer loads
     navigatorKey.currentState.push(
-      MaterialPageRoute(
+      NoEnterTransitionRoute(
         builder: (_) => CodeScanContainer(),
         fullscreenDialog: true,
       ),
