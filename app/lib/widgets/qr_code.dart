@@ -43,8 +43,8 @@ class _QrCodeState extends State<QrCode> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     _contoller?.dispose();
+    super.dispose();
   }
 
   void _animationListener(AnimationStatus status) {

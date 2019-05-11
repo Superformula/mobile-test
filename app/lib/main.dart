@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:supercode/colors.dart';
@@ -11,7 +12,10 @@ import 'containers/home_container.dart';
 
 GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
-void main() => runApp(SupercodeApp());
+void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp(SupercodeApp());
+}
 
 class SupercodeApp extends StatelessWidget {
   final store = Store<AppState>(
@@ -20,7 +24,7 @@ class SupercodeApp extends StatelessWidget {
     middleware: createMiddleware(
       navigatorKey: _navigatorKey,
       service: SeedServiceImpl(
-        host: 'http://192.168.86.84:3000',
+        host: 'http://192.168.86.46:3000',
       ),
     ),
   );

@@ -13,6 +13,7 @@ class HomeContainer extends StatelessWidget {
       builder: (context, vm) {
         return Home(
           navigateToQrCode: vm.navigateToQRCode,
+          navigateToScan: vm.navigateToScan,
         );
       },
     );
@@ -21,14 +22,21 @@ class HomeContainer extends StatelessWidget {
 
 class _ViewModel {
   final Function() navigateToQRCode;
+  final Function() navigateToScan;
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
       navigateToQRCode: () {
         store.dispatch(NavigateToQRCode());
       },
+      navigateToScan: () {
+        store.dispatch(NavigateToScan());
+      },
     );
   }
 
-  _ViewModel({this.navigateToQRCode});
+  _ViewModel({
+    this.navigateToQRCode,
+    this.navigateToScan,
+  });
 }

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:redux/redux.dart';
 import 'package:supercode/containers/code_scan_container.dart';
+import 'package:supercode/containers/qr_code_container.dart';
 import 'package:supercode/redux/actions.dart';
 import 'package:supercode/redux/app_state.dart';
 import 'package:supercode/redux/helpers.dart';
@@ -16,6 +17,7 @@ List<Middleware<AppState>> createMiddleware({
 }) {
   return [
     NavigateToQRCodeMiddleware(navigatorKey: navigatorKey),
+    NavigateToScanMiddleware(navigatorKey: navigatorKey),
     FetchQRSeedMiddleware(seedService: service),
     ValidateCodeMiddleware(seedService: service),
   ];
@@ -31,6 +33,28 @@ class NavigateToQRCodeMiddleware
   FutureOr<void> handler(
     Store<AppState> store,
     NavigateToQRCode action,
+    NextDispatcher next,
+  ) async {
+    next(action);
+    navigatorKey.currentState.push(
+      MaterialPageRoute(
+        builder: (context) => QRCodeContainer(),
+        fullscreenDialog: true,
+      ),
+    );
+  }
+}
+
+class NavigateToScanMiddleware
+    extends TypedMiddlewareClass<AppState, NavigateToScan> {
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  NavigateToScanMiddleware({@required this.navigatorKey});
+
+  @override
+  FutureOr<void> handler(
+    Store<AppState> store,
+    NavigateToScan action,
     NextDispatcher next,
   ) async {
     next(action);
@@ -61,7 +85,7 @@ class FetchQRSeedMiddleware
       final seed = await seedService.fetchSeed();
       store.dispatch(FetchQRCodeSuccess(seed));
     } catch (e) {
-      print(e);
+      // TODO handle error
     }
   }
 }
@@ -83,6 +107,8 @@ class ValidateCodeMiddleware
     try {
       final isValid = await seedService.validateCode(action.code);
       store.dispatch(ValidateCodeSuccess(isValid));
-    } catch (e) {}
+    } catch (e) {
+      // TODO handle error
+    }
   }
 }

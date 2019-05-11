@@ -26,18 +26,19 @@ class _CodeScanState extends State<CodeScan> {
 
   Future<void> _scan() async {
     String code = await BarcodeScanner.scan();
-    widget.validateCode(code);
+
+    if (code != null) {
+      widget.validateCode(code);
+    }
   }
 
   Widget _buildImageIsValid() {
     return Padding(
       padding: EdgeInsets.only(bottom: 30),
-      child: Center(
-        child: Icon(
-          widget.codeIsValid ? Icons.check : Icons.close,
-          size: 90,
-          color: widget.codeIsValid ? Colors.green : Colors.red,
-        ),
+      child: Icon(
+        widget.codeIsValid ? Icons.check : Icons.close,
+        size: 90,
+        color: widget.codeIsValid ? Colors.green : Colors.red,
       ),
     );
   }
@@ -48,21 +49,21 @@ class _CodeScanState extends State<CodeScan> {
       appBar: AppBar(
         title: Text('Scan'),
       ),
-      body: widget.validating
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                if (widget.codeIsValid != null) _buildImageIsValid(),
-                RaisedButton(
-                  child: Text('SCAN AGAIN'),
-                  onPressed: _scan,
-                )
-              ],
-            ),
+      body: Center(
+        child: widget.validating
+            ? CircularProgressIndicator()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  if (widget.codeIsValid != null) _buildImageIsValid(),
+                  RaisedButton(
+                    child: Text('SCAN AGAIN'),
+                    onPressed: _scan,
+                  )
+                ],
+              ),
+      ),
     );
   }
 }

@@ -20,6 +20,8 @@ class FetchQRCodeSuccess {
 
 class NavigateToQRCode {}
 
+class NavigateToScan {}
+
 class TimerTick {}
 
 class ValidateCode {
@@ -33,3 +35,5 @@ class ValidateCodeSuccess {
 
   ValidateCodeSuccess(this.codeIsValid);
 }
+
+class ResetValidate {}

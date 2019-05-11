@@ -9,7 +9,11 @@ class CodeScanContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, _ViewModel>(
+      distinct: true,
       converter: _ViewModel.fromStore,
+      onDispose: (store) {
+        store.dispatch(ResetValidate());
+      },
       builder: (context, vm) {
         return CodeScan(
           validating: vm.validating,
@@ -22,9 +26,9 @@ class CodeScanContainer extends StatelessWidget {
 }
 
 class _ViewModel {
-  final Function(String code) validateCode;
   final bool codeIsValid;
   final bool validating;
+  final Function(String code) validateCode;
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
@@ -41,4 +45,15 @@ class _ViewModel {
     this.validateCode,
     this.codeIsValid,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _ViewModel &&
+          runtimeType == other.runtimeType &&
+          codeIsValid == other.codeIsValid &&
+          validating == other.validating;
+
+  @override
+  int get hashCode => codeIsValid.hashCode ^ validating.hashCode;
 }

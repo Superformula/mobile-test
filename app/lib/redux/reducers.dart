@@ -35,3 +35,9 @@ AppState validateCodeSuccessReducer(
     ..validating = false
     ..codeIsValid = action.codeIsValid);
 }
+
+AppState resetValidateReducer(AppState state, ResetValidate action) {
+  return state.rebuild((b) => b
+    ..validating = false
+    ..codeIsValid = null);
+}
