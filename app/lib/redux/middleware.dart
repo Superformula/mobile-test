@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:redux/redux.dart';
-import 'package:supercode/containers/qr_code_container.dart';
+import 'package:supercode/containers/code_scan_container.dart';
 import 'package:supercode/redux/actions.dart';
 import 'package:supercode/redux/app_state.dart';
 import 'package:supercode/redux/helpers.dart';
@@ -35,7 +35,7 @@ class NavigateToQRCodeMiddleware
     next(action);
     navigatorKey.currentState.push(
       MaterialPageRoute(
-        builder: (context) => QRCodeContainer(),
+        builder: (context) => CodeScanContainer(),
         fullscreenDialog: true,
       ),
     );

@@ -10,7 +10,7 @@ let proto = {
 
     let seed = {
       seed: data,
-      expires_at: expiresAt
+      expiresAt
     }
 
     this.seeds[data] = seed;
@@ -30,8 +30,21 @@ let proto = {
   }
 }
 
+// QR Codes for testing
+let intialSeeds = {
+  '9d0cb7083d667d5392444f9c0fd2b7632d26c2a0': { // Invalid QR Code
+    seed: '9d0cb7083d667d5392444f9c0fd2b7632d26c2a0',
+    expires_at: '2018-05-08T18:50:18Z'
+  },
+  '3aacdcaf3f88f81d347cc23ae1929d576dc7450d' : { // Valid QR Code
+    seed: '3aacdcaf3f88f81d347cc23ae1929d576dc7450d',
+    expires_at: '2222-05-08T18:49:19Z'
+  }
+};
+
+
 const inMemorySeedRepoFactory = () => {
-  return Object.assign({}, proto);
+  return Object.assign({}, proto, {seeds: intialSeeds});
 }
 
 module.exports = inMemorySeedRepoFactory;
