@@ -102,6 +102,12 @@ void main() {
         await middleware.handler(mockStore, FetchQRCode(), (_) {});
         verify(mockStore.dispatch(FetchQRCodeSuccess(seed)));
       });
+      test('should fetch the qr code - error', () async {
+        when(mockSeedService.fetchSeed()).thenThrow(Exception());
+        await middleware.handler(mockStore,
+            FetchQRCode(onError: expectAsync0(() {}, count: 1)), (_) {});
+        verify(mockStore.dispatch(isInstanceOf<FetchQRCodeError>()));
+      });
     });
     group('ValidateCodeMiddleware', () {
       ValidateCodeMiddleware middleware;
@@ -118,6 +124,14 @@ void main() {
             .thenAnswer((_) => Future.value(true));
         await middleware.handler(mockStore, ValidateCode(code), (_) {});
         verify(mockStore.dispatch(ValidateCodeSuccess(true)));
+      });
+      test('should validate the qr code - error', () async {
+        when(mockSeedService.validateCode(any)).thenThrow(Exception());
+        await middleware.handler(
+            mockStore,
+            ValidateCode('abc123', onError: expectAsync0(() {}, count: 1)),
+            (_) {});
+        verify(mockStore.dispatch(isInstanceOf<ValidateCodeError>()));
       });
     });
   });

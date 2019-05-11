@@ -10,7 +10,7 @@ void main() {
         final seed = Seed.fromJson(json);
 
         expect(seed.seed, json['seed']);
-        expect(seed.expiresAt, DateTime.parse(json['expiresAt']));
+        expect(seed.expiresAt, DateTime.parse(json['expires_at']));
       });
     });
   });

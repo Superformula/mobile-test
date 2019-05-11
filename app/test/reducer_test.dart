@@ -48,6 +48,11 @@ void main() {
               ..activeSeed = seed,
           ));
     });
+    test('fetchQRCodeErrorReducer', () {
+      final state = AppState.initial().rebuild((b) => b..loading = true);
+      expect(fetchQRCodeErrorReducer(state, FetchQRCodeError()),
+          AppState.initial());
+    });
     test('validateCodeSuccessReducer', () {
       final state = AppState.initial().rebuild((b) => b..validating = true);
       expect(
@@ -57,12 +62,16 @@ void main() {
           ..codeIsValid = true),
       );
     });
-
     test('resetValidateReducer', () {
       final state = AppState.initial().rebuild((b) => b
         ..validating = true
         ..codeIsValid = true);
       expect(resetValidateReducer(state, ResetValidate()), AppState.initial());
+    });
+    test('validateCodeErrorReducer(state, action)', () {
+      final state = AppState.initial().rebuild((b) => b..validating = true);
+      expect(validateCodeErrorReducer(state, ValidateCodeError()),
+          AppState.initial());
     });
   });
 }
