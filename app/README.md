@@ -22,7 +22,13 @@ iPhone Xs • D5BC90F2-B17F-42A0-86F8-7015DDA7FEC0 • ios
 
 ### Troubleshooting
 - Ensure that the address of the server is pointing to the right host
+- If running on a real device, ensure your computer and device are on the same
+network
 
 ## Testing
 - To run the unit tests, run `flutter test`
+- Test QR Codes are in the [test_codes](../test_codes) directory which can be used to test
+Scan feature of the application.
+
+
 
