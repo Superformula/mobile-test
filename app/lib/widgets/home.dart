@@ -13,10 +13,6 @@ class Home extends StatelessWidget {
     this.navigateToScan,
   }) : super(key: key);
 
-  TextStyle _labelStyle(BuildContext context) {
-    return TextStyle(color: Colors.white);
-  }
-
   Widget _buildEmptyState() {
     return EmptyState(
       icon: Icon(
@@ -41,14 +37,14 @@ class Home extends StatelessWidget {
           SpeedDialChild(
             child: Icon(Icons.code),
             label: 'Generate Code',
-            labelStyle: _labelStyle(context),
+            labelStyle: TextStyle(color: Colors.white),
             labelBackgroundColor: Theme.of(context).primaryColor,
             onTap: navigateToQrCode,
           ),
           SpeedDialChild(
             child: Icon(Icons.camera_alt),
             label: 'Scan Code',
-            labelStyle: _labelStyle(context),
+            labelStyle: TextStyle(color: Colors.white),
             labelBackgroundColor: Theme.of(context).primaryColor,
             onTap: navigateToScan,
           ),
