@@ -34,6 +34,16 @@ class ValidateCodeSuccess {
   final bool codeIsValid;
 
   ValidateCodeSuccess(this.codeIsValid);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ValidateCodeSuccess &&
+          runtimeType == other.runtimeType &&
+          codeIsValid == other.codeIsValid;
+
+  @override
+  int get hashCode => codeIsValid.hashCode;
 }
 
 class ResetValidate {}

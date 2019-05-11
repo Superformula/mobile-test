@@ -36,6 +36,7 @@ dev_dependencies:
   built_value_generator: ^6.1.5
   flutter_test:
     sdk: flutter
+  mockito: ^4.0.0
 
 
 # For information on the generic Dart part of this file, see the

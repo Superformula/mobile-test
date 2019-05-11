@@ -38,7 +38,7 @@ class NavigateToQRCodeMiddleware
     next(action);
     navigatorKey.currentState.push(
       MaterialPageRoute(
-        builder: (context) => QRCodeContainer(),
+        builder: (_) => QRCodeContainer(),
         fullscreenDialog: true,
       ),
     );
@@ -60,7 +60,7 @@ class NavigateToScanMiddleware
     next(action);
     navigatorKey.currentState.push(
       MaterialPageRoute(
-        builder: (context) => CodeScanContainer(),
+        builder: (_) => CodeScanContainer(),
         fullscreenDialog: true,
       ),
     );
@@ -69,7 +69,7 @@ class NavigateToScanMiddleware
 
 class FetchQRSeedMiddleware
     extends TypedMiddlewareClass<AppState, FetchQRCode> {
-  final SeedServiceImpl seedService;
+  final SeedService seedService;
 
   FetchQRSeedMiddleware({@required this.seedService});
 

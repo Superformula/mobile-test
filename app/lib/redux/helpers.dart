@@ -12,12 +12,14 @@ abstract class TypedMiddlewareClass<State, Action>
     dynamic action,
     NextDispatcher next,
   ) async {
-    if (action is Action) {
+    if (handlesAction(action)) {
       handler(store, action, next);
     } else {
       next(action);
     }
   }
+
+  bool handlesAction(action) => action is Action;
 
   FutureOr<void> handler(
     Store<State> store,
