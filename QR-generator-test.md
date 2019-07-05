@@ -15,7 +15,7 @@ Be sure to read **all** of this document carefully, and follow the guidelines wi
 
 1.  Build a simple API server that provides an endpoint which generates a random seed used to create QR code. (if you cannot build an API server, we can supply a lambda to do this for you)
 2.  Build a simple App that can call the seed endpoint and generate a QR code based on the seed.
-3.  Be sure the app will use the below UI and will have a navigation patterb present.
+3.  Be sure the app will use the below UI and will have a navigation pattern present.
 
 ### UI
 
@@ -32,12 +32,12 @@ paths:
     get:
       description: Get a seed that can be used to generate a QR code
       responses:
-        '200':
+        "200":
           description: seed generated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Seed'
+                $ref: "#/components/schemas/Seed"
 components:
   schemas:
     Seed:
@@ -49,7 +49,7 @@ components:
         expires_at:
           type: dateTime
           description: ISO date-time
-          example: '1979-11-12T13:10:42.24Z'
+          example: "1979-11-12T13:10:42.24Z"
 ```
 
 ### Tech stack
