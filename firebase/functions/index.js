@@ -4,6 +4,8 @@ const moment = require('moment');
 const express = require('express');
 
 // setup basic express app to handle HTTPS requests.
+// api location: https://us-central1-qr-scanner-a71db.cloudfunctions.net/api/seed
+
 const app = express();
 
 app.get('/seed', (req, res) => {
