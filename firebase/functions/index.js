@@ -1,8 +1,16 @@
 const functions = require('firebase-functions');
+const uuid = require('uuid');
+const moment = require('moment');
+const express = require('express');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+// setup basic express app to handle HTTPS requests.
+const app = express();
+
+app.get('/seed', (req, res) => {
+  res.status(200).json({
+    seed: uuid.v4(),
+    expires_at: moment().add(15, 'minutes').toISOString(),
+  });
+});
+
+exports.api = functions.https.onRequest(app);
