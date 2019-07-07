@@ -86,4 +86,16 @@ Note: I normally don't document much further, but in effort to provide a full so
 - Adding firebase functions to project.
 - Add cloud_firestore to pub for app. (though we could just use http to manage the gets)
 - Add data to GET endpoint, return random seed and expires at.
+- Let's get into the flutter app, get it building and running on iOS and Android.
 -
+
+# Testing
+
+- End to end functional testing on my Android & iPhone devices. I test on device on an Apple iPhone X and Google Pixel 3. I test on simulators I'm worried about.
+- Test experience on small screen sizes.
+- Can utilize device farms if worried about different rendering on different sizes.
+
+# Release
+
+- Normally, we'd want to get this app released!
+- I have plenty of experience in this area, see my apps in both the Google Play Store and the Apple App Store.

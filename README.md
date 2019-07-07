@@ -4,17 +4,28 @@ An app that generates a random QR code every 15 seconds and can also read existi
 
 # Running Locally
 
-To make changes to Firebase Functions:
+## Server
+
+To make changes to the Server (Firebase Functions):
 `cd functions`
 `npm install`
 
 To deploy changes to Firebase Functions (need access to Firebase App):
 `firebase deploy --only functions`
 
+## App
+
 To build and run the app:
 `cd super_qr`
 `flutter build apk` (android)
 `flutter build ios` (ios)
+
+To build an Android .apk to release: `flutter build appbundle --target-platform android-arm,android-arm64`
+To build an iOS app to release: `flutter build ios` and release through Xcode.
+
+# Troubleshooting
+
+You may need to update your source repos for cocoapods: `cd super_qr/ios`, then `pod repo update` or `pod install --repo-update`
 
 ## Process
 

@@ -1,4 +1,4 @@
-package com.example.super_qr;
+package com.anykindaapp.superqr;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

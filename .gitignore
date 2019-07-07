@@ -1,3 +1,7 @@
+# Firebase Config Files
+super_qr/ios/Runner/GoogleService-Info.plist
+super_qr/android/app/google-services.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
