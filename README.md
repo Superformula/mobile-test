@@ -1,29 +1,29 @@
-# Superformula Mobile Developer Coding Test
+# Super-QR
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+An app that generates a random QR code every 15 seconds and can also read existing QR codes. Developed as a solution to Superformula's "QR-generator-test".
 
-## Requirements
+# Running Locally
 
-There is only one test here currently, please review and get back to us.
+To make changes to Firebase Functions:
+`cd functions`
+`npm install`
 
-## What We Care About
+To deploy changes to Firebase Functions (need access to Firebase App):
+`firebase deploy --only functions`
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+To build and run the app:
+`cd super_qr`
+`flutter build apk` (android)
+`flutter build ios` (ios)
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+## Process
 
-Here's what you should strive for:
+Interested in the Process in creating this application and server? Check out [process.md](process.md).
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+## Server
 
-## Q&A
+The server used in this project is running on Firebase, and utilizes Firebase Functions. I contemplated spinning up an Express server, but I've utilized Firebase Functions in recent production apps, and really like the speed and efficiency of it. It provides exactly what I need for this project, with no drawbacks in this context.
 
-> Where should I send back the result when I'm done?
+## App
 
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
+Obviously, Flutter! <3

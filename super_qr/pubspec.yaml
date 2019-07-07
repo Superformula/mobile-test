@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   qr_flutter: ^2.1.0
+  cloud_firestore: ^0.12.6
 
 dev_dependencies:
   flutter_test:

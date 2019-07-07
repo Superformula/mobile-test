@@ -77,4 +77,13 @@ Now combined as may not need to do anything specifically here as they should be 
 
 Note: At this point I am ready to start developing. I spent about 30 minutes of work to this point, and another 15-30 reading up on QR codes and packages I might want to use.
 
-Another note: I am currently ripping (well demolishing) out the ceramic tile floor in my garage this weekend with an already reserved jackhammer rental, so I may save unit tests for the end / skip on those, which I normally wouldn't for a client. I always provide full regression testing and Quality Assurance before handing it back.
+Note: I am currently ripping (well demolishing) out the ceramic tile floor in my garage this weekend with an already reserved jackhammer rental, so I may save unit tests for the end / skip on those, which I normally wouldn't for a client. I always provide full regression testing and Quality Assurance before handing it back.
+
+Note: I normally don't document much further, but in effort to provide a full solution to this problem, insight into Jeff's brain is critical. The following would normally be summed up in standups/checkins with client / team.
+
+# Development
+
+- Adding firebase functions to project.
+- Add cloud_firestore to pub for app. (though we could just use http to manage the gets)
+- Add data to GET endpoint, return random seed and expires at.
+-
