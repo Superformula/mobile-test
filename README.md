@@ -42,6 +42,8 @@ You may need to update your source repos for cocoapods:
 
 Interested in the Process in creating this application and server? Check out [process.md](process.md).
 
+I often look at "awesome-X" repos like [awesome-flutter](https://github.com/Solido/awesome-flutter) for packages that can help me accomplish my task sooner, evaluating if I should pull it in, or should roll a custom build. If the project looks outdated and has a lot of open issues, I tend to roll my own. If it looks up to date but its unstable, I also tend to roll my own, or pull it in and contribute to it.
+
 # Server
 
 The server used in this project is running on Firebase, and utilizes Firebase Functions. I contemplated spinning up an Express server, but I've utilized Firebase Functions in recent production apps, and really like the speed and efficiency of it. It provides exactly what we need for this project, with no drawbacks in this context.
