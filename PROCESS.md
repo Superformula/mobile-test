@@ -94,6 +94,10 @@ Note: I normally don't document much further, but in effort to provide a full so
 - Starting to build service that will hit our endpoint, auto refresh, maybe use an observable pattern, and only run in display view?
 - Only one listener, so a basic stream can be used here.
 - Fixed data server, needs to return `data: {...}`.
+- Created QR code view.
+- Let's add ability to scan a QR code.
+- flutter_barcode_scanner or qr_code_scanner? flutter_barcode_scanner looks like it has more flexibility, and permission handling. Latter also looks slower.
+- Snackbar opens links, or it displays the seed data.
 -
 
 # Testing
