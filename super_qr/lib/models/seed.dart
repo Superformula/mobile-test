@@ -4,7 +4,7 @@ class Seed {
 
   Seed(this.seed, this.expiresAt);
 
-  Seed.fromJson(Map<String, dynamic> json)
+  Seed.fromJson(Map<dynamic, dynamic> json)
       : seed = json['seed'],
         expiresAt = json['expires_at'];
 

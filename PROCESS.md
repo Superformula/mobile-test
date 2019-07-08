@@ -87,6 +87,13 @@ Note: I normally don't document much further, but in effort to provide a full so
 - Add cloud_firestore to pub for app. (though we could just use http to manage the gets)
 - Add data to GET endpoint, return random seed and expires at.
 - Let's get into the flutter app, get it building and running on iOS and Android.
+- After getting it to run, I created the home view for the app, just barebones.
+- I then created the speed dial (floating action button with menu), utilizing library that already accomplishes this.
+- Set up navigation between home, display, and scanning views.
+- In order to test displaying a QR code, I'll need dummy data, or create the provider now, doing the latter.
+- Starting to build service that will hit our endpoint, auto refresh, maybe use an observable pattern, and only run in display view?
+- Only one listener, so a basic stream can be used here.
+- Fixed data server, needs to return `data: {...}`.
 -
 
 # Testing

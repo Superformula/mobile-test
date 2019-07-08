@@ -16,5 +16,5 @@ exports.seed = functions.https.onRequest((request, response) => {
 
   var seed = { seed: randomSeed, expires_at: expiresAt };
 
-  response.status(200).json(seed);
+  response.status(200).send({ data: seed });
 });
