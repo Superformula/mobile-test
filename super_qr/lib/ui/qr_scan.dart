@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_qr/utils/constants.dart';
 
+/// Page that will allow the user to scan a QR code.
 class ScanQRView extends StatefulWidget {
   @override
   _ScanQRViewState createState() => _ScanQRViewState();

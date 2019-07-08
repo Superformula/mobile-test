@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-// Colors are taken from my other Apps
+// Colors are taken from my other Apps, would normally discuss with client
 class SuperColors {
   static const Color canvasColor = Color(0xFFFAFAFA);
   static const Color transparent = Color(0x00000000);

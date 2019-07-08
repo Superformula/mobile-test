@@ -1,15 +1,16 @@
+/// Model for a "Seed", contains a `seed` String value and a `expiresAt` DateTime value.
 class Seed {
   final String seed;
-  final String expiresAt;
+  final DateTime expiresAt;
 
   Seed(this.seed, this.expiresAt);
 
   Seed.fromJson(Map<dynamic, dynamic> json)
       : seed = json['seed'],
-        expiresAt = json['expires_at'];
+        expiresAt = DateTime.parse(json['expires_at']);
 
   Map<String, dynamic> toJson() => {
         'seed': seed,
-        'expiresAt': expiresAt,
+        'expiresAt': expiresAt.toUtc(),
       };
 }

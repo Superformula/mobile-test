@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:super_qr/models/seed.dart';
