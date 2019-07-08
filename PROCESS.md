@@ -100,6 +100,8 @@ Note: I normally don't document much further, but in effort to provide a full so
 - Snackbar opens links, or it displays the seed data.
 - Need to add a validate endpoint to check QR Code scan. This would take in the `expires_at` as a parameter?
 - Need to change auto refresh to happen when code expires.
+- Full functional testing on iOS & Android.
+- Need to get some unit tests out.
 
 # Testing
 

@@ -11,6 +11,6 @@ class Seed {
 
   Map<String, dynamic> toJson() => {
         'seed': seed,
-        'expiresAt': expiresAt.toUtc(),
+        'expires_at': expiresAt.toIso8601String(),
       };
 }

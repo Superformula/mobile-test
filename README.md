@@ -20,8 +20,10 @@ To deploy changes to Firebase Functions (need access to Firebase App):
 To build and run the app:
 
 - `cd super_qr`
+- `flutter packages get`
 - `flutter build apk` (android)
 - `flutter build ios` (ios)
+- `flutter run -d <device_uid>` where `<device_uid>` is a result from `flutter devices`
 
 To build an Android .apk to release:
 
@@ -30,6 +32,10 @@ To build an Android .apk to release:
 To build an iOS app to release:
 
 - `flutter build ios` and release through Xcode.
+
+## Test
+
+To run the unit tests, run `flutter test`.
 
 # Troubleshooting
 
