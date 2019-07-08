@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:super_qr/models/seed.dart';
 import 'package:super_qr/providers/seed_data_provider.dart';
+import 'package:super_qr/ui/components/qr_code_countdown.dart';
 import 'package:super_qr/ui/components/qr_widget_view.dart';
 import 'package:super_qr/utils/constants.dart';
 
@@ -10,8 +11,13 @@ class QRDisplayView extends StatefulWidget {
   _QRDisplayViewState createState() => _QRDisplayViewState();
 }
 
-class _QRDisplayViewState extends State<QRDisplayView> {
+class _QRDisplayViewState extends State<QRDisplayView>
+    with SingleTickerProviderStateMixin {
   SeedDataProvider seedProvider;
+  Seed currentSeed;
+
+  AnimationController fadeInController;
+  Animation<double> fadeInAnimation;
 
   @override
   void initState() {
@@ -21,6 +27,12 @@ class _QRDisplayViewState extends State<QRDisplayView> {
     // Since we currently don't need this data anywhere else except on this view,
     // and have no intention of ever changing that, we're going to keep it here.
     seedProvider = SeedDataProvider();
+
+    // Animation for fading in new QR code
+    fadeInController = AnimationController(
+        duration: const Duration(milliseconds: 2000), vsync: this);
+    fadeInAnimation =
+        CurvedAnimation(parent: fadeInController, curve: Curves.ease);
   }
 
   @override
@@ -31,8 +43,6 @@ class _QRDisplayViewState extends State<QRDisplayView> {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = Theme.of(context).textTheme;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -49,37 +59,47 @@ class _QRDisplayViewState extends State<QRDisplayView> {
               stream: seedProvider.currentSeed,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.hasData) {
-                  Seed currentSeed = snapshot.data;
-                  // TODO: Add fade animation for change.
-                  return Column(
-                    children: [
-                      // QR Code display row
-                      Row(
+                  currentSeed = snapshot.data;
+
+                  // TODO: Cleanup initial animation.
+                  fadeInController.reset();
+                  fadeInController.forward();
+
+                  return FadeTransition(
+                    child: Column(
+                      children: [
+                        // QR Code display row
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              QRImageView(
+                                seed: currentSeed,
+                              )
+                            ]),
+                        // Expires at timer
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            QRImageView(
-                              seed: currentSeed,
-                            )
-                          ]),
-                      // Expires timer
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // TODO: Extract widget
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              '15s',
-                              style: textTheme.display1,
-                            ),
-                          )
-                        ],
-                      )
+                            Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: QRDisplayCountdown(
+                                  seedExpiresAt: currentSeed.expiresAt,
+                                ))
+                          ],
+                        )
+                      ],
+                    ),
+                    opacity: fadeInAnimation,
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('Error loading QR Code.');
+                } else {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
                     ],
                   );
-                } else {
-                  // TODO: Error handling.
-                  return Text('Loading QR Code.');
                 }
               },
             ),

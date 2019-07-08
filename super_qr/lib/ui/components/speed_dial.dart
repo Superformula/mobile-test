@@ -26,26 +26,7 @@ class HomeSpeedDial extends StatelessWidget {
             mini: true,
             child: Icon(Icons.camera_alt),
             onPressed: () async {
-              String scanResult = await FlutterBarcodeScanner.scanBarcode(
-                  "#661FFF", "Nevermind", true);
-
-              // If the user scans a QR Code that is a link, let's ask them if they'd
-              // like to go to it.
-              if (isURL(scanResult)) {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("Would you like to open $scanResult?"),
-                  action: SnackBarAction(
-                      label: "Open",
-                      onPressed: () {
-                        openUrl(scanResult);
-                      }),
-                  duration: Duration(milliseconds: 4000),
-                ));
-              } else {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text("QR Code found: $scanResult"),
-                    duration: Duration(milliseconds: 4000)));
-              }
+              await scanQRCode(context);
             },
           )),
       // View a QR Code
@@ -68,5 +49,38 @@ class HomeSpeedDial extends StatelessWidget {
         parentButtonBackground: SuperColors.white,
         parentButton: Icon(Icons.add),
         childButtons: childButtons);
+  }
+
+  Future scanQRCode(BuildContext context) async {
+    String scanResult =
+        await FlutterBarcodeScanner.scanBarcode("#661FFF", "Nevermind", true)
+            .catchError((e) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(
+              "There was an error reading that QR Code, please try again. If the problem persists, it may be a corrupt code."),
+          duration: Duration(milliseconds: 4000)));
+    });
+
+    if (scanResult.isEmpty) {
+      return;
+    }
+
+    // If the user scans a QR Code that is a link, let's ask them if they'd
+    // like to go to it.
+    if (isURL(scanResult)) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text("Would you like to open $scanResult?"),
+        action: SnackBarAction(
+            label: "Open",
+            onPressed: () {
+              openUrl(scanResult);
+            }),
+        duration: Duration(milliseconds: 4000),
+      ));
+    } else {
+      Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text("QR Code found: $scanResult"),
+          duration: Duration(milliseconds: 4000)));
+    }
   }
 }

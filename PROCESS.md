@@ -98,7 +98,8 @@ Note: I normally don't document much further, but in effort to provide a full so
 - Let's add ability to scan a QR code.
 - flutter_barcode_scanner or qr_code_scanner? flutter_barcode_scanner looks like it has more flexibility, and permission handling. Latter also looks slower.
 - Snackbar opens links, or it displays the seed data.
--
+- Need to add a validate endpoint to check QR Code scan. This would take in the `expires_at` as a parameter?
+- Need to change auto refresh to happen when code expires.
 
 # Testing
 
