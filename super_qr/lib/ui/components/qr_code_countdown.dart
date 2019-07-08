@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:super_qr/utils/utils.dart';
 
 /// Widget that renders the seconds left before the current Seeds expiration.
 class QRDisplayCountdown extends StatefulWidget {
@@ -21,18 +22,12 @@ class _QRDisplayCountdownState extends State<QRDisplayCountdown> {
     super.initState();
 
     // Set initial value
-    _secondsLeft = getDifference().inSeconds;
+    _secondsLeft = getDifferenceFromNow(widget.seedExpiresAt).inSeconds;
 
     // Update the time left display every second
     _ticker = Timer.periodic(Duration(seconds: 1), (Timer t) {
       updateTime();
     });
-  }
-
-  // Get the current difference between now and the seed's expiration
-  Duration getDifference() {
-    Duration difference = widget.seedExpiresAt.difference(DateTime.now());
-    return difference;
   }
 
   @override
@@ -53,7 +48,7 @@ class _QRDisplayCountdownState extends State<QRDisplayCountdown> {
 
   void updateTime() {
     setState(() {
-      _secondsLeft = getDifference().inSeconds;
+      _secondsLeft = getDifferenceFromNow(widget.seedExpiresAt).inSeconds;
     });
   }
 }

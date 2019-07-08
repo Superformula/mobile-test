@@ -37,7 +37,6 @@ class _QRDisplayViewState extends State<QRDisplayView>
 
   @override
   void dispose() {
-    seedProvider.stopTimer();
     super.dispose();
   }
 

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:super_qr/models/seed.dart';
+import 'package:super_qr/utils/utils.dart';
 
 const SEED_FUNCTION_NAME = "seed";
 const REFRESH_INTERVAL_SECONDS = 15;
@@ -17,34 +18,19 @@ class SeedDataProvider {
   StreamController<Seed> _currentSeedController = StreamController<Seed>();
   Stream<Seed> get currentSeed => _currentSeedController.stream;
 
-  // A timer that will refresh the QR code with a new seed.
-  // Future addition: customizable interval by user.
-  Timer refreshTimer;
-
   SeedDataProvider() {
-    startTimer();
+    refreshSeed();
   }
 
   Future dispose() async {
     _currentSeedController.close();
-    stopTimer();
   }
 
-  /// Start the timer to auto refresh the QR Code
-  void startTimer() {
-    refreshSeed();
-
-    final Duration refreshDuration =
-        Duration(seconds: REFRESH_INTERVAL_SECONDS);
-
-    refreshTimer = Timer.periodic(refreshDuration, (Timer t) {
+  /// Schedule a delayed task to refresh the seed.
+  void scheduleRefresh(DateTime expires) {
+    Future.delayed(getDifferenceFromNow(expires), () {
       refreshSeed();
     });
-  }
-
-  /// Stop the timer to auto refresh the QR code.
-  void stopTimer() {
-    refreshTimer.cancel();
   }
 
   /// Refresh the current seed by fetching a seed and pushing to stream. Intended
@@ -55,8 +41,10 @@ class SeedDataProvider {
       print(e);
       return;
     });
+
     // TODO: Error handle on decode
     Seed newSeed = Seed.fromJson(resp.data);
     _currentSeedController.add(newSeed);
+    scheduleRefresh(newSeed.expiresAt);
   }
 }
