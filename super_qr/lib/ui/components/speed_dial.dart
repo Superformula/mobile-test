@@ -52,6 +52,7 @@ class HomeSpeedDial extends StatelessWidget {
   }
 
   Future scanQRCode(BuildContext context) async {
+    // TODO: Check if running on sim crashes
     String scanResult =
         await FlutterBarcodeScanner.scanBarcode("#661FFF", "Nevermind", true)
             .catchError((e) {

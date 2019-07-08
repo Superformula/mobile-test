@@ -47,7 +47,7 @@ class _QRDisplayViewState extends State<QRDisplayView>
         title: Text(
           VIEW_A_QR_CODE_PAGE_TITLE,
         ),
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

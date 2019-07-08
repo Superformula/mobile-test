@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
         title: Text(
           HOME_PAGE_TITLE,
         ),
-        centerTitle: false,
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
