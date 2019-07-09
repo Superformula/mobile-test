@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_generator/models/seed.dart';
-import 'package:qr_generator/screens/display/widgets/countdown.dart';
-import 'package:qr_generator/screens/display/widgets/qr_code.dart';
+import 'package:qr_generator/screens/display_screen/widgets/countdown.dart';
+import 'package:qr_generator/screens/display_screen/widgets/qr_code.dart';
 
 class DisplayScreen extends StatelessWidget {
   @override
