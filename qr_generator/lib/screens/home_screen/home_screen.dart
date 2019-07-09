@@ -26,26 +26,26 @@ class HomeScreen extends StatelessWidget {
         children: <SpeedDialChild>[
           SpeedDialChild(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Image.asset(
-                'assets/images/scan.png',
-                color: Colors.white,
-              ),
-            ),
-            label: 'Scan Code',
-            onTap: () => scanCode(context),
-          ),
-          SpeedDialChild(
-            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
                 'assets/images/qrcode.png',
                 color: Colors.white,
               ),
             ),
-            label: 'Display Code',
+            label: 'QR Code',
             onTap: () => displayCode(context, seed),
-          )
+          ),
+          SpeedDialChild(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/scan.png',
+                color: Colors.white,
+              ),
+            ),
+            label: 'Scan',
+            onTap: () => scanCode(context),
+          ),
         ],
       ),
     );
