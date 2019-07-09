@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:quiver/async.dart';
 import 'package:provider/provider.dart';
@@ -13,32 +15,35 @@ class Countdown extends StatefulWidget {
 }
 
 class _CountdownState extends State<Countdown> {
+  CountdownTimer countdownTimer;
+  StreamSubscription<CountdownTimer> sub;
   int timeOutInSeconds;
   final stepInSeconds = 1;
   int currentNumber = 1;
 
   _CountdownState(int timeOutInSeconds) {
     this.timeOutInSeconds = timeOutInSeconds;
-    setupCountdownTimer();
   }
 
-  void setupCountdownTimer() {
-    CountdownTimer countdownTimer = new CountdownTimer(
+  @override
+  void initState() {
+    countdownTimer = new CountdownTimer(
       Duration(seconds: timeOutInSeconds),
       Duration(seconds: stepInSeconds),
     );
 
-    var sub = countdownTimer.listen(null);
+    sub = countdownTimer.listen(null);
     sub.onData((duration) {
       currentNumber += stepInSeconds;
       this.onTimerTick(currentNumber);
     });
     sub.onDone(() {
       sub.cancel();
-      // when QR code expires, automagically fetch
-      // a new one.
+      // when QR code expires, automagically fetch a new one.
       Provider.of<Seed>(context).fetchSeed();
     });
+
+    super.initState();
   }
 
   void onTimerTick(int currentNumber) {
@@ -57,5 +62,12 @@ class _CountdownState extends State<Countdown> {
         fontSize: 25.0,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    sub.cancel();
+    countdownTimer.cancel();
+    super.dispose();
   }
 }
