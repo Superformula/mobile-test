@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:qr_generator/models/seed.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var seed = Provider.of<Seed>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -41,7 +44,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             label: 'Display Code',
-            onTap: () => displayCode(context),
+            onTap: () => displayCode(context, seed),
           )
         ],
       ),
@@ -52,7 +55,8 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/scan');
   }
 
-  displayCode(BuildContext context) {
+  displayCode(BuildContext context, Seed seed) {
+    seed.fetchSeed();
     Navigator.pushNamed(context, '/display');
   }
 }
