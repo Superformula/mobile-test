@@ -11,7 +11,7 @@ const app = express();
 app.get('/seed', (req, res) => {
   res.status(200).json({
     seed: uuid.v4(),
-    expires_at: moment().add(15, 'minutes').toISOString(),
+    expires_at: moment().add(1, 'minutes').toISOString(),
   });
 });
 
