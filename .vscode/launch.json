@@ -5,10 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Dart",
-            "program": "app/lib/main.dart",
+            "name": "Flutter Dev",
+            "type": "dart",
             "request": "launch",
-            "type": "dart"
+            "program": "app/lib/main_dev.dart",
+        },
+        {
+            "name": "Flutter Prod",
+            "type": "dart",
+            "request": "launch",
+            "program": "app/lib/main_prod.dart",
+        },
+        {
+            "name": "Flutter",
+            "type": "dart",
+            "request": "launch",
+            "program": "app/lib/main_dev.dart",
         }
     ]
 }
