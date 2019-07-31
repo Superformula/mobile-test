@@ -64,7 +64,7 @@ flutter build <ios|apk>
 flutter install <ios|apk>
 ```
 
-### Cleaning
+## Cleaning
 
 You can clean your flutter build
 
@@ -73,7 +73,7 @@ type:
 flutter clean
 ```
 
-### Installing
+## Installing
 
 To install on a tethered device or emulator
 
@@ -87,4 +87,11 @@ If you have multiple devices connected then you need to specify a device id
 type:
 ```
 flutter install apk -d emulator-5556
+```
+
+## Testing
+
+To run unit tests from the console enter...
+```
+flutter test
 ```
