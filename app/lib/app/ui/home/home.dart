@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qrgenerator/app/intl/app_strings.dart';
+import 'package:qrgenerator/app/ui/home/multi_fab.dart';
 import 'package:qrgenerator/app/ui/widgets/pages.dart';
 
 Widget buildHomePage() {
@@ -36,15 +37,15 @@ class _HomePageState extends PageState<HomePage> {
   }
 
   Widget buildFab(BuildContext context) {
-    final strings = AppStrings.of(context);
-    return FloatingActionButton(
-      onPressed: _generate,
-      tooltip: strings.generateTitle,
-      child: Icon(Icons.add),
+    return MultiFab(
+      onScan: () => _onScan(context),
+      onGenerate: () => _onGenerate(context),
     );
   }
 
-  void _generate() {
+  void _onScan(BuildContext context) {}
+
+  void _onGenerate(BuildContext context) {
     Navigator.pushNamed(context, '/generate');
   }
 }
