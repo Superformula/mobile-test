@@ -39,7 +39,9 @@ abstract class CoreStrings {
   // We'll just reuse the appName for the home page title.
   String get homeTitle => appName;
   String get generateTitle => getString("generateTitle");
+  String get generateError => getString("generateError");
+
   String get scanResult => getString("scanResult");
-  String get noScanResult => getString("noScanResult");
+  String get scanResultEmpty => getString("scanResultEmpty");
   String get scanError => getString("scanError");
 }

@@ -5,7 +5,8 @@ const strings_en = {
   "generate": "Generate",
   "codeFound": "QR Code found",
   "generateTitle": "Generate QR Code",
+  "generateError": "Error generating QR Code",
   "scanResult": "Scan result",
-  "noScanResult": "No scan result",
+  "scanResultEmpty": "No scan result",
   "scanError": "There was an error reading that QR code, please try again.",
 };
