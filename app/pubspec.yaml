@@ -30,6 +30,36 @@ dependencies:
   # https://pub.dev/packages/logger
   logger: ^0.7.0
 
+  # https://pub.dartlang.org/packages/package_info
+  package_info: ^0.4.0
+
+  # Dependency Injection
+  # https://pub.dartlang.org/packages/dependencies
+  dependencies : ^0.1.5
+
+  # https://pub.dartlang.org/packages/shared_preferences
+  shared_preferences: ^0.5.3
+
+  # https://pub.dartlang.org/packages/built_value
+  built_value: ^6.6.0
+
+  # https://pub.dartlang.org/packages/rxdart
+  rxdart: ^0.22.0
+  
+  # https://pub.dartlang.org/packages/retry
+  retry: ^3.0.0
+
+  # Http
+  # https://pub.dev/packages/http
+  http: ^0.12.0
+
+  # https://pub.dev/packages/provider
+  provider: ^3.0.0
+
+  # QR code rendering
+  # https://pub.dev/packages/qr_flutter
+  qr_flutter: ^2.1.0
+
   # QR code scanning
   # https://pub.dev/packages/flutter_barcode_scanner
   flutter_barcode_scanner: ^0.0.9
@@ -42,6 +72,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # https://pub.dartlang.org/packages/build_runner
+  build_runner:
+
+  # https://pub.dartlang.org/packages/built_value_generator
+  built_value_generator: ^6.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
