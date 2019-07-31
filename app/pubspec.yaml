@@ -72,6 +72,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # https://pub.dev/packages/test
+  test: ^1.6.3
+
   # https://pub.dartlang.org/packages/build_runner
   build_runner:
 
