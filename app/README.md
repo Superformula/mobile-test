@@ -2,6 +2,12 @@
 
 Superformula mobile test of QR code generator.
 
+## Other Documents
+
+**The architecture of the app is described in ARCHITECTURE.md**
+
+**The design of the app us described in DESIGN.md**
+
 ## Getting Started
 
 ### Dev Environment
@@ -82,4 +88,3 @@ type:
 ```
 flutter install apk -d emulator-5556
 ```
-
