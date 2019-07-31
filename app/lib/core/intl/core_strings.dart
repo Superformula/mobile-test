@@ -30,11 +30,16 @@ abstract class CoreStrings {
 
   String get appName => getString("appName");
 
-  String get noCode => getString("noCode");
+  String get cancel => getString("cancel");
   String get scan => getString("scan");
   String get generate => getString("generate");
+
+  String codeFound(String scanResult) => "${getString("codeFound")}: $scanResult";
 
   // We'll just reuse the appName for the home page title.
   String get homeTitle => appName;
   String get generateTitle => getString("generateTitle");
+  String get scanResult => getString("scanResult");
+  String get noScanResult => getString("noScanResult");
+  String get scanError => getString("scanError");
 }
