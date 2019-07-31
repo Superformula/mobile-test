@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qrgenerator/app/intl/app_strings.dart';
+import 'package:qrgenerator/app/ui/generate/generate.dart';
 import 'package:qrgenerator/app/ui/home/home.dart';
 
 Widget buildApp() {
@@ -26,7 +27,12 @@ class Application extends StatelessWidget {
       supportedLocales: AppStrings.supportedLocales,
       localeResolutionCallback: AppStrings.localizationCallback,
 
-      home: buildHomePage(),
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the HomwPage widget.
+        '/': (context) => buildHomePage(),
+        '/generate': (context) => buildGeneratePage(),
+      },
     );
   }
 }
