@@ -36,7 +36,7 @@ class _HomePageState extends PageState<HomePage> {
   Widget buildBody(BuildContext context) {
     final strings = AppStrings.of(context);
     final theme = Theme.of(context).textTheme;
-    final String label = _scanResult.isEmpty ? strings.noScanResult : strings.scanResult;
+    final String label = _scanResult.isEmpty ? strings.scanResultEmpty : strings.scanResult;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
