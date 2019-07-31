@@ -31,6 +31,7 @@
 
 # Re-enable the lib folder for flutter. Parent .gitignore ignores this.
 !lib/
+!env/
 
 # Android related
 **/android/**/gradle-wrapper.jar
