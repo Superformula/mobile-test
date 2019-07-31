@@ -30,6 +30,10 @@ dependencies:
   # https://pub.dev/packages/logger
   logger: ^0.7.0
 
+  # QR code scanning
+  # https://pub.dev/packages/flutter_barcode_scanner
+  flutter_barcode_scanner: ^0.0.9
+
   # Multi-select fab menu
   # https://pub.dev/packages/unicorndial
   unicorndial: ^1.1.5
