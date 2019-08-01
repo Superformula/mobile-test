@@ -60,9 +60,9 @@ dependencies:
   # https://pub.dev/packages/qr_flutter
   qr_flutter: ^2.1.0
 
-  # QR code scanning
-  # https://pub.dev/packages/flutter_barcode_scanner
-  flutter_barcode_scanner: ^0.0.9
+  # Barcode scanning
+  # https://pub.dev/packages/barcode_scan
+  barcode_scan: ^1.0.0
 
   # Multi-select fab menu
   # https://pub.dev/packages/unicorndial

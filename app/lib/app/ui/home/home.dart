@@ -48,6 +48,7 @@ class _HomePageState extends PageState<HomePage> {
     );
   }
 
+  @override
   Widget buildFab(BuildContext context) {
     return MultiFab(
       onScan: () => _onScan(context),
@@ -56,7 +57,6 @@ class _HomePageState extends PageState<HomePage> {
   }
 
   void _onScan(BuildContext context) async {
-    final strings = AppStrings.of(context);
     try {
       String scanResult = await scanQRCode(context);
       if (scanResult.isNotEmpty) {
@@ -64,8 +64,8 @@ class _HomePageState extends PageState<HomePage> {
           _scanResult = scanResult;
         });
       }
-    } catch (error) {
-      showSnackBar(strings.scanError);
+    } on ScanException catch (error) {
+      showSnackBar(error.toString());
     }
   }
 

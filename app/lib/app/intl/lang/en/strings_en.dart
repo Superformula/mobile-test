@@ -1,6 +1,5 @@
 const strings_en = {
   "appName": "QR Code Generator",
-  "cancel": "Cancel",
   "scan": "Scan",
   "generate": "Generate",
   "codeFound": "QR Code found",
@@ -9,4 +8,6 @@ const strings_en = {
   "scanResult": "Scan result",
   "scanResultEmpty": "No scan result",
   "scanError": "There was an error reading that QR code, please try again.",
+  "scanErrorNoPermission": "You have not granted camera permission so you cannot scan.",
+  "scanErrorUserCancelled": "Scan cancelled",
 };

@@ -43,5 +43,8 @@ abstract class CoreStrings {
 
   String get scanResult => getString("scanResult");
   String get scanResultEmpty => getString("scanResultEmpty");
+
   String get scanError => getString("scanError");
+  String get scanErrorNoPermission => getString("scanErrorNoPermission");
+  String get scanErrorUserCancelled => getString("scanErrorUserCancelled");
 }
