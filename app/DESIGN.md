@@ -49,7 +49,7 @@ Once a new QRCode is generated the code image will be displayed in the center of
 
 Once the countdown timer expires a new QRCode should be automatically generated and displayed.
 
-The current code image along with its expiration should be cached so that if you quit and relaunch the app and the last code is still valid the screen will open with that code and continue showing the remaing time in the count down. If the cached code has expired then it should be discarded and a new code generated.
+The generated seed will be cached so that if you quit or leave the generate page and return before the cached seed has expired then the generate page will open with the cached seed displayed and will continue counting down the remaing time. If the cached seed has expired then a new seed will be generated.
 
 #### Validation of Scans
-One of the advanced features mentioned was that of validation of a scanned code using an additional server endpoint. We could have the server generate a unique tag in its seed so that when the generated image is decoded the data could be sent to the server for validation.
+One of the advanced features mentioned was that of validation of a scanned code using an additional server endpoint. We could have the server generate a unique tag in its seed so that when the generated image is decoded the data could be sent to the server for validationl. Essentially the server would be able to recognize seed values it generated.

@@ -14,6 +14,14 @@ abstract class Seed implements Built<Seed, SeedBuilder> {
     return DateTime.parse(expiresAtStr);
   }
 
+  bool get isExpired {
+    return DateTime.now().isAfter(expiresAt);
+  }
+
+  bool get isNotExpired {
+    return !isExpired;
+  }
+
   Seed._();
 
   factory Seed([updates(SeedBuilder b)]) = _$Seed;

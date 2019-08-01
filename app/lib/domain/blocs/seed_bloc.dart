@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:qrgenerator/core/inject/inject.dart';
 import 'package:qrgenerator/domain/abstractions/seed_repository.dart';
+import 'package:qrgenerator/domain/abstractions/settings_repository.dart';
 import 'package:qrgenerator/domain/models/seed.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -9,7 +10,8 @@ import 'package:rxdart/rxdart.dart';
 /// SeedBloc provides business logic dealing with seed access.
 ///
 class SeedBloc {
-  final _repository = inject<SeedRepository>();
+  final _seedRepository = inject<SeedRepository>();
+  final _settingsRepository = inject<SettingsRepository>();
   final _seedSubject = BehaviorSubject<Seed>();
   final _countDownSubject = BehaviorSubject<int>();
 
@@ -21,7 +23,8 @@ class SeedBloc {
   Observable<int> get countDown => _countDownSubject.stream;
 
   SeedBloc() {
-    _refresh();
+    Seed lastSeed = _settingsRepository.lastSeed;
+    _refresh(lastSeed: lastSeed);
   }
 
   void dispose() {
@@ -32,9 +35,8 @@ class SeedBloc {
   }
 
   void _scheduleRefresh(DateTime expiresAt) {
-    int dur = expiresAt.difference(DateTime.now()).inSeconds;
     _timer?.cancel();
-    _timer = Timer(Duration(seconds: dur), () {
+    _timer = Timer(Duration(seconds: _calcRemainingTime(expiresAt)), () {
       _refresh();
     });
   }
@@ -43,7 +45,7 @@ class SeedBloc {
     _countDown?.cancel();
     _countDown = Timer.periodic(Duration(seconds: 1), (_) {
       int timeRemaining = _calcRemainingTime(_seed.expiresAt);
-      if (timeRemaining == 0) {
+      if (timeRemaining <= 0) {
         _countDown.cancel();
       }
       _countDownSubject.add(timeRemaining);
@@ -54,14 +56,27 @@ class SeedBloc {
     return expiresAt.difference(DateTime.now()).inSeconds;
   }
 
-  Future<void> _refresh() async {
+  Future<void> _refresh({Seed lastSeed}) async {
     try {
-      _seed = await _repository.readSeed();
+      // If there is a lastSeed and its not expired, start with that.
+      // Otherwise get a new seed.
+      if (lastSeed != null && lastSeed.isNotExpired) {
+        _seed = lastSeed;
+      } else {
+        _seed = await _readSeed();
+      }
       _seedSubject.add(_seed);
       _startCountDown();
       _scheduleRefresh(_seed.expiresAt);
     } catch (error) {
       _seedSubject.addError(error);
     }
+  }
+
+  // Read a new seed from the repository and persist in local settings.
+  Future<Seed> _readSeed() async {
+    Seed seed = await _seedRepository.readSeed();
+    _settingsRepository.lastSeed = seed;
+    return seed;
   }
 }
