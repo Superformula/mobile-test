@@ -17,7 +17,9 @@ class MockSeedRepository implements SeedRepository {
       b.expiresAtStr = DateTime.now().add(Duration(seconds: 10)).toIso8601String();
     });
     // Add some delay to simulate a network connection.
-    return Future.value(seed);
+    return Future.delayed(Duration(seconds: 1), () {
+      return Future.value(seed);
+    });
   }
 
   String _getRandomString(int numValues) {

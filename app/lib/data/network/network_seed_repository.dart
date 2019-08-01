@@ -16,7 +16,7 @@ class NetworkSeedRepository implements SeedRepository {
     final response = await retry(
       // Make a GET request
       () => http.get('https://us-central1-qrcode-server.cloudfunctions.net/seed').timeout(Duration(seconds: 5)),
-      // Retry on SocketException or TimeoutException
+      // Retry on TimeoutException
       retryIf: (e) => e is TimeoutException,
     );
     if (response.statusCode == 200) {
@@ -25,7 +25,7 @@ class NetworkSeedRepository implements SeedRepository {
       print(seed.value);
       return seed;
     } else {
-      throw Exception('Failed to fetch seed!');
+      throw Exception('Failed to read seed!');
     }
   }
 }
