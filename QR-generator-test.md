@@ -15,7 +15,12 @@ Be sure to read **all** of this document carefully, and follow the guidelines wi
 
 1.  Build a simple API server that provides an endpoint which generates a random seed used to create QR code. (if you cannot build an API server, we can supply a lambda to do this for you)
 2.  Build a simple App that can call the seed endpoint and generate a QR code based on the seed.
+3. Build a "Scan" feature that can demonstrate how it works (see the mock) and how it could be validated with another endpoint.
 3.  Be sure the app will use the below UI and will have a navigation patterb present.
+4. Write clear **documentation** on how it's designed and how to execute the code.
+5. Provide proper unit tests.
+6. Write concise and clear commit messages.
+
 
 ### UI
 
@@ -63,12 +68,6 @@ components:
 - iOS
   - Use Swift
 
-### Bonus
-
-- Write clear **documentation** on how it's designed and how to execute the code.
-- Provide proper unit tests.
-- Write concise and clear commit messages.
-
 ### Advanced requirements
 
 These may be used for additional challenges. You can freely skip these if you are not asked to do them; feel free to try them out if you're up for it.
@@ -76,4 +75,3 @@ These may be used for additional challenges. You can freely skip these if you ar
 - Provide an auto-refresh strategy, for example with the `expires_at` value.
 - (Android) Use DI with Dagger2
 - Provide an offline QR code access strategy, for example with a cache.
-- Build a "Scan" feature that can demonstrate how it works (see the mock) and how it could be validated with another endpoint.
