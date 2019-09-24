@@ -13,7 +13,7 @@ server.route({
   method: "GET",
   path: "/",
   handler: () => {
-    return "";
+    return {};
   }
 });
 
@@ -23,7 +23,7 @@ server.route({
   handler: () => {
     return {
       seed: cryptoRandomString({ length: 32 }),
-      expires_at: dayjs().add(2, "day")
+      expires_at: dayjs().add(2, "minute")
     };
   }
 });
@@ -38,6 +38,4 @@ process.on("unhandledRejection", err => {
   process.exit(1);
 });
 
-init();
-
-module.exports = server;
+module.exports = init;
