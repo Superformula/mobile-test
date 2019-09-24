@@ -1,29 +1,23 @@
-# Superformula Mobile Developer Coding Test
+# superformula monorepo
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+The purpose of this repository is to demonstrate a client's request to generate and scan QR Codes.
 
-## Requirements
+## Getting Started
 
-There is only one test here currently, please review and get back to us.
+From the api folder run `yarn`.
 
-## What We Care About
+From the qr_gen folder, run `flutter pub get`
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+### Running the api
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+The api can be ran using the `yarn start` or `npm run start` commands from the **api** folder.
 
-Here's what you should strive for:
+From the api folder, run `yarn start` in your terminal.
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+To run the api tests, run `yarn test` in your terminal.
 
-## Q&A
+### Running the app
 
-> Where should I send back the result when I'm done?
+From the **qr_gen** directory, run `flutter run` in your terminal.
 
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
+To run the app tests, run `flutter test` in your terminal.
