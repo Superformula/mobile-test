@@ -6,6 +6,8 @@ beforeAll(done => {
   server.events.on("start", () => {
     done();
   });
+
+  server.start();
 });
 
 // Stop application after running the test case
