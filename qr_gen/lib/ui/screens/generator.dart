@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_observable_state/flutter_observable_state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_gen/core/locator.dart';
-import 'package:qr_gen/core/qr.dart';
+import 'package:qr_gen/core/state/qr.dart';
 
 import '../widgets/expiry_panel.dart';
 

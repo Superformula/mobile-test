@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:qr_gen/core/models/seed.dart';
-import 'package:qr_gen/core/qr.dart';
+import 'package:qr_gen/core/state/qr.dart';
 import 'package:qr_gen/core/services/qr.dart';
 import 'package:qr_gen/core/services/scan.dart';
 import 'package:mockito/mockito.dart';
