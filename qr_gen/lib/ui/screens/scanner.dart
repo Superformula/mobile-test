@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:qr_gen/core/locator.dart';
 import 'package:qr_gen/core/models/seed.dart';
 import 'package:qr_gen/core/services/scan.dart';
 
@@ -13,7 +13,7 @@ class ScannerScreen extends StatefulWidget {
 class _ScannerScreenState extends State<ScannerScreen> {
   String _error;
   String _qrCode;
-  final ScanService _scanService = GetIt.instance<ScanService>();
+  final ScanService _scanService = sl<ScanService>();
 
   @override
   initState() {

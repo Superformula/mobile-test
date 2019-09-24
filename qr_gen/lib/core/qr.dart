@@ -1,5 +1,5 @@
 import 'package:flutter_observable_state/flutter_observable_state.dart';
-import 'package:get_it/get_it.dart';
+import 'package:qr_gen/core/locator.dart';
 import 'package:qr_gen/core/models/seed.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_gen/core/services/qr.dart';
@@ -22,8 +22,8 @@ class QrState {
 }
 
 class QrActions {
-  final _state = GetIt.instance.get<QrState>();
-  final _repository = GetIt.instance.get<QrService>();
+  final _state = sl<QrState>();
+  final _repository = sl<QrService>();
 
   Future<void> getSeed() async {
     _state.loading = LoadingState.Busy;
