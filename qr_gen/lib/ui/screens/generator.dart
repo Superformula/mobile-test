@@ -30,7 +30,7 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
       body: Container(
         alignment: Alignment.center,
         child: observe(() {
-          final loading = _state.loading.get();
+          final loading = _state.loading;
           final isLoading = Set.from([LoadingState.Idle, LoadingState.Busy])
               .contains(loading);
 
@@ -43,13 +43,13 @@ class _GeneratorScreenState extends State<GeneratorScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               QrImage(
-                data: _state.seed.get().encode(),
+                data: _state.seed.encode(),
                 version: QrVersions.auto,
                 size: 200.0,
               ),
               SizedBox(height: 25),
               ExpiryPanel(
-                seed: _state.seed.get(),
+                seed: _state.seed,
                 onRefresh: () => _actions.getSeed(),
               ),
             ],
