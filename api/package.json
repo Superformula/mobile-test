@@ -3,18 +3,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
-    "start": "nodemon lib/server.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "jest --verbose"
   },
   "dependencies": {
     "@hapi/hapi": "^18.4.0",
     "crypto-random-string": "^3.0.1",
-    "dayjs": "^1.8.16",
-    "prettier": "^1.18.2"
+    "dayjs": "^1.8.16"
   },
   "devDependencies": {
     "jest": "^24.9.0",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
   }
 }
