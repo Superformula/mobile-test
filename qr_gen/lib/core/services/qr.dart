@@ -1,14 +1,15 @@
 import 'package:qr_gen/core/models/seed.dart';
+import 'package:dio/dio.dart';
 
 abstract class QrService {
   getSeed();
 }
 
 class QrServiceImplementation extends QrService {
+  var _dio = Dio();
+
   Future<Seed> getSeed() async {
-    return Seed.fromJson({
-      'seed': '9b0a34057c9d302628e1d7ef50e37b08',
-      'expires_at': DateTime.now().add(Duration(seconds: 45)).toIso8601String()
-    });
+    final response = await _dio.get('https://api-1g0f3ibnv.now.sh/api/qr');
+    return Seed.fromJson(response.data);
   }
 }
