@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_test/pages/scanner_page.dart';
+import 'package:flutter_mobile_test/pages/scanner/scanner_page.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class HomePage extends StatefulWidget {

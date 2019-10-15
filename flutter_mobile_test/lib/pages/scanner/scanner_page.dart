@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
 
 class ScannerPage extends StatefulWidget {
   @override
@@ -10,13 +11,24 @@ class ScannerPage extends StatefulWidget {
 }
 
 class _ScannerState extends State<ScannerPage> {
-  String barcode = "";
+  String code = "";
+  BarcodeBloc _bloc = BarcodeBloc();
+  StreamSubscription codeSubscription;
 
   @override
   initState() {
     super.initState();
 
     _scan();
+
+    codeSubscription = _bloc.scannerObservable.listen((reading) {
+      print('BarcodeReading: $reading');
+      setState(() {
+        code = reading;
+      });
+    }, onError: (error) {
+      print('BarcodeReading error: $error');
+    });
   }
 
   @override
@@ -37,35 +49,43 @@ class _ScannerState extends State<ScannerPage> {
                     color: Colors.blue,
                     textColor: Colors.white,
                     splashColor: Colors.blueGrey,
-                    onPressed: _scan,
-                    child: Text("Scan again".toUpperCase())
-                ),
+//                    onPressed: _scan,
+                    child: Text("Scan again".toUpperCase())),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Text(barcode, textAlign: TextAlign.center,),
+                child: Text(
+                  code,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),
         ));
   }
 
+  @override
+  void dispose() {
+    _bloc.dispose();
+    codeSubscription.cancel();
+    super.dispose();
+  }
+
   Future _scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      setState(() => this.barcode = barcode);
+      _bloc.scannerSink.add(barcode);
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
-        setState(() {
-          this.barcode = 'The user did not grant the camera permission!';
-        });
+        print('The user did not grant the camera permission!');
       } else {
-        setState(() => this.barcode = 'Unknown error: $e');
+        print('Unknown error: $e');
       }
-    } on FormatException{
-      setState(() => this.barcode = 'null (User returned using the "back"-button before scanning anything. Result)');
+    } on FormatException {
+      print(
+          'null (User returned using the "back"-button before scanning anything. Result)');
     } catch (e) {
-      setState(() => this.barcode = 'Unknown error: $e');
+      print('Unknown error: $e');
     }
   }
 }
