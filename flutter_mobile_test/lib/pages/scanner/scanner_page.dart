@@ -13,6 +13,9 @@ class _ScannerState extends State<ScannerPage> {
   @override
   initState() {
     super.initState();
+
+    _bloc.validateCodeObservable
+        .listen((data) => print('Barcode validation $data'));
   }
 
   @override
@@ -35,6 +38,15 @@ class _ScannerState extends State<ScannerPage> {
                     splashColor: Colors.blueGrey,
                     onPressed: _bloc.refresh,
                     child: Text("Scan again".toUpperCase())),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    splashColor: Colors.blueGrey,
+                    onPressed: _bloc.validate,
+                    child: Text("Validate".toUpperCase())),
               ),
               Padding(
                   padding:
