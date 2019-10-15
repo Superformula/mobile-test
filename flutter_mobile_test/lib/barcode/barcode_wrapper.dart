@@ -1,4 +1,5 @@
 import 'package:barcode_scan/barcode_scan.dart';
+import 'package:mockito/mockito.dart';
 
 class BarcodeWrapper {
   Future<String> scan() async {
@@ -9,3 +10,5 @@ class BarcodeWrapper {
     }
   }
 }
+
+class BarcodeMockWrapper extends Mock implements BarcodeWrapper {}

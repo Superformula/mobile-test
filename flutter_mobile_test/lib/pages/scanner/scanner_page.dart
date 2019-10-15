@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
+import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
 
 class ScannerPage extends StatefulWidget {
@@ -10,7 +10,7 @@ class ScannerPage extends StatefulWidget {
 }
 
 class _ScannerState extends State<ScannerPage> {
-  BarcodeBloc _bloc = BarcodeBloc(BarcodeWrapper());
+  BarcodeBloc _bloc = locator();
   StreamSubscription _validationSubscription;
 
   @override
