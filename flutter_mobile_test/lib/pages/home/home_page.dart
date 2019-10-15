@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobile_test/pages/generator/generator_page.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_page.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -54,7 +55,10 @@ class _HomePageState extends State<HomePage> {
         SpeedDialChild(
           child: Icon(Icons.camera),
           backgroundColor: Colors.blue,
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => GeneratorPage()));
+          },
           label: "QR Code",
         ),
         SpeedDialChild(

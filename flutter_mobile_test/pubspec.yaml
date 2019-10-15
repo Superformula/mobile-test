@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   barcode_scan: 1.0.0
-  qr_flutter: ^1.1.1
+  qr_flutter: ^3.0.1
   unicorndial: ^1.1.5
   rxdart: 0.22.3
   http: ^0.12.0+1
