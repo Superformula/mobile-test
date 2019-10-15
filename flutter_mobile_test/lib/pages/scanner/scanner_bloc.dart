@@ -1,22 +1,16 @@
-import 'dart:async';
-
+import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
 import 'package:rxdart/rxdart.dart';
 
 class BarcodeBloc {
-  final PublishSubject<String> _scannerSuccessSubject = PublishSubject();
+  final BarcodeWrapper _barcodeWrapper = BarcodeWrapper();
 
   Observable<String> scannerObservable;
 
-  StreamSink<String> scannerSink;
-
   BarcodeBloc() {
-    scannerObservable = _scannerSuccessSubject.stream;
-
-    scannerSink = _scannerSuccessSubject.sink;
+    scannerObservable = Observable.fromFuture(_barcodeWrapper.scan());
   }
 
-  dispose() {
-    _scannerSuccessSubject.close();
-    scannerSink.close();
+  scan() {
+    _barcodeWrapper.scan();
   }
 }
