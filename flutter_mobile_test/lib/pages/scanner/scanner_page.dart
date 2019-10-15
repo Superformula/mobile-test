@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
 
 class ScannerPage extends StatefulWidget {
@@ -7,7 +8,7 @@ class ScannerPage extends StatefulWidget {
 }
 
 class _ScannerState extends State<ScannerPage> {
-  BarcodeBloc _bloc = BarcodeBloc();
+  BarcodeBloc _bloc = BarcodeBloc(BarcodeWrapper());
 
   @override
   initState() {
@@ -32,7 +33,7 @@ class _ScannerState extends State<ScannerPage> {
                     color: Colors.blue,
                     textColor: Colors.white,
                     splashColor: Colors.blueGrey,
-                    onPressed: _bloc.scan,
+                    onPressed: _bloc.refresh,
                     child: Text("Scan again".toUpperCase())),
               ),
               Padding(
