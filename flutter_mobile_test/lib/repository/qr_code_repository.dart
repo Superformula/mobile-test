@@ -7,6 +7,7 @@ class QrCodeRepository {
 
   QrCodeRepository(QrCodeApi api) {
     qrCodeObservable = Observable.fromFuture(api.getMockApiQrCode)
-        .map((response) => QrCode.fromJson(response.data));
+        .map((response) => QrCode.fromJson(response.data))
+        .asBroadcastStream();
   }
 }

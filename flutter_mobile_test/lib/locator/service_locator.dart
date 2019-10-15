@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_mobile_test/api/qr_code_api.dart';
 import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
 import 'package:flutter_mobile_test/pages/generator/generator_bloc.dart';
@@ -23,16 +24,35 @@ void setupMockLocator(String barcodeResponse) {
   final BarcodeWrapper barcodeMockWrapper = BarcodeMockWrapper();
   when(barcodeMockWrapper.scan()).thenAnswer((_) async => barcodeResponse);
 
-  locator.registerLazySingleton(() => barcodeMockWrapper);
+  final QrCodeApi qrCodeApi = QrCodeMockApi();
+  when(qrCodeApi.getMockApiQrCode).thenAnswer((_) async => Response(
+      data: Map.fromEntries(
+          [MapEntry('seed', '9b0a34057c9d302628e1d7ef50e37b08')])));
+
+  locator
+    ..registerLazySingleton(() => barcodeMockWrapper)
+    ..registerLazySingleton(() => QrCodeRepository(qrCodeApi));
+
   //blocs
-  locator.registerFactory(() => BarcodeBloc(locator()));
+  locator
+    ..registerFactory(() => BarcodeBloc(locator()))
+    ..registerFactory(() => GeneratorBloc(locator()));
 }
 
 void setupMockErrorLocator() {
   final BarcodeWrapper barcodeMockWrapper = BarcodeMockWrapper();
   when(barcodeMockWrapper.scan()).thenAnswer((_) async => null);
 
-  locator.registerLazySingleton(() => barcodeMockWrapper);
+  final QrCodeApi qrCodeApi = QrCodeMockApi();
+  when(qrCodeApi.getMockApiQrCode)
+      .thenAnswer((_) async => Response(statusCode: 500));
+
+  locator
+    ..registerLazySingleton(() => barcodeMockWrapper)
+    ..registerLazySingleton(() => QrCodeRepository(qrCodeApi));
+
   //blocs
-  locator.registerFactory(() => BarcodeBloc(locator()));
+  locator
+    ..registerFactory(() => BarcodeBloc(locator()))
+    ..registerFactory(() => GeneratorBloc(locator()));
 }
