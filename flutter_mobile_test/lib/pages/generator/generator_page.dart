@@ -15,15 +15,16 @@ class GeneratorPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-              StreamBuilder(
+          StreamBuilder(
             stream: _bloc.qrCodeSeedObservable,
             builder: (context, AsyncSnapshot<String> snapshot) {
               if (snapshot.hasData) {
-                return Center(child: QrImage(data: snapshot.data, size: 300));
+                return QrImage(data: snapshot.data, size: 300);
               } else {
-                return Center(child: CircularProgressIndicator());
+                return CircularProgressIndicator();
               }
             },
           ),
