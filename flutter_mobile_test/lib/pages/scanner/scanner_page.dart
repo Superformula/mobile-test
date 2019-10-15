@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
@@ -9,12 +11,13 @@ class ScannerPage extends StatefulWidget {
 
 class _ScannerState extends State<ScannerPage> {
   BarcodeBloc _bloc = BarcodeBloc(BarcodeWrapper());
+  StreamSubscription _validationSubscription;
 
   @override
   initState() {
     super.initState();
 
-    _bloc.validateCodeObservable
+    _validationSubscription = _bloc.validateCodeObservable
         .listen((data) => print('Barcode validation $data'));
   }
 
@@ -68,6 +71,7 @@ class _ScannerState extends State<ScannerPage> {
 
   @override
   void dispose() {
+    _validationSubscription.cancel();
     super.dispose();
   }
 }

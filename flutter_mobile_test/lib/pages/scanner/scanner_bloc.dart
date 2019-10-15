@@ -17,7 +17,7 @@ class BarcodeBloc {
 
     validateCodeObservable = _validationSubject
         .withLatestFrom(scannerObservable, (_, String code) => code)
-        .switchMap((code) => Observable.just("VALIDATION SUCCESS"));
+        .switchMap((code) => Observable.just("VALIDATION SUCCESS: $code"));
   }
 
   validate() => _validationSubject.add(null);
