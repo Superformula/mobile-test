@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unicorndial/unicorndial.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,8 +25,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,24 +32,34 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text("Home"),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
+      floatingActionButton: UnicornDialer(
+        parentButtonBackground: Colors.blue,
+        orientation: UnicornOrientation.VERTICAL,
+        parentButton: Icon(Icons.add),
+        childButtons: _createOptionsMenu(),
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  List<UnicornButton> _createOptionsMenu() {
+    final List<UnicornButton> children = [];
+
+    children.add(_createOptionsButton(Icons.camera_alt, "Scan", () => {}));
+    children.add(_createOptionsButton(Icons.pageview, "QR Code", () => {}));
+
+    return children;
+  }
+
+  Widget _createOptionsButton(
+          IconData iconData, String label, Function onPressed) =>
+      UnicornButton(
+        hasLabel: true,
+        labelText: label,
+        currentButton: FloatingActionButton(
+          backgroundColor: Colors.blue,
+          mini: true,
+          child: Icon(iconData),
+          onPressed: onPressed,
+        ),
+      );
 }
