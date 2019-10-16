@@ -23,6 +23,9 @@ class GeneratorPage extends StatelessWidget {
             builder: (context, AsyncSnapshot<String> snapshot) {
               if (snapshot.hasData) {
                 return QrImage(data: snapshot.data, size: 300);
+              } else if (snapshot.hasError) {
+                return Center(
+                    child: Text('Error getting QR code ${snapshot.error}'));
               } else {
                 return CircularProgressIndicator();
               }

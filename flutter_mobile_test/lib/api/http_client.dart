@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class HttpClient {
-  static const _baseUrl = "";
+  static const _baseUrl = "http://10.0.2.2:3000"; //cannot access localhost on Android Emulator, more info https://stackoverflow.com/a/9515414
   final _client = Dio();
 
   HttpClient({Interceptor interceptor}) {
