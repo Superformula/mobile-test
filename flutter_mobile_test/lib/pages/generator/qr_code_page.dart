@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
-import 'package:flutter_mobile_test/pages/generator/generator_bloc.dart';
+import 'package:flutter_mobile_test/pages/generator/qr_code_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class GeneratorPage extends StatelessWidget {
-  final GeneratorBloc _bloc = locator();
+class QrCodePage extends StatelessWidget {
+  final QrCodeBloc _bloc = locator();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,9 @@ class GeneratorPage extends StatelessWidget {
             builder: (context, AsyncSnapshot<String> snapshot) {
               if (snapshot.hasData) {
                 return QrImage(data: snapshot.data, size: 300);
+              } else if (snapshot.hasError) {
+                return Center(
+                    child: Text('Error getting QR code ${snapshot.error}'));
               } else {
                 return CircularProgressIndicator();
               }
@@ -33,7 +36,12 @@ class GeneratorPage extends StatelessWidget {
             stream: _bloc.timerObservable,
             builder: (context, AsyncSnapshot<int> snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data.toString());
+                final counter = snapshot.data;
+                if (counter > 0) {
+                  return Text(counter.toString());
+                } else {
+                  return Text('This QR code has expired');
+                }
               } else {
                 return Container();
               }

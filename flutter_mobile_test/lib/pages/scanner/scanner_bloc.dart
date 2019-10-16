@@ -1,23 +1,29 @@
 import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
+import 'package:flutter_mobile_test/locator/service_locator.dart';
+import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class BarcodeBloc {
+class ScannerBloc {
   final BarcodeWrapper _barcodeWrapper;
   final PublishSubject<void> _refreshSubject = PublishSubject();
   final PublishSubject<void> _validationSubject = PublishSubject();
+  final QrCodeRepository _repository = locator();
 
   Observable<String> scannerObservable;
-  Observable<String> validateCodeObservable;
+  Observable<bool> validateCodeObservable;
 
-  BarcodeBloc(this._barcodeWrapper) {
+  ScannerBloc(this._barcodeWrapper) {
     scannerObservable = _refreshSubject
         .startWith(null)
         .asyncMap((_) => _barcodeWrapper.scan())
-        .asBroadcastStream();
+        .publishValue()
+        .autoConnect();
 
-    validateCodeObservable = _validationSubject
-        .withLatestFrom(scannerObservable, (_, String code) => code)
-        .switchMap((code) => Observable.just("VALIDATION SUCCESS: $code"));
+    validateCodeObservable = _validationSubject.switchMap((_) =>
+        scannerObservable
+            .take(1)
+            .switchMap((code) => _repository.validateQrCode(code))
+            .map((validation) => validation.isValid));
   }
 
   validate() => _validationSubject.add(null);

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class HttpClient {
-  static const _baseUrl = "";
+  static const _baseUrl = "http://10.10.2.219:3000"; //enter IP of the Computer which runs the server
   final _client = Dio();
 
   HttpClient({Interceptor interceptor}) {

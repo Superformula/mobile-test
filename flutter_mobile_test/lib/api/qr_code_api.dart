@@ -4,13 +4,8 @@ import 'package:flutter_mobile_test/api/http_client.dart';
 class QrCodeApi {
   final HttpClient _httpClient = HttpClient();
 
-  Future<Response> getApiQrCode() => _httpClient.get("");
+  Future<Response> getApiQrCode() => _httpClient.get("/seed");
 
-  Future<Response> get getMockApiQrCode => Future.delayed(
-      Duration(seconds: 1),
-      () => Response(
-              data: Map.fromEntries([
-            MapEntry('seed', '9b0a34057c9d302628e1d7ef50e37b08'),
-            MapEntry('expireTime', 20)
-          ])));
+  Future<Response> validateQrCode(String code) => _httpClient.get("/validate?code=$code");
+
 }
