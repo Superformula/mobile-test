@@ -1,17 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
 
-class ScannerPage extends StatefulWidget {
-  @override
-  _ScannerState createState() => _ScannerState();
-}
-
-class _ScannerState extends State<ScannerPage> {
-  BarcodeBloc _bloc = locator();
-  StreamSubscription _validationSubscription;
+class ScannerPage extends StatelessWidget {
+  final BarcodeBloc _bloc = locator();
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +57,7 @@ class _ScannerState extends State<ScannerPage> {
                               ? 'This code is  valid'
                               : 'This code is not valid',
                           textAlign: TextAlign.center);
-                    } else if(snapshot.hasError) {
+                    } else if (snapshot.hasError) {
                       return Text("Error validating Code");
                     } else {
                       return Container();
@@ -74,11 +66,5 @@ class _ScannerState extends State<ScannerPage> {
             ],
           ),
         ));
-  }
-
-  @override
-  void dispose() {
-    _validationSubscription.cancel();
-    super.dispose();
   }
 }

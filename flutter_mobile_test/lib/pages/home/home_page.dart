@@ -3,14 +3,7 @@ import 'package:flutter_mobile_test/pages/generator/generator_page.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_page.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;

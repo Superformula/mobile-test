@@ -22,8 +22,7 @@ class BarcodeBloc {
     validateCodeObservable = _validationSubject
         .withLatestFrom(scannerObservable, (_, String code) => code)
         .switchMap((code) => _repository.validateQrCode(code))
-        .map((validation) => validation.isValid)
-        .skip(1);
+        .map((validation) => validation.isValid);
   }
 
   validate() => _validationSubject.add(null);
