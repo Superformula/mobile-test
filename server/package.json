@@ -1,0 +1,17 @@
+{
+  "name": "qr-seed",
+  "version": "1.0.0",
+  "description": "Generates a QR seed",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "moment": "^2.24.0"
+  }
+}
