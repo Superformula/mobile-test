@@ -17,7 +17,7 @@ void main() {
     when(api.getApiQrCode()).thenAnswer((_) => Future.value(Response(
             data: Map.fromEntries([
           MapEntry('seed', qrCode.seed),
-          MapEntry('expireTime', qrCode.expireTime)
+          MapEntry('expireTime', qrCode.expiresAt)
         ]))));
   });
 
@@ -40,7 +40,7 @@ void main() {
     when(api.getApiQrCode()).thenAnswer((_) => Future.value(Response(
         data: Map.fromEntries([
           MapEntry('se', qrCode.seed),
-          MapEntry('expire', qrCode.expireTime)
+          MapEntry('expire', qrCode.expiresAt)
         ]))));
 
     final repository = QrCodeRepository();
@@ -49,7 +49,7 @@ void main() {
         repository.qrCodeObservable.map((code) => code.seed), emitsThrough(null));
 
     expectLater(
-        repository.qrCodeObservable.map((code) => code.expireTime), emitsThrough(null));
+        repository.qrCodeObservable.map((code) => code.expiresAt), emitsThrough(null));
   });
 
   tearDown(() {

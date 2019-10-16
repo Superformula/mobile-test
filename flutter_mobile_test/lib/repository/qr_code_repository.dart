@@ -8,8 +8,10 @@ class QrCodeRepository {
   final refreshSubject = PublishSubject();
 
   Observable<QrCode> get qrCodeObservable => refreshSubject
-      .startWith(null)
-      .asyncMap((_) => _api.getApiQrCode())
-      .map((response) => QrCode.fromJson(response.data))
-      .asBroadcastStream();
+          .startWith(null)
+          .asyncMap((_) => _api.getApiQrCode())
+          .map((response) => QrCode.fromJson(response.data))
+          .doOnData((data) {
+        print('QRdata: $data');
+      }).asBroadcastStream();
 }

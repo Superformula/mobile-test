@@ -36,7 +36,12 @@ class GeneratorPage extends StatelessWidget {
             stream: _bloc.timerObservable,
             builder: (context, AsyncSnapshot<int> snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data.toString());
+                final counter = snapshot.data;
+                if (counter > 0) {
+                  return Text(counter.toString());
+                } else {
+                  return Text('This QR code has expired');
+                }
               } else {
                 return Container();
               }

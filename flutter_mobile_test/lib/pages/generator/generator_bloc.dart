@@ -8,11 +8,14 @@ class GeneratorBloc {
   final _repository = locator<QrCodeRepository>();
 
   GeneratorBloc() {
-    qrCodeSeedObservable = _repository.qrCodeObservable
-        .map((qrCode) => qrCode.seed);
+    qrCodeSeedObservable =
+        _repository.qrCodeObservable.map((qrCode) => qrCode.seed);
 
     timerObservable = _repository.qrCodeObservable
-        .map((qrCode) => qrCode.expireTime)
+        .map((qrCode) => DateTime.fromMicrosecondsSinceEpoch(
+                DateTime.now().millisecondsSinceEpoch -
+                    DateTime.parse(qrCode.expiresAt).millisecondsSinceEpoch)
+            .second)
         .switchMap((initial) =>
             Observable.periodic(Duration(seconds: 1), (value) => value + 1)
                 .startWith(0)
