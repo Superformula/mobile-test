@@ -15,7 +15,7 @@ void main() {
     locator.registerLazySingleton<QrCodeRepository>(() => repository);
 
     when(repository.qrCodeObservable).thenAnswer((_) => Observable.just(
-        QrCode('01170115cb7bbafb71c39201b09eaa6d31f24102', 20)));
+        QrCode('01170115cb7bbafb71c39201b09eaa6d31f24102', '2019-10-16T10:47:15Z')));
   });
 
   test('Repository returns success', () {
@@ -30,7 +30,7 @@ void main() {
         .thenAnswer((_) => Observable.error(DioError()));
     final bloc = GeneratorBloc();
 
-    expectLater(bloc.qrCodeSeedObservable, emitsThrough(''));
+    expectLater(bloc.qrCodeSeedObservable, emitsError(isInstanceOf<DioError>()));
   });
 
   tearDown(() {

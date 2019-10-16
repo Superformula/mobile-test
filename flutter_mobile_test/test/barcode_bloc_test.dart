@@ -1,8 +1,11 @@
 import 'package:flutter_mobile_test/barcode/barcode_wrapper.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
+import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+
+import 'generator_bloc_test.dart';
 
 void main() {
   BarcodeWrapper barcodeWrapper;
@@ -12,7 +15,9 @@ void main() {
   setUp(() {
     barcodeWrapper = BarcodeMockWrapper();
     barcodeResponse = "SUCCESS";
-    locator.registerLazySingleton<BarcodeWrapper>(() => barcodeWrapper);
+    locator
+      ..registerLazySingleton<BarcodeWrapper>(() => barcodeWrapper)
+      ..registerLazySingleton<QrCodeRepository>(() => QrCodeMockRepository());
 
     when(barcodeWrapper.scan()).thenAnswer((_) async => barcodeResponse);
 
@@ -32,7 +37,6 @@ void main() {
 //
   test('Barcode reading throws error and refresh emits another failure',
       () async {
-
     when(barcodeWrapper.scan()).thenAnswer((_) async => null);
 
     await expectLater(bloc.scannerObservable, emitsThrough(null));
@@ -42,7 +46,6 @@ void main() {
 
   test('Barcode reading emits success and refresh emits another success',
       () async {
-
     await expectLater(bloc.scannerObservable, emitsThrough(barcodeResponse));
 
     bloc.refresh();
