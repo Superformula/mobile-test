@@ -2,10 +2,6 @@
 
 The purpose of this repository is to demonstrate a client's request to generate and scan QR Codes.
 
-## Running the app
-
-Type in `flutter run` while being in the **flutter_mobile_test** directory to run the app or, type `flutter test` to run unit tests.
-
 ## Running the server
 
 This server has been created by Brian Blanchard and shared with me.
@@ -17,6 +13,11 @@ This server has been created by Brian Blanchard and shared with me.
 - All commands are run from within the `server/` directory
 1. Run `npm install`
 2. Run `node index.js`
+
+## Running the app
+
+First, please edit **_baseUrl** field in **HttpClient** class with the address used by the server.
+Type in `flutter run` while being in the **flutter_mobile_test** directory to run the app or, type `flutter test` to run unit tests.
 
 ## Structure
 
