@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobile_test/pages/generator/generator_page.dart';
+import 'package:flutter_mobile_test/pages/generator/qr_code_page.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_page.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
@@ -46,11 +46,11 @@ class HomePage extends StatelessWidget {
       animatedIconTheme: IconThemeData(size: 22.0),
       children: [
         SpeedDialChild(
-          child: Icon(Icons.camera),
+          child: Icon(Icons.image),
           backgroundColor: Colors.blue,
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => GeneratorPage()));
+                MaterialPageRoute(builder: (context) => QrCodePage()));
           },
           label: "QR Code",
         ),

@@ -3,7 +3,7 @@ import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/pages/scanner/scanner_bloc.dart';
 
 class ScannerPage extends StatelessWidget {
-  final BarcodeBloc _bloc = locator();
+  final ScannerBloc _bloc = locator();
 
   @override
   Widget build(BuildContext context) {

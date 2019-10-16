@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'generator_bloc_test.dart';
+import 'qr_code_bloc_test.dart';
 
 void main() {
   BarcodeWrapper barcodeWrapper;
@@ -32,7 +32,7 @@ void main() {
   });
 
   test('Barcode reading emits success', () async {
-    final bloc = BarcodeBloc(locator<BarcodeWrapper>());
+    final bloc = ScannerBloc(locator<BarcodeWrapper>());
 
     await expectLater(bloc.scannerObservable, emitsThrough(barcodeResponse));
   });
@@ -40,7 +40,7 @@ void main() {
   test('Barcode reading throws error', () async {
     when(barcodeWrapper.scan()).thenAnswer((_) async => null);
 
-    final bloc = BarcodeBloc(locator());
+    final bloc = ScannerBloc(locator());
 
     await expectLater(bloc.scannerObservable, emitsThrough(null));
   });
@@ -50,7 +50,7 @@ void main() {
       () async {
     when(barcodeWrapper.scan()).thenAnswer((_) async => null);
 
-    final bloc = BarcodeBloc(locator());
+    final bloc = ScannerBloc(locator());
 
     await expectLater(bloc.scannerObservable, emitsThrough(null));
     bloc.refresh();
@@ -60,7 +60,7 @@ void main() {
   test('Barcode reading emits success and refresh emits another success',
       () async {
 
-    final bloc = BarcodeBloc(locator());
+    final bloc = ScannerBloc(locator());
 
     await expectLater(bloc.scannerObservable, emitsThrough(barcodeResponse));
 
@@ -71,7 +71,7 @@ void main() {
 
   test('Barcode validation emits success', () async {
     final BehaviorSubject<bool> validationResultSubject = BehaviorSubject();
-    final bloc = BarcodeBloc(locator());
+    final bloc = ScannerBloc(locator());
 
     bloc.validateCodeObservable.listen(validationResultSubject.add, onError: validationResultSubject.addError);
 
@@ -84,7 +84,7 @@ void main() {
     final BehaviorSubject<bool> validationResultSubject = BehaviorSubject();
 
     when(qrCodeRepository.validateQrCode(barcodeResponse)).thenAnswer((_) => Observable.error(DioError()));
-    final bloc = BarcodeBloc(locator());
+    final bloc = ScannerBloc(locator());
 
     bloc.validateCodeObservable.listen(validationResultSubject.add, onError: validationResultSubject.addError);
 

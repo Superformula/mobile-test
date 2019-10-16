@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/models/qr_code_model.dart';
-import 'package:flutter_mobile_test/pages/generator/generator_bloc.dart';
+import 'package:flutter_mobile_test/pages/generator/qr_code_bloc.dart';
 import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -19,7 +19,7 @@ void main() {
   });
 
   test('Repository returns success', () {
-    final bloc = GeneratorBloc();
+    final bloc = QrCodeBloc();
 
     expectLater(bloc.qrCodeSeedObservable,
         emitsThrough('01170115cb7bbafb71c39201b09eaa6d31f24102'));
@@ -28,7 +28,7 @@ void main() {
   test('Test repository returns error', () {
     when(repository.qrCodeObservable)
         .thenAnswer((_) => Observable.error(DioError()));
-    final bloc = GeneratorBloc();
+    final bloc = QrCodeBloc();
 
     expectLater(bloc.qrCodeSeedObservable, emitsError(isInstanceOf<DioError>()));
   });

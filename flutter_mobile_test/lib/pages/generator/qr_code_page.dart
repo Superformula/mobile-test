@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
-import 'package:flutter_mobile_test/pages/generator/generator_bloc.dart';
+import 'package:flutter_mobile_test/pages/generator/qr_code_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class GeneratorPage extends StatelessWidget {
-  final GeneratorBloc _bloc = locator();
+class QrCodePage extends StatelessWidget {
+  final QrCodeBloc _bloc = locator();
 
   @override
   Widget build(BuildContext context) {

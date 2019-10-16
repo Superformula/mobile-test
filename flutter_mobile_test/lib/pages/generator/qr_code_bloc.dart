@@ -2,12 +2,12 @@ import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class GeneratorBloc {
+class QrCodeBloc {
   Observable<String> qrCodeSeedObservable;
   Observable<int> timerObservable;
   final _repository = locator<QrCodeRepository>();
 
-  GeneratorBloc() {
+  QrCodeBloc() {
     qrCodeSeedObservable =
         _repository.qrCodeObservable.map((qrCode) => qrCode.seed);
 

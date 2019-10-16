@@ -3,7 +3,7 @@ import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
-class BarcodeBloc {
+class ScannerBloc {
   final BarcodeWrapper _barcodeWrapper;
   final PublishSubject<void> _refreshSubject = PublishSubject();
   final PublishSubject<void> _validationSubject = PublishSubject();
@@ -12,7 +12,7 @@ class BarcodeBloc {
   Observable<String> scannerObservable;
   Observable<bool> validateCodeObservable;
 
-  BarcodeBloc(this._barcodeWrapper) {
+  ScannerBloc(this._barcodeWrapper) {
     scannerObservable = _refreshSubject
         .startWith(null)
         .asyncMap((_) => _barcodeWrapper.scan())
