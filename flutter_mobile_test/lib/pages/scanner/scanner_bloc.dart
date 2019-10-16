@@ -16,7 +16,6 @@ class BarcodeBloc {
     scannerObservable = _refreshSubject
         .startWith(null)
         .asyncMap((_) => _barcodeWrapper.scan())
-        .doOnEach((code) => print('code: $code'))
         .asBroadcastStream();
 
     validateCodeObservable = _validationSubject
