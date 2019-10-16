@@ -1,4 +1,4 @@
-# superformula monorepo
+# Superformula test submission 
 
 The purpose of this repository is to demonstrate a client's request to generate and scan QR Codes.
 
@@ -26,15 +26,15 @@ This application is organized into packages representing functionalities. Also, 
 
 Package api includes classes needed for network calls.
 
-#### Barcode
+### Barcode
 
 This package contains wrapper class for the Barcode scanner.
 
-#### Locator
+### Locator
 
 Contains setup of Service Locator.
 
-#### Models
+### Models
 
 Contains classes representing data coming form API: QrCode and Validation.
 
@@ -42,6 +42,6 @@ Contains classes representing data coming form API: QrCode and Validation.
 
 In every subpackage there are Widgets representing screens: Home, Scanner and QrCode, along with BLoC classes containing logic for each of them.
 
-#### Repository
+### Repository
 
 Contains class responsible for storing data coming from network requests. 
