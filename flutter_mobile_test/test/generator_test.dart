@@ -1,22 +1,41 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
+import 'package:flutter_mobile_test/models/qr_code_models.dart';
 import 'package:flutter_mobile_test/pages/generator/generator_bloc.dart';
+import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:rxdart/rxdart.dart';
 
 void main() {
-  test("QR Code api return success", () async {
-    final barcodeResponse = "SUCCESS";
+  QrCodeMockRepository repository;
 
-    setupMockLocator(barcodeResponse);
-    final GeneratorBloc bloc = locator();
+  setUp(() {
+    repository = QrCodeMockRepository();
+    locator.registerLazySingleton<QrCodeRepository>(() => repository);
 
-    await expectLater(bloc.qrCodeSeedObservable, emitsThrough('9b0a34057c9d302628e1d7ef50e37b08'));
+    when(repository.qrCodeObservable).thenAnswer((_) => Observable.just(
+        QrCode('01170115cb7bbafb71c39201b09eaa6d31f24102', 20)));
   });
 
-  test("QR Code api return empty data", () async {
+  test('Repository returns success', () {
+    final bloc = GeneratorBloc();
 
-    setupMockErrorLocator();
-    final GeneratorBloc bloc = locator();
+    expectLater(bloc.qrCodeSeedObservable,
+        emitsThrough('01170115cb7bbafb71c39201b09eaa6d31f24102'));
+  });
 
-    await expectLater(bloc.qrCodeSeedObservable, emitsThrough(''));
+  test('Test repository returns error', () {
+    when(repository.qrCodeObservable)
+        .thenAnswer((_) => Observable.error(DioError()));
+    final bloc = GeneratorBloc();
+
+    expectLater(bloc.qrCodeSeedObservable, emitsThrough(''));
+  });
+
+  tearDown(() {
+    locator.reset();
   });
 }
+
+class QrCodeMockRepository extends Mock implements QrCodeRepository {}

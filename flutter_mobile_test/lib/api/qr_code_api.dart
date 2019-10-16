@@ -15,5 +15,3 @@ class QrCodeApi {
             MapEntry('expireTime', 20)
           ])));
 }
-
-class QrCodeMockApi extends Mock implements QrCodeApi {}
