@@ -9,8 +9,7 @@ class GeneratorBloc {
 
   GeneratorBloc() {
     qrCodeSeedObservable = _repository.qrCodeObservable
-        .map((qrCode) => qrCode.seed)
-        .onErrorReturn('');
+        .map((qrCode) => qrCode.seed);
 
     timerObservable = _repository.qrCodeObservable
         .map((qrCode) => qrCode.expireTime)
@@ -18,7 +17,6 @@ class GeneratorBloc {
             Observable.periodic(Duration(seconds: 1), (value) => value + 1)
                 .startWith(0)
                 .take(initial + 1)
-                .map((period) => initial - period))
-        .onErrorReturn(0);
+                .map((period) => initial - period));
   }
 }

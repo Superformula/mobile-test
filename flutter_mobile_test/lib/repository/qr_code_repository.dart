@@ -5,9 +5,11 @@ import 'package:rxdart/rxdart.dart';
 
 class QrCodeRepository {
   final _api = locator<QrCodeApi>();
+  final refreshSubject = PublishSubject();
 
-  Observable<QrCode> get qrCodeObservable =>
-      Observable.fromFuture(_api.getMockApiQrCode)
-          .map((response) => QrCode.fromJson(response.data))
-          .asBroadcastStream();
+  Observable<QrCode> get qrCodeObservable => refreshSubject
+      .startWith(null)
+      .asyncMap((_) => _api.getApiQrCode())
+      .map((response) => QrCode.fromJson(response.data))
+      .asBroadcastStream();
 }
