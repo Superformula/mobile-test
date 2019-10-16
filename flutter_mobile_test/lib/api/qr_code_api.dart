@@ -5,4 +5,7 @@ class QrCodeApi {
   final HttpClient _httpClient = HttpClient();
 
   Future<Response> getApiQrCode() => _httpClient.get("/seed");
+
+  Future<Response> validateQrCode(String code) => _httpClient.get("/validate?code=$code");
+
 }

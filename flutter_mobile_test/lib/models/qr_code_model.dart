@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'qr_code_models.g.dart';
+part 'qr_code_model.g.dart';
 
 @JsonSerializable()
 class QrCode {

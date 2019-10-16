@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_mobile_test/locator/service_locator.dart';
-import 'package:flutter_mobile_test/models/qr_code_models.dart';
+import 'package:flutter_mobile_test/models/qr_code_model.dart';
 import 'package:flutter_mobile_test/pages/generator/generator_bloc.dart';
 import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

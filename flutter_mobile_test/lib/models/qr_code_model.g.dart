@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'qr_code_models.dart';
+part of 'qr_code_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

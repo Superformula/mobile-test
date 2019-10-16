@@ -14,14 +14,6 @@ class _ScannerState extends State<ScannerPage> {
   StreamSubscription _validationSubscription;
 
   @override
-  initState() {
-    super.initState();
-
-    _validationSubscription = _bloc.validateCodeObservable
-        .listen((data) => print('Barcode validation $data'));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -31,7 +23,7 @@ class _ScannerState extends State<ScannerPage> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -41,15 +33,6 @@ class _ScannerState extends State<ScannerPage> {
                     splashColor: Colors.blueGrey,
                     onPressed: _bloc.refresh,
                     child: Text("Scan again".toUpperCase())),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: RaisedButton(
-                    color: Colors.blue,
-                    textColor: Colors.white,
-                    splashColor: Colors.blueGrey,
-                    onPressed: _bloc.validate,
-                    child: Text("Validate".toUpperCase())),
               ),
               Padding(
                   padding:
@@ -64,6 +47,30 @@ class _ScannerState extends State<ScannerPage> {
                           return Text("Error reading Code");
                         }
                       })),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: RaisedButton(
+                    color: Colors.blue,
+                    textColor: Colors.white,
+                    splashColor: Colors.blueGrey,
+                    onPressed: _bloc.validate,
+                    child: Text("Validate".toUpperCase())),
+              ),
+              StreamBuilder(
+                  stream: _bloc.validateCodeObservable,
+                  builder: (context, AsyncSnapshot<bool> snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(
+                          snapshot.data
+                              ? 'This code is  valid'
+                              : 'This code is not valid',
+                          textAlign: TextAlign.center);
+                    } else if(snapshot.hasError) {
+                      return Text("Error validating Code");
+                    } else {
+                      return Container();
+                    }
+                  }),
             ],
           ),
         ));
