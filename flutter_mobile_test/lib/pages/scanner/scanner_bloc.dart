@@ -16,10 +16,11 @@ class BarcodeBloc {
     scannerObservable = _refreshSubject
         .startWith(null)
         .asyncMap((_) => _barcodeWrapper.scan())
-        .asBroadcastStream();
+        .publishValue()
+        .autoConnect();
 
-    validateCodeObservable = _validationSubject
-        .switchMap((_) => scannerObservable
+    validateCodeObservable = _validationSubject.switchMap((_) =>
+        scannerObservable
             .take(1)
             .switchMap((code) => _repository.validateQrCode(code))
             .map((validation) => validation.isValid));
