@@ -1,16 +1,41 @@
-# flutter_mobile_test
+# superformula monorepo
 
-Superformula Mobile Developer Coding Test
+The purpose of this repository is to demonstrate a client's request to generate and scan QR Codes.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+From the api folder run `yarn`.
 
-A few resources to get you started if this is your first Flutter project:
+From the qr_gen folder, run `flutter pub get`
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Running the app
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Type in `flutter run` while being in the **flutter_mobile_test** directory to run the app or, type `flutter test` to run unit tests.
+
+## Structure
+
+This application is organized into packages representing functionalities. Also, it has been designed to incorporate BLoC pattern.
+
+### Api
+
+Package api includes classes needed for network calls.
+
+#### Barcode
+
+This package contains wrapper class for the Barcode scanner.
+
+#### Locator
+
+Contains setup of Service Locator.
+
+#### Models
+
+Contains classes representing data coming form API: QrCode and Validation.
+
+### Pages
+
+In every subpackage there are Widgets representing screens: Home, Scanner and QrCode, along with BLoC classes containing logic for each of them.
+
+#### Repository
+
+Contains class responsible for storing data coming from network requests. 
