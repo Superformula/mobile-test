@@ -1,11 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_mobile_test/api/http_client.dart';
-import 'package:mockito/mockito.dart';
 
 class QrCodeApi {
   final HttpClient _httpClient = HttpClient();
 
-  Future<Response> get getApiQrCode => _httpClient.get("");
+  Future<Response> getApiQrCode() => _httpClient.get("");
 
   Future<Response> get getMockApiQrCode => Future.delayed(
       Duration(seconds: 1),
@@ -15,5 +14,3 @@ class QrCodeApi {
             MapEntry('expireTime', 20)
           ])));
 }
-
-class QrCodeMockApi extends Mock implements QrCodeApi {}

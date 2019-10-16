@@ -1,16 +1,17 @@
+import 'package:flutter_mobile_test/locator/service_locator.dart';
 import 'package:flutter_mobile_test/repository/qr_code_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GeneratorBloc {
   Observable<String> qrCodeSeedObservable;
   Observable<int> timerObservable;
+  final _repository = locator<QrCodeRepository>();
 
-  GeneratorBloc(QrCodeRepository repository) {
-    qrCodeSeedObservable = repository.qrCodeObservable
-        .map((qrCode) => qrCode.seed)
-        .onErrorReturn('');
+  GeneratorBloc() {
+    qrCodeSeedObservable = _repository.qrCodeObservable
+        .map((qrCode) => qrCode.seed);
 
-    timerObservable = repository.qrCodeObservable
+    timerObservable = _repository.qrCodeObservable
         .map((qrCode) => qrCode.expireTime)
         .switchMap((initial) =>
             Observable.periodic(Duration(seconds: 1), (value) => value + 1)
