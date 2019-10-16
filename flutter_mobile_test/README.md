@@ -2,15 +2,21 @@
 
 The purpose of this repository is to demonstrate a client's request to generate and scan QR Codes.
 
-## Getting Started
-
-From the api folder run `yarn`.
-
-From the qr_gen folder, run `flutter pub get`
-
-### Running the app
+## Running the app
 
 Type in `flutter run` while being in the **flutter_mobile_test** directory to run the app or, type `flutter test` to run unit tests.
+
+## Running the server
+
+This server has been created by Brian Blanchard and shared with me.
+
+### Prerequisites
+- node.js version `v12.2.0` is installed
+
+### Instructions
+- All commands are run from within the `server/` directory
+1. Run `npm install`
+2. Run `node index.js`
 
 ## Structure
 
