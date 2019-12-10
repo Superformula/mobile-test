@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:qr_code_app/presentation_flutter/intl/app_localizations.dart';
+import 'package:qr_code_app/presentation_flutter/intl/strings_en.dart';
 
 import 'package:qr_code_app/presentation_flutter/qr_code_app.dart';
 
@@ -7,7 +9,11 @@ void main() {
   testWidgets(
     'App is a Material Design app',
     (WidgetTester tester) async {
-      await showApp(tester);
+      await tester.pumpWidget(
+        QrCodeApp(
+          buildRootPage: (context) => Container(),
+        ),
+      );
 
       expect(
         find.byType(MaterialApp),
@@ -16,21 +22,20 @@ void main() {
     },
   );
 
+  // Poc, so does not have full locale switching + test
   testWidgets(
-    'Container is shown initially',
+    'App uses localized strings',
     (WidgetTester tester) async {
-      await showApp(tester);
+      await tester.pumpWidget(
+        QrCodeApp(
+          buildRootPage: (context) => Text(AppLocalizations.of(context).title),
+        ),
+      );
 
       expect(
-        find.byType(Container),
+        find.text(stringsEn['title']),
         findsOneWidget,
       );
     },
-  );
-}
-
-Future showApp(WidgetTester tester) async {
-  await tester.pumpWidget(
-    QrCodeApp(),
   );
 }
