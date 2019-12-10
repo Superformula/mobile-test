@@ -1,16 +1,18 @@
-# qr_code_app
+# QR Code Application
 
-QR Code Application
+This repository houses the codebase for the QR Code Application for Mobile by Joshua Bancroft.
 
-## Getting Started
+The app is written using [Dart](https://dart.dev/) and uses [Flutter](https://flutter.dev/) for its
+presentation layer implementation.
 
-This project is a starting point for a Flutter application.
+# Contents
 
-A few resources to get you started if this is your first Flutter project:
+* [Codebase Setup](#codebase-setup)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Codebase Setup
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [Install Flutter](https://flutter.dev/docs/get-started/install)
+
+Android Studio is the recommended IDE for Flutter development.
+
+* [Set up Android Studio for Flutter](https://flutter.dev/docs/get-started/editor)
