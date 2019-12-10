@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:qr_code_app/init.dart';
-import 'package:qr_code_app/presentation_flutter/app/root_router/home/home_page.dart';
 import 'package:qr_code_app/presentation_flutter/app/root_router/root_router_page.dart';
 
 void main() {
@@ -13,20 +12,6 @@ void main() {
 
       expect(
         find.byType(RootRouterPage),
-        findsOneWidget,
-      );
-    },
-  );
-
-  testWidgets(
-    'Home Page is shown initially',
-    (WidgetTester tester) async {
-      await tester.pumpWidget(
-        createApp(),
-      );
-
-      expect(
-        find.byType(HomePage),
         findsOneWidget,
       );
     },

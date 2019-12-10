@@ -25,6 +25,8 @@ class AppLocalizations {
   ];
 
   String get title => _localizedValues[locale.languageCode]['title'];
+  String get qrCode => _localizedValues[locale.languageCode]['qr_code'];
+  String get scanner => _localizedValues[locale.languageCode]['scanner'];
 
   static List<LocalizationsDelegate> localizationsDelegates = [
     const AppLocalizationsDelegate(),

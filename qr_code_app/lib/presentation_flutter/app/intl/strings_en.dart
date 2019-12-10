@@ -1,3 +1,5 @@
 const stringsEn = {
-  'title': 'Qr Code App',
+  'title': 'QR Code App',
+  'qr_code': "QR Code",
+  'scanner': "Scanner",
 };
