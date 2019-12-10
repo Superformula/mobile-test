@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:qr_code_app/presentation_flutter/intl/app_localizations.dart';
-import 'package:qr_code_app/presentation_flutter/intl/strings_en.dart';
+import 'package:qr_code_app/presentation_flutter/app/intl/app_localizations.dart';
+import 'package:qr_code_app/presentation_flutter/app/intl/strings_en.dart';
 
-import 'package:qr_code_app/presentation_flutter/qr_code_app.dart';
+import 'package:qr_code_app/presentation_flutter/app/qr_code_app.dart';
 
 void main() {
   testWidgets(

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'intl/app_localizations.dart';
-import 'intl/app_localizations_delegate.dart';
 
-typedef Widget RootPage(BuildContext context);
+typedef Widget BuildRootPage(BuildContext context);
 
 class QrCodeApp extends StatelessWidget {
-  final RootPage buildRootPage;
+  final BuildRootPage buildRootPage;
 
   const QrCodeApp({
     @required this.buildRootPage,
@@ -19,12 +17,7 @@ class QrCodeApp extends StatelessWidget {
       onGenerateTitle: (BuildContext context) {
         return AppLocalizations.of(context).title;
       },
-      localizationsDelegates: [
-        const AppLocalizationsDelegate(),
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocals,
       home: Builder(
         builder: (context) => buildRootPage(context),

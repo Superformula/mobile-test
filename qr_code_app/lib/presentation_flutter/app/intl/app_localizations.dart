@@ -1,6 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:qr_code_app/presentation_flutter/intl/strings_en.dart';
-import 'package:qr_code_app/presentation_flutter/intl/strings_es.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'app_localizations_delegate.dart';
+import 'strings_en.dart';
+import 'strings_es.dart';
 
 class AppLocalizations {
   AppLocalizations(this.locale);
@@ -22,4 +25,11 @@ class AppLocalizations {
   ];
 
   String get title => _localizedValues[locale.languageCode]['title'];
+
+  static List<LocalizationsDelegate> localizationsDelegates = [
+    const AppLocalizationsDelegate(),
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ];
 }
