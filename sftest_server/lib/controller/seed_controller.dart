@@ -6,7 +6,7 @@ class SeedController extends Controller {
 
   @override
   Future<RequestOrResponse> handle(Request request) async {
-    var now = DateTime.now().add(Duration(seconds:15)).toIso8601String();
+    var now = DateTime.now().toUtc().add(Duration(seconds:15)).toIso8601String();
 
     final _json ={
       'seed': randomString(32),
