@@ -36,9 +36,8 @@ void dispose() {
   super.dispose();
 }
 
-// Runs a periodic timer used to check expiration of QR data. 
+/// Runs a periodic timer used to check expiration of QR data. 
 Timer _timer;
-
 void startTimer() {
   const oneSec = const Duration(seconds: 1);
   _timer = new Timer.periodic(
@@ -57,6 +56,7 @@ void startTimer() {
   );
 }
 
+  /// Downloads new seed data. 
   void getQRData() async {
     print("In getQRData");
     // URL is hardcoded for the test project. Would not be in production code.
@@ -94,7 +94,6 @@ void startTimer() {
               data: _qrData.seed,
               version: QrVersions.auto,
               size: 300.0,
-              // foregroundColor: Colors.blue.shade900,
               embeddedImage: AssetImage('assets/sf-mark-outline-white.png'),
               errorStateBuilder: (cxt, err) {
                 return Container(
@@ -107,12 +106,12 @@ void startTimer() {
                 );
               },
             ),
-            Text(
-              "Current Time: ${DateTime.now().toUtc().toIso8601String()}",
-            ),
-            Text(
-              "Expires: ${_qrData.expiresAt.toIso8601String()}",
-            ),
+            // Text(
+            //   "Current Time: ${DateTime.now().toUtc().toIso8601String()}",
+            // ),
+            // Text(
+            //   "Expires: ${_qrData.expiresAt.toIso8601String()}",
+            // ),
             Text(
               "Will reset in $_expiresInSeconds Seconds",
               style: Theme.of(context).textTheme.display1,

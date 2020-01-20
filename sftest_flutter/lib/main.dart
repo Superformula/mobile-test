@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  /// Navigate to the QR Display screen. 
   void _goToQRScreen() {
     Navigator.push(
       context,
@@ -41,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  /// Navigate to the QR Scanner screen. 
   void _goToScannerScreen() {
     Navigator.push(
       context,
@@ -63,13 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Select a screen.",
+              "Select a function from the menu.",
             ), 
           ],
         ),
       ),
       floatingActionButton: SpeedDial(
-          // both default to 16
           marginRight: 18,
           marginBottom: 20,
           animatedIcon: AnimatedIcons.menu_close,
@@ -78,8 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
           curve: Curves.bounceIn,
           overlayColor: Colors.black,
           overlayOpacity: 0.5,
-          onOpen: () => print('OPENING DIAL'),
-          onClose: () => print('DIAL CLOSED'),
           tooltip: 'Speed Dial',
           heroTag: 'speed-dial-hero-tag',
           backgroundColor: Colors.white,
