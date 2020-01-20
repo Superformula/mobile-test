@@ -38,7 +38,6 @@ void dispose() {
 
 // Runs a periodic timer used to check expiration of QR data. 
 Timer _timer;
-int _counter = 10;
 
 void startTimer() {
   const oneSec = const Duration(seconds: 1);
@@ -47,20 +46,12 @@ void startTimer() {
     (Timer timer) => setState(
       () {
         DateTime _nowTime = DateTime.now();
-        print("\n");
-        print("Now: ${_nowTime.toUtc().toIso8601String()}");
-        print("QR Expires: ${_qrData.expiresAt.toIso8601String()}");
         Duration _timeDiff = _nowTime.difference(_qrData.expiresAt);
         _expiresInSeconds = -(_timeDiff.inSeconds);
-        print("Duration (seconds) until QR Expiration: ${_timeDiff.inSeconds}");
 
         if (_qrData.expiresAt.isBefore(_nowTime)) {
-          print("Timer expired. Reloading QR Data.");
-          
           getQRData();
-        } else {
-          print("QRData has not expired yet.");
-        }
+        } 
       },
     ),
   );
