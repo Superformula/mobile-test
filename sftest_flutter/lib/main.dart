@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
 import 'package:sftest_flutter/screens/qrcode_screen.dart';
+import 'package:sftest_flutter/screens/qrscanner_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,6 +41,17 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _goToScannerScreen() {
+    Navigator.push(
+      context,
+      new MaterialPageRoute(
+        builder: (context) {
+          return new QRScannerScreen();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +68,41 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _goToQRScreen,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: SpeedDial(
+          // both default to 16
+          marginRight: 18,
+          marginBottom: 20,
+          animatedIcon: AnimatedIcons.menu_close,
+          animatedIconTheme: IconThemeData(size: 22.0),
+          closeManually: false,
+          curve: Curves.bounceIn,
+          overlayColor: Colors.black,
+          overlayOpacity: 0.5,
+          onOpen: () => print('OPENING DIAL'),
+          onClose: () => print('DIAL CLOSED'),
+          tooltip: 'Speed Dial',
+          heroTag: 'speed-dial-hero-tag',
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 8.0,
+          shape: CircleBorder(),
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.language),
+              backgroundColor: Colors.green,
+              label: 'QRCode',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => _goToQRScreen()
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.camera),
+              backgroundColor: Colors.blue,
+              label: 'Scan',
+              labelStyle: TextStyle(fontSize: 18.0),
+              onTap: () => _goToScannerScreen(),
+            ),
+          ],
+        ),
     );
   }
 }
