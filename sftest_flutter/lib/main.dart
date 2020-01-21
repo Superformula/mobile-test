@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               "Select a function from the menu.",
-            ), 
+            ),
           ],
         ),
       ),
