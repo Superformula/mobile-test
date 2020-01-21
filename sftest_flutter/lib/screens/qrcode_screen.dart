@@ -6,6 +6,8 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sftest_flutter/models/qrdata.dart';
 import 'package:sftest_flutter/services/networking.dart';
 
+
+/// Screen to display QR Code given data from a seed API. 
 class QRCodeScreen extends StatefulWidget {
   QRCodeScreen();
 
