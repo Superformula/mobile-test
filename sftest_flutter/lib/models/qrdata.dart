@@ -4,8 +4,8 @@ class QRData {
   DateTime expiresAt;
 
   QRData(
-      {this.seed,
-      this.expiresAt}
+      this.seed,
+      this.expiresAt
       );
 
   QRData.fromJson(Map<String, dynamic> json) {
