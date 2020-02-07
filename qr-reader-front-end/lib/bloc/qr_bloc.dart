@@ -13,9 +13,15 @@ class QRBloc implements Bloc {
   Stream<QrSeed> get qrStream => _qrController.stream;
   Stream<String> get expiryStream => _expiryStream.stream;
 
+  bool get _closed => _qrController.isClosed;
+
   QRBloc(this.repository);
 
   void startRequestingCodes() async {
+    if (_closed) {
+      return;
+    }
+
     final seed = await repository.fetchLatestSeed();
     _qrController.sink.add(seed);
     _scheduleNextFetch(seed);
@@ -23,6 +29,10 @@ class QRBloc implements Bloc {
   }
 
   void _sendExpiryEvents(QrSeed seed) async {
+    if (_closed) {
+      return;
+    }
+
     final validity = seed.validDuration;
     final seconds = validity.inSeconds;
 

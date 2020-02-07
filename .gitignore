@@ -54,3 +54,5 @@ docs/_build/
 
 # PyBuilder
 target/
+qr-reader-front-end/.flutter-plugins
+qr-reader-front-end/.flutter-plugins-dependencies

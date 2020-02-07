@@ -1,0 +1,22 @@
+PODS:
+  - fast_qr_reader_view (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+
+DEPENDENCIES:
+  - fast_qr_reader_view (from `.symlinks/plugins/fast_qr_reader_view/ios`)
+  - Flutter (from `Flutter`)
+
+EXTERNAL SOURCES:
+  fast_qr_reader_view:
+    :path: ".symlinks/plugins/fast_qr_reader_view/ios"
+  Flutter:
+    :path: Flutter
+
+SPEC CHECKSUMS:
+  fast_qr_reader_view: 53b38a544886e650381ca579e0cdd5ae142fffa6
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+
+COCOAPODS: 1.8.4

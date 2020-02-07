@@ -10,6 +10,16 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Text(
+            'Tap the Floating Action Button to get started',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline,
+          ),
+        ),
+      ),
       floatingActionButton: _buildFabMenu(context),
     );
   }
