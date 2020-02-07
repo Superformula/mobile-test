@@ -6,7 +6,7 @@ import 'package:superformula/data_layer/qr_seed.dart';
 import 'package:superformula/data_layer/seed_respository.dart';
 
 class NetworkSeedRepository implements SeedRepository {
-  final host = 'http://localhost:8888';
+  final host = 'https://superformula-test.herokuapp.com';
 
   Future<QrSeed> fetchLatestSeed() async {
     final url = '$host/seed';
