@@ -1,5 +1,6 @@
-import 'package:fast_qr_reader_view/fast_qr_reader_view.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:superformula/ui_layer/animated_reticle.dart';
 
 class ScanningPage extends StatefulWidget {
   static const route = '/scanning';
@@ -8,22 +9,13 @@ class ScanningPage extends StatefulWidget {
   _ScanningPageState createState() => _ScanningPageState();
 }
 
-class _ScanningPageState extends State<ScanningPage>
-    with SingleTickerProviderStateMixin {
-  List<CameraDescription> cameras;
-  QRReaderController controller;
+class _ScanningPageState extends State<ScanningPage> {
+  final qrKey = GlobalKey(debugLabel: 'QR');
+  final cameraSize = 300.0;
 
-  AnimationController animationController;
-  Animation<double> verticalPosition;
+  QRViewController controller;
 
-  final reticleColour = Colors.purple;
-
-  @override
-  void initState() {
-    super.initState();
-    _configureAnimation();
-    _configureCamera();
-  }
+  String qrCodeText;
 
   @override
   Widget build(BuildContext context) {
@@ -36,98 +28,66 @@ class _ScanningPageState extends State<ScanningPage>
   }
 
   Widget _buildBody(BuildContext context) {
-    if (cameras == null || controller == null) {
-      return Container();
-    }
-
-    if (!controller.value.isInitialized) {
-      return Container();
-    }
-
     return Center(
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _buildCameraPreview(),
-//          _buildScanningAnimation(),
+          _buildScanner(),
+          if (qrCodeText != null) ...[
+            SizedBox(
+              height: 8,
+            ),
+            Text('Last QR Code Value:'),
+            Text(
+              qrCodeText,
+              style: Theme.of(context).textTheme.subhead,
+            )
+          ]
         ],
       ),
+    );
+  }
+
+  Widget _buildScanner() {
+    return Stack(
+      children: <Widget>[
+        _buildCameraPreview(),
+        AnimatedReticle(
+          size: cameraSize,
+          colour: qrCodeText == null ? Colors.purple : Colors.green,
+        ),
+      ],
     );
   }
 
   Widget _buildCameraPreview() {
-    return AspectRatio(
-      aspectRatio: controller.value.aspectRatio,
-      child: QRReaderPreview(controller),
-    );
-  }
-
-  Widget _buildScanningAnimation() {
+    //NOTE: This function will throw an exception on the simulator/emulator
+    //You need to run the app in a real device to see the camera
     return Center(
-      child: Stack(
-        children: <Widget>[
-          SizedBox(
-            width: 300,
-            height: 300,
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border.all(color: reticleColour, width: 2.0)),
-            ),
-          ),
-          Positioned(
-            top: verticalPosition.value,
-            child: Container(
-              width: 300,
-              height: 2.0,
-              decoration: BoxDecoration(
-                boxShadow: [BoxShadow(color: reticleColour, blurRadius: 4)],
-                color: Colors.white,
-              ),
-            ),
-          )
-        ],
+      child: SizedBox(
+        width: cameraSize,
+        height: cameraSize,
+        child: QRView(
+          onQRViewCreated: onQRCodeRead,
+          key: qrKey,
+        ),
       ),
     );
   }
 
-  void _configureAnimation() {
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 2),
-    )..addListener(() {
-        setState(() {});
+  void onQRCodeRead(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((data) {
+      setState(() {
+        qrCodeText = data;
       });
-
-    verticalPosition = Tween<double>(
-      begin: 0.0,
-      end: 300.0,
-    ).animate(
-      CurvedAnimation(
-        parent: animationController,
-        curve: Curves.elasticInOut,
-      ),
-    )..addStatusListener((state) {
-        if (state == AnimationStatus.completed) {
-          animationController.reverse();
-        } else {
-          animationController.forward();
-        }
-      });
+    });
   }
 
-  void _configureCamera() async {
-    cameras = await availableCameras();
-    controller = QRReaderController(
-      cameras.first,
-      ResolutionPreset.medium,
-      [CodeFormat.qr],
-      onQRCodeRead,
-    );
-
-    await controller.initialize();
-    setState(() {});
-    controller.startScanning();
-    animationController.forward();
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
   }
-
-  void onQRCodeRead(String qrCode) {}
 }

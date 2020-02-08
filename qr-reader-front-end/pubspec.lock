@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.2"
-  fast_qr_reader_view:
-    dependency: "direct main"
-    description:
-      name: fast_qr_reader_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.5"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -151,6 +144,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  qr_code_scanner:
+    dependency: "direct main"
+    description:
+      name: qr_code_scanner
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.12"
   qr_flutter:
     dependency: "direct main"
     description:

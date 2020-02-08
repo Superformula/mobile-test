@@ -30,7 +30,7 @@ class QrGeneratingPage extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           bloc.startRequestingCodes();
-          return Container();
+          return _buildLoadingIndicator(context);
         }
 
         final qrCode = snapshot.data;
@@ -44,6 +44,31 @@ class QrGeneratingPage extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  Widget _buildLoadingIndicator(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Theme.of(context).platform == TargetPlatform.iOS
+              ? CupertinoActivityIndicator()
+              : SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: CircularProgressIndicator(),
+                ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Loading',
+              style: Theme.of(context).textTheme.headline,
+            ),
+          )
+        ],
+      ),
     );
   }
 

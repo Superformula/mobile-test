@@ -1,21 +1,28 @@
 PODS:
-  - fast_qr_reader_view (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
+  - MTBBarcodeScanner (5.0.11)
+  - qr_code_scanner (0.0.2):
+    - Flutter
+    - MTBBarcodeScanner
 
 DEPENDENCIES:
-  - fast_qr_reader_view (from `.symlinks/plugins/fast_qr_reader_view/ios`)
   - Flutter (from `Flutter`)
+  - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
+
+SPEC REPOS:
+  trunk:
+    - MTBBarcodeScanner
 
 EXTERNAL SOURCES:
-  fast_qr_reader_view:
-    :path: ".symlinks/plugins/fast_qr_reader_view/ios"
   Flutter:
     :path: Flutter
+  qr_code_scanner:
+    :path: ".symlinks/plugins/qr_code_scanner/ios"
 
 SPEC CHECKSUMS:
-  fast_qr_reader_view: 53b38a544886e650381ca579e0cdd5ae142fffa6
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  MTBBarcodeScanner: f453b33c4b7dfe545d8c6484ed744d55671788cb
+  qr_code_scanner: 16107718bdad7d708cdf6a5eacdca24b56cdf471
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 

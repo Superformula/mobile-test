@@ -14,7 +14,7 @@ description: A sample application that can scan and generate QR codes from a bac
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -24,7 +24,7 @@ dependencies:
   http: any
   fab_menu: ^0.0.2
   qr_flutter: ^3.2.0
-  fast_qr_reader_view: ^0.1.5
+  qr_code_scanner: ^0.0.12
 
 dev_dependencies:
   flutter_test:

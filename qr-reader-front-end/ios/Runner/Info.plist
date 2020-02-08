@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>To Scan QR Codes</string>
 	<key>CFBundleDevelopmentRegion</key>
