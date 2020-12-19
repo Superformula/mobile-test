@@ -8,23 +8,29 @@
     - [Build and Run the Application](#build-and-run-the-application)
     
 Flutter
-Download the latest SDK
-Extract the zip to your development workspace like the example below:
-cd ~/workspace
-unzip ~/Downloads/<flutter_sdk.zip>
-Add flutter to your PATH variable in your .bash_profile
-export PATH=$PATH:~/Dev/flutter/bin
-Note: Make sure to refresh your environment variables using the command source ~\.bash_profile
-Run flutter doctor. This will tell you what else is missing from your environment and provide instructions to resolve those issues.
-Download Dart SDK(https://dart.dev/get-dart)    
+   Download the latest SDK
+   
+   Extract the zip to your development workspace like the example below:
+   cd ~/workspace
+   
+   unzip ~/Downloads/<flutter_sdk.zip>
+   
+   Add flutter to your PATH variable in your .bash_profile
+   
+   export PATH=$PATH:~/Dev/flutter/bin
+   
+   Note: Make sure to refresh your environment variables using the command source ~\.bash_profile
+   
+   Run flutter doctor. This will tell you what else is missing from your environment and provide instructions to resolve those issues.
+   Download Dart SDK(https://dart.dev/get-dart)    
     
 Build and Run the Application
-Checkout this project from GitHub to your workspace
-git clone https://github.com/Nagadivyabikkina/mobile-test.git
-Navigate to the project directory
-cd mobile-test/
-Run the app
-flutter run
+   Checkout this project from GitHub to your workspace
+   git clone https://github.com/Nagadivyabikkina/mobile-test.git
+   Navigate to the project directory
+   cd mobile-test/
+   Run the app
+   flutter run
 
 ## Requirements
 
