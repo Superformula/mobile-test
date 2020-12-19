@@ -8,7 +8,7 @@
     - [Build and Run the Application](#build-and-run-the-application)
     
 Flutter
-   Download the latest SDK
+   Download the latest SDK 
    Extract the zip to your development workspace like the example below:
    cd ~/workspace
    unzip ~/Downloads/<flutter_sdk.zip>
