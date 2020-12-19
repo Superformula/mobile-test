@@ -16,7 +16,7 @@ Flutter
    
    unzip downloaded zip.
    Add flutter to your PATH variable in your .bash_profile
-   export PATH=$PATH:~/workspace/flutter/bin
+   export PATH=$PATH:~/workspace/flutter/bin 
    
    Note: Make sure to refresh your environment variables using the command source ~\.bash_profile.
    
