@@ -26,10 +26,15 @@ Flutter
     
 Build and Run the Application
    Checkout this project from GitHub to your workspace
+   
    git clone https://github.com/Nagadivyabikkina/mobile-test.git
+   
    Navigate to the project directory
+   
    cd mobile-test/
+   
    Run the app
+   
    flutter run
 
 ## Requirements
