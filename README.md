@@ -4,7 +4,7 @@
   - [Setup for Mac](#setup-for-mac)
     - [Homebrew](#homebrew)
     - [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com)
-    - [Xcode]
+    - [Xcode](#Xcode)
     - [Flutter](https://flutter.dev/docs/get-started/install/macos)
     - [Build and Run the Application](#build-and-run-the-application)
     
