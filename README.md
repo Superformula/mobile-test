@@ -12,7 +12,7 @@ Flutter
    Extract the zip to your development workspace like the example below:
    cd ~/workspace
    
-   unzip ~/Downloads/<flutter_sdk.zip>
+   unzip downloaded zip.
    Add flutter to your PATH variable in your .bash_profile
    export PATH=$PATH:~/Dev/flutter/bin
    
