@@ -1,6 +1,12 @@
-# Superformula Mobile Developer Coding Test
+# QRCode Scan Application
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+### Table of Contents
+  - [Setup for Mac](#setup-for-mac)
+    - [Table of Contents](#table-of-contents)
+    - [Homebrew](#homebrew)
+    - [Android Studio](#android-studio) or [Visual Studio Code](#visual-studio-code)
+    - [Flutter](#flutter)
+    - [Build and Run the Application](#build-and-run-the-application)
 
 ## Requirements
 
