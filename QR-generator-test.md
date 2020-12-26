@@ -75,3 +75,4 @@ These may be used for additional challenges. You can freely skip these if you ar
 - Provide an auto-refresh strategy, for example with the `expires_at` value.
 - (Android) Use DI with Dagger2
 - Provide an offline QR code access strategy, for example with a cache.
+

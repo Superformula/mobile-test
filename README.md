@@ -1,29 +1,21 @@
-# Superformula Mobile Developer Coding Test
+# mobile_test
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+## Running the Application Locally
 
-## Requirements
+Run `aqueduct serve` from this directory to run the application. For running within an IDE, run `bin/main.dart`. By default, a configuration file named `config.yaml` will be used.
 
-There is only one test here currently, please review and get back to us.
+To generate a SwaggerUI client, run `aqueduct document client`.
 
-## What We Care About
+## Running Application Tests
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+To run all tests for this application, run the following in this directory:
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+```
+pub run test
+```
 
-Here's what you should strive for:
+The default configuration file used when testing is `config.src.yaml`. This file should be checked into version control. It also the template for configuration files used in deployment.
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+## Deploying an Application
 
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
+See the documentation for [Deployment](https://aqueduct.io/docs/deploy/).

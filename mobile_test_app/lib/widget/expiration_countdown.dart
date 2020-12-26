@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 class ExpirationCountdown extends StatefulWidget {
   final DateTime expiresAt;
+  final VoidCallback onExpiration;
 
   const ExpirationCountdown({
     @required this.expiresAt,
+    this.onExpiration,
     Key key,
   }) : super(key: key);
 
@@ -27,11 +29,12 @@ class _ExpirationCountdownState extends State<ExpirationCountdown> {
   void _initTimer() {
     Timer.periodic(Duration(seconds: 1), (timer) {
       final difference = widget.expiresAt.difference(DateTime.now());
-      if (difference == Duration.zero) {
+      if (difference <= Duration.zero) {
         timer.cancel();
+        widget.onExpiration?.call();
         return;
       }
-    
+
       if (mounted) {
         timeLeftController.add(difference);
       }
@@ -48,7 +51,7 @@ class _ExpirationCountdownState extends State<ExpirationCountdown> {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: timeLeftController.stream,
-      initialData: Duration(seconds: expirationDurationInSeconds),
+      initialData: Duration(seconds: expirationDurationInSeconds - 1),
       builder: (BuildContext context, AsyncSnapshot<Duration> snapshot) {
         return Text('Expires in: ${snapshot.data.inSeconds} seconds.');
       },

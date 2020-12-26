@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_test_app/cubit/qr_cubit.dart';
-import 'package:mobile_test_app/widgets/expiration_countdown.dart';
+import 'package:mobile_test_app/repository/qr_repository.dart';
+import 'package:mobile_test_app/widget/expiration_countdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 void main() {
@@ -11,6 +10,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final qrRepository = QrRepository();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,13 +20,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'QR'),
+      home: BlocProvider(
+        create: (context) => QrCubit(repository: qrRepository),
+        child: MyHomePage(title: 'QR'),
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, @required this.title}) : super(key: key);
 
   final String title;
 
@@ -34,6 +38,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _autoGenerate = true;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QrCubit, QrState>(
@@ -42,22 +47,46 @@ class _MyHomePageState extends State<MyHomePage> {
           appBar: AppBar(
             title: Text(widget.title),
           ),
-          body: Center(
-            child: Column(
-              children: [
-                if (state is QrGenerated)
-                  QrImage(
-                    data: state.qrCode.code,
-                    version: QrVersions.auto,
-                    size: 200.0,
+          body: Builder(
+            builder: (BuildContext context) {
+              if (state is QrGenerated) {
+                return Center(
+                  child: Column(
+                    children: [
+                      QrImage(
+                        data: state.qrCode.code,
+                        version: QrVersions.auto,
+                        size: 200.0,
+                      ),
+                      ExpirationCountdown(
+                        expiresAt: state.qrCode.expiresAt,
+                      ),
+                      Switch(
+                          value: _autoGenerate,
+                          onChanged: (value) {
+                            setState(() {
+                              _autoGenerate = value;
+                            });
+                          })
+                    ],
                   ),
-                if (state is QrGenerated) ExpirationCountdown(expiresAt: state.qrCode.expiresAt,)
-              ],
-            ),
+                );
+              } else if (state is QrLoading) {
+                return Center(
+                  child: Text('Loading...'),
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              context.read<QrCubit>().generateQrCode();
+            },
           ),
         );
       },
     );
   }
 }
-
