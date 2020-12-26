@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:superformula_challenge/repositories/repositories.dart';
 import 'package:superformula_challenge/screens/screens.dart';
 
 void main() {
@@ -26,6 +28,13 @@ class MyApp extends StatelessWidget {
         return MaterialPageRoute(
           builder: (_) => route,
           settings: settings,
+        );
+      },
+      builder: (context, child) {
+        return RepositoryProvider<QrRepository>(
+          lazy: false,
+          create: (context) => QrRepository(),
+          child: child,
         );
       },
     );
