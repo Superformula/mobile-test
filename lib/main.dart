@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:superformula_challenge/blocs/blocs.dart';
 import 'package:superformula_challenge/repositories/repositories.dart';
 import 'package:superformula_challenge/screens/screens.dart';
 
@@ -34,7 +35,11 @@ class MyApp extends StatelessWidget {
         return RepositoryProvider<QrRepository>(
           lazy: false,
           create: (context) => QrRepository(),
-          child: child,
+          child: BlocProvider<QrBloc>(
+            create: (context) =>
+                QrBloc(qrRepository: context.read<QrRepository>()),
+            child: child,
+          ),
         );
       },
     );
