@@ -38,7 +38,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _autoGenerate = true;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<QrCubit, QrState>(
@@ -60,20 +60,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       ExpirationCountdown(
                         expiresAt: state.qrCode.expiresAt,
+                        onExpiration: () async {
+                       
+                        },
                       ),
                       Switch(
-                          value: _autoGenerate,
-                          onChanged: (value) {
-                            setState(() {
-                              _autoGenerate = value;
-                            });
-                          })
+                        value: state.autoGenerate,
+                        onChanged: qrCubit.setAutoRefresh,
+                      )
                     ],
                   ),
                 );
               } else if (state is QrLoading) {
                 return Center(
-                  child: Text('Loading...'),
+                  child: Container(
+                      height: 200, width: 200, child: Text('Loading...')),
                 );
               } else {
                 return Container();
@@ -82,11 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              context.read<QrCubit>().generateQrCode();
+              qrCubit.generateQrCode();
             },
           ),
         );
       },
     );
   }
+
+  QrCubit get qrCubit => context.read<QrCubit>();
 }

@@ -19,15 +19,24 @@ class ExpirationCountdown extends StatefulWidget {
 class _ExpirationCountdownState extends State<ExpirationCountdown> {
   StreamController<Duration> timeLeftController = StreamController();
   static const expirationDurationInSeconds = 10;
-
+  Timer _timer;
   @override
   void initState() {
     _initTimer();
     super.initState();
   }
 
+  @override
+  void didUpdateWidget(covariant ExpirationCountdown oldWidget) {
+    if (oldWidget.expiresAt != widget.expiresAt) {
+      _initTimer();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
   void _initTimer() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer?.cancel();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       final difference = widget.expiresAt.difference(DateTime.now());
       if (difference <= Duration.zero) {
         timer.cancel();
