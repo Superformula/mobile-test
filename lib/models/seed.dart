@@ -15,6 +15,10 @@ class Seed extends Equatable {
     return DateTime.now().isBefore(expiresAt);
   }
 
+  Duration timeUntilExpiration() {
+    return expiresAt.difference(DateTime.now());
+  }
+
   static Seed fromJson(Map json) {
     String expiresAtIso = json['expires_at'];
     return Seed(

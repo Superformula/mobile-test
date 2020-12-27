@@ -45,7 +45,9 @@ class QrRepository {
           .get(
             url,
           )
-          .then((response) => jsonDecode(response.data))
+          .then((response) =>
+              // HttpClientAdapter produces String data, so decode that
+              response is String ? jsonDecode(response.data) : response.data)
           .timeout(Duration(milliseconds: timeoutMs), onTimeout: () {});
     } on DioError catch (error) {
       return error;

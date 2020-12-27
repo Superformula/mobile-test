@@ -17,13 +17,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
+      initialRoute: Dashboard.route,
       onGenerateRoute: (settings) {
         var route;
         switch (settings.name) {
           case Dashboard.route:
             {
               route = Dashboard();
+              break;
+            }
+          case QrView.route:
+            {
+              route = QrView();
+              break;
             }
         }
         return MaterialPageRoute(

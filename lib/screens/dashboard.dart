@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:superformula_challenge/screens/screens.dart';
 
 class Dashboard extends StatelessWidget {
   static const route = '/';
@@ -30,6 +31,7 @@ class Dashboard extends StatelessWidget {
               Icons.qr_code,
               color: Colors.white,
             ),
+            onTap: () => Navigator.pushNamed(context, QrView.route),
           ),
           SpeedDialChild(
             label: 'Scan',
