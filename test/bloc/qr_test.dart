@@ -18,14 +18,14 @@ void main() async {
   );
 
   blocTest(
-    'QR bloc emits \'not loaded\' state upon unsuccessful API call',
+    'QR bloc emits \'error\' state upon unsuccessful API call',
     build: () => QrBloc(qrRepository: MockQrRepository(error: true)),
     act: (QrBloc qrBloc) async {
       await qrBloc.getSeed();
     },
     expect: [
       isA<SeedLoading>(),
-      isA<SeedNotLoaded>(),
+      isA<SeedError>(),
     ],
   );
 }

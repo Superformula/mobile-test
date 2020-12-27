@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:superformula_challenge/models/models.dart';
 import 'package:superformula_challenge/repositories/repositories.dart';
@@ -12,11 +13,19 @@ void main() async {
     expect(result is Seed, true);
   });
 
-  test('QR repository returns null upon timeout', () async {
+  test('QR repository returns error upon timeout', () async {
     final qrRepository =
         QrRepository(httpClientAdapter: MockAdapter(timeout: true));
 
     var result = await qrRepository.getSeed();
-    expect(result == null, true);
+    expect(result is DioError, true);
+  });
+
+  test('QR repository returns error if error response is received', () async {
+    final qrRepository =
+        QrRepository(httpClientAdapter: MockAdapter(timeout: true));
+
+    var result = await qrRepository.getSeed();
+    expect(result is DioError, true);
   });
 }

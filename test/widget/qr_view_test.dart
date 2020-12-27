@@ -39,4 +39,20 @@ void main() {
     expect(progressFinder, findsNothing);
     expect(qrFinder, findsOneWidget);
   });
+
+  testWidgets('QR view shows error dialog if error is emitted from QR bloc',
+      (tester) async {
+    await tester.pumpWidget(qrCodeScreen);
+
+    await tester.pumpAndSettle();
+
+    qrBloc.listen((qrState) async {
+      if (qrState is SeedError) {
+        // Error dialog should pop up
+        Finder dialogFinder = find.byType(AlertDialog);
+        expect(dialogFinder, findsOneWidget);
+      }
+    });
+    qrBloc.emit(SeedError(error: 'error'));
+  });
 }

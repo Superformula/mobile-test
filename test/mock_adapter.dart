@@ -6,9 +6,11 @@ import 'package:superformula_challenge/repositories/repositories.dart';
 
 class MockAdapter extends HttpClientAdapter {
   bool timeout;
+  bool error;
 
   MockAdapter({
     this.timeout = false,
+    this.error = false,
   });
 
   DefaultHttpClientAdapter _adapter = DefaultHttpClientAdapter();
@@ -31,6 +33,9 @@ class MockAdapter extends HttpClientAdapter {
     if (timeout) {
       await Future.delayed(
           Duration(milliseconds: QrRepository.timeoutMs + 100));
+    }
+    if (error) {
+      return ResponseBody.fromString('{}', 400);
     }
 
     // Success responses

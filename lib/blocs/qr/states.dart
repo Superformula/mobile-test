@@ -34,3 +34,17 @@ class SeedLoaded extends QrState {
     return 'QR seed loaded: $seed}';
   }
 }
+
+class SeedError extends QrState {
+  final String error;
+
+  SeedError({@required this.error});
+
+  @override
+  List<Object> get props => [error];
+
+  @override
+  String toString() {
+    return 'QR seed error: $error}';
+  }
+}

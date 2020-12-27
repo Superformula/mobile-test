@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:superformula_challenge/models/models.dart';
 import 'package:superformula_challenge/repositories/repositories.dart';
 
@@ -13,7 +14,7 @@ class MockQrRepository extends QrRepository {
   @override
   Future getSeed() async {
     if (error) {
-      return null;
+      return DioError(error: 'error');
     }
     return Seed(
       id: '24bc3',

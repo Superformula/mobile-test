@@ -41,26 +41,41 @@ class Dashboard extends StatelessWidget {
               color: Colors.white,
             ),
             onTap: () async {
-              var result = await BarcodeScanner.scan();
-              if (result != null) {
-                // Show a dialog with the QR code scan result
+              try {
+                var result = await BarcodeScanner.scan();
+                if (result != null && result.rawContent.isNotEmpty) {
+                  // Show a dialog with the QR code scan result
+                  showDialog(
+                    context: context,
+                    child: AlertDialog(
+                      title: Text(
+                        'Secret Word',
+                      ),
+                      content: Text(
+                        result.rawContent,
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text('Ok'),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              } catch (e) {
                 showDialog(
-                  context: context,
-                  child: AlertDialog(
-                    title: Text(
-                      'Secret Word',
-                    ),
-                    content: Text(
-                      result.rawContent,
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text('Ok'),
-                      )
-                    ],
-                  ),
-                );
+                    context: context,
+                    child: AlertDialog(
+                      title: Text('Error'),
+                      content: Text('An error occurred, please try again.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: Text('Ok'),
+                        ),
+                      ],
+                    ));
               }
               //Navigator.pushNamed(context, ScanView.route);
             },

@@ -47,8 +47,15 @@ class QrRepository {
           )
           .then((response) =>
               // HttpClientAdapter produces String data, so decode that
-              response is String ? jsonDecode(response.data) : response.data)
-          .timeout(Duration(milliseconds: timeoutMs), onTimeout: () {});
+              response.data is String
+                  ? jsonDecode(response.data)
+                  : response.data)
+          .timeout(Duration(milliseconds: timeoutMs), onTimeout: () {
+        return DioError(
+          error: 'Connection timed out',
+          type: DioErrorType.RECEIVE_TIMEOUT,
+        );
+      });
     } on DioError catch (error) {
       return error;
     }

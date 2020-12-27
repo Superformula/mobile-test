@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:superformula_challenge/blocs/qr/qr.dart';
@@ -16,6 +17,8 @@ class QrBloc extends Cubit<QrState> {
     var result = await qrRepository.getSeed();
     if (result is Seed) {
       emit(SeedLoaded(seed: result));
+    } else if (result is DioError) {
+      emit(SeedError(error: result.message));
     } else {
       emit(SeedNotLoaded());
     }

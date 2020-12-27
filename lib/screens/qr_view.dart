@@ -67,6 +67,19 @@ class _QrViewState extends State<QrView> {
               getNewSeed(context);
             }
           });
+        } else if (qrState is SeedError) {
+          showDialog(
+              context: context,
+              child: AlertDialog(
+                title: Text('Error'),
+                content: Text(qrState.error),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('Ok'),
+                  ),
+                ],
+              ));
         }
       },
       child: Scaffold(

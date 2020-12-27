@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
       },
       builder: (context, child) {
         return RepositoryProvider<QrRepository>(
-          lazy: false,
           create: (context) => QrRepository(),
           child: BlocProvider<QrBloc>(
             create: (context) =>
