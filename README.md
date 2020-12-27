@@ -7,12 +7,12 @@ QR Code is created with Flutter. Installation instructions for Flutter can be fo
 
 ### Running the project
 
-## API Server
+#### API Server
 1. Navigate to the `/api` directory.
 2. Run `npm install`. 
 3. Run `npm run start`. The API server should be running on port 3000.
 
-## Flutter App
+#### Flutter App
 1. Before running the mobile app, please ensure you are using the latest stable Flutter channel:
     ```
     flutter channel stable
