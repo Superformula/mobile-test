@@ -130,7 +130,7 @@ class _QrViewState extends State<QrView> {
 
   @override
   void dispose() {
-    _expirationTimer.cancel();
+    _expirationTimer?.cancel();
     super.dispose();
   }
 }

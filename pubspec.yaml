@@ -15,6 +15,7 @@ dependencies:
   dio: ^3.0.10
   flutter_speed_dial: ^1.2.5
   qr_flutter: ^3.2.0
+  barcode_scan: ^3.0.1
 
 dev_dependencies:
   flutter_test:

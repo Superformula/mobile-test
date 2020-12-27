@@ -1,3 +1,4 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -39,6 +40,30 @@ class Dashboard extends StatelessWidget {
               Icons.photo_camera,
               color: Colors.white,
             ),
+            onTap: () async {
+              var result = await BarcodeScanner.scan();
+              if (result != null) {
+                // Show a dialog with the QR code scan result
+                showDialog(
+                  context: context,
+                  child: AlertDialog(
+                    title: Text(
+                      'Secret Word',
+                    ),
+                    content: Text(
+                      result.rawContent,
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text('Ok'),
+                      )
+                    ],
+                  ),
+                );
+              }
+              //Navigator.pushNamed(context, ScanView.route);
+            },
           ),
         ],
         animatedIcon: AnimatedIcons.menu_close,
