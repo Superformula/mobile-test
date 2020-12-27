@@ -6,10 +6,20 @@ import 'mock_adapter.dart';
 
 class MockQrRepository extends QrRepository {
   final bool error;
+  final bool invalidSeed;
 
   MockQrRepository({
     this.error = false,
+    this.invalidSeed = false,
   }) : super(httpClientAdapter: MockAdapter());
+
+  @override
+  Future validateSeed({String seed}) async {
+    if (error) {
+      return DioError(error: 'error');
+    }
+    return !invalidSeed;
+  }
 
   @override
   Future getSeed() async {

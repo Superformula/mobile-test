@@ -6,9 +6,9 @@ import '../mock_repositories.dart';
 
 void main() async {
   blocTest(
-    'QR bloc emits Seed upon successful API call',
-    build: () => QrBloc(qrRepository: MockQrRepository()),
-    act: (QrBloc qrBloc) async {
+    'QR bloc emits Seed upon successful getSeed call',
+    build: () => GetSeedBloc(qrRepository: MockQrRepository()),
+    act: (GetSeedBloc qrBloc) async {
       await qrBloc.getSeed();
     },
     expect: [
@@ -18,9 +18,9 @@ void main() async {
   );
 
   blocTest(
-    'QR bloc emits \'error\' state upon unsuccessful API call',
-    build: () => QrBloc(qrRepository: MockQrRepository(error: true)),
-    act: (QrBloc qrBloc) async {
+    'QR bloc emits \'error\' state upon unsuccessful getSeed call',
+    build: () => GetSeedBloc(qrRepository: MockQrRepository(error: true)),
+    act: (GetSeedBloc qrBloc) async {
       await qrBloc.getSeed();
     },
     expect: [

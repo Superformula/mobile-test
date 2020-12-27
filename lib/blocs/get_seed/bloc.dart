@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:superformula_challenge/blocs/qr/qr.dart';
+import 'package:superformula_challenge/blocs/get_seed/get_seed.dart';
 import 'package:superformula_challenge/models/models.dart';
 import 'package:superformula_challenge/repositories/repositories.dart';
 
-class QrBloc extends Cubit<QrState> {
+class GetSeedBloc extends Cubit<GetSeedState> {
   final QrRepository qrRepository;
 
-  QrBloc({
+  GetSeedBloc({
     @required this.qrRepository,
   }) : super(SeedNotLoaded());
 

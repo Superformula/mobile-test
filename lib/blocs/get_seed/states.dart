@@ -2,26 +2,26 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:superformula_challenge/models/models.dart';
 
-class QrState extends Equatable {
+class GetSeedState extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-class SeedNotLoaded extends QrState {
+class SeedNotLoaded extends GetSeedState {
   @override
   String toString() {
     return 'QR seed not loaded';
   }
 }
 
-class SeedLoading extends QrState {
+class SeedLoading extends GetSeedState {
   @override
   String toString() {
     return 'QR seed loading...';
   }
 }
 
-class SeedLoaded extends QrState {
+class SeedLoaded extends GetSeedState {
   final Seed seed;
 
   SeedLoaded({@required this.seed});
@@ -35,7 +35,7 @@ class SeedLoaded extends QrState {
   }
 }
 
-class SeedError extends QrState {
+class SeedError extends GetSeedState {
   final String error;
 
   SeedError({@required this.error});

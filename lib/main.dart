@@ -40,9 +40,17 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return RepositoryProvider<QrRepository>(
           create: (context) => QrRepository(),
-          child: BlocProvider<QrBloc>(
-            create: (context) =>
-                QrBloc(qrRepository: context.read<QrRepository>()),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider<GetSeedBloc>(
+                create: (context) =>
+                    GetSeedBloc(qrRepository: context.read<QrRepository>()),
+              ),
+              BlocProvider<ValidateSeedBloc>(
+                create: (context) => ValidateSeedBloc(
+                    qrRepository: context.read<QrRepository>()),
+              ),
+            ],
             child: child,
           ),
         );

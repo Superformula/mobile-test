@@ -32,7 +32,7 @@ class _QrViewState extends State<QrView> {
     setState(() {
       _expirationText = '';
     });
-    context.read<QrBloc>().getSeed();
+    context.read<GetSeedBloc>().getSeed();
   }
 
   // Update the UI to display the time until expiration
@@ -47,7 +47,7 @@ class _QrViewState extends State<QrView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<QrBloc, QrState>(
+    return BlocListener<GetSeedBloc, GetSeedState>(
       listener: (context, qrState) {
         if (qrState is SeedLoaded) {
           // Cancel the previous timer if applicable
@@ -101,7 +101,7 @@ class _QrViewState extends State<QrView> {
           child: Container(
             padding: EdgeInsets.all(20),
             alignment: Alignment.center,
-            child: BlocBuilder<QrBloc, QrState>(
+            child: BlocBuilder<GetSeedBloc, GetSeedState>(
               builder: (context, qrState) {
                 if (qrState is SeedLoading) {
                   return CircularProgressIndicator(

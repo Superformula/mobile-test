@@ -11,13 +11,13 @@ import '../mock_repositories.dart';
 void main() {
   Widget qrCodeScreen;
   QrRepository qrRepository = MockQrRepository();
-  QrBloc qrBloc = QrBloc(qrRepository: qrRepository);
+  GetSeedBloc getSeedBloc = GetSeedBloc(qrRepository: qrRepository);
   setUp(() {
     qrCodeScreen = MaterialApp(
       home: QrView(),
       builder: (context, child) {
-        return BlocProvider<QrBloc>(
-          create: (context) => qrBloc,
+        return BlocProvider<GetSeedBloc>(
+          create: (context) => getSeedBloc,
           child: child,
         );
       },
@@ -27,7 +27,7 @@ void main() {
   testWidgets(
       'QR view displays loading indicator when seed is loading and QR code when seed is loaded',
       (tester) async {
-    qrBloc.getSeed();
+    getSeedBloc.getSeed();
     await tester.pumpWidget(qrCodeScreen);
 
     Finder progressFinder = find.byType(CircularProgressIndicator);
@@ -46,13 +46,13 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    qrBloc.listen((qrState) async {
+    getSeedBloc.listen((qrState) async {
       if (qrState is SeedError) {
         // Error dialog should pop up
         Finder dialogFinder = find.byType(AlertDialog);
         expect(dialogFinder, findsOneWidget);
       }
     });
-    qrBloc.emit(SeedError(error: 'error'));
+    getSeedBloc.emit(SeedError(error: 'error'));
   });
 }

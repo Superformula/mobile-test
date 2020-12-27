@@ -13,6 +13,13 @@ void main() async {
     expect(result is Seed, true);
   });
 
+  test('QR repository validates seed', () async {
+    final qrRepository = QrRepository(httpClientAdapter: MockAdapter());
+
+    var result = await qrRepository.validateSeed(seed: 'seed');
+    expect(result is bool, true);
+  });
+
   test('QR repository returns error upon timeout', () async {
     final qrRepository =
         QrRepository(httpClientAdapter: MockAdapter(timeout: true));
