@@ -38,7 +38,7 @@ void main() async {
     },
     expect: [
       isA<ValidatingSeed>(),
-      isA<SeedError>(),
+      isA<SeedValidationError>(),
     ],
   );
 }
