@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:hawk_fab_menu/hawk_fab_menu.dart';
-import 'package:mobile_test_app/qr_cubit/qr_cubit.dart';
 import 'package:mobile_test_app/repository/qr_repository.dart';
 import 'package:mobile_test_app/widget/qr_page.dart';
 import 'package:mobile_test_app/widget/scan_page.dart';
@@ -10,22 +9,22 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  final qrRepository = QrRepository();
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => QrCubit(repository: qrRepository),
-      child: MaterialApp(
-        title: 'QR',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: MyHomePage(title: 'QR'),
-        routes: {'qr': (context) => QRPage(), 'scan': (context) => ScanPage()},
+    return MaterialApp(
+      title: 'QR',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      home: MyHomePage(title: 'QR'),
+      routes: {'qr': (context) => QRPage(), 'scan': (context) => ScanPage()},
     );
   }
 }
@@ -40,8 +39,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool repoLoaded = false;
+  TextEditingController controller = TextEditingController(text: '192.168.');
+  @override
+  void initState() {
+    _showServerIPAddressDialog();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (!repoLoaded) {
+      return Container();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -74,5 +91,37 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
+  }
+
+  Future _showServerIPAddressDialog() async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      final ipAddress = await showGeneralDialog<String>(
+        context: context,
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return SimpleDialog(
+            title: Text('Server IP Address'),
+            contentPadding: const EdgeInsets.fromLTRB(24, 12, 24, 16),
+            children: [
+              TextField(
+                controller: controller,
+                decoration: InputDecoration(labelText: 'E.g.: 192.168.0.0'),
+              ),
+              FlatButton.icon(
+                onPressed: () {
+                  Navigator.pop(context, controller.text);
+                },
+                icon: Icon(Icons.check),
+                label: Text('Enter'),
+              )
+            ],
+          );
+        },
+      );
+
+      GetIt.I.registerSingleton(QrRepository(ipAddress.trim()));
+      setState(() {
+        repoLoaded = true;
+      });
+    });
   }
 }

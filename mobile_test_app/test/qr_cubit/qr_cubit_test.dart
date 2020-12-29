@@ -30,7 +30,7 @@ void main() {
       cubit.setAutoRefresh(true);
     },
     expect: [
-      QrLoading(true),
+      QrLoading(autoGenerate: true),
       QrGenerated(qrCode: testQrCode, autoGenerate: true),
       QrGenerated(qrCode: testQrCode, autoGenerate: false),
       QrGenerated(qrCode: testQrCode, autoGenerate: true),
