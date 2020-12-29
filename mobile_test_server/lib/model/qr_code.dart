@@ -1,9 +1,6 @@
 import 'package:meta/meta.dart';
 
 class QrCode {
-  final String code;
-  final DateTime expiresAt;
-
   QrCode({
     @required this.code,
     @required this.expiresAt,
@@ -18,6 +15,9 @@ class QrCode {
         expiresAt:
             expiresAt ?? DateTime.now().add(const Duration(seconds: 10)));
   }
+
+  final String code;
+  final DateTime expiresAt;
 
   Map<String, String> toJson() =>
       {'seed': code, 'expires_at': expiresAt.toIso8601String()};

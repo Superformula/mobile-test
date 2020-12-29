@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mobile_test_app/qr_cubit/qr_cubit.dart';
+import 'package:mobile_test_app/cubits/qr_cubit/qr_cubit.dart';
 import 'package:mobile_test_app/repository/qr_repository.dart';
 import 'package:mobile_test_app/widget/expiration_countdown.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -44,7 +44,7 @@ class _QRPageState extends State<QRPage> {
                   Switch(
                     value: state.autoGenerate,
                     onChanged: qrCubit.setAutoRefresh,
-                  ), 
+                  ),
                   Text('Auto refresh')
                 ],
               ),

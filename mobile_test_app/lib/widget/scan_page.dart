@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobile_test_app/repository/qr_repository.dart';
-import 'package:mobile_test_app/scan_cubit/scan_cubit.dart';
+import 'package:mobile_test_app/cubits/scan_cubit/scan_cubit.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScanPage extends StatefulWidget {
@@ -20,11 +20,12 @@ class _ScanPageState extends State<ScanPage> {
   ScanCubit scanCubit;
 
   QRViewController controller;
-@override
+  @override
   void initState() {
-    scanCubit  = ScanCubit(repository: GetIt.I<QrRepository>());
+    scanCubit = ScanCubit(repository: GetIt.I<QrRepository>());
     super.initState();
   }
+
   @override
   void reassemble() {
     super.reassemble();

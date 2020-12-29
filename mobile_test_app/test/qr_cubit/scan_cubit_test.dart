@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_test_app/repository/qr_repository.dart';
-import 'package:mobile_test_app/scan_cubit/scan_cubit.dart';
+import 'package:mobile_test_app/cubits/scan_cubit/scan_cubit.dart';
 import 'package:mockito/mockito.dart';
 
 void main() {
