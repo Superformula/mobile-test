@@ -20,6 +20,7 @@ class _ExpirationCountdownState extends State<ExpirationCountdown> {
   StreamController<Duration> timeLeftController = StreamController();
   static const expirationDurationInSeconds = 10;
   Timer _timer;
+
   @override
   void initState() {
     _initTimer();

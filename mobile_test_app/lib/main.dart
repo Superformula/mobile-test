@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_test_app/cubit/qr_cubit.dart';
+import 'package:hawk_fab_menu/hawk_fab_menu.dart';
+import 'package:mobile_test_app/qr_cubit/qr_cubit.dart';
 import 'package:mobile_test_app/repository/qr_repository.dart';
-import 'package:mobile_test_app/widget/expiration_countdown.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:mobile_test_app/widget/qr_page.dart';
+import 'package:mobile_test_app/widget/scan_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,15 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'QR',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: BlocProvider(
-        create: (context) => QrCubit(repository: qrRepository),
-        child: MyHomePage(title: 'QR'),
+    return BlocProvider(
+      create: (context) => QrCubit(repository: qrRepository),
+      child: MaterialApp(
+        title: 'QR',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: MyHomePage(title: 'QR'),
+        routes: {'qr': (context) => QRPage(), 'scan': (context) => ScanPage()},
       ),
     );
   }
@@ -38,58 +40,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QrCubit, QrState>(
-      builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
-          body: Builder(
-            builder: (BuildContext context) {
-              if (state is QrGenerated) {
-                return Center(
-                  child: Column(
-                    children: [
-                      QrImage(
-                        data: state.qrCode.code,
-                        version: QrVersions.auto,
-                        size: 200.0,
-                      ),
-                      ExpirationCountdown(
-                        expiresAt: state.qrCode.expiresAt,
-                        onExpiration: () async {
-                       
-                        },
-                      ),
-                      Switch(
-                        value: state.autoGenerate,
-                        onChanged: qrCubit.setAutoRefresh,
-                      )
-                    ],
-                  ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: HawkFabMenu(
+        body: Builder(
+          builder: (BuildContext context) {
+            return Container();
+          },
+        ),
+        items: [
+          HawkFabMenuItem(
+              label: 'Scan',
+              ontap: () {
+                Navigator.pushNamed(
+                  context,
+                  'scan',
                 );
-              } else if (state is QrLoading) {
-                return Center(
-                  child: Container(
-                      height: 200, width: 200, child: Text('Loading...')),
+              },
+              icon: Icon(Icons.camera_alt_outlined)),
+          HawkFabMenuItem(
+              label: 'QR Code',
+              ontap: () {
+                Navigator.pushNamed(
+                  context,
+                  'qr',
                 );
-              } else {
-                return Container();
-              }
-            },
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              qrCubit.generateQrCode();
-            },
-          ),
-        );
-      },
+              },
+              icon: Icon(Icons.qr_code_outlined)),
+        ],
+      ),
     );
   }
-
-  QrCubit get qrCubit => context.read<QrCubit>();
 }

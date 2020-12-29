@@ -46,7 +46,7 @@ class MobileTestChannel extends ApplicationChannel {
     if (testMode) {
       return Response.ok({'isValid': true, 'testMode': true});
     }
-    
+
     if (code == null) {
       return Response.badRequest(body: {'code': 'Missing "code" parameter'});
     }
