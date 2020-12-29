@@ -9,7 +9,11 @@ const expirationDurationInSeconds = 10;
 const bool testMode = true;
 
 class MobileTestChannel extends ApplicationChannel {
-  final _database = {}; // a simulated database for QR storage
+  final _database = {
+    if (testMode)
+      'http://en.m.wikipedia.org':
+          QrCode(code: 'http://en.m.wikipedia.org', expiresAt: DateTime.now())
+  }; // a simulated database for QR storage
   @override
   Future prepare() async {
     logger.onRecord.listen(
@@ -42,11 +46,8 @@ class MobileTestChannel extends ApplicationChannel {
   }
 
   FutureOr<RequestOrResponse> _validate(Request request) async {
-    final code = await request.body.decode();
-    if (testMode) {
-      return Response.ok({'isValid': true, 'testMode': true});
-    }
-
+    final code = request.raw.requestedUri.queryParameters['code'];
+  
     if (code == null) {
       return Response.badRequest(body: {'code': 'Missing "code" parameter'});
     }
