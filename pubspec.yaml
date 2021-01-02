@@ -1,0 +1,28 @@
+name: qr_code_test
+description: Superformula QR test interview
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.11.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.1
+  flutter_svg: ^0.19.2+1
+  flutter_bloc: ^6.1.1
+  equatable: ^1.2.5
+  http: ^0.12.2
+  flutter_qr_bar_scanner: ^1.0.2
+  qr_flutter: ^3.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
