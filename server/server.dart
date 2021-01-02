@@ -37,7 +37,7 @@ void handleGet(HttpRequest request) async {
   if (request.uri.path == "/seed") {
     // Getting seed and time
     final seed = generateSeed();
-    final expiry = DateTime.now().add(const Duration(seconds: 10));
+    final expiry = DateTime.now().add(const Duration(seconds: 15));
 
     // Generating the JSON response
     final jsonData = {
