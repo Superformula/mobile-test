@@ -7,8 +7,23 @@ class ValidationBloc extends Bloc<String, ValidationState> {
 
   /// Checks whether the given scanned value is valid or not.
   ///
-  /// This is a simple check just for the sake of the example.
-  bool isValid(String value) => value.length <= 32;
+  /// This is a simple check just for the sake of the example. Actually, this
+  /// method could contain a more elaborated validation logic, such as:
+  ///
+  /// ```dart
+  /// bool isValid(String value) async {
+  ///   if (value.length > 32) {
+  ///     return false;
+  ///   }
+  ///
+  ///   final client = SomeHttpClient();
+  ///   return await client.validate(value);
+  /// }
+  /// ```
+  ///
+  /// Regardless the implementation, the method should return a simple `bool`
+  /// value so that `isValid` can be easily put inside an `if` statement.
+  bool isValid(String value) => value.isNotEmpty && value.length <= 32;
 
   @override
   Stream<ValidationState> mapEventToState(String event) async* {
