@@ -14,6 +14,7 @@ class QRFetchRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("QR Code"),
+        centerTitle: true,
       ),
       body: BlocConsumer<QRFetchBloc, QRFetchState>(
         listener: (context, state) {

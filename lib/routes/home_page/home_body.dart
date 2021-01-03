@@ -39,6 +39,7 @@ class HomeBody extends StatelessWidget {
         children: [
           // Button needed to fetch a QR code
           RaisedButton(
+            key: Key("home_fetch_qr_button"),
             child: const IconAndText(
               icon: Icon(Icons.cloud_download,
                 color: Colors.white,
@@ -54,6 +55,7 @@ class HomeBody extends StatelessWidget {
 
           // Button needed to scan a QR code
           RaisedButton(
+            key: Key("home_scan_qr_button"),
             child: const IconAndText(
               icon: Icon(Icons.qr_code_scanner,
                 color: Colors.white,

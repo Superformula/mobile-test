@@ -13,9 +13,6 @@ abstract class Configurations {
   /// A [Dio] instance to be used to make HTTP requests
   static final dioHttpClientQR = Dio(BaseOptions(
     baseUrl: baseHttpEndpointAndroid,
-    connectTimeout: 3000,
-    receiveTimeout: 3000,
-    sendTimeout: 3000,
   ));
 
 }

@@ -21,6 +21,7 @@ class _QRScanRouteState extends State<QRScanRoute> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("QR Scan"),
+        centerTitle: true,
       ),
       body: BlocListener<ValidationBloc, ValidationState>(
         listener: (context, state) {

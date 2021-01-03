@@ -14,6 +14,7 @@ class QRValidationRoute extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Validation state"),
+        centerTitle: true,
       ),
       body: Center(
         child: BlocBuilder<ValidationBloc, ValidationState>(
