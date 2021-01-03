@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_test/blocs/qrfetch/qrfetch.dart';
 
@@ -15,7 +16,7 @@ class MockQRRepository extends QRRepository {
   });
 
   @override
-  Future<Seed> getData() async {
+  Future<Seed> getData({@required Dio dio}) async {
     // Fake waiting time...
     await Future.delayed(const Duration(seconds: 1));
 

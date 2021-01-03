@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_test/blocs/qrfetch/qrfetch.dart';
+import 'package:qr_code_test/configs/configurations.dart';
 
 /// Bloc that handles the generation of a QR code starting from a string obtained
 /// via HTTP request.
@@ -29,7 +30,9 @@ class QRFetchBloc extends Bloc<QRFetchEvent, QRFetchState> {
       await Future.delayed(const Duration(seconds: 1));
 
       // Getting the 'Seed' instance
-      final data = await repository.getData();
+      final data = await repository.getData(
+        dio: Configurations.dioHttpClientQR
+      );
 
       // Calculating the total time left
       final expireDate = DateTime.parse(data.expiryDate);
@@ -41,7 +44,7 @@ class QRFetchBloc extends Bloc<QRFetchEvent, QRFetchState> {
         seed: data,
         timeLeft: diff
       );
-    } on Exception catch (e) {
+    } on Exception {
       yield const QRError();
     }
   }
