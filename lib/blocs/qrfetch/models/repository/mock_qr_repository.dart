@@ -2,7 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_test/blocs/qrfetch/qrfetch.dart';
 
-/// A fake HTTP repository that returns a mock [Seed] object
+/// A fake HTTP repository that returns a mock [Seed] object.
+///
+/// This is used, for example, during tests on real devices when the internet
+/// connection is not available
 class MockQRRepository extends QRRepository {
   /// The generated seed
   final String seed;

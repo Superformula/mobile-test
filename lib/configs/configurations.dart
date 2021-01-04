@@ -16,6 +16,6 @@ abstract class Configurations {
   ));
 
   /// The width of the sliding menu which appears to the right of the screen
-  static const slidingMenuWidth = 180.0;
+  static const slidingMenuWidth = 190.0;
 
 }

@@ -27,6 +27,8 @@ class QRFetchBloc extends Bloc<QRFetchEvent, QRFetchState> {
     try {
       // Adding a 'fake' wait so that a loading spinner appears on the UI. This
       // is just for this demo interview to show the loader!
+      //
+      // Without this the loading spinner doesn't always appear.
       await Future.delayed(const Duration(seconds: 1));
 
       // Getting the 'Seed' instance
