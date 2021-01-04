@@ -33,39 +33,37 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Button needed to fetch a QR code
-          RaisedButton(
-            key: Key("home_fetch_qr_button"),
-            child: const IconAndText(
-              icon: Icon(Icons.cloud_download,
-                color: Colors.white,
-              ),
-              text: "Fetch QR",
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Button needed to fetch a QR code
+        RaisedButton(
+          key: Key("home_fetch_qr_button"),
+          child: const IconAndText(
+            icon: Icon(Icons.cloud_download,
+              color: Colors.white,
             ),
-            onPressed: () => _fetchQR(context),
+            text: "Fetch QR",
           ),
+          onPressed: () => _fetchQR(context),
+        ),
 
-          const SizedBox(
-            height: 35,
-          ),
+        const SizedBox(
+          height: 15,
+        ),
 
-          // Button needed to scan a QR code
-          RaisedButton(
-            key: Key("home_scan_qr_button"),
-            child: const IconAndText(
-              icon: Icon(Icons.qr_code_scanner,
-                color: Colors.white,
-              ),
-              text: "Scan QR",
+        // Button needed to scan a QR code
+        RaisedButton(
+          key: Key("home_scan_qr_button"),
+          child: const IconAndText(
+            icon: Icon(Icons.qr_code_scanner,
+              color: Colors.white,
             ),
-            onPressed: () => _scanQR(context),
+            text: "Scan QR",
           ),
-        ],
-      ),
+          onPressed: () => _scanQR(context),
+        ),
+      ],
     );
   }
 }

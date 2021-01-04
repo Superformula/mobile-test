@@ -7,5 +7,7 @@ void main() {
     expect(Configurations.baseHttpEndpoint, isNotEmpty);
     expect(Configurations.baseHttpEndpointAndroid, isNotEmpty);
     expect(Configurations.dioHttpClientQR, isA<Dio>());
+    expect(Configurations.slidingMenuWidth, isA<num>());
+    expect(Configurations.slidingMenuWidth, isPositive);
   });
 }

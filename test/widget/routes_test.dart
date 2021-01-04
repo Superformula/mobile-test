@@ -1,7 +1,9 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:qr_code_test/configs/configurations.dart';
 import 'package:qr_code_test/configs/routes.dart';
 import 'package:qr_code_test/routes/home_page.dart';
 
@@ -12,6 +14,7 @@ void main() {
 
   CountdownBloc countdownBloc;
   QRFetchBloc qrFetchBloc;
+  SliderBloc sliderBloc;
   ValidationBloc validationBloc;
 
   setUp(() {
@@ -19,6 +22,7 @@ void main() {
 
     countdownBloc = MockCountdownBloc();
     qrFetchBloc = MockQRFetchBloc();
+    sliderBloc = MockSliderBloc();
     validationBloc = MockValidationBloc();
   });
 
@@ -27,6 +31,7 @@ void main() {
       providers: [
         BlocProvider.value(value: countdownBloc),
         BlocProvider.value(value: qrFetchBloc),
+        BlocProvider.value(value: sliderBloc),
         BlocProvider.value(value: validationBloc),
       ],
       child: MaterialApp(
@@ -43,6 +48,8 @@ void main() {
 
   group("Testing the app's routes", () {
     testWidgets("Testing the routing on the 'Fetch' page", (tester) async {
+      when(sliderBloc.state).thenReturn(16);
+
       await _buildHome(tester);
       await tester.tap(find.byKey(Key("home_fetch_qr_button")));
 
@@ -50,6 +57,8 @@ void main() {
     });
 
     testWidgets("Testing the routing on the 'Scan' page", (tester) async {
+      when(sliderBloc.state).thenReturn(16);
+      
       await _buildHome(tester);
       await tester.tap(find.byKey(Key("home_scan_qr_button")));
 

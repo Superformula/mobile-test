@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_test/blocs/countdown/countdown.dart';
 import 'package:qr_code_test/blocs/qrfetch/qrfetch.dart';
+import 'package:qr_code_test/blocs/slider/slider.dart';
 import 'package:qr_code_test/blocs/validation/validation.dart';
+import 'package:qr_code_test/configs/configurations.dart';
 import 'package:qr_code_test/configs/routes.dart';
 
 void main() {
@@ -10,7 +12,7 @@ void main() {
   runApp(const SuperformulaQR());
 }
 
-/// The root widget of the app
+/// The root widget of the app.
 class SuperformulaQR extends StatelessWidget {
   const SuperformulaQR();
 
@@ -36,6 +38,13 @@ class SuperformulaQR extends StatelessWidget {
         BlocProvider<ValidationBloc>(
           create: (_) => ValidationBloc(),
         ),
+
+        // Shows and hides a menu
+        BlocProvider<SliderBloc>(
+          create: (_) => SliderBloc(
+            menuWidth: Configurations.slidingMenuWidth,
+          ),
+        )
       ],
       child: MaterialApp(
         onGenerateRoute: RouteGenerator.generateRoute,
