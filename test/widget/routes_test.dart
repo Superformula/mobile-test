@@ -58,7 +58,7 @@ void main() {
 
     testWidgets("Testing the routing on the 'Scan' page", (tester) async {
       when(sliderBloc.state).thenReturn(16);
-      
+
       await _buildHome(tester);
       await tester.tap(find.byKey(Key("home_scan_qr_button")));
 

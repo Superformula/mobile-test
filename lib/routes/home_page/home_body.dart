@@ -1,23 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_test/blocs/qrfetch/qrfetch.dart';
+import 'package:qr_code_test/blocs/slider/slider.dart';
 import 'package:qr_code_test/configs/routes.dart';
 import 'package:qr_code_test/routes/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_test/routes/home_page/icon_and_text.dart';
 
-/// Contains the body of the [HomePage] route, which is only 2 buttons at the
-/// center of the screen:
+/// Contains the sliding menu of the [HomePage] route, which is only 2 buttons
+/// showing and hiding from the right of the screen:
 ///
-///  - The first button opens a new route which fetches a QR code from a server
-///  - The second button opens a new route that
+///  - The first button opens a new route which fetches a QR code from a server.
+///  - The second button opens a new route with a QR scanner widget.
 class HomeBody extends StatelessWidget {
   const HomeBody();
 
   /// Opens a new route ([RouteGenerator.fetchQR]) and pushes a new event to the
   /// [QRFetchBloc] to retrieve the data
   void _fetchQR(BuildContext context) {
-    // Emit the event
+    // Close the menu
+    context.read<SliderBloc>().add(const ToggleSlider());
+
+    // Fetch a new QR code
     context.read<QRFetchBloc>().add(const FetchNewQR());
 
     // Go to the other page
@@ -27,6 +31,9 @@ class HomeBody extends StatelessWidget {
   /// Opens a new route ([RouteGenerator.scanQR]) to scan a QR code with the
   /// camera
   void _scanQR(BuildContext context) {
+    // Close the menu
+    context.read<SliderBloc>().add(const ToggleSlider());
+
     // Go to the other page
     Navigator.of(context).pushNamed(RouteGenerator.scanQR);
   }

@@ -1,29 +1,21 @@
-# Superformula Mobile Developer Coding Test
+# Running the app
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+The server is located in the `server/` directory with has a `README.md` with the instructions needed to run the API. Once the server has been run with `dart run server.dart`, you can do the following:
 
-## Requirements
+ 1. Start the app (if you haven't already)
+ 2. Tap the FAB on the bottom-right corner and pick the first option (Fetch QR)
+ 3. You'll see that the app fetches a seed and generates a QR. After 15 seconds, the QR code is automatically refreshed
 
-There is only one test here currently, please review and get back to us.
+If you stop the server or if you don't run it at all, a friendly error message appears. There's also a "Retry" button so you can try to turn off the server, see the error, turn it on again and retry. For the QR scan part instead:
 
-## What We Care About
+ 1. Start the app (if you haven't already) or just go back
+ 2. Tap the FAB on the bottom-right corner and pick the second option (Scan QR)
+ 3. Scan any QR code representing a string of lenght 32 (or shorter) to see a "Validation success" message
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+For sake of simplicity, a valid QR code is any string whose length is <= 32 but of course a more complex logic can be implemented. You'll also find more technical details in the inline code documentation.
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+# Notes
 
-Here's what you should strive for:
-
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
+ - I have tested the app on an Android emulator and a physical Android device (Samsung Galaxy Tab A).
+ - I don't have an iPhone or an iPad to make tests there as well.
+ - The code is entirely documented so you may find more specific info directly in the `.dart` files.
