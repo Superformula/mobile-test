@@ -27,3 +27,6 @@ Fork this repo and send us a pull request when you think you are done. There is 
 > What if I have a question?
 
 Just create a new issue in this repo and we will respond and get back to you quickly.
+
+## Review
+The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions. 
