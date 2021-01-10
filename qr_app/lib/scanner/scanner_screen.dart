@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_app/scanner/scanner_camera.dart';
 
 class ScannerScreen extends StatelessWidget {
   final String title;
@@ -11,7 +12,7 @@ class ScannerScreen extends StatelessWidget {
         title: Text(title),
         centerTitle: true,
       ),
-      body: Text('scanner'),
+      body: ScannerCamera(),
     );
   }
 }
