@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qr_app/qr/qr_timer.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class QrScreen extends StatelessWidget {
   final String title;
@@ -11,7 +13,25 @@ class QrScreen extends StatelessWidget {
         title: Text(title),
         centerTitle: true,
       ),
-      body: Text('qr'),
+      body: Container(
+          child: Column(
+        children: [
+          Expanded(
+              flex: 4,
+              child: Center(
+                  child: QrImage(
+                data: 'This is a simple QR code',
+                version: QrVersions.auto,
+                size: 320,
+                gapless: false,
+              ))),
+          Expanded(
+              flex: 1,
+              child: QrTimer(
+                duration: Duration(seconds: 10),
+              ))
+        ],
+      )),
     );
   }
 }
