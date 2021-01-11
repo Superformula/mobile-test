@@ -7,9 +7,11 @@ import 'package:http/http.dart' as http;
 class QrService extends BaseService {
   Future<QrModel> fetchQrData() async {
     http.Response response;
-    String host = await getHost();
+    
+    final hostAddress = await host;
+    
     try {
-      response = await http.get('$host:3000/seed');
+      response = await http.get('$hostAddress:3000/seed');
       if (response.statusCode == 200) {
         final r = QrModel.fromJson(jsonDecode(response.body));
         return r;
@@ -25,9 +27,9 @@ class QrService extends BaseService {
 
   Future<String> validateQrData(String seed) async {
     http.Response response;
-    String host = await getHost();
+    String hostAddress = await host;
     try {
-      response = await http.post('$host:3000/validate', body: {'seed': seed} );
+      response = await http.post('$hostAddress:3000/validate', body: {'seed': seed} );
       if (response.statusCode == 200) {
         final result = jsonDecode(response.body);
         return result['status'];

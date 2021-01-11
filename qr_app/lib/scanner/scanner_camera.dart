@@ -11,9 +11,9 @@ class ScannerCamera extends StatefulWidget {
 }
 
 class _ScannerCameraState extends State<ScannerCamera> {
-  Barcode result;
-  QRViewController controller;
-  final GlobalKey qrKey = GlobalKey();
+  Barcode _result;
+  QRViewController _controller;
+  final GlobalKey _qrKey = GlobalKey();
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -21,9 +21,9 @@ class _ScannerCameraState extends State<ScannerCamera> {
   void reassemble() {
     super.reassemble();
     if (Platform.isAndroid) {
-      controller.pauseCamera();
+      _controller.pauseCamera();
     } else if (Platform.isIOS) {
-      controller.resumeCamera();
+      _controller.resumeCamera();
     }
   }
 
@@ -42,9 +42,9 @@ class _ScannerCameraState extends State<ScannerCamera> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      result != null
+                      _result != null
                           ?
-                           ScannerResult(scanResult: result.code,)
+                           ScannerResult(scanResult: _result.code,)
                           // Container(
                           //     child: CircleAvatar(
                           //     child: Icon(Icons.check),
@@ -66,7 +66,7 @@ class _ScannerCameraState extends State<ScannerCamera> {
 
   Widget _buildQrView(BuildContext context) {
     return QRView(
-      key: qrKey,
+      key: _qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
         borderColor: Colors.red,
@@ -79,20 +79,20 @@ class _ScannerCameraState extends State<ScannerCamera> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-    this.controller = controller;
+    this._controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         HapticFeedback.vibrate();
         controller?.pauseCamera();
         controller?.dispose();
-        result = scanData;
+        _result = scanData;
       });
     });
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 }

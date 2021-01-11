@@ -4,7 +4,6 @@ import 'package:qr_app/qr/qr_screen.dart';
 import 'package:qr_app/scanner/scanner_screen.dart';
 
 class Routes with RouteNames {
-
   // This method below will return the appropriate MaterialPageRoute depending on the
   // value in the setting.name.
   // This method will be called from the main MaterialApp onGenerateRoute
@@ -54,12 +53,11 @@ class Routes with RouteNames {
           ),
         );
         break;
-
-        break;
     }
     return route;
   }
 }
+
 //
 // Below are the Route names that will be used for the Navigator.
 // For example: Navigator.pushNamed(context, RouteNames.Home, arguments: {'arg1': 'value1'});
