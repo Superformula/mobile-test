@@ -11,7 +11,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": "8"
+    "node": "12"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

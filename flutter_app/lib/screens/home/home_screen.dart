@@ -2,6 +2,7 @@ import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/core/images.dart';
 import 'package:flutter_app/extensions/string_extension.dart';
+import 'package:flutter_app/core/router.dart' as Router;
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -52,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen>
           titleStyle: theme.textTheme.bodyText1.copyWith(color: Colors.white),
           onPress: () {
             _animationController.reverse();
+            Navigator.pushNamed(context, Router.GenerateQRCodeScreenRoute);
           },
         ),
       ],

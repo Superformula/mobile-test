@@ -1,7 +1,7 @@
 {
   "parserOptions": {
     // Required for certain syntax usages
-    "ecmaVersion": 2017
+    "ecmaVersion": 2018
   },
   "plugins": [
     "promise"
@@ -113,9 +113,6 @@
     // Return inside each then() to create readable and reusable Promise chains.
     // Forces developers to return console logs and http calls in promises. 
     "promise/always-return": 2,
-
-    //Enforces the use of catch() on un-returned promises
-    "promise/catch-or-return": 2,
 
     // Warn against nested then() or catch() statements
     "promise/no-nesting": 1

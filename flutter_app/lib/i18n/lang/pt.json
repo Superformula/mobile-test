@@ -2,5 +2,12 @@
   "home_screen_title": "Super Scanner",
   "home_screen_message": "Toque no botão abaixo para começar!",
   "home_screen_scan": "Escanear QR Code",
-  "home_screen_generate": "Gerar QR Code"
+  "home_screen_generate": "Gerar QR Code",
+
+  "generate_screen_title": "Gerar QR Code",
+  "generate_screen_message": "Insira algum texto abaixo para gerar o QR Code.",
+  "generate_screen_text": "Texto",
+  "generate_screen_required": "Campo obrigatório.",
+  "generate_screen_generate": "Gerar",
+  "generate_screen_clear": "Limpar"
 }

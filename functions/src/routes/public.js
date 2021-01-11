@@ -9,8 +9,8 @@ module.exports = app => {
   //returns a seed that can be used to generate a QR code
   app.get(ROUTES.seed, async (req, res) => {
     try {
-      const name = req.query.name
-      const seed = await generateQRCodeSeed(name)
+      const text = req.query.text
+      const seed = await generateQRCodeSeed(text)
       const expires_at = generateExpirationTime()
       const response = {
         seed,
@@ -29,7 +29,8 @@ module.exports = app => {
 const generateQRCodeSeed = async text => {
   try {
     //TODO base64 is not the required format
-    return await QRCode.toDataURL(text);
+    const dataUrl = await QRCode.toDataURL(text)
+    return dataUrl.replace('data:image/png;base64,', '')
   } catch(error) {
     throw error
   }
