@@ -1,0 +1,11 @@
+{
+  "name": "qr-app-server",
+  "version": "1.0.0",
+  "description": "qr app api",
+  "main": "index.js",
+  "scripts": {
+    "test": "qrapp"
+  },
+  "author": "Fenny V",
+  "license": "ISC"
+}
