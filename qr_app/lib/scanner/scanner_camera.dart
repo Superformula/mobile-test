@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:qr_app/scanner/scanner_result.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScannerCamera extends StatefulWidget {
@@ -10,7 +11,6 @@ class ScannerCamera extends StatefulWidget {
 }
 
 class _ScannerCameraState extends State<ScannerCamera> {
- 
   Barcode result;
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey();
@@ -38,30 +38,31 @@ class _ScannerCameraState extends State<ScannerCamera> {
             child: FittedBox(
               fit: BoxFit.contain,
               child: Container(
-                margin: EdgeInsets.all(8),
-                child:  Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                 result != null ? 
-                    Container(child: CircleAvatar(child: Icon(Icons.check),)) 
-                    // Text(
-                    //     'Barcode Type: ${result.format.toString()}   Data: ${result.code}'))
-                  :
-                  Container(
-                    
-                    child: 
-                    Text('Scan a code',)),
-                
-                ],
-              )),
+                  margin: EdgeInsets.all(8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      result != null
+                          ?
+                           ScannerResult(scanResult: result.code,)
+                          // Container(
+                          //     child: CircleAvatar(
+                          //     child: Icon(Icons.check),
+                          //   ))
+                          // Text(
+                          //     'Barcode Type: ${result.format.toString()}   Data: ${result.code}'))
+                          : Container(
+                              child: Text(
+                              'Scan a code',
+                            )),
+                    ],
+                  )),
             ),
           )
         ],
       ),
     );
   }
-
-  
 
   Widget _buildQrView(BuildContext context) {
     return QRView(
@@ -75,16 +76,16 @@ class _ScannerCameraState extends State<ScannerCamera> {
         //cutOutSize: scanArea,
       ),
     );
-    
   }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        result = scanData;
         HapticFeedback.vibrate();
         controller?.pauseCamera();
+        controller?.dispose();
+        result = scanData;
       });
     });
   }
