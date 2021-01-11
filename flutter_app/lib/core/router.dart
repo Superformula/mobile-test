@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/generate_qr_code/generate_qr_code_screen.dart';
 import 'package:flutter_app/screens/home/home_screen.dart';
+import 'package:flutter_app/screens/scan_qr_code/scan_qr_code_screen.dart';
 
 const String GenerateQRCodeScreenRoute = 'generate';
 const String ScanQRCodeScreenRoute = 'scan';
@@ -13,7 +14,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case GenerateQRCodeScreenRoute:
       return MaterialPageRoute(builder: (context) => GenerateQRCodeScreen.create());
     case ScanQRCodeScreenRoute:
-      return MaterialPageRoute(builder: (context) => HomeScreen());
+      return MaterialPageRoute(builder: (context) => ScanQRCodeScreen.create());
     default:
       return MaterialPageRoute(builder: (context) => HomeScreen());
   }

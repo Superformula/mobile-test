@@ -9,5 +9,10 @@
   "generate_screen_text": "Text",
   "generate_screen_required": "Required field.",
   "generate_screen_generate": "Generate",
-  "generate_screen_clear": "Clear"
+  "generate_screen_clear": "Clear",
+
+  "scan_screen_title": "Scan QR Code",
+  "scan_screen_message": "Tap the button below to scan a QR Code.",
+  "scan_screen_scan": "Scan",
+  "scan_screen_clear": "Clear"
 }

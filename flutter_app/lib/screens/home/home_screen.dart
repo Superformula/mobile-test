@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
           titleStyle: theme.textTheme.bodyText1.copyWith(color: Colors.white),
           onPress: () {
             _animationController.reverse();
+            Navigator.pushNamed(context, Router.ScanQRCodeScreenRoute);
           },
         ),
         Bubble(

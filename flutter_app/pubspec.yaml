@@ -16,10 +16,18 @@ dependencies:
   http: ^0.12.2
   cupertino_icons: ^1.0.0
   floating_action_bubble: 1.0.9
+  flutter_barcode_scanner: ^1.0.1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.8.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"
 
 flutter:
   uses-material-design: true
