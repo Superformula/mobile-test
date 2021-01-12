@@ -27,3 +27,6 @@ Note: This project has an accompanying server project. The server is a nodejs ap
 3. On device 1, navigate to the QR Code screen.
 4. On device 2, navigate to the Scan screen and scan the qr code on device 1.  
 
+## Limitations
+
+1. This is a demo app and the nodejs server has limited capability. If this app and server are executed on another machine, it has to use emulators or simulators for demo and not use phisical devices.     
