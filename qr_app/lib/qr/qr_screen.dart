@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:qr_app/data/models/qr_model.dart';
+import 'package:http/io_client.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_app/data/models/qr_model.dart';
 import 'package:qr_app/data/services/qr_service.dart';
 import 'package:qr_app/qr/qr_timer.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+//
+// Qr screen fetches a random qr code from a server and displays an image
+// The server also returns an expiration time
+//  
 class QrScreen extends StatefulWidget {
   final String title;
 
@@ -18,9 +23,9 @@ class _QrScreenState extends State<QrScreen> {
   Future<QrModel> qrModelFuture;
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
-    qrModelFuture = QrService().fetchQrData();
+    qrModelFuture = QrService().fetchQrData(IOClient());
   }
 
   @override
@@ -43,9 +48,10 @@ class _QrScreenState extends State<QrScreen> {
               return Container();
             }
             if (asyncsnapshot.hasError) {
+              final dynamic e = asyncsnapshot.error;
               return Container(
                 child: Center(
-                  child: Text(asyncsnapshot.error.toString()),
+                  child: Text(e.message),
                 ),
               );
             }

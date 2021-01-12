@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:qr_app/routes.dart';
-
+//
+// Home screen is the landing screen of the app
+// The button brings up two menu items:
+//  - Scan - This button will navigate to scan screen that allows you to scan a qr code and validate it
+//  - QrCode - This button will navigate to a qrcode image
+// 
 class HomeScreen extends StatefulWidget {
   final String title;
 

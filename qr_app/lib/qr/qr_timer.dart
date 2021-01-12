@@ -2,6 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+//
+// Timer widet displays the remaining time in seconds before the qr code expires
+// 
+
 class QrTimer extends StatefulWidget {
   final Duration duration;
 
@@ -11,18 +15,18 @@ class QrTimer extends StatefulWidget {
 }
 
 class _QrTimerState extends State<QrTimer> {
-  Timer timer;
-  int seconds;
+  Timer _timer;
+  int _seconds;
 
   @override
   void initState() {
     super.initState();
 
-    seconds = widget.duration.inSeconds;
-    timer = Timer.periodic(Duration(seconds: 1), (_) {
-      if (timer.isActive) {
+    _seconds = widget.duration.inSeconds;
+    _timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (_timer.isActive) {
         setState(() {
-          --seconds;
+          --_seconds;
         });
       }
     });
@@ -30,24 +34,24 @@ class _QrTimerState extends State<QrTimer> {
 
   @override
   void dispose() {
-    timer.cancel();
+    _timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (seconds <= 0) {
-      timer.cancel();
+    if (_seconds <= 0) {
+      _timer.cancel();
     }
     return Container(
       margin: EdgeInsets.all(8),
-      child: seconds == 0
+      child: _seconds == 0
           ? Container(
               child: Text('Qr Code has expired'),
             )
           : Container(
               padding: EdgeInsets.symmetric(vertical: 8),
-              child: Text('Time remaing: $seconds seconds'),
+              child: Text('Time remaing: $_seconds seconds'),
             ),
     );
   }

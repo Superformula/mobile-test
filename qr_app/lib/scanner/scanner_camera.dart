@@ -32,9 +32,9 @@ class _ScannerCameraState extends State<ScannerCamera> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Expanded(flex: 5, child: _buildQrView(context)),
+          Expanded(flex: 3, child: _buildQrView(context)),
           Expanded(
-            flex: 1,
+            //  flex: 1,
             child: FittedBox(
               fit: BoxFit.contain,
               child: Container(
@@ -43,14 +43,9 @@ class _ScannerCameraState extends State<ScannerCamera> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       _result != null
-                          ?
-                           ScannerResult(scanResult: _result.code,)
-                          // Container(
-                          //     child: CircleAvatar(
-                          //     child: Icon(Icons.check),
-                          //   ))
-                          // Text(
-                          //     'Barcode Type: ${result.format.toString()}   Data: ${result.code}'))
+                          ? ScannerResult(
+                              scanResult: _result.code,
+                            )
                           : Container(
                               child: Text(
                               'Scan a code',
@@ -73,7 +68,6 @@ class _ScannerCameraState extends State<ScannerCamera> {
         borderRadius: 10,
         borderLength: 30,
         borderWidth: 5,
-        //cutOutSize: scanArea,
       ),
     );
   }
