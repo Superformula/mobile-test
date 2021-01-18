@@ -26,7 +26,7 @@ Flutter
     
 Build and Run the Application
    Checkout this project from GitHub to your workspace
-   git clone https://github.com/Nagadivyabikkina/mobile-test.git
+   git clone https://github.com/Nagadivyabikkina/Flutter-mobile-qrCodeGen.git
    
    Navigate to the project directory
    cd mobile-test/
