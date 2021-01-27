@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:qrcodevalidator/domain/entities/qr_code.dart';
 import 'package:qrcodevalidator/domain/repositories/qr_code_repository.dart';
+import 'package:qrcodevalidator/domain/utils/generic_error.dart';
 
 class GetQRCodeUseCase extends UseCase<QRCode, void> {
   QRCodeRepository repository;
@@ -19,7 +20,10 @@ class GetQRCodeUseCase extends UseCase<QRCode, void> {
     } catch (e) {
       print(e);
       logger.severe('GetQRCodeUseCase unsuccessful.');
-      controller.addError(e);
+      controller.addError(GenericError(
+        'Error retrieving QR Code',
+        exception: e,
+      ));
     } finally {
       controller.close();
     }

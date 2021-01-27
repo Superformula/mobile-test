@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qrcodevalidator/app/pages/display_qr_code/display_qr_code_controller.dart';
 import 'package:qrcodevalidator/app/widgets/countdown.dart';
 import 'package:qrcodevalidator/data/repositories/data_qr_code_repository.dart';
@@ -31,14 +32,28 @@ class DisplayQRCodeState
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ControlledWidgetBuilder<DisplayGetQRCodeController>(
-                    builder: (context, controller) {
-                  return Text(controller.qrCode?.seed?.toString() ?? 'NOPE');
-                }),
-                ControlledWidgetBuilder<DisplayGetQRCodeController>(
-                    builder: (context, controller) {
-                  return Countdown(remainingTime: controller.remainingTime);
-                }),
+                if (controller.qrCode == null)
+                  GestureDetector(
+                    onTap: controller.getQRCode,
+                    child: Column(
+                      children: [
+                        Text(
+                          'QR Code not found\ntap to try again',
+                          textAlign: TextAlign.center,
+                        ),
+                        Container(height: 10),
+                        Icon(Icons.refresh, size: 50),
+                      ],
+                    ),
+                  ),
+                if (controller.qrCode != null)
+                  QrImage(
+                    data: controller.qrCode?.seed?.toString(),
+                    version: QrVersions.auto,
+                    size: MediaQuery.of(context).size.width * 0.8,
+                  ),
+                if (controller.remainingTime != null)
+                  Countdown(remainingTime: controller.remainingTime)
               ],
             );
           }),

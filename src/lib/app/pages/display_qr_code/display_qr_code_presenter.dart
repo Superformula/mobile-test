@@ -2,11 +2,12 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:qrcodevalidator/domain/entities/qr_code.dart';
 import 'package:qrcodevalidator/domain/repositories/qr_code_repository.dart';
 import 'package:qrcodevalidator/domain/usecases/get_qr_code_use_case.dart';
+import 'package:qrcodevalidator/domain/utils/generic_error.dart';
 
 class DisplayQRCodePresenter extends Presenter {
   Function(QRCode) getQRCodeOnNext;
   Function getQRCodeOnComplete;
-  Function getQRCodeOnError;
+  Function(GenericError) getQRCodeOnError;
 
   final GetQRCodeUseCase getQRCodeUseCase;
 
