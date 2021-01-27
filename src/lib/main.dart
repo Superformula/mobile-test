@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:qrcodevalidator/app/pages/display_qr_code/display_qr_code_page.dart';
 import 'package:qrcodevalidator/app/pages/home/home_page.dart';
 
 void main() {
@@ -20,7 +21,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => HomePage(),
+        '/DisplayQRCode': (_) => DisplayQRCodePage()
+      },
     );
   }
 }
