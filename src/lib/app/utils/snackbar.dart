@@ -7,7 +7,11 @@ class SnackbarUtil {
     String text, {
     bool isError = false,
   }) {
-    Scaffold.of(context).showSnackBar(
+    final scaffoldState = Scaffold.of(context);
+
+    scaffoldState.hideCurrentSnackBar();
+
+    scaffoldState.showSnackBar(
       SnackBar(
         backgroundColor: isError ? Colors.red : null,
         content: Text(
