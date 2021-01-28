@@ -5,13 +5,13 @@ import 'package:qrcodevalidator/app/pages/display_qr_code/display_qr_code_contro
 import 'package:qrcodevalidator/app/widgets/countdown.dart';
 import 'package:qrcodevalidator/data/repositories/data_qr_code_repository.dart';
 
-class DisplayQRCodePage extends View {
+class DisplayQRCodeView extends View {
   @override
   State<StatefulWidget> createState() => DisplayQRCodeState();
 }
 
 class DisplayQRCodeState
-    extends ViewState<DisplayQRCodePage, DisplayGetQRCodeController> {
+    extends ViewState<DisplayQRCodeView, DisplayGetQRCodeController> {
   DisplayQRCodeState()
       : super(DisplayGetQRCodeController(DataQRCodeRepository()));
 
@@ -48,7 +48,7 @@ class DisplayQRCodeState
                   ),
                 if (controller.qrCode != null)
                   QrImage(
-                    data: controller.qrCode?.seed?.toString(),
+                    data: controller.qrCodeContent,
                     version: QrVersions.auto,
                     size: MediaQuery.of(context).size.width * 0.8,
                   ),
