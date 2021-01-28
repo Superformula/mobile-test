@@ -15,7 +15,7 @@ void main() {
       expect(
         () => QRCodeMapper.fromMap({
           'seed': null,
-          'expires_at': '2000-01-01 12:34:12.456',
+          'expiresAt': '2000-01-01 12:34:12.456',
         }),
         throwsAssertionError,
       );
@@ -24,23 +24,23 @@ void main() {
     test('seed should not be undefined', () {
       expect(
         () => QRCodeMapper.fromMap({
-          'expires_at': '2000-01-01 12:34:12.456',
+          'expiresAt': '2000-01-01 12:34:12.456',
         }),
         throwsAssertionError,
       );
     });
 
-    test('expires_at should not allow null value', () {
+    test('expiresAt should not allow null value', () {
       expect(
         () => QRCodeMapper.fromMap({
           'seed': 'text',
-          'expires_at': null,
+          'expiresAt': null,
         }),
         throwsAssertionError,
       );
     });
 
-    test('expires_at should not undefined', () {
+    test('expiresAt should not undefined', () {
       expect(
         () => QRCodeMapper.fromMap({
           'seed': 'text',
@@ -49,11 +49,11 @@ void main() {
       );
     });
 
-    test('expires_at should be valid', () {
+    test('expiresAt should be valid', () {
       expect(
         () => QRCodeMapper.fromMap({
           'seed': 'text',
-          'expires_at': 'invalid',
+          'expiresAt': 'invalid',
         }),
         throwsAssertionError,
       );
@@ -65,7 +65,7 @@ void main() {
 
       var map = {
         'seed': expectedSeed,
-        'expires_at': expectedExpiration,
+        'expiresAt': expectedExpiration,
       };
 
       var qrCode = QRCodeMapper.fromMap(map);
@@ -80,7 +80,7 @@ void main() {
 
       var expectedMap = {
         'seed': expectedSeed,
-        'expires_at': expectedExpiration,
+        'expiresAt': expectedExpiration,
       };
 
       expect(
