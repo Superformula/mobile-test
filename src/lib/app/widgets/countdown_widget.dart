@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-class Countdown extends StatelessWidget {
-  const Countdown({
+class CountdownWidget extends StatelessWidget {
+  const CountdownWidget({
     Key key,
     this.remainingTime,
   }) : super(key: key);
