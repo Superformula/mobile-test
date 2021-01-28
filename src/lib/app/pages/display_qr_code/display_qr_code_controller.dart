@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:qrcodevalidator/app/pages/display_qr_code/display_qr_code_presenter.dart';
 import 'package:qrcodevalidator/app/utils/snackbar.dart';
+import 'package:qrcodevalidator/data/mappers/qr_code_mapper.dart';
 import 'package:qrcodevalidator/domain/entities/qr_code.dart';
 import 'package:qrcodevalidator/domain/repositories/qr_code_repository.dart';
 
@@ -12,6 +14,8 @@ class DisplayGetQRCodeController extends Controller {
 
   DisplayQRCodePresenter _getQRCodePresenter;
   QRCode qrCode;
+  String get qrCodeContent =>
+      qrCode != null ? jsonEncode(QRCodeMapper.toMap(qrCode)) : null;
   bool isLoading = false;
   Duration remainingTime;
   Timer _countdownTimer;
