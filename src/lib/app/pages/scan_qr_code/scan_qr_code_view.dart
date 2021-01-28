@@ -52,20 +52,20 @@ class ScanQRCodeState extends ViewState<ScanQRCodeView, ScanQRCodeController> {
         backgroundColor: Colors.black,
         appBar: AppBar(
           key: globalKey,
-          title: Text('SCAN'),
+          title: const Text('SCAN'),
           centerTitle: true,
         ),
         body: ControlledWidgetBuilder<ScanQRCodeController>(
           builder: (context, controller) {
             if (controller.isLoading == true)
-              return Center(
-                child: CircularProgressIndicator(),
+              return const Center(
+                child: const CircularProgressIndicator(),
               );
 
             if (controller.qrViewController != null &&
                 controller.qrViewController.hasPermissions == false) {
-              return Center(
-                child: Text(
+              return const Center(
+                child: const Text(
                   'We need permission to use\nyour camera',
                   textAlign: TextAlign.center,
                 ),
@@ -121,7 +121,7 @@ class ScanQRCodeState extends ViewState<ScanQRCodeView, ScanQRCodeController> {
                           (controller.currentValidation == true
                               ? 'valid'
                               : 'invalid'),
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                       ),
                     ),
