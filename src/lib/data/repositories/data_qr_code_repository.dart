@@ -11,4 +11,10 @@ class DataQRCodeRepository implements QRCodeRepository {
       );
     });
   }
+
+  /// Validate QR Code.
+  @override
+  bool validateQRCode(QRCode qrCode, DateTime now) {
+    return qrCode.isValid(now);
+  }
 }

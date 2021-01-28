@@ -7,16 +7,18 @@ class SnackbarUtil {
     String text, {
     bool isError = false,
   }) {
-    Scaffold.of(context).showSnackBar(SnackBar(
-      backgroundColor: isError ? Colors.red : null,
-      content: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16.0,
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: isError ? Colors.red : null,
+        content: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16.0,
+          ),
         ),
       ),
-    ));
+    );
   }
 }
