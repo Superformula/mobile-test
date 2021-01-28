@@ -18,7 +18,7 @@ class DisplayQRCodeState
   @override
   Widget get view => Scaffold(
         appBar: AppBar(
-          title: Text('QR CODE'),
+          title: const Text('QR CODE'),
           centerTitle: true,
         ),
         body: Center(
@@ -26,7 +26,7 @@ class DisplayQRCodeState
           child: ControlledWidgetBuilder<DisplayGetQRCodeController>(
               builder: (context, controller) {
             if (controller.isLoading == true) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
 
             return Column(
@@ -37,23 +37,30 @@ class DisplayQRCodeState
                     onTap: controller.getQRCode,
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           'QR Code not found\ntap to try again',
                           textAlign: TextAlign.center,
                         ),
                         Container(height: 10),
-                        Icon(Icons.refresh, size: 50),
+                        const Icon(Icons.refresh, size: 50),
                       ],
                     ),
                   ),
                 if (controller.qrCode != null)
-                  QrImage(
-                    data: controller.qrCodeContent,
-                    version: QrVersions.auto,
-                    size: MediaQuery.of(context).size.width * 0.8,
+                  Card(
+                    elevation: 10,
+                    child: QrImage(
+                      data: controller.qrCodeContent,
+                      version: QrVersions.auto,
+                      size: MediaQuery.of(context).size.width * 0.8,
+                    ),
                   ),
                 if (controller.remainingTime != null)
-                  Countdown(remainingTime: controller.remainingTime)
+                  Container(
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                      ),
+                      child: Countdown(remainingTime: controller.remainingTime))
               ],
             );
           }),
