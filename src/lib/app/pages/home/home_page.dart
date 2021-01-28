@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qrcodevalidator/app/widgets/fancy_fab.dart';
+import 'package:qrcodevalidator/app/widgets/fancy_fab_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text('QR Code Validator'),
       ),
-      floatingActionButton: FancyFab(
+      floatingActionButton: FancyFabWidget(
         actions: [
           FancyFabAction(
             onPressed: () {
