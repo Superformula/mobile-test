@@ -27,7 +27,7 @@ class ValidateQRCodeCodeUseCase
 
       var currentTime = await timeRepository.getCurrentTime();
 
-      var isValid = qrCodeRepository.validateQRCode(
+      var isValid = await qrCodeRepository.validateQRCode(
         qrCode,
         currentTime,
       );

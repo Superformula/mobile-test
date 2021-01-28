@@ -14,7 +14,8 @@ class DataQRCodeRepository implements QRCodeRepository {
 
   /// Validate QR Code.
   @override
-  bool validateQRCode(QRCode qrCode, DateTime now) {
-    return qrCode.isValid(now);
+  Future<bool> validateQRCode(QRCode qrCode, DateTime now) {
+    // If needed, this can be changed for server side validation.
+    return Future.value(qrCode.isValid(now));
   }
 }
