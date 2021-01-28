@@ -27,13 +27,13 @@ class ScanQRCodeState extends ViewState<ScanQRCodeView, ScanQRCodeController> {
     final size = MediaQuery.of(context).size;
 
     // Check how width or tall the device is and change the scanArea and overlay accordingly.
-    var scanArea = size.width < 400 || size.height < 400 ? 150.0 : 300.0;
+    var scanArea = (size.width < size.height ? size.width : size.height) * 0.7;
 
     return ControlledWidgetBuilder<ScanQRCodeController>(
         builder: (context, controller) {
       return QRView(
         key: qrKey,
-        cameraFacing: CameraFacing.front,
+        cameraFacing: CameraFacing.back,
         onQRViewCreated: controller.initQrViewController,
         formatsAllowed: [BarcodeFormat.qrcode],
         overlay: QrScannerOverlayShape(
