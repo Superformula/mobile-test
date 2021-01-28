@@ -6,8 +6,9 @@ import 'package:qrcodevalidator/domain/repositories/qr_code_repository.dart';
 import 'package:qrcodevalidator/domain/utils/generic_error.dart';
 
 class GetQRCodeUseCase extends UseCase<QRCode, void> {
-  QRCodeRepository repository;
   GetQRCodeUseCase(this.repository) : super();
+
+  final QRCodeRepository repository;
 
   @override
   Future<Stream<QRCode>> buildUseCaseStream(void ignore) async {
