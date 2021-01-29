@@ -10,6 +10,9 @@ class FancyFabWidget extends StatefulWidget {
   final String tooltip;
   final List<FancyFabAction> actions;
 
+  static const double buttonSize = 60;
+  static const double buttonSpacing = 10;
+
   @override
   _FancyFabWidgetState createState() => _FancyFabWidgetState();
 }
@@ -18,42 +21,41 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
     with SingleTickerProviderStateMixin {
   bool isOpened = false;
 
-  final double buttonSize = 60;
-  final double buttonSpacing = 10;
-
   AnimationController _animationController;
   Animation<Color> _buttonColor;
   Animation<double> _animateIcon;
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200))
-          ..addListener(() {
-            setState(() {});
-          });
+    if (widget.actions?.isNotEmpty == true) {
+      _animationController = AnimationController(
+          vsync: this, duration: Duration(milliseconds: 200))
+        ..addListener(() {
+          setState(() {});
+        });
 
-    _animateIcon =
-        Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+      _animateIcon =
+          Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
 
-    _buttonColor = ColorTween(
-      begin: Colors.purple,
-      end: Colors.red,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Interval(
-        0.00,
-        1.00,
-        curve: Curves.linear,
-      ),
-    ));
+      _buttonColor = ColorTween(
+        begin: Colors.purple,
+        end: Colors.red,
+      ).animate(CurvedAnimation(
+        parent: _animationController,
+        curve: Interval(
+          0.00,
+          1.00,
+          curve: Curves.linear,
+        ),
+      ));
+    }
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _animationController?.dispose();
     super.dispose();
   }
 
@@ -87,11 +89,13 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
 
       return Positioned(
         right: 0,
-        height: buttonSize,
+        height: FancyFabWidget.buttonSize,
         bottom: _animationController.value == 0
             ? 0
-            : (_animationController.value * sizeFactor * buttonSize) +
-                (buttonSpacing * sizeFactor),
+            : (_animationController.value *
+                    sizeFactor *
+                    FancyFabWidget.buttonSize) +
+                (FancyFabWidget.buttonSpacing * sizeFactor),
         child: Row(
           children: [
             Opacity(
@@ -116,8 +120,8 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
     items.add(Positioned(
       bottom: 0,
       right: 0,
-      height: buttonSize,
-      width: buttonSize,
+      height: FancyFabWidget.buttonSize,
+      width: FancyFabWidget.buttonSize,
       child: FloatingActionButton(
         heroTag: 'toggle',
         backgroundColor: _buttonColor.value,
@@ -132,11 +136,11 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
     ));
 
     return Container(
-      width: _animationController.value == 0 ? buttonSize : null,
+      width: _animationController.value == 0 ? FancyFabWidget.buttonSize : null,
       height: _animationController.value == 0
-          ? buttonSize
-          : ((widget.actions.length + 1) * buttonSize) +
-              (buttonSpacing * widget.actions.length + 1),
+          ? FancyFabWidget.buttonSize
+          : ((widget.actions.length + 1) * FancyFabWidget.buttonSize) +
+              (FancyFabWidget.buttonSpacing * widget.actions.length + 1),
       child: Stack(
         fit: StackFit.expand,
         children: items,
