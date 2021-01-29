@@ -1,0 +1,40 @@
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: 1arp/create-a-file-action@0.2
+        with:
+          path: 'src'
+          file: '.env'
+          content: |
+            API_URL=${{ secrets.SUPERFORMULA_MOBILE_TEST_API_URL }}
+            API_KEY=${{ secrets.SUPERFORMULA_MOBILE_TEST_API_KEY }}
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.22.6'
+      - run: flutter pub get
+        working-directory: src
+      - run: flutter test
+        working-directory: src
+      - run: flutter build apk
+        working-directory: src
+      - run: flutter build ios --release --no-codesign
+        working-directory: src
