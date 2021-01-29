@@ -15,7 +15,7 @@ API_KEY=YOUR_API_KEY
 
 Test, build and run the app.
 
-## Structure
+# Structure
 This project follows the [Clean Architecture pattern described by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), leveraging the guidelines presented in the [flutter_clean_architecture](https://pub.dev/packages/flutter_clean_architecture) library for maintaining the architecture.
 
 
