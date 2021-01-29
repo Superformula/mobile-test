@@ -22,22 +22,17 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
   bool isOpened = false;
 
   AnimationController _animationController;
-  Animation<Color> _buttonColor;
-  Animation<double> _animateIcon;
+  Animation<Color> _buttonColorAnimation;
 
   @override
   void initState() {
     if (widget.actions?.isNotEmpty == true) {
       _animationController = AnimationController(
-          vsync: this, duration: Duration(milliseconds: 200))
-        ..addListener(() {
-          setState(() {});
-        });
+        vsync: this,
+        duration: const Duration(milliseconds: 200),
+      );
 
-      _animateIcon =
-          Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
-
-      _buttonColor = ColorTween(
+      _buttonColorAnimation = ColorTween(
         begin: Colors.purple,
         end: Colors.red,
       ).animate(CurvedAnimation(
@@ -66,9 +61,7 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
       _animationController.reverse();
     }
 
-    setState(() {
-      isOpened = !isOpened;
-    });
+    isOpened = !isOpened;
   }
 
   @override
@@ -80,71 +73,85 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
       );
     }
 
-    var items = new List<Widget>();
+    return AnimatedBuilder(
+      animation: _animationController.view,
+      builder: (BuildContext context, Widget child) {
+        var items = new List<Widget>();
+        print(_animationController.value);
 
-    items.addAll(List.generate(widget.actions.length, (index) {
-      var action = widget.actions[index];
+        items.addAll(List.generate(widget.actions.length, (index) {
+          var action = widget.actions[index];
 
-      final sizeFactor = widget.actions.length - index;
+          final sizeFactor = widget.actions.length - index;
 
-      return Positioned(
-        right: 0,
-        height: FancyFabWidget.buttonSize,
-        bottom: _animationController.value == 0
-            ? 0
-            : (_animationController.value *
-                    sizeFactor *
-                    FancyFabWidget.buttonSize) +
-                (FancyFabWidget.buttonSpacing * sizeFactor),
-        child: Row(
-          children: [
-            Opacity(
-              opacity: _animationController.value,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Text(action.label),
+          final double bottom = _animationController.value == 0
+              ? 0
+              : (_animationController.value *
+                      sizeFactor *
+                      FancyFabWidget.buttonSize) +
+                  (FancyFabWidget.buttonSpacing * sizeFactor);
+
+          return Positioned(
+            right: 0,
+            height: FancyFabWidget.buttonSize,
+            bottom: bottom,
+            child: Row(
+              children: [
+                Opacity(
+                  opacity: _animationController.value,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text(action.label),
+                  ),
+                ),
+                FloatingActionButton(
+                  heroTag: index,
+                  elevation: 0,
+                  onPressed: action.onPressed,
+                  tooltip: action.label,
+                  child: Icon(action.icon),
+                ),
+              ],
+            ),
+          );
+        }));
+
+        items.add(
+          Positioned(
+            bottom: 0,
+            right: 0,
+            height: FancyFabWidget.buttonSize,
+            width: FancyFabWidget.buttonSize,
+            child: FloatingActionButton(
+              heroTag: 'toggle',
+              backgroundColor: _buttonColorAnimation.value,
+              onPressed: animate,
+              tooltip: widget.tooltip,
+              elevation: 0,
+              child: AnimatedIcon(
+                icon: AnimatedIcons.menu_close,
+                progress: _animationController,
               ),
             ),
-            FloatingActionButton(
-              heroTag: index,
-              elevation: 0,
-              onPressed: action.onPressed,
-              tooltip: action.label,
-              child: Icon(action.icon),
-            ),
-          ],
-        ),
-      );
-    }));
+          ),
+        );
 
-    items.add(Positioned(
-      bottom: 0,
-      right: 0,
-      height: FancyFabWidget.buttonSize,
-      width: FancyFabWidget.buttonSize,
-      child: FloatingActionButton(
-        heroTag: 'toggle',
-        backgroundColor: _buttonColor.value,
-        onPressed: animate,
-        tooltip: widget.tooltip,
-        elevation: 0,
-        child: AnimatedIcon(
-          icon: AnimatedIcons.menu_close,
-          progress: _animateIcon,
-        ),
-      ),
-    ));
+        var fabSize = _animationController.value == 0
+            ? FancyFabWidget.buttonSize
+            : ((widget.actions.length + 1) * FancyFabWidget.buttonSize) +
+                (FancyFabWidget.buttonSpacing * widget.actions.length + 1);
 
-    return Container(
-      width: _animationController.value == 0 ? FancyFabWidget.buttonSize : null,
-      height: _animationController.value == 0
-          ? FancyFabWidget.buttonSize
-          : ((widget.actions.length + 1) * FancyFabWidget.buttonSize) +
-              (FancyFabWidget.buttonSpacing * widget.actions.length + 1),
-      child: Stack(
-        fit: StackFit.expand,
-        children: items,
-      ),
+        return Container(
+          width: _animationController.value == 0
+              ? FancyFabWidget.buttonSize
+              : null,
+          height: fabSize,
+          child: Stack(
+            fit: StackFit.expand,
+            children: items,
+          ),
+        );
+      },
     );
   }
 }
