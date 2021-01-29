@@ -19,7 +19,6 @@ class ScanQRCodeController extends Controller {
 
   ScanQRCodePresenter _scanQRCodePresenter;
   QRViewController qrViewController;
-  bool isLoading = false;
   bool showValidation = false;
   bool currentValidation;
   Timer _hideValidationTimer;
@@ -28,8 +27,6 @@ class ScanQRCodeController extends Controller {
 
   @override
   void initListeners() {
-    _startLoading();
-
     // Displays the state of the validation when pointint the camera
     // to the QR Code. If the user is not pointing, will wait a few seconds
     // before hiding the state of the validation.
@@ -61,12 +58,6 @@ class ScanQRCodeController extends Controller {
         isError: true,
       );
     };
-
-    // Adds a fake loading time to make up for
-    // smoother transition before camera opening.
-    Future.delayed(Duration(seconds: 2), () {
-      _dismissLoading();
-    });
   }
 
   void initQrViewController(QRViewController qrViewController) {
@@ -76,25 +67,11 @@ class ScanQRCodeController extends Controller {
     this.qrViewController.scannedDataStream.listen((scanData) {
       _scanQRCodePresenter.validateQRCode(scanData.code);
     });
-
-    refreshUI();
   }
 
   /// Toggle camera's flash.
   void toggleFlash() {
     qrViewController?.toggleFlash();
-    refreshUI();
-  }
-
-  /// Display UI's loadind state.
-  void _startLoading() {
-    isLoading = true;
-    refreshUI();
-  }
-
-  /// Hide UI's loadind state.
-  void _dismissLoading() {
-    isLoading = false;
     refreshUI();
   }
 

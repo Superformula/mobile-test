@@ -57,11 +57,6 @@ class ScanQRCodeState extends ViewState<ScanQRCodeView, ScanQRCodeController> {
         ),
         body: ControlledWidgetBuilder<ScanQRCodeController>(
           builder: (context, controller) {
-            if (controller.isLoading == true)
-              return const Center(
-                child: const CircularProgressIndicator(),
-              );
-
             if (controller.qrViewController != null &&
                 controller.qrViewController.hasPermissions == false) {
               return const Center(
@@ -81,30 +76,29 @@ class ScanQRCodeState extends ViewState<ScanQRCodeView, ScanQRCodeController> {
                   left: 0,
                   child: _buildQrView(),
                 ),
-                if (controller.qrViewController != null)
-                  Positioned(
-                    bottom: 50,
-                    left: 0,
-                    right: 0,
-                    height: 70,
-                    child: FloatingActionButton(
-                      heroTag: 'flashlight',
-                      elevation: 0,
-                      child: FutureBuilder<bool>(
-                        future: controller.qrViewController.getFlashStatus(),
-                        builder: (_, snapshot) {
-                          return Icon(
-                            snapshot.connectionState != ConnectionState.done ||
-                                    snapshot.data == false
-                                ? Icons.flash_on
-                                : Icons.flash_off,
-                            size: 35,
-                          );
-                        },
-                      ),
-                      onPressed: controller.toggleFlash,
+                Positioned(
+                  bottom: 50,
+                  left: 0,
+                  right: 0,
+                  height: 70,
+                  child: FloatingActionButton(
+                    heroTag: 'flashlight',
+                    elevation: 0,
+                    child: FutureBuilder<bool>(
+                      future: controller?.qrViewController?.getFlashStatus(),
+                      builder: (_, snapshot) {
+                        return Icon(
+                          snapshot.connectionState != ConnectionState.done ||
+                                  snapshot.data == false
+                              ? Icons.flash_on
+                              : Icons.flash_off,
+                          size: 35,
+                        );
+                      },
                     ),
+                    onPressed: controller.toggleFlash,
                   ),
+                ),
                 AnimatedPositioned(
                   top: controller.showValidation == true ? 0 : -100,
                   left: 0,
