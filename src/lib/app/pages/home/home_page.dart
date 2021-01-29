@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
         child: Text('QR Code Validator'),
       ),
       floatingActionButton: FancyFabWidget(
+        tooltip: 'Show buttons',
         actions: [
           FancyFabAction(
             onPressed: () {
