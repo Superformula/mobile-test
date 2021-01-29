@@ -1,16 +1,29 @@
-# qrcodevalidator
+# QR Code validator
 
-A new Flutter project.
+![CI](https://github.com/edgarfroes/mobile-test/workflows/CI/badge.svg?branch=master)
 
-## Getting Started
+An app with QR Code generator and scanner, with auto-refresh and QR Code validationa.
 
-This project is a starting point for a Flutter application.
+# Setup
+[Install and run Flutter](https://flutter.dev/docs/get-started/install).
 
-A few resources to get you started if this is your first Flutter project:
+Create the file `.env` in the `src` folder with the following template:
+```
+API_URL=YOUR_API_URL
+API_KEY=YOUR_API_KEY
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Test, build and run the app.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Structure
+This project follows the [Clean Architecture pattern described by Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), leveraging the guidelines presented in the [flutter_clean_architecture](https://pub.dev/packages/flutter_clean_architecture) library for maintaining the architecture.
+
+
+# About the app
+
+## How to use
+This project consists in 3 screens: **Home**, **Scan** and **QR Code**.
+
+The **Home** screen consists on a single button that expands into two more buttons that will redirect the user to the other screens.
+The **Scan** screen os for scanning the QR Code on other devices in order to check them for validity.
+The **QR Code** screen generates valid QR Codes and display the expiration of the current QR Code being shown. After expiration, the screen will auto-renew the QR Code with a new 
