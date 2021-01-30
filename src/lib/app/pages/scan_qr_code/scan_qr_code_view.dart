@@ -81,22 +81,26 @@ class ScanQRCodeState extends ViewState<ScanQRCodeView, ScanQRCodeController> {
                   left: 0,
                   right: 0,
                   height: 70,
-                  child: FloatingActionButton(
-                    heroTag: 'flashlight',
-                    elevation: 0,
-                    child: FutureBuilder<bool>(
-                      future: controller?.qrViewController?.getFlashStatus(),
-                      builder: (_, snapshot) {
-                        return Icon(
-                          snapshot.connectionState != ConnectionState.done ||
-                                  snapshot.data == false
-                              ? Icons.flash_on
-                              : Icons.flash_off,
-                          size: 35,
-                        );
-                      },
+                  child: Container(
+                    alignment: Alignment.center,
+                    color: Colors.black,
+                    child: FloatingActionButton(
+                      heroTag: 'flashlight',
+                      elevation: 0,
+                      child: FutureBuilder<bool>(
+                        future: controller?.qrViewController?.getFlashStatus(),
+                        builder: (_, snapshot) {
+                          return Icon(
+                            snapshot.connectionState != ConnectionState.done ||
+                                    snapshot.data == false
+                                ? Icons.flash_on
+                                : Icons.flash_off,
+                            size: 35,
+                          );
+                        },
+                      ),
+                      onPressed: controller.toggleFlash,
                     ),
-                    onPressed: controller.toggleFlash,
                   ),
                 ),
                 AnimatedPositioned(
