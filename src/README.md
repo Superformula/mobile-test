@@ -28,4 +28,4 @@ The **Home** screen consists on a single button that expands into two more butto
 
 The **Scan** screen is for scanning the QR Code on other devices in order to check them for validity.
 
-The **QR Code** screen generates valid QR Codes and display the expiration of the current QR Code being shown. After expiration, the screen will auto-renew the QR Code with a new 
+The **QR Code** screen generates valid QR Codes and display the expiration of the current QR Code being shown. After expiration, the screen will auto-renew the QR Code with a new valid one.
