@@ -77,8 +77,6 @@ class _FancyFabWidgetState extends State<FancyFabWidget>
       animation: _animationController.view,
       builder: (BuildContext context, Widget child) {
         var items = new List<Widget>();
-        print(_animationController.value);
-
         items.addAll(List.generate(widget.actions.length, (index) {
           var action = widget.actions[index];
 
