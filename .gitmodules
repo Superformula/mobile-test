@@ -1,0 +1,6 @@
+[submodule "flutter_app"]
+	path = flutter_app
+	url = https://github.com/rodriigovieira/qrcode-client
+[submodule "api"]
+	path = api
+	url = https://github.com/rodriigovieira/qrcode-generator
