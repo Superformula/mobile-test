@@ -25,22 +25,21 @@ internal class QRView(context: Context, id: Int, flutterPluginBinding: FlutterPl
     override fun dispose() {}
 
     init {
-        
+
         channel.setMethodCallHandler{
             call, result ->
             if (call.method == "loadSeed") {
                 @Suppress("UNCHECKED_CAST")
                 var args = call.arguments as Map<String, String>
-                var bitmap = args.get("seed")?.let { generateQRCode(it, result) }
-                imageView.setImageBitmap(bitmap)
-                result.success(true)
+                args.get("seed")?.let { generateQRCode(it, result) }
+
             } else {
                 result.notImplemented()
             }
         }
     }
 
-    private fun generateQRCode(text: String, result: MethodChannel.Result): Bitmap {
+    private fun generateQRCode(text: String, result: MethodChannel.Result){
         val width = 500
         val height = 500
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -52,9 +51,12 @@ internal class QRView(context: Context, id: Int, flutterPluginBinding: FlutterPl
                     bitmap.setPixel(x, y, if (bitMatrix[x, y]) Color.BLACK else Color.WHITE)
                 }
             }
+            imageView.setImageBitmap(bitmap)
+            result.success(true)
+
         } catch (e: WriterException) {
             result.error("Error generating QR code", e.toString(), null)
         }
-        return bitmap
+
     }
 }

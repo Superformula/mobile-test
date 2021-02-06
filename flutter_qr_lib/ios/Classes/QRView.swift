@@ -46,10 +46,12 @@ class QRView: NSObject, FlutterPlatformView{
            let seed = args["seed"] as? String{
            
             _view.image = generateQRCode(from: seed)
+            result(true)
+            return
            
         }
         
-        
+        result(FlutterError(code: "Missing Seed", message: "Seed value is empty", details: "Expected a seed value"))
     }
     
     func generateQRCode(from string: String) -> UIImage? {
