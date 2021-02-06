@@ -20,6 +20,10 @@ class FlutterQrLibPlugin: FlutterPlugin, MethodCallHandler {
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_qr_lib")
     channel.setMethodCallHandler(this)
+
+    flutterPluginBinding
+            .platformViewRegistry
+            .registerViewFactory("QR-View", QRViewFactory(flutterPluginBinding))
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {

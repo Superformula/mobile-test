@@ -46,6 +46,7 @@ class QRView: NSObject, FlutterPlatformView{
            let seed = args["seed"] as? String{
            
             _view.image = generateQRCode(from: seed)
+           
         }
         
         
