@@ -1,12 +1,16 @@
 import 'dart:convert';
 
-class SeedData {
+import 'base_model.dart';
+
+class SeedData extends BaseModel {
   final String seed;
   final String dateTime;
   SeedData({
     this.seed,
     this.dateTime,
   });
+
+  DateTime get dateTimeObject => DateTime.parse(dateTime);
 
   SeedData copyWith({
     String seed,
