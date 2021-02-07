@@ -110,6 +110,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
           height: 10,
         ),
         FloatingActionButton(
+          heroTag: 'main-menu',
           onPressed: _onMenuShowHide,
           child: AnimatedBuilder(
             animation: _rotateAnim,

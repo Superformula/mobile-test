@@ -36,6 +36,7 @@ class MenuItem extends StatelessWidget {
               width: 5,
             ),
             FloatingActionButton(
+              heroTag: title,
               child: Icon(icon),
               onPressed: onPressed,
             ),
