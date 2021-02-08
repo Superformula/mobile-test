@@ -1,4 +1,5 @@
 'use strict';
+const generator = require('../utils/randomGenerator');
 
 exports.create_seed = function(req, res) {
     
@@ -7,7 +8,7 @@ exports.create_seed = function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     
     res.end(JSON.stringify({ 
-        seed: Math.floor((Math.random() * 1000000) + 1),
+        seed: generator.genSeed(40),
         dateTime: dt.toISOString(),
      }));
   
