@@ -9,9 +9,20 @@ class CountDownDisplay extends StatelessWidget {
     return StreamBuilder<int>(
       stream: bloc.countDownValue,
       builder: (context, snapshot) {
-        if (snapshot.hasError) return Text('Timer Error');
-        if (!snapshot.hasData) return Text('Retrieving seed data');
-        return Text('${snapshot.data} Seconds left');
+        if (snapshot.hasError)
+          return Text(
+            'Timer Error',
+            textAlign: TextAlign.center,
+          );
+        if (!snapshot.hasData)
+          return Text(
+            'Retrieving seed data',
+            textAlign: TextAlign.center,
+          );
+        return Text(
+          '${snapshot.data} Seconds',
+          textAlign: TextAlign.center,
+        );
       },
     );
   }

@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_app/blocs/seed_bloc.dart';
-import 'package:qr_app/pages/code/widgets/count_down_display.dart';
+import 'widgets/count_down_display.dart';
+import 'widgets/qr_code.dart';
 
 class CodePage extends StatelessWidget {
   @override
@@ -16,8 +19,18 @@ class CodePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('QR Code'),
         ),
-        body: Center(
-          child: CountDownDisplay(),
+        body: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              QRCode(),
+              SizedBox(
+                height: 20,
+              ),
+              CountDownDisplay(),
+            ],
+          ),
         ),
       ),
     );
