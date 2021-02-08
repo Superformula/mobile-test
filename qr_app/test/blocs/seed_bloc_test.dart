@@ -32,30 +32,28 @@ void main() {
     reset(seedRepository);
   });
 
-  group('Bloc Navigation', () {
-    test('QR Code (initial load)', () async {
-      when(seedRepository.retrieve()).thenAnswer(
-        (realInvocation) => Future.value(data),
-      );
-      final bloc = SeedBloc();
-      await bloc.navToQRCode();
-      await Future.delayed(Duration(seconds: 1));
+  test('QR Code (initial load)', () async {
+    when(seedRepository.retrieve()).thenAnswer(
+      (realInvocation) => Future.value(data),
+    );
+    final bloc = SeedBloc();
+    await bloc.navToQRCode();
+    await Future.delayed(Duration(seconds: 1));
 
-      await expectLater(bloc.countDownValue, emits(0));
-      await expectLater(bloc.seedData, emits(data));
+    await expectLater(bloc.countDownValue, emits(0));
+    await expectLater(bloc.seedData, emits(data));
 
-      verify(navigationService.navigate(RouteNames.Code)).called(1);
-      verify(seedRepository.retrieve()).called(1);
+    verify(navigationService.navigate(RouteNames.Code)).called(1);
+    verify(seedRepository.retrieve()).called(1);
 
-      bloc.dispose();
-    });
+    bloc.dispose();
+  });
 
-    test('Scan', () async {
-      final bloc = SeedBloc();
-      bloc.navToScan();
+  test('Scan', () async {
+    final bloc = SeedBloc();
+    bloc.navToScan();
 
-      verify(navigationService.navigate(RouteNames.Scan)).called(1);
-      bloc.dispose();
-    });
+    verify(navigationService.navigate(RouteNames.Scan)).called(1);
+    bloc.dispose();
   });
 }

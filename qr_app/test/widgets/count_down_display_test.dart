@@ -29,7 +29,7 @@ void main() {
     reset(bloc);
   });
 
-  testWidgets('Data loading', (WidgetTester tester) async {
+  testWidgets('Retrieving seed data', (WidgetTester tester) async {
     when(bloc.countDownValue).thenAnswer((realInvocation) => null);
     await tester.pumpWidget(createWidget());
     expect(find.text('Retrieving seed data'), findsOneWidget);
