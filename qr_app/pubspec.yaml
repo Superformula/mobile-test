@@ -20,6 +20,7 @@ dependencies:
     provider: ^4.3.3
     rxdart: ^0.25.0
     http: ^0.12.2
+    qr_code_scanner: ^0.3.2
 
 dev_dependencies:
     flutter_test:
