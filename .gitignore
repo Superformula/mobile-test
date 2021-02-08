@@ -57,3 +57,6 @@ target/
 
 # Node 
 node_modules/
+
+# .env
+.env
