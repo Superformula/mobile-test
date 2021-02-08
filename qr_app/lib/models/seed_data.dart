@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'base_model.dart';
-
-class SeedData extends BaseModel {
+class SeedData {
   final String seed;
   final String dateTime;
   SeedData({
@@ -10,23 +8,12 @@ class SeedData extends BaseModel {
     this.dateTime,
   });
 
-  DateTime get dateTimeObject => DateTime.parse(dateTime);
-
-  SeedData copyWith({
-    String seed,
-    String dateTime,
-  }) {
-    return SeedData(
-      seed: seed ?? this.seed,
-      dateTime: dateTime ?? this.dateTime,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'seed': seed,
-      'dateTime': dateTime,
-    };
+  int retrieveTimeSpan() {
+    return DateTime.parse(dateTime)
+        .difference(
+          DateTime.now(),
+        )
+        .inSeconds;
   }
 
   factory SeedData.fromMap(Map<String, dynamic> map) {
@@ -37,8 +24,6 @@ class SeedData extends BaseModel {
       dateTime: map['dateTime'],
     );
   }
-
-  String toJson() => json.encode(toMap());
 
   factory SeedData.fromJson(String source) =>
       SeedData.fromMap(json.decode(source));

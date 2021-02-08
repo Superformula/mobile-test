@@ -21,7 +21,6 @@ class SeedBloc {
   Stream<int> get countDownValue => _countDownBehavSub.stream;
 
   Future<void> navToQRCode() async {
-    _seedBehavSub.sink.add(null);
     _navigationService.navigate(RouteNames.Code);
     try {
       await _retrieveSeedSetTimer();
@@ -37,16 +36,15 @@ class SeedBloc {
   void cancel() {
     _timer?.cancel();
     _timer = null;
+    _seedBehavSub.sink.add(null);
   }
 
   Future<void> _retrieveSeedSetTimer() async {
     _timer?.cancel();
 
     final seedData = await _seedRepository.retrieve();
+    final seconds = seedData.retrieveTimeSpan();
 
-    Duration difference = seedData.dateTimeObject.difference(DateTime.now());
-
-    final seconds = difference.inSeconds;
     _countDownBehavSub.sink.add(seconds);
 
     _timer = Timer.periodic(Duration(seconds: seconds), (timer) {

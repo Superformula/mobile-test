@@ -15,7 +15,7 @@ final data = SeedData(
   seed: '123345',
   dateTime: DateTime.now()
       .add(
-        Duration(seconds: 10),
+        Duration(seconds: 2),
       )
       .toIso8601String(),
 );
@@ -39,8 +39,9 @@ void main() {
       );
       final bloc = SeedBloc();
       await bloc.navToQRCode();
+      await Future.delayed(Duration(seconds: 1));
 
-      await expectLater(bloc.countDownValue, emits(9));
+      await expectLater(bloc.countDownValue, emits(0));
       await expectLater(bloc.seedData, emits(data));
 
       verify(navigationService.navigate(RouteNames.Code)).called(1);
