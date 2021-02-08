@@ -1,0 +1,21 @@
+{
+  "name": "qr_generator",
+  "version": "1.0.0",
+  "description": "API for generating random QR seed data",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "RESTful",
+    "QR"
+  ],
+  "author": "Scott Cornell",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
