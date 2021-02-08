@@ -21,6 +21,7 @@ dependencies:
     rxdart: ^0.25.0
     http: ^0.12.2
     qr_code_scanner: ^0.3.2
+    flutter_config: ^1.0.8
 
 dev_dependencies:
     flutter_test:
