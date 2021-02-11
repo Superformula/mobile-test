@@ -20,7 +20,7 @@ class _QRCodeState extends State<QRCode> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final bloc = Provider.of<SeedBloc>(context, listen: false);
-    bloc.seedData.listen((data) {
+    _subscription = bloc.seedData.listen((data) {
       if (!mounted) return;
       if (data == null)
         setState(() {
