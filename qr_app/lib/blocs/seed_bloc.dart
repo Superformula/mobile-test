@@ -41,25 +41,22 @@ class SeedBloc {
 
   Future<void> _retrieveSeedSetTimer() async {
     _timer?.cancel();
+    _seedBehavSub.sink.add(null);
 
     final seedData = await _seedRepository.retrieve();
-    final seconds = seedData.retrieveTimeSpan();
+    var seconds = seedData.retrieveTimeSpan();
 
+    _seedBehavSub.sink.add(seedData);
     _countDownBehavSub.sink.add(seconds);
 
-    _timer = Timer.periodic(Duration(seconds: seconds), (timer) {
-      if (timer.tick > seconds) {
-        _seedBehavSub.sink.add(null);
-        _countDownBehavSub.sink.add(0);
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      seconds--;
+      _countDownBehavSub.sink.add(seconds);
+      if (seconds == 0) {
         _retrieveSeedSetTimer();
         return;
       }
-
-      final count = seconds - timer.tick;
-      _countDownBehavSub.sink.add(count);
     });
-
-    _seedBehavSub.sink.add(seedData);
   }
 
   dispose() {
