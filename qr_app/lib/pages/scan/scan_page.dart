@@ -14,6 +14,7 @@ class _ScanPageState extends State<ScanPage> {
     _controller = controller;
 
     _controller.scannedDataStream.listen((scanData) {
+      if (!mounted) return;
       _controller.pauseCamera();
       _showDialog(scanData.code);
     });
