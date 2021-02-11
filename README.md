@@ -100,6 +100,8 @@ An example App that utilizies the **flutter_qr_lib** and the **QR Generator Serv
     ![alt text](menu.png)
 -   Clean Architecture design with the BLoC pattern  
     ![alt text](Architecture.png)
+-   Stores seed data from API request into local cache
+-   Uses local cache data if API request fails
 
 **Dependencies**
 
@@ -113,27 +115,31 @@ rxdart: ^0.25.0
 http: ^0.12.2
 qr_code_scanner: ^0.3.2
 flutter_config: ^1.0.8
+sqflite: ^1.3.2+2
+path: ^1.7.0
+path_provider: ^1.6.27
 
- mockito: ^4.1.4
-
+mockito: ^4.1.4
 ```
 
 **Tests**
 
--   menu_test
+-   menu_test (Widget Tests)
 
     1. Menu Animation: Checks the menu click animation
     2. Menu Click: Checks the menu item click navigation
 
--   count_down_display
+-   count_down_display (Widget Tests)
 
     1. Data loading: Checks data load indicator from stream
     2. Count Down: Verify stream value is display
     3. Error: Verify error is handled
 
--   seed_bloc_test
-    1. QR Code (initial load): Checks navigation and the seed data load
-    2. Scan: Checks navigation
+-   seed_bloc_test (integration test)
+    1. QR Code (initial load): Verifies navigation and the seed data is loaded via http repository
+    2. QR Code (database load): Verifies the seed data is loaded from cache if the http repository throws and error.
+    3. QR Code Error: Verifies an message is emitted if the database cache throws and error
+    4. Scan: Checks navigation
 
 ## QR Generator Service
 

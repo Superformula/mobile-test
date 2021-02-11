@@ -10,12 +10,33 @@ class SeedData extends ModelBase {
     this.dateTime,
   });
 
+  String get tableName => 'seed';
+
   int retrieveTimeSpan() {
     return DateTime.parse(dateTime)
         .difference(
           DateTime.now(),
         )
         .inSeconds;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'seed': seed,
+      'dateTime': dateTime,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
+
+  SeedData copyWith({
+    String seed,
+    String dateTime,
+  }) {
+    return SeedData(
+      seed: seed ?? this.seed,
+      dateTime: dateTime ?? this.dateTime,
+    );
   }
 
   factory SeedData.fromMap(Map<String, dynamic> map) {
@@ -42,23 +63,4 @@ class SeedData extends ModelBase {
 
   @override
   int get hashCode => seed.hashCode ^ dateTime.hashCode;
-
-  SeedData copyWith({
-    String seed,
-    String dateTime,
-  }) {
-    return SeedData(
-      seed: seed ?? this.seed,
-      dateTime: dateTime ?? this.dateTime,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'seed': seed,
-      'dateTime': dateTime,
-    };
-  }
-
-  String toJson() => json.encode(toMap());
 }
