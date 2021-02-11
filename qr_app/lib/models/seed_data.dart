@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class SeedData {
+import 'package:qr_app/models/model_base.dart';
+
+class SeedData extends ModelBase {
   final String seed;
   final String dateTime;
   SeedData({
@@ -40,4 +42,23 @@ class SeedData {
 
   @override
   int get hashCode => seed.hashCode ^ dateTime.hashCode;
+
+  SeedData copyWith({
+    String seed,
+    String dateTime,
+  }) {
+    return SeedData(
+      seed: seed ?? this.seed,
+      dateTime: dateTime ?? this.dateTime,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'seed': seed,
+      'dateTime': dateTime,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
 }

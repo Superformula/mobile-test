@@ -1,9 +1,8 @@
 import 'package:qr_app/models/seed_data.dart';
-import 'package:qr_app/repositories/base_repository.dart';
+import 'package:qr_app/repositories/repository_base.dart';
 
-class SeedRepository extends BaseRepository {
+class SeedRepository extends RepositoryBase<SeedData> {
   Future<SeedData> retrieve() async {
-    String data = await service.get('/seed');
-    return SeedData.fromJson(data);
+    return await get('/seed', (String json) => SeedData.fromJson(json));
   }
 }

@@ -13,7 +13,6 @@ void main() async {
   getIt.registerSingleton<NavigationService>(NavigationService());
   getIt.registerLazySingleton<ConfigurationService>(
       () => ConfigurationService());
-  getIt.registerLazySingleton<HttpService>(() => HttpService());
   getIt.registerLazySingleton<SeedRepository>(() => SeedRepository());
   runApp(Application());
 }
