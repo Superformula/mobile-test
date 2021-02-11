@@ -1,8 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_qr_lib/qr_controller.dart';
-import 'package:flutter_qr_lib/qr_view.dart';
+import 'package:flutter_qr_lib/flutter_qr_lib.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_app/blocs/seed_bloc.dart';
 import 'package:qr_app/models/seed_data.dart';
