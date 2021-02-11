@@ -1,6 +1,6 @@
 # QR Generator Service, Flutter QR Lib, and QR App
 
-A set of applications that provide the following:
+An application, library, and server that includes the following:
 
 1. Flutter QR Lib
 2. QR App
@@ -23,7 +23,7 @@ from seed data.
 
 Add the following to your pubspec.yaml file.
 
-Ensure the path location matches the lib directory
+Ensure the path location matches the flutter_qr_lib directory
 
 ```
 flutter_qr_lib: path: ../flutter_qr_lib
@@ -43,7 +43,7 @@ To render the QR Code, add the following to your build method
 ```
     QRView(
         onControllerCreated: (QRController controller) =>
-        controller.loadSeed(\_seed),
+        controller.loadSeed('seed'),
     )
 ```
 
@@ -87,9 +87,9 @@ To render the QR Code, add the following to your build method
 
     Load the seed data into the widget for rendering
 
-## Flutter QR Lib
+## Flutter QR App
 
-An example App that utilized the **flutter_qr_lib** and the **QR Generator Service**
+An example App that utilizies the **flutter_qr_lib** and the **QR Generator Service**
 
 **Version**
 0.0.1
@@ -98,7 +98,7 @@ An example App that utilized the **flutter_qr_lib** and the **QR Generator Servi
 
 -   Animated Floating Action button menu  
     ![alt text](menu.png)
--   Clean Architecture design with BLoC pattern  
+-   Clean Architecture design with the BLoC pattern  
     ![alt text](Architecture.png)
 
 **Dependencies**
@@ -149,6 +149,10 @@ Node.js
 
 1. generates by length: Checks seed value length
 2. generates lowercase: Checks for mix case
+
+**Dependencies**
+
+1. "express": "^4.17.1"
 
 **API Format**
 
