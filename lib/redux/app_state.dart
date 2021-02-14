@@ -7,7 +7,8 @@ part 'app_state.freezed.dart';
 abstract class AppState with _$AppState {
   const factory AppState({
     @nullable @required Seed seed,
+    @required bool isLoadingSeed,
   }) = _AppState;
 
-  factory AppState.init() => AppState(seed: null);
+  factory AppState.init() => AppState(seed: null, isLoadingSeed: false);
 }

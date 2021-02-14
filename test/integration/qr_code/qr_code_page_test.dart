@@ -10,10 +10,32 @@ import 'package:redux/redux.dart';
 
 void main() {
   testWidgets(
-      'GIVEN AppState has no seed '
+      'GIVEN app is loading a seed '
+      'WHEN QrCodePage is displayed '
+      'THEN a progress indicator is shown', (WidgetTester tester) async {
+    final appState = AppState(
+      seed: null,
+      isLoadingSeed: true,
+    );
+    final store = Store<AppState>(
+      appReducer,
+      initialState: appState,
+    );
+
+    await tester.pumpWidget(StoreProvider(
+        store: store,
+        child: MaterialApp(
+          home: QrCodePage(),
+        )));
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets(
+      'GIVEN AppState is in an invalid state '
       'WHEN QrCodePage is displayed '
       'THEN it shows an error message', (WidgetTester tester) async {
-    final appState = AppState(seed: null);
+    final appState = AppState(seed: null, isLoadingSeed: false);
     final store = Store<AppState>(
       appReducer,
       initialState: appState,
@@ -33,7 +55,7 @@ void main() {
       'WHEN QrCodePage is displayed '
       'THEN it shows a QR Code '
       'AND it matches the golden image', (WidgetTester tester) async {
-    final appState = AppState(seed: Seed(value: 'golden', expiresAt: DateTime(2100)));
+    final appState = AppState(seed: Seed(value: 'golden', expiresAt: DateTime(2100)), isLoadingSeed: false);
     final store = Store<AppState>(
       appReducer,
       initialState: appState,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:qr_code/model/seed.dart';
 import 'package:qr_code/redux/app_state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -15,14 +14,19 @@ class QrCodePage extends StatelessWidget {
     );
   }
 
-  Widget _body() => StoreConnector<AppState, Seed>(
-      converter: (store) => store.state.seed,
-      builder: (context, seed) {
-        if (seed == null) {
-          return _errorMessage();
+  Widget _body() => StoreConnector<AppState, AppState>(
+      converter: (store) => store.state,
+      builder: (context, state) {
+        if (state.isLoadingSeed) {
+          return _loadingIndicator();
         }
-        return QrImage(data: seed.value);
+        if (state.seed != null) {
+          return QrImage(data: state.seed.value);
+        }
+        return _errorMessage();
       });
 
   Widget _errorMessage() => Center(child: Text('Something wrong happened'));
+
+  Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
 }
