@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:qr_code/model/seed.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
 import 'package:qr_code/redux/reducers.dart';
+
+import '../../fixtures.dart';
 
 void main() {
   test(
@@ -11,7 +12,7 @@ void main() {
       'THEN isLoadingSeed is true', () {
     final oldState = AppState.init();
     final action = FetchSeedAction();
-    final expectedState = AppState(seed: null, isLoadingSeed: true);
+    final expectedState = Fixtures.appStateLoading();
 
     final actualState = appReducer(oldState, action);
 
@@ -22,10 +23,9 @@ void main() {
       'WHEN SeedLoadedAction is dispatched '
       'THEN AppState has a new seed '
       'AND isLoadingSeed is false', () {
-    final seed = Seed(value: '', expiresAt: DateTime(2100));
-    final oldState = AppState(seed: null, isLoadingSeed: true);
-    final action = SeedLoadedAction(seed);
-    final expectedState = AppState(seed: seed, isLoadingSeed: false);
+    final oldState = Fixtures.appStateLoading();
+    final action = SeedLoadedAction(Fixtures.goldenSeed());
+    final expectedState = Fixtures.appStateWithGoldenSeed();
 
     final actualState = appReducer(oldState, action);
 
