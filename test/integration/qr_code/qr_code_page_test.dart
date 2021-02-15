@@ -54,7 +54,7 @@ void main() {
       'THEN it shows an error message', (WidgetTester tester) async {
     final appState = AppState(seed: null, isLoadingSeed: false);
     final store = Store<AppState>(
-      appReducer,
+      (state, _) => state,
       initialState: appState,
     );
 
@@ -74,7 +74,7 @@ void main() {
       'AND it matches the golden image', (WidgetTester tester) async {
     final appState = AppState(seed: Seed(value: 'golden', expiresAt: DateTime(2100)), isLoadingSeed: false);
     final store = Store<AppState>(
-      appReducer,
+      (state, _) => state,
       initialState: appState,
     );
 

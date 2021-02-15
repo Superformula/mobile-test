@@ -15,7 +15,8 @@ void main() {
     ));
 
     await tester.tap(find.text('QR Code'));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 3));
 
     expect(find.text('Home'), findsNothing);
     expect(find.text('QR Code'), findsOneWidget);
@@ -28,7 +29,8 @@ void main() {
     await tester.pumpWidget(MaterialApp(home: HomePage()));
 
     await tester.tap(find.text('Scan'));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 3));
 
     expect(find.text('Home'), findsNothing);
     expect(find.text('Scan'), findsOneWidget);
