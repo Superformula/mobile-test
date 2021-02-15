@@ -11,7 +11,7 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
   @override
   call(Store<AppState> store, action, NextDispatcher next) {
     if (action is FetchSeedAction) {
-      return _fetchSeed(store);
+      _fetchSeed(store);
     }
 
     next(action);

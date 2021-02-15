@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:qr_code/home/home_page.dart';
 
-import '../../fixtures.dart';
+import '../../widget_tester_extension.dart';
 
 void main() {
   testWidgets(
@@ -31,20 +28,4 @@ void main() {
     expect(find.text('Home'), findsNothing);
     expect(find.text('Scan'), findsOneWidget);
   });
-}
-
-extension _TestHelpers on WidgetTester {
-  Future pumpHomePage() async {
-    await pumpWidget(
-      StoreProvider(
-        store: Fixtures.store(),
-        child: MaterialApp(home: HomePage()),
-      ),
-    );
-  }
-
-  Future settleNavigation() async {
-    await pump();
-    await pump(const Duration(seconds: 3));
-  }
 }

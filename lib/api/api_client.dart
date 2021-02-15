@@ -1,5 +1,6 @@
 import 'package:qr_code/model/seed.dart';
 
 class ApiClient {
-  Future<Seed> fetchSeed() => throw UnimplementedError();
+  // TODO - Implement actual method
+  Future<Seed> fetchSeed() => Future.delayed(Duration(seconds: 3), () => Seed(value: 'golden', expiresAt: DateTime(2100)));
 }
