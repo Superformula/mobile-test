@@ -33,11 +33,11 @@ void main() {
   });
 }
 
-extension _HomePageTestHelpers on WidgetTester {
+extension _TestHelpers on WidgetTester {
   Future pumpHomePage() async {
     await pumpWidget(
       StoreProvider(
-        store: Fixtures.buildStore(),
+        store: Fixtures.store(),
         child: MaterialApp(home: HomePage()),
       ),
     );
