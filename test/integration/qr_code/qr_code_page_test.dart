@@ -3,12 +3,29 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:qr_code/model/seed.dart';
 import 'package:qr_code/qr_code/qr_code_page.dart';
+import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
 import 'package:qr_code/redux/reducers.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:redux/redux.dart';
 
+import '../../spies.dart';
+
 void main() {
+  testWidgets(
+      'WHEN QrCodePage is launched '
+      'THEN it dispatches a FetchSeedAction', (WidgetTester tester) async {
+    final spyStore = SpyStore(appReducer, initialState: AppState.init());
+
+    await tester.pumpWidget(StoreProvider(
+        store: spyStore,
+        child: MaterialApp(
+          home: QrCodePage(),
+        )));
+
+    expect(spyStore.lastAction, FetchSeedAction());
+  });
+
   testWidgets(
       'GIVEN app is loading a seed '
       'WHEN QrCodePage is displayed '

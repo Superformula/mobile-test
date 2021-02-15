@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -15,6 +16,7 @@ class QrCodePage extends StatelessWidget {
   }
 
   Widget _body() => StoreConnector<AppState, AppState>(
+      onInit: (store) => store.dispatch(FetchSeedAction()),
       converter: (store) => store.state,
       builder: (context, state) {
         if (state.isLoadingSeed) {

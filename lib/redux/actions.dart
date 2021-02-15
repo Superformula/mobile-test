@@ -3,7 +3,11 @@ import 'package:qr_code/model/seed.dart';
 
 part 'actions.freezed.dart';
 
-class FetchSeedAction {}
+@freezed
+abstract class FetchSeedAction with _$FetchSeedAction {
+  const factory FetchSeedAction() = _FetchSeedAction;
+}
+
 
 @freezed
 abstract class SeedLoadedAction with _$SeedLoadedAction {
