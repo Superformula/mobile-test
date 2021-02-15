@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:qr_code/redux/store.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../widget_tester_extension.dart';
 
@@ -21,6 +20,6 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.byType(QrImage), findsOneWidget);
+    await tester.findGoldenQrCode();
   });
 }
