@@ -37,14 +37,24 @@ class QrCodePage extends StatelessWidget {
 
   Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
 
-  Widget _qrCode(Seed seed) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(36),
-          child: Card(
+  Widget _qrCode(Seed seed) => OrientationBuilder(builder: (context, orientation) {
+        final qrImage = QrImage(data: seed.value);
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.all(36),
+            child: Card(
               child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: QrImage(data: seed.value),
-          )),
-        ),
-      );
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    orientation == Orientation.portrait ? qrImage : Expanded(child: qrImage),
+                    Text('15 seconds'), // TODO - replace hard-coded text with count down timer
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      });
 }
