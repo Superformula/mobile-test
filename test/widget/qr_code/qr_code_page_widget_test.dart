@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
-import 'package:qr_code/redux/reducers.dart';
 
 import '../../fixtures.dart';
-import '../../spies.dart';
 import '../../widget_tester_extension.dart';
 
 void main() {
@@ -13,7 +11,7 @@ void main() {
       'WHEN QrCodePage is launched '
       'THEN it turns on auto refresh '
       'AND fetches a new seed', (WidgetTester tester) async {
-    final spyStore = SpyStore(appReducer, initialState: AppState.init());
+    final spyStore = Fixtures.spyStore();
 
     await tester.pumpQrCodePage(spyStore);
 
@@ -23,7 +21,7 @@ void main() {
   testWidgets(
       'WHEN QrCodePage is disposed '
       'THEN it turns off auto refresh', (WidgetTester tester) async {
-    final spyStore = SpyStore(appReducer, initialState: AppState.init());
+    final spyStore = Fixtures.spyStore();
     await tester.pumpQrCodePage(spyStore);
 
     await tester.disposeCurrentPage();
@@ -47,7 +45,7 @@ void main() {
       'GIVEN AppState is in an invalid state '
       'WHEN QrCodePage is displayed '
       'THEN it shows an error message', (WidgetTester tester) async {
-    final appState = AppState(seed: null, isLoadingSeed: false);
+    final appState = AppState(seed: null, isLoadingSeed: false, fetchSeedFailed: false);
     final store = Fixtures.store(initialState: appState);
 
     await tester.pumpQrCodePage(store);
@@ -66,5 +64,33 @@ void main() {
     await tester.pumpQrCodePage(store);
 
     await tester.findGoldenQrCode();
+  });
+
+  testWidgets(
+      'GIVEN app failed to load a seed '
+      'WHEN QrCodePage is displayed '
+      'THEN it shows an error message '
+      'AND a retry button', (WidgetTester tester) async {
+    final appState = Fixtures.appStateWithFetchSeedFailed();
+    final store = Fixtures.store(initialState: appState);
+
+    await tester.pumpQrCodePage(store);
+
+    expect(find.text('Something wrong happened'), findsOneWidget);
+    expect(find.text('Try again'), findsOneWidget);
+  });
+
+  testWidgets(
+      'GIVEN app failed to load a seed '
+      'WHEN QrCodePage is displayed '
+      'AND retry button is tapped '
+      'THEN it fetches a new seed', (WidgetTester tester) async {
+    final appState = Fixtures.appStateWithFetchSeedFailed();
+    final spyStore = Fixtures.spyStore(initialState: appState);
+    await tester.pumpQrCodePage(spyStore);
+
+    await tester.tap(find.text('Try again'));
+
+    expect(spyStore.receivedActions.last, FetchSeedAction());
   });
 }

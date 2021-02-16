@@ -24,6 +24,7 @@ class QrCodePage extends StatelessWidget {
       onDispose: (store) => store.dispatch(TurnOffAutoRefreshAction()),
       converter: (store) => store.state,
       builder: (context, state) {
+        print('State is $state');
         if (state.isLoadingSeed) {
           return _loadingIndicator();
         }
@@ -33,7 +34,14 @@ class QrCodePage extends StatelessWidget {
         return _errorMessage();
       });
 
-  Widget _errorMessage() => Center(child: Text('Something wrong happened'));
+  Widget _errorMessage() => Center(
+        child: Column(
+          children: [
+            Text('Something wrong happened'),
+            RaisedButton(child: Text('Try again'), onPressed: () => null),
+          ],
+        ),
+      );
 
   Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
 
