@@ -5,11 +5,17 @@ import 'package:redux/redux.dart';
 final appReducer = combineReducers<AppState>([
   TypedReducer<AppState, FetchSeedAction>(_onFetchSeed),
   TypedReducer<AppState, SeedLoadedAction>(_onSeedLoaded),
+  TypedReducer<AppState, FetchSeedFailedAction>(_onFetchSeedFailed),
 ]);
 
 AppState _onFetchSeed(AppState state, FetchSeedAction action) => state.copyWith(isLoadingSeed: true);
 
 AppState _onSeedLoaded(AppState state, SeedLoadedAction action) => state.copyWith(
       seed: action.seed,
+      isLoadingSeed: false,
+    );
+
+AppState _onFetchSeedFailed(AppState state, FetchSeedFailedAction action) => state.copyWith(
+      fetchSeedFailed: true,
       isLoadingSeed: false,
     );

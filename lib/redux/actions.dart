@@ -14,6 +14,12 @@ abstract class SeedLoadedAction with _$SeedLoadedAction {
 }
 
 @freezed
+abstract class FetchSeedFailedAction with _$FetchSeedFailedAction {
+  const factory FetchSeedFailedAction() = _FetchSeedFailedAction;
+}
+
+
+@freezed
 abstract class TurnOnAutoRefreshAction with _$TurnOnAutoRefreshAction {
   const factory TurnOnAutoRefreshAction() = _TurnOnAutoRefreshAction;
 }

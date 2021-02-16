@@ -31,4 +31,16 @@ void main() {
 
     expect(actualState, expectedState);
   });
+
+  test(
+      'WHEN FetchSeedFailedAction is dispatched '
+      'THEN app is in error state', () {
+    final oldState = Fixtures.appStateLoading();
+    final action = FetchSeedFailedAction();
+    final expectedState = Fixtures.appStateWithFetchSeedFailed();
+
+    final actualState = appReducer(oldState, action);
+
+    expect(actualState, expectedState);
+  });
 }
