@@ -11,12 +11,24 @@ import '../../widget_tester_extension.dart';
 void main() {
   testWidgets(
       'WHEN QrCodePage is launched '
-      'THEN it dispatches a FetchSeedAction', (WidgetTester tester) async {
+      'THEN it turns on auto refresh '
+      'AND fetches a new seed', (WidgetTester tester) async {
     final spyStore = SpyStore(appReducer, initialState: AppState.init());
 
     await tester.pumpQrCodePage(spyStore);
 
-    expect(spyStore.lastAction, FetchSeedAction());
+    expect(spyStore.receivedActions, [TurnOnAutoRefreshAction(), FetchSeedAction()]);
+  });
+
+  testWidgets(
+      'WHEN QrCodePage is disposed '
+      'THEN it turns off auto refresh', (WidgetTester tester) async {
+    final spyStore = SpyStore(appReducer, initialState: AppState.init());
+    await tester.pumpQrCodePage(spyStore);
+
+    await tester.disposeCurrentPage();
+
+    expect(spyStore.receivedActions.last, TurnOffAutoRefreshAction());
   });
 
   testWidgets(

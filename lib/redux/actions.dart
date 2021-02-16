@@ -13,6 +13,12 @@ abstract class SeedLoadedAction with _$SeedLoadedAction {
   const factory SeedLoadedAction(Seed seed) = _SeedLoadedAction;
 }
 
-class TurnOnAutoRefreshAction {}
+@freezed
+abstract class TurnOnAutoRefreshAction with _$TurnOnAutoRefreshAction {
+  const factory TurnOnAutoRefreshAction() = _TurnOnAutoRefreshAction;
+}
 
-class TurnOffAutoRefreshAction {}
+@freezed
+abstract class TurnOffAutoRefreshAction with _$TurnOffAutoRefreshAction {
+  const factory TurnOffAutoRefreshAction() = _TurnOffAutoRefreshAction;
+}

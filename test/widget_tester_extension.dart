@@ -27,6 +27,10 @@ extension WidgetTesterExtension on WidgetTester {
     ));
   }
 
+  Future disposeCurrentPage() async {
+    await pumpWidget(Container());
+  }
+
   Future findGoldenQrCode() async {
     final qrCodeFinder = find.byType(QrImage);
     expect(qrCodeFinder, findsOneWidget);

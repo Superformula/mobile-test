@@ -16,7 +16,11 @@ class QrCodePage extends StatelessWidget {
   }
 
   Widget _body() => StoreConnector<AppState, AppState>(
-      onInit: (store) => store.dispatch(FetchSeedAction()),
+      onInit: (store) {
+        store.dispatch(TurnOnAutoRefreshAction());
+        store.dispatch(FetchSeedAction());
+      },
+      onDispose: (store) => store.dispatch(TurnOffAutoRefreshAction()),
       converter: (store) => store.state,
       builder: (context, state) {
         if (state.isLoadingSeed) {

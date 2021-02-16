@@ -7,11 +7,11 @@ class SpyStore extends Store<AppState> {
     AppState initialState,
   }) : super(reducer, initialState: initialState);
 
-  var lastAction;
+  var receivedActions = [];
 
   @override
   dispatch(action) {
-    lastAction = action;
+    receivedActions.add(action);
     return super.dispatch(action);
   }
 }
