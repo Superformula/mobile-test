@@ -18,7 +18,11 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
   }
 
   Future _fetchSeed(Store<AppState> store) async {
-    final seed = await _apiClient.fetchSeed();
-    store.dispatch(SeedLoadedAction(seed));
+    try {
+      final seed = await _apiClient.fetchSeed();
+      store.dispatch(SeedLoadedAction(seed));
+    } catch (_) {
+      store.dispatch(FetchSeedFailedAction());
+    }
   }
 }

@@ -29,4 +29,16 @@ void main() {
 
     verify(store.dispatch(SeedLoadedAction(expectedSeed)));
   });
+
+  test(
+      'WHEN FetchSeedAction is called '
+      'AND api throws an error '
+      'THEN FetchSeedFailedAction is dispatched', () async {
+    when(apiClient.fetchSeed()).thenAnswer((_) => throw Exception());
+
+    final action = FetchSeedAction();
+    await apiMiddleware.call(store, action, (_) {});
+
+    verify(store.dispatch(FetchSeedFailedAction()));
+  });
 }
