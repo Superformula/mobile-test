@@ -24,7 +24,6 @@ class QrCodePage extends StatelessWidget {
       onDispose: (store) => store.dispatch(TurnOffAutoRefreshAction()),
       converter: (store) => store.state,
       builder: (context, state) {
-        print('State is $state');
         if (state.isLoadingSeed) {
           return _loadingIndicator();
         }

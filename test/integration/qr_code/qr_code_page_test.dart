@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:qr_code/redux/api_middleware.dart';
 import 'package:qr_code/redux/store.dart';
 
+import '../../mocks.dart';
 import '../../widget_tester_extension.dart';
 
 void main() {
@@ -48,5 +51,21 @@ void main() {
     // Dispose the page and wait for futures to complete
     await tester.pumpWidget(Container());
     await tester.pump(Duration(seconds: 30));
+  });
+
+  testWidgets(
+      'GIVEN QrCodePage is displayed '
+      'WHEN fetch seed fails '
+      'THEN it shows error message', (WidgetTester tester) async {
+    final apiClient = ApiClientMock();
+    when(apiClient.fetchSeed()).thenAnswer((_) => Future.error(Exception()));
+
+    final store = createReduxStore(middleware: [ApiMiddleware(apiClient)]);
+
+    await tester.pumpQrCodePage(store);
+    await tester.pumpAndSettle();
+
+    expect(find.text('Something wrong happened'), findsOneWidget);
+    expect(find.text('Try again'), findsOneWidget);
   });
 }
