@@ -5,9 +5,10 @@ import 'package:qr_code/redux/store.dart';
 import '../../widget_tester_extension.dart';
 
 void main() {
-  // TODO - Inject mock api client in the test below
+  // TODO - Inject mock api client in the tests below
   // At the moment we know the api client eventually
   // returns the golden seed, but this should change soon
+
   testWidgets(
       'WHEN QrCodePage is displayed '
       'THEN it shows a progress indicator '
@@ -21,5 +22,31 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.findGoldenQrCode();
+
+    // Dispose the page and wait for futures to complete
+    await tester.disposeCurrentPage();
+    await tester.pump(Duration(seconds: 30));
+  });
+
+  testWidgets(
+      'GIVEN QrCodePage is displayed '
+      'WHEN the seed expires '
+      'THEN it loads a new seed', (WidgetTester tester) async {
+    final store = createReduxStore();
+    await tester.pumpQrCodePage(store);
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    await tester.pumpAndSettle();
+    await tester.findGoldenQrCode();
+
+    await tester.pump(Duration(seconds: 15)); // Right now this needs to match the seed returned by the ApiClient
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    await tester.pumpAndSettle();
+    await tester.findGoldenQrCode();
+
+    // Dispose the page and wait for futures to complete
+    await tester.pumpWidget(Container());
+    await tester.pump(Duration(seconds: 30));
   });
 }
