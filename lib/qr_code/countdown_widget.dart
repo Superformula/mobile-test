@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 
 class CountdownWidget extends StatefulWidget {
@@ -30,7 +31,30 @@ class _CountdownWidgetState extends State<CountdownWidget> {
   Widget build(BuildContext context) {
     return CountdownTimer(
       controller: _controller,
-      widgetBuilder: (_, time) => time == null ? Container() : Text('${time.sec} seconds'),
+      widgetBuilder: (_, time) {
+        if (time == null) {
+          return Container();
+        }
+        final value = time.inSeconds();
+        final unit = value == 1 ? 'second' : 'seconds';
+        return Text('$value $unit');
+      },
     );
+  }
+}
+
+extension _HelperExtension on CurrentRemainingTime {
+  int inSeconds() {
+    var result = sec;
+    if (min != null) {
+      result += min * 60;
+    }
+    if (hours != null) {
+      result += hours * 3600;
+    }
+    if (days != null) {
+      result += days * 86400;
+    }
+    return result;
   }
 }
