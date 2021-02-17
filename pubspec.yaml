@@ -32,6 +32,9 @@ dependencies:
   # FAB Speed Dial
   flutter_speed_dial: ^2.1.1
 
+  # Chopper
+  chopper: ^3.0.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -40,6 +43,9 @@ dev_dependencies:
 
   # Freezed
   freezed: ^0.12.6
+
+  # Chopper
+  chopper_generator: ^3.0.6
 
 flutter:
   uses-material-design: true

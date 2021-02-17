@@ -30,7 +30,8 @@ class AutoRefreshMiddleware extends MiddlewareClass<AppState> {
   }
 
   Future _triggerFetchingSeed(Store<AppState> store, SeedLoadedAction action) async {
-    final difference = action.seed.expiresAt.difference(DateTime.now());
+    final now = DateTime.now().toUtc();
+    final difference = action.seed.expiresAt.difference(now);
     await Future.delayed(difference);
     store.dispatch(FetchSeedAction());
   }

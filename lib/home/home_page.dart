@@ -19,10 +19,7 @@ class HomePage extends StatelessWidget {
           SpeedDialChild(
             labelWidget: Text('QR Code'),
             child: Icon(Icons.qr_code),
-            onTap: () {
-              print('Button tapped');
-              _navigateToQrCodePage(context);
-            },
+            onTap: () => _navigateToQrCodePage(context),
           ),
           SpeedDialChild(
             labelWidget: Text('Scan'),

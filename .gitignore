@@ -33,6 +33,7 @@
 
 # Generated code
 *.freezed.dart
+*.chopper.dart
 
 # Web related
 lib/generated_plugin_registrant.dart
