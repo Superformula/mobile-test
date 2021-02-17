@@ -22,7 +22,7 @@ class ApiClient {
   Future<bool> validateQrCode(String codeToValidate) async {
     final response = await _api.validateQrCode(codeToValidate);
     if (response.isSuccessful) {
-      final body = json.decode(response.error as String) as Map<String, dynamic>;
+      final body = json.decode(response.body as String) as Map<String, dynamic>;
       if (body != null) {
         return body['is_valid'];
       }

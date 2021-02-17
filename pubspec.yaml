@@ -23,6 +23,9 @@ dependencies:
   # QR Code
   qr_flutter: ^3.1.0
 
+  # QR Scan
+  qr_code_scanner: ^0.3.4
+
   # Mockito
   mockito: ^4.1.3
 
