@@ -78,7 +78,7 @@ class Fixtures {
         isLoadingSeed: false,
         fetchSeedFailed: false,
         isValidatingQrCode: false,
-        hasValidQrCode: false,
+        hasValidQrCode: null,
         validateCodeFailed: true,
       );
 
