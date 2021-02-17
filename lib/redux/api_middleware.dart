@@ -14,6 +14,10 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
       _fetchSeed(store);
     }
 
+    if (action is ValidateQrCodeAction) {
+      _validateQrCode(store, action);
+    }
+
     next(action);
   }
 
@@ -23,6 +27,19 @@ class ApiMiddleware extends MiddlewareClass<AppState> {
       store.dispatch(SeedLoadedAction(seed));
     } catch (_) {
       store.dispatch(FetchSeedFailedAction());
+    }
+  }
+
+  Future _validateQrCode(Store<AppState> store, ValidateQrCodeAction action) async {
+    try {
+      final isValid = await _apiClient.validateQrCode(action.codeToValidate);
+      if (isValid) {
+        store.dispatch(ValidQrCodeAction());
+      } else {
+        store.dispatch(ExpiredQrCodeAction());
+      }
+    } catch (_) {
+      store.dispatch(ValidateQrCodeFailedAction());
     }
   }
 }
