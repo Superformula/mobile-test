@@ -45,7 +45,14 @@ void main() {
       'GIVEN AppState is in an invalid state '
       'WHEN QrCodePage is displayed '
       'THEN it shows an error message', (WidgetTester tester) async {
-    final appState = AppState(seed: null, isLoadingSeed: false, fetchSeedFailed: false);
+    final appState = AppState(
+      seed: null,
+      isLoadingSeed: false,
+      fetchSeedFailed: false,
+      isValidatingQrCode: false,
+      hasValidQrCode: null,
+      validateCodeFailed: false,
+    );
     final store = Fixtures.store(initialState: appState);
 
     await tester.pumpQrCodePage(store);

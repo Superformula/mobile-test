@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:qr_code/home/home_page.dart';
 import 'package:qr_code/qr_code/qr_code_page.dart';
 import 'package:qr_code/redux/app_state.dart';
+import 'package:qr_code/validation/validation_dialog.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:redux/redux.dart';
 
@@ -16,6 +17,10 @@ extension WidgetTesterExtension on WidgetTester {
 
   Future pumpQrCodePage([Store<AppState> store]) async {
     await pumpPage(QrCodePage(), store);
+  }
+
+  Future pumpValidationDialog([Store<AppState> store]) async {
+    await pumpPage(ValidationDialog(), store);
   }
 
   Future pumpPage(Widget page, [Store<AppState> store]) async {

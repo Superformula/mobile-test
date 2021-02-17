@@ -19,11 +19,68 @@ class Fixtures {
       );
 
   // ** AppState **
-  static AppState appStateLoading() => AppState(seed: null, isLoadingSeed: true, fetchSeedFailed: false);
+  static AppState appStateLoading() => AppState(
+        seed: null,
+        isLoadingSeed: true,
+        fetchSeedFailed: false,
+        isValidatingQrCode: false,
+        hasValidQrCode: null,
+        validateCodeFailed: false,
+      );
 
-  static AppState appStateWithGoldenSeed() => AppState(seed: goldenSeed(), isLoadingSeed: false, fetchSeedFailed: false);
+  static AppState appStateWithGoldenSeed() => AppState(
+        seed: goldenSeed(),
+        isLoadingSeed: false,
+        fetchSeedFailed: false,
+        isValidatingQrCode: false,
+        hasValidQrCode: null,
+        validateCodeFailed: false,
+      );
 
-  static AppState appStateWithFetchSeedFailed() => AppState(seed: null, isLoadingSeed: false, fetchSeedFailed: true);
+  static AppState appStateWithFetchSeedFailed() => AppState(
+        seed: null,
+        isLoadingSeed: false,
+        fetchSeedFailed: true,
+        isValidatingQrCode: false,
+        hasValidQrCode: null,
+        validateCodeFailed: false,
+      );
+
+  static AppState appStateValidatingCode() => AppState(
+        seed: null,
+        isLoadingSeed: false,
+        fetchSeedFailed: false,
+        isValidatingQrCode: true,
+        hasValidQrCode: null,
+        validateCodeFailed: false,
+      );
+
+  static AppState appStateWithValidQrCode() => AppState(
+        seed: null,
+        isLoadingSeed: false,
+        fetchSeedFailed: false,
+        isValidatingQrCode: false,
+        hasValidQrCode: true,
+        validateCodeFailed: false,
+      );
+
+  static AppState appStateWithExpiredQrCode() => AppState(
+        seed: null,
+        isLoadingSeed: false,
+        fetchSeedFailed: false,
+        isValidatingQrCode: false,
+        hasValidQrCode: false,
+        validateCodeFailed: false,
+      );
+
+  static AppState appStateWithValidateQrCodeFailed() => AppState(
+        seed: null,
+        isLoadingSeed: false,
+        fetchSeedFailed: false,
+        isValidatingQrCode: false,
+        hasValidQrCode: false,
+        validateCodeFailed: true,
+      );
 
   // ** Seed **
   static Seed goldenSeed() => Seed(value: 'golden', expiresAt: DateTime(2100));

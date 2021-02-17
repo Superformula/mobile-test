@@ -9,7 +9,17 @@ abstract class AppState with _$AppState {
     @nullable @required Seed seed,
     @required bool isLoadingSeed,
     @required bool fetchSeedFailed,
+    @required bool isValidatingQrCode,
+    @nullable @required bool hasValidQrCode,
+    @nullable @required bool validateCodeFailed,
   }) = _AppState;
 
-  factory AppState.init() => AppState(seed: null, isLoadingSeed: false, fetchSeedFailed: false);
+  factory AppState.init() => AppState(
+        seed: null,
+        isLoadingSeed: false,
+        fetchSeedFailed: false,
+        isValidatingQrCode: false,
+        hasValidQrCode: null,
+        validateCodeFailed: false,
+      );
 }
