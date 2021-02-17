@@ -19,8 +19,8 @@ extension WidgetTesterExtension on WidgetTester {
     await pumpPage(QrCodePage(), store);
   }
 
-  Future pumpValidationDialog([Store<AppState> store]) async {
-    await pumpPage(ValidationDialog(), store);
+  Future pumpValidationDialog({String codeToValidate, Store<AppState> store}) async {
+    await pumpPage(ValidationDialog(codeToValidate ?? ''), store);
   }
 
   Future pumpPage(Widget page, [Store<AppState> store]) async {

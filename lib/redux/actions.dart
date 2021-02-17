@@ -30,7 +30,7 @@ abstract class TurnOffAutoRefreshAction with _$TurnOffAutoRefreshAction {
 
 @freezed
 abstract class ValidateQrCodeAction with _$ValidateQrCodeAction {
-  const factory ValidateQrCodeAction() = _ValidateQrCodeAction;
+  const factory ValidateQrCodeAction(String codeToValidate) = _ValidateQrCodeAction;
 }
 
 @freezed

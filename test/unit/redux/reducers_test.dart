@@ -48,7 +48,7 @@ void main() {
       'WHEN ValidateQrCodeAction is dispatched '
       'THEN app is in loading state', () {
     final oldState = AppState.init();
-    final action = ValidateQrCodeAction();
+    final action = ValidateQrCodeAction('');
     final expectedState = Fixtures.appStateValidatingCode();
 
     final actualState = appReducer(oldState, action);

@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:qr_code/redux/actions.dart';
 
 import '../../fixtures.dart';
 import '../../widget_tester_extension.dart';
 
 void main() {
+  testWidgets(
+      'WHEN ValidationDialog is displayed '
+      'THEN it validates the given code', (WidgetTester tester) async {
+    final codeToValidate = 'golden';
+    final spyStore = Fixtures.spyStore();
+
+    await tester.pumpValidationDialog(codeToValidate: codeToValidate, store: spyStore);
+
+    expect(spyStore.receivedActions, [ValidateQrCodeAction(codeToValidate)]);
+  });
+
   testWidgets(
       'GIVEN app is validating a qr code '
       'WHEN ValidationDialog is displayed '
@@ -12,7 +24,7 @@ void main() {
     final appState = Fixtures.appStateValidatingCode();
     final store = Fixtures.store(initialState: appState);
 
-    await tester.pumpValidationDialog(store);
+    await tester.pumpValidationDialog(store: store);
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
   });
@@ -24,7 +36,7 @@ void main() {
     final appState = Fixtures.appStateWithValidQrCode();
     final store = Fixtures.store(initialState: appState);
 
-    await tester.pumpValidationDialog(store);
+    await tester.pumpValidationDialog(store: store);
 
     expect(find.text("Good job! You've got a valid QR Code"), findsOneWidget);
   });
@@ -36,7 +48,7 @@ void main() {
     final appState = Fixtures.appStateWithExpiredQrCode();
     final store = Fixtures.store(initialState: appState);
 
-    await tester.pumpValidationDialog(store);
+    await tester.pumpValidationDialog(store: store);
 
     expect(find.text("This QR Code has expired. Try a new one"), findsOneWidget);
   });
@@ -48,9 +60,26 @@ void main() {
     final appState = Fixtures.appStateWithValidateQrCodeFailed();
     final store = Fixtures.store(initialState: appState);
 
-    await tester.pumpValidationDialog(store);
+    await tester.pumpValidationDialog(store: store);
 
     expect(find.text("Something wrong happened"), findsOneWidget);
     expect(find.text("Try again"), findsOneWidget);
+  });
+
+  testWidgets(
+      'GIVEN ValidationDialog is displayed '
+      'AND app has failed to validate qr code '
+      "WHEN retry button is tapped "
+      'THEN it dispatches a ValidateQrCodeAction', (WidgetTester tester) async {
+    final codeToValidate = 'golden';
+    final appState = Fixtures.appStateWithValidateQrCodeFailed();
+    final spyStore = Fixtures.spyStore(initialState: appState);
+
+    await tester.pumpValidationDialog(codeToValidate: codeToValidate, store: spyStore);
+
+    await tester.tap(find.text("Try again"));
+
+    // We need to receive two actions, one for when the dialog loads, and a second one when the retry button is tapped
+    expect(spyStore.receivedActions, [ValidateQrCodeAction(codeToValidate), ValidateQrCodeAction(codeToValidate)]);
   });
 }
