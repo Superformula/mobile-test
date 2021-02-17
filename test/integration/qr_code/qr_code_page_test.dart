@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:qr_code/redux/api_middleware.dart';
 import 'package:qr_code/redux/store.dart';
 
 import '../../mocks.dart';
@@ -60,7 +59,7 @@ void main() {
     final apiClient = ApiClientMock();
     when(apiClient.fetchSeed()).thenAnswer((_) => Future.error(Exception()));
 
-    final store = createReduxStore(middleware: [ApiMiddleware(apiClient)]);
+    final store = createReduxStore(apiClient: apiClient);
 
     await tester.pumpQrCodePage(store);
     await tester.pumpAndSettle();

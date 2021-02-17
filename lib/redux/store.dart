@@ -5,12 +5,11 @@ import 'package:qr_code/redux/auto_refresh_middleware.dart';
 import 'package:qr_code/redux/reducers.dart';
 import 'package:redux/redux.dart';
 
-Store<AppState> createReduxStore({List<Middleware<AppState>> middleware}) => Store<AppState>(
+Store<AppState> createReduxStore({ApiClient apiClient}) => Store<AppState>(
       appReducer,
       initialState: AppState.init(),
-      middleware: middleware ??
-          [
-            ApiMiddleware(ApiClient()),
-            AutoRefreshMiddleware(),
-          ],
+      middleware: [
+        ApiMiddleware(apiClient ?? ApiClient()),
+        AutoRefreshMiddleware(),
+      ],
     );
