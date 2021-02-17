@@ -29,6 +29,9 @@ dependencies:
   # CountDown Timer
   flutter_countdown_timer: ^3.0.0
 
+  # FAB Speed Dial
+  flutter_speed_dial: ^2.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
