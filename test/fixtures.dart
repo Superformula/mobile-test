@@ -28,8 +28,10 @@ class Fixtures {
         validateCodeFailed: false,
       );
 
-  static AppState appStateWithGoldenSeed() => AppState(
-        seed: goldenSeed(),
+  static AppState appStateWithGoldenSeed() => appStateWithSeed(goldenSeed());
+
+  static AppState appStateWithSeed(Seed seed) => AppState(
+        seed: seed,
         isLoadingSeed: false,
         fetchSeedFailed: false,
         isValidatingQrCode: false,

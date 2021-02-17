@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:qr_code/model/seed.dart';
+import 'package:qr_code/qr_code/countdown_widget.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -56,7 +57,8 @@ class QrCodePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     orientation == Orientation.portrait ? qrImage : Expanded(child: qrImage),
-                    Text('15 seconds'), // TODO - replace hard-coded text with count down timer
+                    SizedBox(height: 16),
+                    CountdownWidget(endTime: seed.expiresAt.millisecondsSinceEpoch),
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:qr_code/model/seed.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
 
@@ -71,6 +72,19 @@ void main() {
     await tester.pumpQrCodePage(store);
 
     await tester.findGoldenQrCode();
+  });
+
+  testWidgets(
+      'GIVEN AppState has a valid seed '
+      'WHEN QrCodePage is displayed '
+      'THEN it shows a count down timer', (WidgetTester tester) async {
+    final seed = Seed(value: 'seed', expiresAt: DateTime.now().add(Duration(seconds: 5)));
+    final appState = Fixtures.appStateWithSeed(seed);
+    final store = Fixtures.store(initialState: appState);
+
+    await tester.pumpQrCodePage(store);
+
+    expect(find.text('5 seconds'), findsOneWidget);
   });
 
   testWidgets(
