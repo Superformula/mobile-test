@@ -4,6 +4,7 @@ import 'package:qr_code/model/seed.dart';
 import 'package:qr_code/qr_code/countdown_widget.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
+import 'package:qr_code/utils/failure_widget.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:redux/redux.dart';
 
@@ -30,18 +31,9 @@ class QrCodePage extends StatelessWidget {
           idle: () => Container(),
           inProgress: _loadingIndicator,
           loaded: _qrCode,
-          error: () => _errorMessage(vm),
+          error: () => FailureWidget(tapButtonCallback: vm.onRetry),
         );
       });
-
-  Widget _errorMessage(_ViewModel vm) => Center(
-        child: Column(
-          children: [
-            Text('Something wrong happened'),
-            RaisedButton(child: Text('Try again'), onPressed: vm.onRetry),
-          ],
-        ),
-      );
 
   Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
 

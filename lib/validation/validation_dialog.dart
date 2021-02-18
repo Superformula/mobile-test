@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
+import 'package:qr_code/utils/failure_widget.dart';
+import 'package:qr_code/utils/info_widget.dart';
 import 'package:redux/redux.dart';
 
 class ValidationDialog extends StatelessWidget {
@@ -26,24 +28,21 @@ class ValidationDialog extends StatelessWidget {
             inProgress: _loadingIndicator,
             validCode: _successMessage,
             expiredCode: _expiredMessage,
-            error: () => _errorMessage(vm),
+            error: () => FailureWidget(tapButtonCallback: vm.onRetryValidation),
           );
         },
       );
 
   Widget _loadingIndicator() => Center(child: CircularProgressIndicator());
 
-  Widget _successMessage() => Center(child: Text("Good job! You've got a valid QR Code"));
+  Widget _successMessage() => const InfoWidget(
+        imagePath: 'assets/img/success.svg',
+        message: "Good job! You've got a valid QR Code",
+      );
 
-  Widget _expiredMessage() => Center(child: Text('This QR Code has expired. Try a new one'));
-
-  Widget _errorMessage(_ViewModel vm) => Center(
-        child: Column(
-          children: [
-            Text('Something wrong happened'),
-            RaisedButton(child: Text('Try again'), onPressed: vm.onRetryValidation),
-          ],
-        ),
+  Widget _expiredMessage() => const InfoWidget(
+        imagePath: 'assets/img/expired.svg',
+        message: 'This QR Code has expired. Try a new one',
       );
 }
 
