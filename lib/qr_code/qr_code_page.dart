@@ -26,13 +26,12 @@ class QrCodePage extends StatelessWidget {
       onDispose: (store) => store.dispatch(TurnOffAutoRefreshAction()),
       converter: (store) => _ViewModel.from(store),
       builder: (context, vm) {
-        if (vm.state.isLoadingSeed) {
-          return _loadingIndicator();
-        }
-        if (vm.state.seed != null) {
-          return _qrCode(vm.state.seed);
-        }
-        return _errorMessage(vm);
+        return vm.seedState.when(
+          idle: () => Container(),
+          inProgress: _loadingIndicator,
+          loaded: _qrCode,
+          error: () => _errorMessage(vm),
+        );
       });
 
   Widget _errorMessage(_ViewModel vm) => Center(
@@ -70,13 +69,13 @@ class QrCodePage extends StatelessWidget {
 }
 
 class _ViewModel {
-  _ViewModel(this.state, {@required this.onRetry});
+  _ViewModel(this.seedState, {@required this.onRetry});
 
-  final AppState state;
+  final SeedState seedState;
   final Function() onRetry;
 
   static _ViewModel from(Store<AppState> store) => _ViewModel(
-        store.state,
+        store.state.seedState,
         onRetry: () => store.dispatch(FetchSeedAction()),
       );
 }

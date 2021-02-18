@@ -20,53 +20,39 @@ class Fixtures {
 
   // ** AppState **
   static AppState appStateLoading() => AppState(
-        seed: null,
-        isLoadingSeed: true,
-        fetchSeedFailed: false,
+        seedState: SeedState.inProgress(),
         validationState: ValidationState.idle(),
       );
 
   static AppState appStateWithGoldenSeed() => appStateWithSeed(goldenSeed());
 
   static AppState appStateWithSeed(Seed seed) => AppState(
-        seed: seed,
-        isLoadingSeed: false,
-        fetchSeedFailed: false,
+        seedState: SeedState.loaded(seed),
         validationState: ValidationState.idle(),
       );
 
   static AppState appStateWithFetchSeedFailed() => AppState(
-        seed: null,
-        isLoadingSeed: false,
-        fetchSeedFailed: true,
+        seedState: SeedState.error(),
         validationState: ValidationState.idle(),
       );
 
   static AppState appStateValidatingCode() => AppState(
-        seed: null,
-        isLoadingSeed: false,
-        fetchSeedFailed: false,
+        seedState: SeedState.idle(),
         validationState: ValidationState.inProgress(),
       );
 
   static AppState appStateWithValidQrCode() => AppState(
-        seed: null,
-        isLoadingSeed: false,
-        fetchSeedFailed: false,
+        seedState: SeedState.idle(),
         validationState: ValidationState.validCode(),
       );
 
   static AppState appStateWithExpiredQrCode() => AppState(
-        seed: null,
-        isLoadingSeed: false,
-        fetchSeedFailed: false,
+        seedState: SeedState.idle(),
         validationState: ValidationState.expiredCode(),
       );
 
   static AppState appStateWithValidateQrCodeFailed() => AppState(
-        seed: null,
-        isLoadingSeed: false,
-        fetchSeedFailed: false,
+        seedState: SeedState.idle(),
         validationState: ValidationState.error(),
       );
 

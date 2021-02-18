@@ -6,29 +6,36 @@ part 'app_state.freezed.dart';
 @freezed
 abstract class AppState with _$AppState {
   const factory AppState({
-    @nullable @required Seed seed,
-    @required bool isLoadingSeed,
-    @required bool fetchSeedFailed,
+    @required SeedState seedState,
     @required ValidationState validationState,
   }) = _AppState;
 
   factory AppState.init() => AppState(
-        seed: null,
-        isLoadingSeed: false,
-        fetchSeedFailed: false,
+        seedState: SeedState.idle(),
         validationState: ValidationState.idle(),
       );
 }
 
 @freezed
-abstract class ValidationState with _$ValidationState {
-  const factory ValidationState.idle() = Idle;
+abstract class SeedState with _$SeedState {
+  const factory SeedState.idle() = Idle;
 
-  const factory ValidationState.inProgress() = InProgress;
+  const factory SeedState.inProgress() = InProgress;
+
+  const factory SeedState.loaded(Seed seed) = Loaded;
+
+  const factory SeedState.error() = Error;
+}
+
+@freezed
+abstract class ValidationState with _$ValidationState {
+  const factory ValidationState.idle() = ValidationIdle;
+
+  const factory ValidationState.inProgress() = ValidationInProgress;
 
   const factory ValidationState.validCode() = ValidCode;
 
   const factory ValidationState.expiredCode() = ExpiredCode;
 
-  const factory ValidationState.error() = Error;
+  const factory ValidationState.error() = ValidationError;
 }

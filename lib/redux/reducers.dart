@@ -12,16 +12,16 @@ final appReducer = combineReducers<AppState>([
   TypedReducer<AppState, ValidateQrCodeFailedAction>(_onValidateQrCodeFailed),
 ]);
 
-AppState _onFetchSeed(AppState state, FetchSeedAction action) => state.copyWith(isLoadingSeed: true);
+AppState _onFetchSeed(AppState state, FetchSeedAction action) => state.copyWith(
+      seedState: SeedState.inProgress(),
+    );
 
 AppState _onSeedLoaded(AppState state, SeedLoadedAction action) => state.copyWith(
-      seed: action.seed,
-      isLoadingSeed: false,
+      seedState: SeedState.loaded(action.seed),
     );
 
 AppState _onFetchSeedFailed(AppState state, FetchSeedFailedAction action) => state.copyWith(
-      fetchSeedFailed: true,
-      isLoadingSeed: false,
+      seedState: SeedState.error(),
     );
 
 AppState _onValidateQrCode(AppState state, ValidateQrCodeAction action) => state.copyWith(

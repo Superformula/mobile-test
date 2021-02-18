@@ -43,20 +43,18 @@ void main() {
   });
 
   testWidgets(
-      'GIVEN AppState is in an invalid state '
+      'GIVEN AppState is idle '
       'WHEN QrCodePage is displayed '
-      'THEN it shows an error message', (WidgetTester tester) async {
+      'THEN it shows an empty container', (WidgetTester tester) async {
     final appState = AppState(
-      seed: null,
-      isLoadingSeed: false,
-      fetchSeedFailed: false,
+      seedState: SeedState.idle(),
       validationState: ValidationState.idle(),
     );
     final store = Fixtures.store(initialState: appState);
 
     await tester.pumpQrCodePage(store);
 
-    expect(find.text('Something wrong happened'), findsOneWidget);
+    expect(find.byType(Container), findsOneWidget);
   });
 
   testWidgets(
