@@ -39,7 +39,6 @@ class _CameraPermissionWidgetState extends State<CameraPermissionWidget> with Wi
 
   void _listenForPermissionStatus() async {
     final status = await Permission.camera.status;
-    print('******************************************* Listened to permission: $status');
     setState(() => _permissionStatus = status);
   }
 
