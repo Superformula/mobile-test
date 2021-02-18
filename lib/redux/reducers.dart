@@ -24,7 +24,10 @@ AppState _onFetchSeedFailed(AppState state, FetchSeedFailedAction action) => sta
       isLoadingSeed: false,
     );
 
-AppState _onValidateQrCode(AppState state, ValidateQrCodeAction action) => state.copyWith(isValidatingQrCode: true);
+AppState _onValidateQrCode(AppState state, ValidateQrCodeAction action) => state.copyWith(
+      isValidatingQrCode: true,
+      validateCodeFailed: false,
+    );
 
 AppState _onValidQrCode(AppState state, ValidQrCodeAction action) => state.copyWith(
       isValidatingQrCode: false,

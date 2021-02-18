@@ -91,4 +91,17 @@ void main() {
 
     expect(actualState, expectedState);
   });
+
+  test(
+      'GIVEN app has failed to validate a qr code'
+      'WHEN ValidateQrCodeAction is dispatched '
+      'THEN app is in loading state', () {
+    final oldState = Fixtures.appStateWithValidateQrCodeFailed();
+    final action = ValidateQrCodeAction('code');
+    final expectedState = Fixtures.appStateValidatingCode();
+
+    final actualState = appReducer(oldState, action);
+
+    expect(actualState, expectedState);
+  });
 }
