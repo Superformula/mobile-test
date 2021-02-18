@@ -50,9 +50,7 @@ void main() {
       seed: null,
       isLoadingSeed: false,
       fetchSeedFailed: false,
-      isValidatingQrCode: false,
-      hasValidQrCode: null,
-      validateCodeFailed: false,
+      validationState: ValidationState.idle(),
     );
     final store = Fixtures.store(initialState: appState);
 

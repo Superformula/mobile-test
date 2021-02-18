@@ -23,9 +23,7 @@ class Fixtures {
         seed: null,
         isLoadingSeed: true,
         fetchSeedFailed: false,
-        isValidatingQrCode: false,
-        hasValidQrCode: null,
-        validateCodeFailed: false,
+        validationState: ValidationState.idle(),
       );
 
   static AppState appStateWithGoldenSeed() => appStateWithSeed(goldenSeed());
@@ -34,54 +32,42 @@ class Fixtures {
         seed: seed,
         isLoadingSeed: false,
         fetchSeedFailed: false,
-        isValidatingQrCode: false,
-        hasValidQrCode: null,
-        validateCodeFailed: false,
+        validationState: ValidationState.idle(),
       );
 
   static AppState appStateWithFetchSeedFailed() => AppState(
         seed: null,
         isLoadingSeed: false,
         fetchSeedFailed: true,
-        isValidatingQrCode: false,
-        hasValidQrCode: null,
-        validateCodeFailed: false,
+        validationState: ValidationState.idle(),
       );
 
   static AppState appStateValidatingCode() => AppState(
         seed: null,
         isLoadingSeed: false,
         fetchSeedFailed: false,
-        isValidatingQrCode: true,
-        hasValidQrCode: null,
-        validateCodeFailed: false,
+        validationState: ValidationState.inProgress(),
       );
 
   static AppState appStateWithValidQrCode() => AppState(
         seed: null,
         isLoadingSeed: false,
         fetchSeedFailed: false,
-        isValidatingQrCode: false,
-        hasValidQrCode: true,
-        validateCodeFailed: false,
+        validationState: ValidationState.validCode(),
       );
 
   static AppState appStateWithExpiredQrCode() => AppState(
         seed: null,
         isLoadingSeed: false,
         fetchSeedFailed: false,
-        isValidatingQrCode: false,
-        hasValidQrCode: false,
-        validateCodeFailed: false,
+        validationState: ValidationState.expiredCode(),
       );
 
   static AppState appStateWithValidateQrCodeFailed() => AppState(
         seed: null,
         isLoadingSeed: false,
         fetchSeedFailed: false,
-        isValidatingQrCode: false,
-        hasValidQrCode: null,
-        validateCodeFailed: true,
+        validationState: ValidationState.error(),
       );
 
   // ** Seed **

@@ -25,22 +25,17 @@ AppState _onFetchSeedFailed(AppState state, FetchSeedFailedAction action) => sta
     );
 
 AppState _onValidateQrCode(AppState state, ValidateQrCodeAction action) => state.copyWith(
-      isValidatingQrCode: true,
-      validateCodeFailed: false,
+      validationState: ValidationState.inProgress(),
     );
 
 AppState _onValidQrCode(AppState state, ValidQrCodeAction action) => state.copyWith(
-      isValidatingQrCode: false,
-      hasValidQrCode: true,
+      validationState: ValidationState.validCode(),
     );
 
 AppState _onExpiredQrCode(AppState state, ExpiredQrCodeAction action) => state.copyWith(
-      isValidatingQrCode: false,
-      hasValidQrCode: false,
+      validationState: ValidationState.expiredCode(),
     );
 
 AppState _onValidateQrCodeFailed(AppState state, ValidateQrCodeFailedAction action) => state.copyWith(
-      isValidatingQrCode: false,
-      hasValidQrCode: null,
-      validateCodeFailed: true,
+      validationState: ValidationState.error(),
     );

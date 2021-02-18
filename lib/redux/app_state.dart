@@ -9,17 +9,26 @@ abstract class AppState with _$AppState {
     @nullable @required Seed seed,
     @required bool isLoadingSeed,
     @required bool fetchSeedFailed,
-    @required bool isValidatingQrCode,
-    @nullable @required bool hasValidQrCode,
-    @nullable @required bool validateCodeFailed,
+    @required ValidationState validationState,
   }) = _AppState;
 
   factory AppState.init() => AppState(
         seed: null,
         isLoadingSeed: false,
         fetchSeedFailed: false,
-        isValidatingQrCode: false,
-        hasValidQrCode: null,
-        validateCodeFailed: false,
+        validationState: ValidationState.idle(),
       );
+}
+
+@freezed
+abstract class ValidationState with _$ValidationState {
+  const factory ValidationState.idle() = Idle;
+
+  const factory ValidationState.inProgress() = InProgress;
+
+  const factory ValidationState.validCode() = ValidCode;
+
+  const factory ValidationState.expiredCode() = ExpiredCode;
+
+  const factory ValidationState.error() = Error;
 }

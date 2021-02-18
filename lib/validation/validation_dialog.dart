@@ -21,21 +21,13 @@ class ValidationDialog extends StatelessWidget {
         onInit: (store) => store.dispatch(ValidateQrCodeAction(_codeToValidate)),
         converter: (store) => _ViewModel.from(store, _codeToValidate),
         builder: (context, vm) {
-          if (vm.state.isValidatingQrCode) {
-            return _loadingIndicator();
-          }
-          if (vm.state.validateCodeFailed) {
-            return _errorMessage(vm);
-          }
-          if (vm.state.hasValidQrCode != null) {
-            if (vm.state.hasValidQrCode) {
-              return _successMessage();
-            }
-            if (!vm.state.hasValidQrCode) {
-              return _expiredMessage();
-            }
-          }
-          return Container();
+          return vm.validationState.when(
+            idle: () => Container(),
+            inProgress: _loadingIndicator,
+            validCode: _successMessage,
+            expiredCode: _expiredMessage,
+            error: () => _errorMessage(vm),
+          );
         },
       );
 
@@ -56,13 +48,13 @@ class ValidationDialog extends StatelessWidget {
 }
 
 class _ViewModel {
-  _ViewModel(this.state, {@required this.onRetryValidation});
+  _ViewModel(this.validationState, {@required this.onRetryValidation});
 
-  final AppState state;
+  final ValidationState validationState;
   final Function() onRetryValidation;
 
   static _ViewModel from(Store<AppState> store, String codeToValidate) => _ViewModel(
-        store.state,
+        store.state.validationState,
         onRetryValidation: () => store.dispatch(ValidateQrCodeAction(codeToValidate)),
       );
 }
