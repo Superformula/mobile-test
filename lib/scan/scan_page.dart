@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qr_code/scan/camera_permission_widget.dart';
 import 'package:qr_code/scan/qr_scanner.dart';
 import 'package:qr_code/validation/validation_dialog.dart';
 
@@ -16,7 +17,8 @@ class _ScanPageState extends State<ScanPage> {
       appBar: AppBar(
         title: Text('Scan'),
       ),
-      body: _showScanner ? QrScanner(onScanCallback: (code) => _showQrCodeValidationDialog(context, code)) : Container(),
+      body:
+          CameraPermissionWidget(child: _showScanner ? QrScanner(onScanCallback: (code) => _showQrCodeValidationDialog(context, code)) : Container()),
     );
   }
 
