@@ -1,4 +1,4 @@
-package com.example.qr_code
+package com.lucasmbraz.qr_codz
 
 import io.flutter.embedding.android.FlutterActivity
 
