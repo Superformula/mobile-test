@@ -70,6 +70,8 @@ class _CameraPermissionWidgetState extends State<CameraPermissionWidget> with Wi
   Widget _askPermissionButton() => RaisedButton(
         child: Text('Enable camera access'),
         onPressed: requestPermission,
+        color: Colors.white,
+        colorBrightness: Brightness.light,
       );
 
   Future<void> requestPermission() async {
@@ -82,5 +84,7 @@ class _CameraPermissionWidgetState extends State<CameraPermissionWidget> with Wi
   Widget _openSettingsButton() => RaisedButton(
         child: Text('Open settings'),
         onPressed: () => openAppSettings(),
+        color: Colors.white,
+        colorBrightness: Brightness.light,
       );
 }
