@@ -112,6 +112,7 @@ void main() {
 
     await tester.tap(find.text('Try again'));
 
-    expect(spyStore.receivedActions.last, FetchSeedAction());
+    // We need to receive two FetchSeed actions, one for when the page loads, and a second one when the retry button is tapped
+    expect(spyStore.receivedActions, [TurnOnAutoRefreshAction(), FetchSeedAction(), FetchSeedAction()]);
   });
 }

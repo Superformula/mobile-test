@@ -5,6 +5,7 @@ import 'package:qr_code/qr_code/countdown_widget.dart';
 import 'package:qr_code/redux/actions.dart';
 import 'package:qr_code/redux/app_state.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:redux/redux.dart';
 
 class QrCodePage extends StatelessWidget {
   @override
@@ -17,28 +18,28 @@ class QrCodePage extends StatelessWidget {
     );
   }
 
-  Widget _body() => StoreConnector<AppState, AppState>(
+  Widget _body() => StoreConnector<AppState, _ViewModel>(
       onInit: (store) {
         store.dispatch(TurnOnAutoRefreshAction());
         store.dispatch(FetchSeedAction());
       },
       onDispose: (store) => store.dispatch(TurnOffAutoRefreshAction()),
-      converter: (store) => store.state,
-      builder: (context, state) {
-        if (state.isLoadingSeed) {
+      converter: (store) => _ViewModel.from(store),
+      builder: (context, vm) {
+        if (vm.state.isLoadingSeed) {
           return _loadingIndicator();
         }
-        if (state.seed != null) {
-          return _qrCode(state.seed);
+        if (vm.state.seed != null) {
+          return _qrCode(vm.state.seed);
         }
-        return _errorMessage();
+        return _errorMessage(vm);
       });
 
-  Widget _errorMessage() => Center(
+  Widget _errorMessage(_ViewModel vm) => Center(
         child: Column(
           children: [
             Text('Something wrong happened'),
-            RaisedButton(child: Text('Try again'), onPressed: () => null),
+            RaisedButton(child: Text('Try again'), onPressed: vm.onRetry),
           ],
         ),
       );
@@ -66,4 +67,16 @@ class QrCodePage extends StatelessWidget {
           ),
         );
       });
+}
+
+class _ViewModel {
+  _ViewModel(this.state, {@required this.onRetry});
+
+  final AppState state;
+  final Function() onRetry;
+
+  static _ViewModel from(Store<AppState> store) => _ViewModel(
+        store.state,
+        onRetry: () => store.dispatch(FetchSeedAction()),
+      );
 }
