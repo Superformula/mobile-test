@@ -40,6 +40,7 @@ class QRCodeGeneratorBloc {
     }
   }
 
+  //We can create this validation as the backend service if needed
   bool validateQrCodeStatus(String qrCodeData) {
     final List<String> qrCodeDataArray = qrCodeData.split('##');
     final DateTime expiresAtDateTime = formatDatesToCompare(qrCodeDataArray[1]);
