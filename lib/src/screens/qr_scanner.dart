@@ -73,23 +73,27 @@ class QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ))),
-              FlatButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                color: Colors.blueAccent,
-                child: Padding(
-                    padding: EdgeInsets.only(
-                        top: getBlockSizeHorizontal(context) * 4,
-                        bottom: getBlockSizeHorizontal(context) * 4,
-                        left: getBlockSizeHorizontal(context) * 4,
-                        right: getBlockSizeHorizontal(context) * 4),
-                    child: const Text('Try another QR code',
-                        style: CustomStyles.defaultStyle)),
-                onPressed: () {
-                  scanQRCode();
-                },
-              )
+              result != ''
+                  ? FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      color: Colors.blueAccent,
+                      child: Padding(
+                          padding: EdgeInsets.only(
+                              top: getBlockSizeHorizontal(context) * 4,
+                              bottom: getBlockSizeHorizontal(context) * 4,
+                              left: getBlockSizeHorizontal(context) * 4,
+                              right: getBlockSizeHorizontal(context) * 4),
+                          child: const Text('Try another QR code',
+                              style: CustomStyles.defaultStyle)),
+                      onPressed: () {
+                        scanQRCode();
+                      },
+                    )
+                  : Container(
+                      color: Colors.transparent,
+                    ),
             ]));
   }
 }
