@@ -68,17 +68,26 @@ Build and Run the Application
   Getting Started on Heroku with Node.js
   https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
 
-##Now its time to go for some coding...(About App):
-  ######You need to create a new flutter Project with choice of your name. You need to add some plugins named as:
-  ######A. barcode_scan
-  ######B. qr_flutter
+## Now its time to go for some coding...(About App):
+You need to create a new flutter Project with choice of your name. You need to add some plugins named as:
+
+  A. barcode_scan
+  B. qr_flutter
+  
   This project is build with MVVM design pattern and provides the user with capabilities of generating Qrcode and scanning it.
+  
   1.Entire project is divided into three modules:
         •	Home Screen
         •	QR code generator screen
         •	QR code scanner screen
-  2.Home Screen will render a floating action button, on tap will show menu items list from which user can make a selection to generate QR code or navigate into scanner screen for scanning the QR code generated earlier.
+        
+  2.Home Screen will render a floating action button, on tap will show menu items list from which user can make a selection to generate QR code or navigate into scanner    screen for scanning the QR code generated earlier.
+  
   3.Tap on QR code labeled icon will push new screen with loader while loading data and eventually display QR code with count down timer.
+
   4.User can tap on “Qr code expired try another” button to refresh and get new QR code with remaining time showing.
+
+
   5.Tap on QR Scan labeled icon will push new screen with scanner that will be able to scan QR code and display scanned result.
+
   6.User can tap on “Try Another QR code” button to be able to scan another QR code. All different use cases are covered in case of permission issue or errors.
