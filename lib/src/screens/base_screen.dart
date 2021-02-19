@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BaseScreenScaffold extends StatefulWidget {
-  BaseScreenScaffold({Key key, this.title, this.body}) : super(key: key);
+  const BaseScreenScaffold({Key key, this.title = 'HOME', this.body})
+      : super(key: key);
   final String title;
   final Widget body;
 
@@ -13,13 +14,20 @@ class _BaseScreenScaffoldState extends State<BaseScreenScaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-            child: Text(
-          widget.title,
-        )),
-      ),
-      body: widget.body,
-    );
+        appBar: AppBar(
+          centerTitle: true,
+          title: Padding(
+              padding: EdgeInsets.only(
+                  right: widget.title.contains('HOME') ? 0 : 35),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    widget.title,
+                  ),
+                ],
+              )),
+        ),
+        body: widget.body);
   }
 }
