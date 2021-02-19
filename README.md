@@ -69,9 +69,9 @@ Build and Run the Application
   https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
 
 ##Now its time to go for some coding...(About App):
-  You need to create a new flutter Project with choice of your name. You need to add some plugins named as:
-  A. barcode_scan
-  B. qr_flutter
+  ######You need to create a new flutter Project with choice of your name. You need to add some plugins named as:
+  ######A. barcode_scan
+  ######B. qr_flutter
   This project is build with MVVM design pattern and provides the user with capabilities of generating Qrcode and scanning it.
   1.Entire project is divided into three modules:
         •	Home Screen
