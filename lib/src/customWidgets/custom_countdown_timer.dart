@@ -25,12 +25,11 @@ class CustomCountDownTimer extends StatelessWidget {
                 color: Colors.blueAccent,
                 child: Padding(
                     padding: EdgeInsets.only(
-                        top: getBlockSizeHorizontal(context) * 3,
-                        bottom: getBlockSizeHorizontal(context) * 3,
-                        left: getBlockSizeHorizontal(context) * 4,
-                        right: getBlockSizeHorizontal(context) * 4),
+                      top: getBlockSizeHorizontal(context) * 3,
+                      bottom: getBlockSizeHorizontal(context) * 3,
+                    ),
                     child: Text(
-                      'Qr code expired try another',
+                      'Expired pull down to refresh/tap button',
                       style: CustomStyles.defaultStyle
                           .copyWith(color: Colors.black),
                     )),
