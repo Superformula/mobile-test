@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as dot_env;
 import 'package:mobile_test/src/screens/home_screen.dart';
 
-void main() {
+// ignore: avoid_void_async
+void main() async {
+  await dot_env.load(fileName: '.env');
   runApp(QRCodeGeneratorAndScannerApp());
 }
 
@@ -10,10 +13,6 @@ class QRCodeGeneratorAndScannerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'QR Code',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: HomeScreen(),
     );
   }
