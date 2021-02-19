@@ -40,69 +40,82 @@ class GenerateQRCodeScreenState extends State<GenerateQRCodeScreen> {
     });
   }
 
+  Future<void> _onRefresh() async {
+    qrCodeBloc.getGenerateQRCode();
+  }
+
   @override
   Widget build(BuildContext context) {
     qrCodeBloc.getGenerateQRCode();
     return BaseScreenScaffold(
-      title: 'QRCODE',
-      body: SingleChildScrollView(
-          child: Center(
-              heightFactor: 1.5,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    StreamBuilder<QrImage>(
-                        initialData: qrCodeBloc.qrCodeSeed$.value,
-                        stream: qrCodeBloc.qrCodeSeed$,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<QrImage> snapshot) {
-                          if (snapshot.hasData) {
-                            return snapshot.data;
-                          } else if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          }
-                          return Container(key: const Key('no-qrLoaded'));
-                        }),
-                    StreamBuilder<String>(
-                        initialData: qrCodeBloc.qrCodeExpiresAt$.value,
-                        stream: qrCodeBloc.qrCodeExpiresAt$,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<String> snapshot) {
-                          if (snapshot.hasData) {
-                            final DateTime date = DateTime.parse(snapshot.data);
-                            final int time = date
-                                .difference(qrCodeBloc.getCurrentDateTime)
-                                .inSeconds;
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                    padding: EdgeInsets.only(
-                                        top:
-                                            getBlockSizeHorizontal(context) * 2,
-                                        bottom:
-                                            getBlockSizeHorizontal(context) *
-                                                2),
-                                    child: Text(
-                                      'Expires At: ${date.toIso8601String()}',
-                                      style: CustomStyles.defaultStyle,
-                                    )),
-                                CustomCountDownTimer(time),
-                              ],
-                            );
-                          } else if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          }
+        title: 'QRCODE',
+        body: Container(
+            child: Center(
+          child: RefreshIndicator(
+              onRefresh: _onRefresh,
+              child: ListView(children: <Widget>[
+                Center(
+                    heightFactor: 1.5,
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          StreamBuilder<QrImage>(
+                              initialData: qrCodeBloc.qrCodeSeed$.value,
+                              stream: qrCodeBloc.qrCodeSeed$,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QrImage> snapshot) {
+                                if (snapshot.hasData) {
+                                  return snapshot.data;
+                                } else if (snapshot.hasError) {
+                                  return Text(snapshot.error.toString());
+                                }
+                                return Container(key: const Key('no-qrLoaded'));
+                              }),
+                          StreamBuilder<String>(
+                              initialData: qrCodeBloc.qrCodeExpiresAt$.value,
+                              stream: qrCodeBloc.qrCodeExpiresAt$,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<String> snapshot) {
+                                if (snapshot.hasData) {
+                                  final DateTime date =
+                                      DateTime.parse(snapshot.data);
+                                  final int time = date
+                                      .difference(qrCodeBloc.getCurrentDateTime)
+                                      .inSeconds;
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              top: getBlockSizeHorizontal(
+                                                      context) *
+                                                  2,
+                                              bottom: getBlockSizeHorizontal(
+                                                      context) *
+                                                  2),
+                                          child: Text(
+                                            'Expires At: ${date.toIso8601String()}',
+                                            style: CustomStyles.defaultStyle,
+                                          )),
+                                      CustomCountDownTimer(time),
+                                    ],
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Text(snapshot.error.toString());
+                                }
 
-                          return Padding(
-                              padding: EdgeInsets.only(
-                                  top: getBlockSizeHorizontal(context) * 55),
-                              child: getWidget);
-                        }),
-                  ]))),
-    );
+                                return Padding(
+                                    padding: EdgeInsets.only(
+                                        top: getBlockSizeHorizontal(context) *
+                                            55),
+                                    child: getWidget);
+                              }),
+                        ]))
+              ])),
+        )));
   }
 
   @override
