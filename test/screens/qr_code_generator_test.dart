@@ -8,6 +8,7 @@ import 'package:mobile_test/src/screens/qr_code_generator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../mockSetUp/test_setup.dart';
+import '../model/seed_mock.dart';
 import 'pump_widget_mock_setup.dart';
 
 void main() {
@@ -30,7 +31,7 @@ void main() {
     });
   });
   testWidgets(
-      'Test QR code with expire date time/ QRCode/ count down timer render properly',
+      'Test QR code with expiry date time/ QRCode/ refresh indicator/count down timer render properly',
       (WidgetTester tester) async {
     await tester.runAsync(() async {
       await dot_env.load();
@@ -42,6 +43,24 @@ void main() {
       expect(find.text('Expires At: 2080-02-18T23:42:30.802Z'), findsOneWidget);
       expect(find.byType(QrImage), findsOneWidget);
       expect(find.byType(CustomCountDownTimer), findsOneWidget);
+      expect(find.byType(RefreshIndicator), findsOneWidget);
+    });
+  });
+
+  testWidgets('QR code expires show expiry button',
+      (WidgetTester tester) async {
+    await tester.runAsync(() async {
+      await dot_env.load();
+      await tester.pumpWidget(buildTestableWidget(GenerateQRCodeScreen(
+          qrCodeBloc: mockQRCodeGeneratorBloc(
+              dateTime: '2021-02-19T23:42:30.802Z',
+              mockSeedData: mockSeedWithExpiredDate))));
+      await tester.pumpAndSettle();
+      expect(find.text('QRCODE'), findsOneWidget);
+      expect(
+          find.text('Expired pull down to refresh/tap button'), findsOneWidget);
+      expect(find.byType(QrImage), findsOneWidget);
+      expect(find.byType(RefreshIndicator), findsOneWidget);
     });
   });
 }
