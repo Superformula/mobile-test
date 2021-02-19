@@ -5,6 +5,7 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mobile_test/src/screens/qr_code_generator.dart';
 
 import '../mockSetUp/test_setup.dart';
+import '../model/seed_mock.dart';
 
 void main() {
   group('Golden Test: QRCode screen elements render properly', () {
@@ -39,7 +40,8 @@ void main() {
               width: 1000,
               child: GenerateQRCodeScreen(
                 qrCodeBloc: mockQRCodeGeneratorBloc(
-                    dateTime: '2021-02-18T23:42:30.802Z'),
+                    dateTime: '2021-02-18T23:42:30.802Z',
+                    mockSeedData: mockSeedWithExpiredDate),
               ),
             ),
             surfaceSize: const Size(300, 800),
