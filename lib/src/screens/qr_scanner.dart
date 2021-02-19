@@ -1,8 +1,11 @@
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mobile_test/src/bloc/qr_code_generator_bloc.dart';
 import 'package:mobile_test/src/screens/base_screen.dart';
+import 'package:mobile_test/src/styles/custom_styles.dart';
+import 'package:mobile_test/src/utilities/size_config.dart';
 
 class QRCodeScannerScreen extends StatefulWidget {
   @override
@@ -10,53 +13,83 @@ class QRCodeScannerScreen extends StatefulWidget {
 }
 
 class QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
-  String result = 'UNKNOWN';
+  String result = '';
 
   @override
   void initState() {
     super.initState();
-    _scanQR();
+    scanQRCode();
   }
 
-  Future<void> _scanQR() async {
+  Future<void> scanQRCode() async {
     try {
-      String cameraResult = await BarcodeScanner.scan();
+      final String cameraResult = await BarcodeScanner.scan();
       setState(() {
-        if (qrCodeBloc.checkQrCodeIsValid(cameraResult)) {
-          this.result = 'Qr code is valid';
+        if (qrCodeBloc.validateQrCodeStatus(cameraResult)) {
+          result = 'Qr code scanned:\n' + cameraResult;
         } else {
-          this.result = 'Qr code is not valid or expired';
+          result = 'Qr code is not valid or expired, try again!';
         }
       });
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          this.result = 'No camera permission!';
+          result = 'No camera permission granted try again!';
         });
       } else {
-        setState(() => this.result = 'Unknown error: $e');
+        setState(() => result = 'Unexpected error: $e');
       }
     } on FormatException {
-      setState(() => this.result = 'Nothing captured.');
+      setState(() => result = 'Sorry, nothing captured. Try again');
     } catch (e) {
-      setState(() => this.result = 'Unknown error: $e');
+      setState(() => result = 'Unexpected error: $e');
     }
 
-    if (!mounted) return;
+    if (!mounted) {
+      return;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return BaseScreenScaffold(
         title: 'SCAN',
-        body: Container(
-            alignment: Alignment.center,
-            child: Column(children: [
-              Text(
-                result,
-                style:
-                    new TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                      margin: EdgeInsets.only(
+                          left: getBlockSizeHorizontal(context) * 5,
+                          right: getBlockSizeHorizontal(context) * 5,
+                          bottom: getBlockSizeHorizontal(context) * 5),
+                      child: Text(
+                        result,
+                        style: CustomStyles.defaultStyle.copyWith(
+                          fontSize: 22,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ))),
+              FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: Colors.blueAccent,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        top: getBlockSizeHorizontal(context) * 4,
+                        bottom: getBlockSizeHorizontal(context) * 4,
+                        left: getBlockSizeHorizontal(context) * 4,
+                        right: getBlockSizeHorizontal(context) * 4),
+                    child: const Text('Try another QR code',
+                        style: CustomStyles.defaultStyle)),
+                onPressed: () {
+                  scanQRCode();
+                },
               )
-            ])));
+            ]));
   }
 }
