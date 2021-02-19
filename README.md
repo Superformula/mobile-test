@@ -22,7 +22,7 @@ Flutter
 
    Run flutter doctor.
    This will tell you what else is missing from your environment and provide instructions to resolve those issues.
-   Download Dart SDK(https://dart.dev/get-dart)    
+   Download Dart SDK(https://dart.dev/get-dart)
 
 Build and Run the Application
    Checkout this project from GitHub to your workspace
