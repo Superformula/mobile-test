@@ -62,10 +62,14 @@ Build and Run the Application
 ## Build API
 
   Install node
+  
   Express router
+  
   Install npm
+  
   Follow documentation at https://stackabuse.com/building-a-rest-api-with-node-and-express/ to build and deploy quickly API on heroku.
   Getting Started on Heroku with Node.js
+  
   https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
 
 ## Now its time to go for some coding...(About App):
