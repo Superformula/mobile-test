@@ -8,22 +8,25 @@ import '../model/seed_mock.dart';
 import 'mock_classes.dart';
 
 QRCodeGeneratorBloc mockQRCodeGeneratorBloc(
-    {bool dataLoaded = true, String dateTime}) {
+    {bool dataLoaded = true,
+    String dateTime,
+    Map<String, dynamic> mockSeedData}) {
+  mockSeedData ??= mockSeed;
   dateTime ??= DateTime.now().toString();
   final MockQRCodeGeneratorBloc mockQRCodeGeneratorBloc =
       MockQRCodeGeneratorBloc();
   if (dataLoaded) {
     when(mockQRCodeGeneratorBloc.getGenerateQRCode()).thenAnswer(
-        (_) => Future<SeedResponse>.value(SeedResponse.fromJson(mockSeed)));
+        (_) => Future<SeedResponse>.value(SeedResponse.fromJson(mockSeedData)));
 
     when(mockQRCodeGeneratorBloc.qrCodeExpiresAt$).thenAnswer((_) =>
         BehaviorSubject<String>.seeded(
-                SeedResponse.fromJson(mockSeed).expiresAt)
+                SeedResponse.fromJson(mockSeedData).expiresAt)
             .stream);
 
     when(mockQRCodeGeneratorBloc.qrCodeSeed$).thenAnswer((_) =>
         BehaviorSubject<QrImage>.seeded(
-                QrImage(data: SeedResponse.fromJson(mockSeed).seed))
+                QrImage(data: SeedResponse.fromJson(mockSeedData).seed))
             .stream);
 
     when(mockQRCodeGeneratorBloc.getCurrentDateTime)
