@@ -1,4 +1,9 @@
-Map<String, dynamic> mockSeed = {
-  "seed": "COLPTD1YYA910YPAGW4WJYCF1GO979ZP",
-  "expiresAt": "10-20-2031"
+Map<String, dynamic> mockSeed = <String, dynamic>{
+  'seed': '2a6abu',
+  'expiresAt': '2080-02-18T23:42:30.802Z'
+};
+
+Map<String, dynamic> mockSeedNullData = <String, dynamic>{
+  'seed': null,
+  'expiresAt': null
 };
