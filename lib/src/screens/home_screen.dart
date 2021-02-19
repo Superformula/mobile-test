@@ -3,6 +3,7 @@ import 'package:flutter_fab_dialer/flutter_fab_dialer.dart';
 import 'package:mobile_test/src/screens/base_screen.dart';
 import 'package:mobile_test/src/screens/qr_code_generator.dart';
 import 'package:mobile_test/src/screens/qr_scanner.dart';
+import 'package:mobile_test/src/utilities/navigator_util.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,32 +12,38 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void pushNextScreen(Widget nextScreen) {
-    Navigator.push(
+    NavigatorUtil().push<dynamic>(
       context,
-      MaterialPageRoute(builder: (context) => nextScreen),
+      MaterialPageRoute<dynamic>(
+          settings: RouteSettings(name: nextScreen.runtimeType.toString()),
+          builder: (BuildContext context) => nextScreen),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    var _fabMiniMenuItemList = [
+    final List<FabMiniMenuItem> miniMenuItemList = <FabMiniMenuItem>[
       FabMiniMenuItem.withText(
-          Icon(Icons.qr_code_scanner),
+          const Icon(
+            Icons.qr_code_scanner,
+          ),
           Colors.blue,
           4.0,
-          "Button menu",
-          () => pushNextScreen(QRCodeScannerScreen()), //Scanner
-          "Scan",
+          'Button menu',
+          () => pushNextScreen(QRCodeScannerScreen()),
+          'Scan',
           Colors.blue,
           Colors.white,
           true),
       FabMiniMenuItem.withText(
-          Icon(Icons.qr_code),
+          const Icon(
+            Icons.qr_code,
+          ),
           Colors.blue,
           4.0,
-          "Button menu",
-          () => pushNextScreen(GenerateQRCodeScreen()), //Scanner
-          "QRCode",
+          'Button menu',
+          () => pushNextScreen(const GenerateQRCodeScreen()),
+          'QRCode',
           Colors.blue,
           Colors.white,
           true),
@@ -45,7 +52,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return BaseScreenScaffold(
       title: 'HOME',
       body: Container(
-        child: FabDialer(_fabMiniMenuItemList, Colors.blue, Icon(Icons.add)),
+        alignment: Alignment.bottomLeft,
+        padding: const EdgeInsets.only(bottom: 10),
+        child: SingleChildScrollView(
+            child: FabDialer(
+                miniMenuItemList,
+                Colors.blue,
+                const Icon(
+                  Icons.add,
+                  key: Key('fab-dailer'),
+                ))),
       ),
     );
   }
