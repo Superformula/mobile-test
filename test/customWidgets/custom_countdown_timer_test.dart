@@ -18,7 +18,8 @@ void main() {
     await tester.runAsync(() async {
       await tester
           .pumpWidget(buildTestableWidget(const CustomCountDownTimer(0)));
-      expect(find.text('Qr code expired try another'), findsOneWidget);
+      expect(
+          find.text('Expired pull down to refresh/tap button'), findsOneWidget);
       expect(find.byType(FlatButton), findsOneWidget);
     });
   });
