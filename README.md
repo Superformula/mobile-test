@@ -85,13 +85,28 @@ You need to create a new flutter Project with choice of your name. You need to a
         •	QR code generator screen
         •	QR code scanner screen
         
-  2.Home Screen will render a floating action button, on tap will show menu items list from which user can make a selection to generate QR code or navigate into scanner    screen for scanning the QR code generated earlier.
+  <img width="342" alt="Screen Shot 2021-02-19 at 12 30 18 PM" src="https://user-images.githubusercontent.com/22112119/108551099-6ee7c300-72bd-11eb-96c4-83d074df111d.png">
+        
+  2.Home Screen will render a floating action button, on tap will show menu items list from which user can make a selection to generate QR code or navigate into scanner screen for scanning the QR code generated earlier.
+  
+ <img width="347" alt="Screen Shot 2021-02-19 at 12 30 42 PM" src="https://user-images.githubusercontent.com/22112119/108551111-74dda400-72bd-11eb-81f8-a12fc8b1d855.png">
   
   3.Tap on QR code labeled icon will push new screen with loader while loading data and eventually display QR code with count down timer.
+  
+  <img width="350" alt="Screen Shot 2021-02-19 at 12 30 05 PM" src="https://user-images.githubusercontent.com/22112119/108551118-773ffe00-72bd-11eb-8e60-c89aa5dc3a2e.png">
 
   4.User can tap on “Qr code expired try another” button to refresh and get new QR code with remaining time showing.
-
+  
+ <img width="345" alt="Screen Shot 2021-02-19 at 12 23 33 PM" src="https://user-images.githubusercontent.com/22112119/108551445-f6353680-72bd-11eb-8fe6-569e054dd314.png">
 
   5.Tap on QR Scan labeled icon will push new screen with scanner that will be able to scan QR code and display scanned result.
 
+<img width="347" alt="Screen Shot 2021-02-19 at 12 23 13 PM" src="https://user-images.githubusercontent.com/22112119/108552128-e1a56e00-72be-11eb-8d1c-6d7a6fe5da6e.png">
+
+<img width="347" alt="Screen Shot 2021-02-19 at 12 23 05 PM" src="https://user-images.githubusercontent.com/22112119/108551483-064d1600-72be-11eb-875a-48df10590708.png">
+
+ <img width="351" alt="Screen Shot 2021-02-19 at 12 25 40 PM" src="https://user-images.githubusercontent.com/22112119/108551404-e9b0de00-72bd-11eb-8da2-2907271681ab.png">
+
   6.User can tap on “Try Another QR code” button to be able to scan another QR code. All different use cases are covered in case of permission issue or errors.
+
+ <img width="348" alt="Screen Shot 2021-02-19 at 2 28 46 PM" src="https://user-images.githubusercontent.com/22112119/108552118-de11e700-72be-11eb-8877-68d38d62dec7.png">
