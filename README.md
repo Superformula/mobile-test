@@ -95,9 +95,9 @@ You need to create a new flutter Project with choice of your name. You need to a
   
   <img width="350" alt="Screen Shot 2021-02-19 at 12 30 05 PM" src="https://user-images.githubusercontent.com/22112119/108551118-773ffe00-72bd-11eb-8e60-c89aa5dc3a2e.png">
 
-  4.User can tap on “Qr code expired try another” button to refresh and get new QR code with remaining time showing.
+  4.User can tap on “Qr code expired try another” button or pull down on screen to refresh and get new QR code with remaining time showing.
   
- <img width="345" alt="Screen Shot 2021-02-19 at 12 23 33 PM" src="https://user-images.githubusercontent.com/22112119/108551445-f6353680-72bd-11eb-8fe6-569e054dd314.png">
+  <img width="349" alt="Screen Shot 2021-02-19 at 3 18 05 PM" src="https://user-images.githubusercontent.com/22112119/108556957-cf7afe00-72c5-11eb-8005-97d25e62a9ba.png">
 
   5.Tap on QR Scan labeled icon will push new screen with scanner that will be able to scan QR code and display scanned result.
 
