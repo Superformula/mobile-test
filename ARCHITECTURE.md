@@ -12,7 +12,7 @@ This project uses some libraries that rely on code generation through the [build
 flutter packages pub run build_runner build --delete-conflicting-outputs
 ```
 
-## Running the app
+### Running the app
 
 Once the code generation is complete, the app can be executed by running:
 
@@ -56,7 +56,23 @@ Tests are divided in:
   - Widgets, like the `CountDownWidget`, can be tested in isolation to verify they display the correct information and trigger the right events/actions. In these tests, we mock all dependencies (if needed), and use fake redux stores without any middlewares
 - Widget "Integration" tests
   - These are broader tests meant to verify that different components of the app work well together. These tests mount entire pages with all their "production" dependencies, and only the `ApiClient` can be mocked.
-  - Not to be confused with Flutter's terminology that calls [integration tests][15] the tests that run on a real or virtual device
+- End-to-end tests
+  - Tests that run on a real or virtual device (they are mainly called [integration tests][15] in Flutter's documentation).
+  - Since the business logic and data flows are already covered by the other tests, we don't need many e2e tests, and use them sparely
+
+### Running tests
+
+To execute the e2e tests, make sure to have a connected device (real or simulator), and run the following command:
+
+```bash
+flutter drive --driver=test/e2e/e2e.dart --target=test/e2e/app_test.dart
+```
+
+For all other tests do:
+
+```bash
+flutter test
+```
 
 ## Known-bugs
 - [ ] Auto-refresh stops working if app in background - this can be solved using `WidgetsBindingObserver`
