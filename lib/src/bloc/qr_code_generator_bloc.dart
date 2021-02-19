@@ -1,42 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mobile_test/src/model/seed.dart';
-import 'package:mobile_test/src/services/respository.dart';
+import 'package:mobile_test/src/services/seed_respository.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 
 class QRCodeGeneratorBloc {
-  SeedRepository _seedRepository = SeedRepository();
-  QRCodeGeneratorBloc({@required SeedRepository seedRepository})
-      : assert(seedRepository != null),
-        _seedRepository = seedRepository;
+  QRCodeGeneratorBloc({@required SeedRepository repository})
+      : assert(repository != null),
+        seedRepository = repository;
 
-  final PublishSubject<QrImage> _seedFetcher = PublishSubject<QrImage>();
-  final PublishSubject<String> _expiresAtFetcher = PublishSubject<String>();
+  SeedRepository seedRepository = SeedRepository();
+  final BehaviorSubject<QrImage> seedFetcher = BehaviorSubject<QrImage>();
 
-  Observable<QrImage> get qrCodeSeed => _seedFetcher.stream;
-  Observable<String> get qrCodeExpiresAt => _expiresAtFetcher.stream;
+  final BehaviorSubject<String> expiresAtFetcher = BehaviorSubject<String>();
 
-  Future<void> getGenerateQRCode() async {
-    SeedResponse seedResponse = await _seedRepository.fetchSeed();
-    final String _generatedQRCode =
-        seedResponse.seed + '|' + seedResponse.expiresAt.toString();
-    _seedFetcher.sink.add(QrImage(data: _generatedQRCode, size: 300.0));
-    _expiresAtFetcher.sink.add(seedResponse.expiresAt);
+  ValueStream<QrImage> get qrCodeSeed$ => seedFetcher.stream;
+  ValueStream<String> get qrCodeExpiresAt$ => expiresAtFetcher.stream;
+
+  DateTime formatDatesToCompare(String date) {
+    final DateTime parsedToDate = DateTime.parse(date);
+    return DateTime.parse(
+        DateFormat('yyyy-MM-dd hh:mm:ss').format(parsedToDate.toLocal()));
   }
 
-  bool checkQrCodeIsValid(String qrCodeData) {
-    List<String> qrCodeDataParts = qrCodeData.split('|');
-    DateTime expireAt = DateTime.parse(qrCodeDataParts[1]);
-    DateTime currentDateTime = DateTime.now();
-    return currentDateTime.isBefore(expireAt);
+  DateTime get getCurrentDateTime =>
+      formatDatesToCompare(DateTime.now().toString());
+
+  Future<void> getGenerateQRCode({SeedRepository seedRepository}) async {
+    seedRepository ??= SeedRepository();
+    final SeedResponse seedResponse = await seedRepository.fetchSeed();
+    if (seedResponse.expiresAt != null && seedResponse.seed != null) {
+      final DateTime parseDateCurrent =
+          formatDatesToCompare(seedResponse.expiresAt);
+      final String _generatedQRCode =
+          seedResponse.seed + '##' + parseDateCurrent.toString();
+      seedFetcher.sink.add(QrImage(data: _generatedQRCode, size: 300.0));
+      expiresAtFetcher.add(parseDateCurrent.toString());
+    }
   }
 
-  dispose() {
-    _seedFetcher.close();
-    _expiresAtFetcher.close();
+  bool validateQrCodeStatus(String qrCodeData) {
+    final List<String> qrCodeDataArray = qrCodeData.split('##');
+    final DateTime expiresAtDateTime = formatDatesToCompare(qrCodeDataArray[1]);
+    return getCurrentDateTime.isBefore(expiresAtDateTime) ||
+        getCurrentDateTime.isAtSameMomentAs(expiresAtDateTime);
+  }
+
+  void dispose() {
+    seedFetcher.close();
+    expiresAtFetcher.close();
   }
 }
 
 final QRCodeGeneratorBloc qrCodeBloc = QRCodeGeneratorBloc(
-  seedRepository: SeedRepository(),
+  repository: SeedRepository(),
 );
