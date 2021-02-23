@@ -169,6 +169,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.12"
+  dartz:
+    dependency: transitive
+    description:
+      name: dartz
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.2"
+  data_connection_checker:
+    dependency: transitive
+    description:
+      name: data_connection_checker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.4"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.10"
   equatable:
     dependency: transitive
     description:
@@ -176,6 +197,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.6"
+  errors:
+    dependency: transitive
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "2e097213a176b9230c394fb18da3897e8c375606"
+      url: "git://github.com/NoScopeDevs/errors"
+    source: git
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -313,7 +343,7 @@ packages:
     source: hosted
     version: "0.12.10-nullsafety.1"
   meta:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: meta
       url: "https://pub.dartlang.org"
@@ -333,6 +363,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.4"
+  network_manager:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: cb33e97a99cb18496f3c3cc1bd654fa2b08a9a0c
+      url: "git://github.com/NoScopeDevs/network_manager"
+    source: git
+    version: "1.0.0"
   node_interop:
     dependency: transitive
     description:
@@ -412,6 +451,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.0"
+  qr_gen:
+    dependency: "direct main"
+    description:
+      path: "packages/qr_gen"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   quiver:
     dependency: transitive
     description:
