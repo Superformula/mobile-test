@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.marcossevilla.qr_generator">
+
+   <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="qr_generator"
         android:icon="@mipmap/ic_launcher">
