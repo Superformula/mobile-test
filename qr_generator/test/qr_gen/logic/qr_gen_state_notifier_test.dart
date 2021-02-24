@@ -42,22 +42,25 @@ void main() {
       QRCode(qrPainter: tPainter, expiration: tSeed.expiresAt).toString(),
     ];
 
-    test('Should emit expected states when calling ', () async {
-      // setup -> create the object to test
-      when(getSeed()).thenAnswer(
-        (_) => Future.value(Right<Failure, SeedModel>(tSeed)),
-      );
+    test(
+      'Should emit expected states when calling getSeed.',
+      () async {
+        // setup -> create the object to test
+        when(getSeed()).thenAnswer(
+          (_) => Future.value(Right<Failure, SeedModel>(tSeed)),
+        );
 
-      when(generateQR(any)).thenAnswer((_) => tPainter);
+        when(generateQR(any)).thenAnswer((_) => tPainter);
 
-      final expectedStates = <String>[];
-      notifier.addListener((state) => expectedStates.add(state.toString()));
+        final expectedStates = <String>[];
+        notifier.addListener((state) => expectedStates.add(state.toString()));
 
-      // side effects -> collect the result to test
-      await notifier.getSeed();
+        // side effects -> collect the result to test
+        await notifier.getSeed();
 
-      // expectations -> compare result to expected value
-      expect(expectedStates, tGetSeedStates);
-    });
+        // expectations -> compare result to expected value
+        expect(expectedStates, tGetSeedStates);
+      },
+    );
   });
 }
