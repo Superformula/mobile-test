@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:mobile_test/src/bloc/qr_code_generator_bloc.dart';
 import 'package:mobile_test/src/model/seed.dart';
 import 'package:mockito/mockito.dart';
@@ -43,4 +44,23 @@ QRCodeGeneratorBloc mockQRCodeGeneratorBloc(
   }
 
   return mockQRCodeGeneratorBloc;
+}
+
+Future<void> throwPlatformException() async =>
+    throw PlatformException(code: 'a', message: 'PERMISSION_NOT_GRANTED');
+void mockBarcodeScanner({
+  String qrCode,
+  bool exception = false,
+}) {
+  if (exception) {
+    const MethodChannel('com.apptreesoftware.barcode_scan')
+        .setMockMethodCallHandler((MethodCall methodCall) async {
+      return throwPlatformException;
+    });
+  } else {
+    const MethodChannel('com.apptreesoftware.barcode_scan')
+        .setMockMethodCallHandler((MethodCall methodCall) async {
+      return Future<String>.value(qrCode);
+    });
+  }
 }

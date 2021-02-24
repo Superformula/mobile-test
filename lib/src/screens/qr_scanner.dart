@@ -25,10 +25,14 @@ class QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
     try {
       final String cameraResult = await BarcodeScanner.scan();
       setState(() {
-        if (qrCodeBloc.validateQrCodeStatus(cameraResult)) {
-          result = 'Qr code scanned:\n' + cameraResult;
+        if (cameraResult != null) {
+          if (qrCodeBloc.validateQrCodeStatus(cameraResult)) {
+            result = 'Qr code scanned:\n' + cameraResult;
+          } else {
+            result = 'Qr code is not valid or expired, try again!';
+          }
         } else {
-          result = 'Qr code is not valid or expired, try again!';
+          setState(() => result = 'cameraResult is null');
         }
       });
     } on PlatformException catch (e) {
@@ -37,12 +41,12 @@ class QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
           result = 'No camera permission granted try again!';
         });
       } else {
-        setState(() => result = 'Unexpected error: $e');
+        setState(() => result = 'Unexpected error:');
       }
     } on FormatException {
       setState(() => result = 'Sorry, nothing captured. Try again');
     } catch (e) {
-      setState(() => result = 'Unexpected error: $e');
+      setState(() => result = 'Unexpected error:');
     }
 
     if (!mounted) {

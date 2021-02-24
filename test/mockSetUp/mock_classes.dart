@@ -1,3 +1,4 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:mobile_test/src/bloc/qr_code_generator_bloc.dart';
@@ -17,3 +18,5 @@ class MockNavigatorUtil extends Mock implements NavigatorUtil {}
 class MockQRCodeGeneratorBloc extends Mock implements QRCodeGeneratorBloc {}
 
 class MockBuildContext extends Mock implements BuildContext {}
+
+class MockBarcodeScanner extends Mock implements BarcodeScanner {}
