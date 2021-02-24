@@ -27,10 +27,20 @@ void main() {
 
   testWidgets('Scanned scans QR code', (WidgetTester tester) async {
     await dot_env.load();
-    mockBarcodeScanner(qrCode: '34567##7890890789');
+    mockBarcodeScanner(qrCode: '2a6abu##2080-02-18T23:42:30.802Z');
     await tester.pumpWidget(buildTestableWidget(QRCodeScannerScreen()));
     await tester.pumpAndSettle();
-    expect(find.text('Qr code scanned:\n34567##7890890789'), findsOneWidget);
+    expect(find.text('Qr code scanned:\n2a6abu##2080-02-18T23:42:30.802Z'),
+        findsOneWidget);
+  });
+
+  testWidgets('Scanned scans Expired QR code', (WidgetTester tester) async {
+    await dot_env.load();
+    mockBarcodeScanner(qrCode: '2a6abu##2012-02-18T23:42:30.802Z');
+    await tester.pumpWidget(buildTestableWidget(QRCodeScannerScreen()));
+    await tester.pumpAndSettle();
+    expect(find.text('Qr code is not valid or expired, try again!'),
+        findsOneWidget);
   });
 
   testWidgets('Exception is thrown when scanner sees issue',
