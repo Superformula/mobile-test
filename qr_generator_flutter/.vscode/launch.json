@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "qr_generator_flutter",
+            "request": "launch",
+            "type": "dart",
+            "args":[
+				"--dart-define",
+                "apiUrl=http://7a787e92051f.ngrok.io"
+			]
+        },
+        {
+            "name": "qr_generator",
+            "cwd": "packages/qr_generator",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
