@@ -9,7 +9,6 @@ void main() {
   testWidgets('Tap of floating action button trigger scanner and qr code icons',
       (WidgetTester tester) async {
     await tester.pumpWidget(buildTestableWidget(HomeScreen()));
-
     expect(find.byIcon(Icons.add), findsOneWidget);
     await tester.tap(find.byIcon(Icons.add));
     await tester.pumpAndSettle();

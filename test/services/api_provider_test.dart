@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io' as io;
 
 import 'package:flutter_dotenv/flutter_dotenv.dart' as dot_env;
 import 'package:flutter_test/flutter_test.dart';
@@ -16,7 +15,6 @@ import '../model/seed_mock.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  io.HttpOverrides.global = null;
 
   test('get successful response for seed api', () async {
     await dot_env.load();

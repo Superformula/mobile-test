@@ -1,7 +1,4 @@
-import 'dart:io' as io;
-
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as dot_env;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_test/src/custom_widgets/custom_countdown_timer.dart';
 import 'package:mobile_test/src/screens/qr_code_generator.dart';
@@ -12,13 +9,9 @@ import '../model/seed_mock.dart';
 import 'pump_widget_mock_setup.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-  io.HttpOverrides.global = null;
-
   testWidgets('Test circular loader when no data loaded',
       (WidgetTester tester) async {
     await tester.runAsync(() async {
-      await dot_env.load();
       await tester.pumpWidget(buildTestableWidget(GenerateQRCodeScreen(
           qrCodeBloc: mockQRCodeGeneratorBloc(
               dataLoaded: false, dateTime: '2080-02-19T23:42:30.802Z'))));
@@ -34,7 +27,6 @@ void main() {
       'Test QR code with expiry date time/ QRCode/ refresh indicator/count down timer render properly',
       (WidgetTester tester) async {
     await tester.runAsync(() async {
-      await dot_env.load();
       await tester.pumpWidget(buildTestableWidget(GenerateQRCodeScreen(
           qrCodeBloc:
               mockQRCodeGeneratorBloc(dateTime: '2021-02-19T23:42:30.802Z'))));
@@ -50,7 +42,6 @@ void main() {
   testWidgets('QR code expires show expiry button',
       (WidgetTester tester) async {
     await tester.runAsync(() async {
-      await dot_env.load();
       await tester.pumpWidget(buildTestableWidget(GenerateQRCodeScreen(
           qrCodeBloc: mockQRCodeGeneratorBloc(
               dateTime: '2021-02-19T23:42:30.802Z',
