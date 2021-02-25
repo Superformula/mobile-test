@@ -33,9 +33,6 @@ dependencies:
     git:
       url: git://github.com/NoScopeDevs/network_manager
 
-  jokes:
-    path: packages/jokes
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
