@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_test/src/bloc/qr_code_generator_bloc.dart';
-import 'package:mobile_test/src/customWidgets/custom_countdown_timer.dart';
+import 'package:mobile_test/src/custom_widgets/custom_countdown_timer.dart';
 import 'package:mobile_test/src/screens/base_screen.dart';
 import 'package:mobile_test/src/services/seed_respository.dart';
 import 'package:mobile_test/src/styles/custom_styles.dart';

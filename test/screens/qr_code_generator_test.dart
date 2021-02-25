@@ -3,7 +3,7 @@ import 'dart:io' as io;
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as dot_env;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mobile_test/src/customWidgets/custom_countdown_timer.dart';
+import 'package:mobile_test/src/custom_widgets/custom_countdown_timer.dart';
 import 'package:mobile_test/src/screens/qr_code_generator.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
