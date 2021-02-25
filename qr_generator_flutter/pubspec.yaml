@@ -12,21 +12,29 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #* State Management
+  # * State Management
   flutter_bloc: ^6.1.2
+  freezed_annotation: ^0.12.0
 
-  #* Dependency Injection
+  # * Dependency Injection
   get_it: ^5.0.6
 
   cupertino_icons: ^1.0.0
-  freezed_annotation: ^0.12.0
   
-  #* static analysis
+  # * static analysis
   very_good_analysis:
 
   dio: ^3.0.10
+
+  # * Local
   qr_generator:
     path: packages/qr_generator
+
+
+  # * Qr Flutter
+  qr_flutter: 
+    git:
+      url: git://github.com/theyakka/qr.flutter
 
   # * Scoped Packages
   network_manager:
@@ -43,3 +51,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/

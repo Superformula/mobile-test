@@ -10,7 +10,7 @@
             "type": "dart",
             "args":[
 				"--dart-define",
-                "apiUrl=http://7a787e92051f.ngrok.io"
+                "apiUrl=http://f7e97c5a3df5.ngrok.io"
 			]
         },
         {
