@@ -4,7 +4,7 @@ import 'package:mobile_test/src/model/seed.dart';
 import 'package:mockito/mockito.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../mockSetUp/mock_classes.dart';
+import '../mock_set_up/mock_classes.dart';
 import '../model/seed_mock.dart';
 
 void main() {

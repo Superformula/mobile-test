@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_test/src/utilities/size_config.dart';
 import 'package:mockito/mockito.dart';
 
-import '../mockSetUp/mock_classes.dart';
+import '../mock_set_up/mock_classes.dart';
 
 void main() {
   test('Test Size config calculations for various device sizes', () async {

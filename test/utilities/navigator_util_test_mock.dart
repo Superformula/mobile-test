@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_test/src/utilities/navigator_util.dart';
 import 'package:mockito/mockito.dart';
 
-import '../mockSetUp/mock_classes.dart';
+import '../mock_set_up/mock_classes.dart';
 
 MockNavigatorUtil mockNavigatorUtil({String screenText = 'NEXT SCREEN'}) {
   final MockNavigatorUtil navigator = MockNavigatorUtil();

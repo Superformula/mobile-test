@@ -11,7 +11,7 @@ import 'package:mobile_test/src/services/custom_http500_exception.dart';
 import 'package:mobile_test/src/services/seed_api_provider.dart';
 import 'package:mockito/mockito.dart';
 
-import '../mockSetUp/mock_classes.dart';
+import '../mock_set_up/mock_classes.dart';
 import '../model/seed_mock.dart';
 
 void main() {

@@ -6,7 +6,7 @@ import 'package:mobile_test/src/model/seed.dart';
 import 'package:mobile_test/src/services/seed_respository.dart';
 import 'package:mockito/mockito.dart';
 
-import '../mockSetUp/mock_classes.dart';
+import '../mock_set_up/mock_classes.dart';
 import '../model/seed_mock.dart';
 
 void main() {

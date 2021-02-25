@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mobile_test/src/screens/qr_code_generator.dart';
 
-import '../mockSetUp/test_setup.dart';
+import '../mock_set_up/test_setup.dart';
 import '../model/seed_mock.dart';
 
 void main() {

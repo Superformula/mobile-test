@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as dot_env;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_test/src/screens/qr_scanner.dart';
 
-import '../mockSetUp/test_setup.dart';
+import '../mock_set_up/test_setup.dart';
 import 'pump_widget_mock_setup.dart';
 
 void main() {
