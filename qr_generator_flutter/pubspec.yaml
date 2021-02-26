@@ -43,6 +43,9 @@ dependencies:
       url: git://github.com/theyakka/qr.flutter
 
   # * Scoped Packages
+  errors:
+    git:
+      url: git://github.com/NoScopeDevs/errors
   network_manager:
     git:
       url: git://github.com/NoScopeDevs/network_manager
