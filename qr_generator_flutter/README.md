@@ -6,6 +6,9 @@ A flutter application that generates a QR Code base on a seed brought from an AP
 - ✅  Testing
 - ✅  Performance
 - ✅  Custom Animations
+- ✅  Internationalization
+- ✅  Locally generated seed on offline status
+
 
 ## To get started 
 ```

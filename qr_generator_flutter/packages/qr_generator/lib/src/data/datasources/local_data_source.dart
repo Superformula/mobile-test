@@ -19,7 +19,7 @@ class LocalDataSource implements ILocalDataSource {
 
     if (seed != null) {
       return Future.value(
-        SeedModel(seed: 'Cache: $seed', expiresAt: expirationDate),
+        SeedModel(seed: 'Locally generate: $seed', expiresAt: expirationDate),
       );
     } else {
       throw CacheException();
