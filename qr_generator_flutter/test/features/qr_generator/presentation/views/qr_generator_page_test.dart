@@ -48,8 +48,7 @@ void main() {
       expect(find.byKey(kBodyKey), findsOneWidget);
     });
 
-    testWidgets('renders WeatherEmpty for WeatherStatus.initial',
-        (tester) async {
+    testWidgets('renders Initial Text for Initial', (tester) async {
       ///Arrange
       when(qrGeneratorCubit.state).thenReturn(const Initial());
 
