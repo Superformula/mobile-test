@@ -9,6 +9,9 @@ import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generato
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_state.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_generator_page.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_generator_page_i18n.dart';
+import 'package:qr_generator_flutter/src/features/qr_scanner/logic/qr_scanner_cubit.dart';
+import 'package:qr_generator_flutter/src/features/qr_scanner/logic/qr_scanner_state.dart'
+    as scanner_s;
 import 'package:qr_generator_flutter/src/features/qr_scanner/views/qr_scanner_page.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/widgets/qr_code_widget.dart';
 
@@ -16,6 +19,9 @@ class MockGetSeed extends Mock implements GetSeed {}
 
 class MockQrGeneratorCubit extends MockBloc<QrGeneratorState>
     implements QrGeneratorCubit {}
+
+class MockQrScannerCubit extends MockBloc<scanner_s.QrScannerState>
+    implements QrScannerCubit {}
 
 void main() {
   group('QrGeneratorPage', () {
@@ -25,8 +31,11 @@ void main() {
     );
 
     QrGeneratorCubit qrGeneratorCubit;
+    QrScannerCubit qrScannerCubit;
+
     setUp(() {
       qrGeneratorCubit = MockQrGeneratorCubit();
+      qrScannerCubit = MockQrScannerCubit();
     });
 
     test('has a route', () {
@@ -121,10 +130,14 @@ void main() {
         (tester) async {
       ///Arrange
       when(qrGeneratorCubit.state).thenReturn(const Initial());
+      when(qrScannerCubit.state).thenReturn(const scanner_s.Initial());
 
       ///Act
-      await tester.pumpWidget(BlocProvider.value(
-        value: qrGeneratorCubit,
+      await tester.pumpWidget(MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: qrGeneratorCubit),
+          BlocProvider.value(value: qrScannerCubit),
+        ],
         child: const MaterialApp(home: QrGeneratorPage()),
       ));
       await tester.tap(find.byKey(const Key('kPrimaryFloatingButton')));

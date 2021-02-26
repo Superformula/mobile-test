@@ -17,17 +17,22 @@ final kQrScanButton = UniqueKey();
 
 ///QrScannerPage
 class QrScannerPage extends HookWidget {
+  ///QrScannerPage
+  const QrScannerPage();
+
   ///Router for QrScannerPage
   static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => QrScannerPage());
+    return MaterialPageRoute<void>(builder: (_) => const QrScannerPage());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(kQrScan.i18n)),
-      body: const Center(
-        child: _ScannerBody(),
+      body: Center(
+        child: _ScannerBody(
+          key: kScannerBody,
+        ),
       ),
     );
   }
