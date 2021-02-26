@@ -1,0 +1,73 @@
+name: qr_generator_flutter
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.9.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+    
+  flutter_barcode_scanner: ^1.0.2
+  i18n_extension: ^2.0.0  
+  # * State Management
+  flutter_bloc: ^6.1.2
+  freezed_annotation: ^0.12.0
+  flutter_hooks: ^0.15.0
+
+  # * Dependency Injection
+  get_it: ^5.0.6
+
+  cupertino_icons: ^1.0.0
+  
+  # * static analysis
+  very_good_analysis:
+
+  dio: ^3.0.10
+
+  # * Local
+  qr_generator:
+    path: packages/qr_generator
+
+
+  # * Qr Flutter
+  qr_flutter: 
+    git:
+      url: git://github.com/theyakka/qr.flutter
+
+  # * Scoped Packages
+  errors:
+    git:
+      url: git://github.com/NoScopeDevs/errors
+  network_manager:
+    git:
+      url: git://github.com/NoScopeDevs/network_manager
+
+dev_dependencies:
+  flutter_driver:
+    sdk: flutter
+  test: any
+  flutter_test:
+    sdk: flutter
+  freezed: null
+  build_runner: null
+  mockito: ^4.1.4
+  bloc_test: ^7.1.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+  - family: digital7
+    fonts:
+      - asset: fonts/digital-7.ttf

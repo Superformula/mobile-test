@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_barcode_scanner (1.0.2):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_barcode_scanner (from `.symlinks/plugins/flutter_barcode_scanner/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_barcode_scanner:
+    :path: ".symlinks/plugins/flutter_barcode_scanner/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_barcode_scanner: fc42adac0732eca7bd9d3d676b215bce5903f269
+
+PODFILE CHECKSUM: 7368163408c647b7eb699d0d788ba6718e18fb8d
+
+COCOAPODS: 1.10.1
