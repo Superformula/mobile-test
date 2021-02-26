@@ -7,7 +7,7 @@ import 'package:mockito/mockito.dart';
 import 'package:qr_generator/qr_generator.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_cubit.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_state.dart';
-import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_scanner_page.dart';
+import 'package:qr_generator_flutter/src/features/qr_scanner/views/qr_scanner_page.dart';
 
 class MockGetSeed extends Mock implements GetSeed {}
 

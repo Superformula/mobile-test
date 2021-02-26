@@ -5,7 +5,7 @@ import 'package:qr_generator/qr_generator.dart';
 import 'package:qr_generator_flutter/src/core/styles/app_text_styles.dart';
 import 'package:qr_generator_flutter/src/core/styles/app_colors.dart';
 import 'package:qr_generator_flutter/src/core/widgets/animated_floating_action_button.dart';
-import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_scanner_page.dart';
+import 'package:qr_generator_flutter/src/features/qr_scanner/views/qr_scanner_page.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/widgets/expiration_timer.dart';
 
 import '../logic/qr_generator_cubit.dart';

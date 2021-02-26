@@ -9,7 +9,7 @@ import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generato
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_state.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_generator_page.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_generator_page_i18n.dart';
-import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_scanner_page.dart';
+import 'package:qr_generator_flutter/src/features/qr_scanner/views/qr_scanner_page.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/widgets/qr_code_widget.dart';
 
 class MockGetSeed extends Mock implements GetSeed {}
