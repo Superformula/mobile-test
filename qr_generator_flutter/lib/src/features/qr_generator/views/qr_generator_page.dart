@@ -110,7 +110,7 @@ class _QrCode extends StatelessWidget {
         QrCodeWidget(seed: seed),
         const SizedBox(height: 20.0),
         ExpirationTimer(
-          expirationDate: seed.expiresAt,
+          seed: seed,
           onExpiration: () {
             context.read<QrGeneratorCubit>().expireCode();
           },
