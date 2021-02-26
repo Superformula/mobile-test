@@ -10,7 +10,7 @@
             "type": "dart",
             "args":[
 				"--dart-define",
-                "apiUrl=http://22e5e76e0ff4.ngrok.io"
+                "apiUrl=https://mobile-test-seed-api.herokuapp.com"
 			]
         },
         {
