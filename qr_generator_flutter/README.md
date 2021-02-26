@@ -24,6 +24,7 @@ flutter run --dart-define apiUrl=https://mobile-test-seed-api.herokuapp.com
 ```
 ## App Preview
 <img src="assets/readme/qr_gif.gif" width=200 height=429/> 
+<img src="assets/readme/demo3.PNG" width=200 height=429/> 
 <img src="assets/readme/demo4.PNG" width=200 height=429/> 
 <img src="assets/readme/demo5.PNG" width=200 height=429/> 
 
@@ -45,7 +46,7 @@ flutter drive --target=test_driver/app.dart --dart-define apiUrl=https://mobile-
 
 ## Project Structure - Clean Architecture
 
-The following diagram represents the clean architecture approach taken to solve this challenge. This was proposed by myself and a friend and was shared with the Hispanic community as a solution to follow clean architecture practices. The original proposal uses `riverpod` but because of the `decoupling` the was no problem on changing to bloc.
+The following diagram represents the clean architecture approach taken to solve this challenge. This was proposed by myself and a friend and was shared with the Hispanic community as a solution to follow clean architecture practices. The original proposal uses `riverpod` but because of the `decoupling` there was no problem on changing to bloc.
 
 With this approach we achieve a great decoupling and separation of concerns between the different layers of the application.
 

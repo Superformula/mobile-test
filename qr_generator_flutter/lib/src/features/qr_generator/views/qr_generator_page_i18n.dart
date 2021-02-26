@@ -20,7 +20,7 @@ extension QrGeneratorPageStrings on String {
       {
         'en_us': kWelcomeText,
         'es_es':
-            'Bienvenido al challenge de QR-generator implementado por Elian Ortega. Para empezar preciona el boton en la esquina inferior izquierd de la pantalla.',
+            'Bienvenido al challenge de QR-generator implementado por Elian Ortega. Para empezar preciona el boton en la esquina inferior derecha de la pantalla.',
       } +
       {
         'en_us': kCodeExpired,

@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:network_manager/network_manager.dart';
 import 'package:qr_generator/qr_generator.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_cubit.dart';
+import 'package:qr_generator_flutter/src/features/qr_scanner/logic/qr_scanner_cubit.dart';
 
 import 'env/enviroment_config.dart';
 
@@ -34,10 +35,15 @@ Future<void> setUpDI() async {
     ),
   );
 
-  //* Inject Logic Holder / Cubit
+  //* Inject Logic Generator Code Holder / Cubit
   getIt.registerLazySingleton<QrGeneratorCubit>(
     () => QrGeneratorCubit(
       getSeed: getIt<GetSeed>(),
     ),
+  );
+
+  //* Inject Logic Scanner Code Holder / Cubit
+  getIt.registerLazySingleton<QrScannerCubit>(
+    () => QrScannerCubit(),
   );
 }
