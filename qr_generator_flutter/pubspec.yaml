@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+  i18n_extension: ^2.0.0  
   # * State Management
   flutter_bloc: ^6.1.2
   freezed_annotation: ^0.12.0
