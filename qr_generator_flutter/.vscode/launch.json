@@ -10,7 +10,7 @@
             "type": "dart",
             "args":[
 				"--dart-define",
-                "apiUrl=http://f7e97c5a3df5.ngrok.io"
+                "apiUrl=http://localhost:5000"
 			]
         },
         {
