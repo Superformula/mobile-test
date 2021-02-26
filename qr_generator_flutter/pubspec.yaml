@@ -57,3 +57,8 @@ flutter:
 
   assets:
     - assets/images/
+
+  fonts:
+  - family: digital7
+    fonts:
+      - asset: fonts/digital-7.ttf
