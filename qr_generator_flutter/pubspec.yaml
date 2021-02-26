@@ -51,6 +51,9 @@ dependencies:
       url: git://github.com/NoScopeDevs/network_manager
 
 dev_dependencies:
+  flutter_driver:
+    sdk: flutter
+  test: any
   flutter_test:
     sdk: flutter
   freezed: null

@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:qr_generator/qr_generator.dart';
-import 'package:qr_generator_flutter/src/core/widgets/animated_floating_action_button.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_cubit.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/logic/qr_generator_state.dart';
 import 'package:qr_generator_flutter/src/features/qr_generator/views/qr_generator_page.dart';
@@ -45,7 +44,7 @@ void main() {
       ));
 
       ///expect
-      expect(find.byKey(kBodyKey), findsOneWidget);
+      expect(find.byKey(const Key('kBodyKey')), findsOneWidget);
     });
 
     testWidgets('renders Initial Text for Initial', (tester) async {
@@ -128,9 +127,9 @@ void main() {
         value: qrGeneratorCubit,
         child: const MaterialApp(home: QrGeneratorPage()),
       ));
-      await tester.tap(find.byKey(kPrimaryFloatingButton));
+      await tester.tap(find.byKey(const Key('kPrimaryFloatingButton')));
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(kScanQrButton));
+      await tester.tap(find.byKey(const Key('kScanQrButton')));
       await tester.pumpAndSettle();
 
       ///Expect
@@ -149,9 +148,9 @@ void main() {
         child: const MaterialApp(home: QrGeneratorPage()),
       ));
 
-      await tester.tap(find.byKey(kPrimaryFloatingButton));
+      await tester.tap(find.byKey(const Key('kPrimaryFloatingButton')));
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(kGenerateQrButton));
+      await tester.tap(find.byKey(const Key('kGenerateQrButton')));
       await tester.pumpAndSettle();
 
       verify(qrGeneratorCubit.getSeed()).called(1);
