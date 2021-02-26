@@ -34,7 +34,7 @@ flutter run --dart-define apiUrl=https://mobile-test-seed-api.herokuapp.com
 flutter test
 ```
 ### ✅ Integration Test
-![](assets/readme/integration_test.png)
+![](assets/readme/Integration_test.png)
 ```dart
 //run the following command to run the integration test
 flutter drive --target=test_driver/app.dart --dart-define apiUrl=https://mobile-test-seed-api.herokuapp.com
@@ -53,15 +53,30 @@ With this approach we achieve a great decoupling and separation of concerns betw
 The api for the solution was implemented in node.js and `deploy` to `Heroku` with a single endpoint.
 The documentation of it can be found in: https://documenter.getpostman.com/view/14734044/TWDcFZom
 
+**API Format**
 
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```yaml
+paths:
+    /seed:
+        get:
+            description: Get a seed that can be used to generate a QR code
+            responses:
+                '200':
+                    description: seed generated
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Seed'
+components:
+    schemas:
+        Seed:
+            type: object
+            properties:
+                seed:
+                    type: string
+                    example: d43397d129c3de9e4b6c3974c1c16d1f
+                expires_at:
+                    type: dateTime
+                    description: ISO date-time
+                    example: '1979-11-12T13:10:42.24Z'
+```
