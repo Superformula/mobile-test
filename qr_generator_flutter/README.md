@@ -42,7 +42,7 @@ flutter drive --target=test_driver/app.dart --dart-define apiUrl=https://mobile-
 
 ## Project Structure - Clean Architecture
 
-The following diagram represents the clean architecture approach taken to solve this challenge. This was proposed by myself and a friend and was shared with the Hispanic community as a solution to follow clean architecture practices. The original proposal uses `riverpod` but because of the `decoupling` the was no problem on changint to bloc.
+The following diagram represents the clean architecture approach taken to solve this challenge. This was proposed by myself and a friend and was shared with the Hispanic community as a solution to follow clean architecture practices. The original proposal uses `riverpod` but because of the `decoupling` the was no problem on changing to bloc.
 
 With this approach we achieve a great decoupling and separation of concerns between the different layers of the application.
 
@@ -53,7 +53,7 @@ With this approach we achieve a great decoupling and separation of concerns betw
 The api for the solution was implemented in node.js and `deploy` to `Heroku` with a single endpoint.
 The documentation of it can be found in: https://documenter.getpostman.com/view/14734044/TWDcFZom
 
-**API Format**
+**API Schema**
 
 ```yaml
 paths:
