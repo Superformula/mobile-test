@@ -9,7 +9,7 @@ A simple app that can call the seed API and generate a QR code based on the seed
 
 ## Project architecture
 
-![Architecture](/assets/CLEAN_ARCH.png)
+![Architecture](qr_generator/assets/CLEAN_ARCH.png)
 
 - Domain: Abstracts all the base logic interfaces without any specific implementations.
 - Data: Implements Domain's interfaces with specific code, formats and packages.
