@@ -8,9 +8,6 @@ environment:
   sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-
   errors:
     git:
       url: git://github.com/NoScopeDevs/errors
@@ -18,10 +15,6 @@ dependencies:
   network_manager:
     git:
       url: git://github.com/NoScopeDevs/network_manager
-
-  qr_code_gen:
-    git:
-      url: git://github.com/marcossevilla/qr_code_gen
 
   dartz: ^0.9.2
   dio: ^3.0.10

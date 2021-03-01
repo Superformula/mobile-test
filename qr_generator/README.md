@@ -16,6 +16,15 @@ A simple app that can call the seed API and generate a QR code based on the seed
 - Presentation: Actual Flutter project with business logic that sets Domain's base types and fulfills with Data's implementations.
 - Core: Common app components between project modules or features.
 
+### Modules
+
+![Modules](qr_generator/assets/Superformula_app.png)
+
+- qr_generator: Flutter app where the Presentation layer is located. Has a `/packages` folder with every feature's Domain and Data layers.
+- qr_gen: Dart package located in `qr_generator` packages. Encapsulates the functionality to get seed from API.
+- qr_code_gen: Flutter package I made some time ago to encapsulate logic and ensure testability of the QR generation functionality.
+- mobile_test_server: Node.js Rest API that has the `/seed` endpoint to get a seed object.
+
 ## API
 
 (in Open API 3.0 format)
@@ -57,5 +66,5 @@ components:
 
 ## Advanced features
 
-- ✅ Provide an auto-refresh strategy with the `expires_at` value.
+- ✅ Provide an auto-refresh strategy with the `expires_at` value. The app shows a refresh button in `qr_gen_page`.
 - ✅ Provide an offline QR code access strategy. The app uses state management to show a list of the scanned items.

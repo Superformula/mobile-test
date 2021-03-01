@@ -13,16 +13,6 @@
                 "--dart-define",
                 "apiUrl=http://127.0.0.1:3000",
             ]
-        },
-        {
-            "name": "Heroku API",
-            "request": "launch",
-            "type": "dart",
-            "program": "lib/main.dart",
-            "args": [
-                "--dart-define",
-                "apiUrl=https://superformula-mobile-test.herokuapp.com",
-            ]
         }
     ]
 }
