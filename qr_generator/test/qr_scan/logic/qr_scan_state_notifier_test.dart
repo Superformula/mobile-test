@@ -14,7 +14,6 @@ void main() {
     // Expected emitted states from notifier
     final tAddScanStates = <String>[
       const Initial().toString(),
-      const Scanning().toString(),
       const Scanned(decodedStrings: [tDecodeString]).toString(),
     ];
 
