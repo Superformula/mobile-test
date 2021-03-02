@@ -7,6 +7,12 @@ A simple app that can call the seed API and generate a QR code based on the seed
 - A client needs to display a QR code in their App.
 - The QR code can be used to identify one's profile or a certain feature.
 
+## UI
+
+Home | QR Code
+---- | -------
+![Home](qr_generator/assets/app-home.png) | ![QR](qr_generator/assets/app-qr.png)
+
 ## Project architecture
 
 ![Architecture](qr_generator/assets/CLEAN_ARCH.png)
@@ -24,6 +30,8 @@ A simple app that can call the seed API and generate a QR code based on the seed
 - qr_gen: Dart package located in `qr_generator` packages. Encapsulates the functionality to get seed from API.
 - qr_code_gen: Flutter package I made some time ago to encapsulate logic and ensure testability of the QR generation functionality.
 - mobile_test_server: Node.js Rest API that has the `/seed` endpoint to get a seed object.
+
+## How to run the project
 
 ## API
 
