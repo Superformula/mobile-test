@@ -45,6 +45,25 @@ When you have your devices active, run this command:
 flutter run -d all --dart-define apiUrl="http://<your-ip>:<port-in-api-env-file>"
 ```
 
+### Run tests
+
+As you saw earlier, the project is not just a Flutter one, contains Dart and Flutter packages. So, if you run tests only on the root folder of the Flutter project, you miss the `/packages/qr_gen` tests.
+
+To run tests for the Flutter app, do:
+
+```sh
+flutter pub get
+flutter test test
+```
+
+To run tests for the `qr_gen` package, do:
+
+```sh
+cd packages/qr_gen/
+pub get
+pub run test test
+```
+
 ## API
 
 (in Open API 3.0 format)
