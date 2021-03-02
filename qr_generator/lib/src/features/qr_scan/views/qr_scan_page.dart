@@ -23,7 +23,7 @@ class QRCodeScanPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(kQRCodeScanMessage.i18n)),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.scanner_rounded),
+        child: const Icon(Icons.camera),
         onPressed: () async {
           await context.read(scanQRCode.future);
           Navigator.of(context).pop();

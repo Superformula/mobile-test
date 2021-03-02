@@ -33,6 +33,18 @@ Home | QR Code
 
 ## How to run the project
 
+Make sure you have the API configured and running, if you don't have the API's code, [here](https://github.com/marcossevilla/mobile-test-server) you go.
+
+Once you have the API up, I recommend using an iOS simulator to generate the QR codes as it is a local environment and iOS doesn't require any additional configuration.
+
+And test the scan functionality in a real device, I used Android for the test, but iOS should work too.
+
+When you have your devices active, run this command:
+
+```sh
+flutter run -d all --dart-define apiUrl="http://<your-ip>:<port-in-api-env-file>"
+```
+
 ## API
 
 (in Open API 3.0 format)
@@ -74,5 +86,5 @@ components:
 
 ## Advanced features
 
-- ✅ Provide an auto-refresh strategy with the `expires_at` value. The app shows a refresh button in `qr_gen_page`.
-- ✅ Provide an offline QR code access strategy. The app uses state management to show a list of the scanned items.
+- ✅  Provide an auto-refresh strategy with the `expires_at` value. The app shows a refresh button in `qr_gen_page`.
+- ✅  Provide an offline QR code access strategy. The app uses state management to show a list of the scanned items.
