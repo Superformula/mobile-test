@@ -27,6 +27,7 @@ class GenerateQRCodeScreenState extends State<GenerateQRCodeScreen> {
   void initState() {
     super.initState();
     qrCodeBloc ??= QRCodeGeneratorBloc(repository: SeedRepository());
+    qrCodeBloc.getGenerateQRCode();
     timer = Timer.periodic(const Duration(seconds: 20), (Timer timer) {
       if (mounted) {
         setState(() {
@@ -46,7 +47,6 @@ class GenerateQRCodeScreenState extends State<GenerateQRCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    qrCodeBloc.getGenerateQRCode();
     return BaseScreenScaffold(
         title: 'QRCODE',
         body: Container(

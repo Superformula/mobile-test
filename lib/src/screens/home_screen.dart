@@ -51,17 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return BaseScreenScaffold(
       title: 'HOME',
-      body: Container(
-        alignment: Alignment.bottomLeft,
-        padding: const EdgeInsets.only(bottom: 10),
-        child: SingleChildScrollView(
-            child: FabDialer(
-                miniMenuItemList,
-                Colors.blue,
-                const Icon(
-                  Icons.add,
-                  key: Key('fab-dailer'),
-                ))),
+      floatingButton: FabDialer(
+        miniMenuItemList,
+        Colors.blue,
+        const Icon(
+          Icons.add,
+          key: Key('fab-dailer'),
+        ),
       ),
     );
   }

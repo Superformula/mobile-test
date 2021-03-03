@@ -18,7 +18,6 @@ class SeedApiProvider {
   static SeedApiProvider singleton;
 
   Client client = Client();
-  SeedResponse result;
 
   Future<SeedResponse> getSeedResponse() async {
     final dynamic _baseUrl = env['API_URL'];
@@ -27,6 +26,7 @@ class SeedApiProvider {
     final Map<String, String> headers = <String, String>{
       'SEED_API_KEY': _apiKey
     };
+    SeedResponse result;
 
     try {
       await retry<dynamic>(
