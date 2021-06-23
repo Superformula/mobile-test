@@ -11,12 +11,16 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: ^2.2.0
+  qr_code_scanner: ^0.5.1
   dartz: ^0.10.0-nullsafety.2
   dio: ^4.0.0
   flutter_bloc: ^7.0.1
+  flutter_hooks: ^0.17.0
   freezed_annotation: ^0.14.2
   injectable: ^1.4.1
+  intl: ^0.17.0
   json_annotation: ^4.0.1
+  qr_flutter: ^4.0.0
   shared_preferences: ^2.0.6
 
 dev_dependencies:
