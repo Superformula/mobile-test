@@ -31,8 +31,8 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
       if (seed == null) {
         return left(const CommonFailure.unknown());
       }
-
-      return right(seed);
+      _sharedPreferences.setString(cacheKey, json.encode(seed.toJson()));
+      return right(seed.toDomain());
     } on DioError catch (e) {
       if (e.isNoConnectionError) {
         return _fetchSeedFromCache();
@@ -51,13 +51,13 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
     if (seed == null) {
       return left(const CommonFailure.noInternet());
     }
-    return right(seed);
+    return right(seed.toDomain());
   }
 
-  Seed? _dataToSeed(dynamic data) {
+  SeedDto? _dataToSeed(dynamic data) {
     if (data is! Map) {
       return null;
     }
-    return SeedDto.fromJson(Map<String, dynamic>.from(data)).toDomain();
+    return SeedDto.fromJson(Map<String, dynamic>.from(data));
   }
 }

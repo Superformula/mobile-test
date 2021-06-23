@@ -14,9 +14,11 @@ class QRCodePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('QR Code'),
       ),
-      body: BlocProvider(
-        create: (context) => locator<QrPageCubit>()..loadQr(),
-        child: const QrWidget(),
+      body: SafeArea(
+        child: BlocProvider(
+          create: (context) => locator<QrPageCubit>()..loadQr(),
+          child: const QrWidget(),
+        ),
       ),
     );
   }
