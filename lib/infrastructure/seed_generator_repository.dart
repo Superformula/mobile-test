@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:qr_generator/domain/failures/common_failure.dart';
@@ -9,11 +10,12 @@ import 'package:qr_generator/domain/i_seed_generator_repository.dart';
 import 'package:qr_generator/domain/seed.dart';
 import 'package:qr_generator/infrastructure/extensions/dio_extensions.dart';
 
+@LazySingleton(as: ISeedGeneratorRepository)
 class SeedGeneratorRepository implements ISeedGeneratorRepository {
   final SharedPreferences _sharedPreferences;
   final Dio _dio;
 
-  static final endpoint = Uri.parse('localhost:3000/seed');
+  static final endpoint = Uri.parse('http://localhost:3000/seed');
   static const cacheKey = "seed";
 
   SeedGeneratorRepository(
@@ -21,6 +23,7 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
     this._dio,
   );
 
+  @override
   Future<Either<CommonFailure, Seed>> fetchSeed() async {
     try {
       final response = await _dio.getUri(endpoint);
@@ -32,9 +35,9 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
       return right(seed);
     } on DioError catch (e) {
       if (e.isNoConnectionError) {
-        return left(const CommonFailure.unknown());
+        return _fetchSeedFromCache();
       }
-      return _fetchSeedFromCache();
+      return left(const CommonFailure.unknown());
     }
   }
 
