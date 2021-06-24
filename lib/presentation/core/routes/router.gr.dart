@@ -38,7 +38,7 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/'),
         _i1.RouteConfig(QRCodeRoute.name, path: '/qr-code'),
-        _i1.RouteConfig(ScanRoute.name, path: 'scan')
+        _i1.RouteConfig(ScanRoute.name, path: '/scan')
       ];
 }
 
@@ -55,7 +55,7 @@ class QRCodeRoute extends _i1.PageRouteInfo {
 }
 
 class ScanRoute extends _i1.PageRouteInfo {
-  const ScanRoute() : super(name, path: 'scan');
+  const ScanRoute() : super(name, path: '/scan');
 
   static const String name = 'ScanRoute';
 }

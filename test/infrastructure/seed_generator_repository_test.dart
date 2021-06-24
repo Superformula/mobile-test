@@ -15,8 +15,19 @@ void main() {
     seedGeneratorRepository = SeedGeneratorRepository(prefs, Dio());
   });
 
-  test('When getSeed is called, Then a seed should be obtained', () async {
+  test('When fetchSeed is called, Then a seed should be obtained', () async {
     final seedOrFailure = await seedGeneratorRepository.fetchSeed();
     expect(seedOrFailure, isA<Right<CommonFailure, Seed>>());
+  });
+
+  test(
+      'When verifySeed is called with a valid seed, then seed should be valid',
+      () async {
+    final seedOrFailure = await seedGeneratorRepository.fetchSeed();
+    expect(seedOrFailure, isA<Right<CommonFailure, Seed>>());
+    final right = seedOrFailure as Right<CommonFailure, Seed>;
+    final failureOrSuccess =
+        await seedGeneratorRepository.verifySeed(right.value.seed);
+    expect(failureOrSuccess, isA<Right<CommonFailure, Unit>>());
   });
 }

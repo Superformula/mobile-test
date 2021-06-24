@@ -41,6 +41,12 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
     }
   }
 
+  @override
+  Future<Either<CommonFailure, Unit>> verifySeed(String seed) async {
+    // and how it could be validated with another endpoint.
+    return Future.delayed(const Duration(seconds: 3), () => right(unit));
+  }
+
   Either<CommonFailure, Seed> _fetchSeedFromCache() {
     final string = _sharedPreferences.getString(cacheKey);
     if (string == null) {

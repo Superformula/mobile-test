@@ -16,10 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CommonFailureTearOff {
   const _$CommonFailureTearOff();
 
-  _NoInternet noInternet([String? message]) {
-    return _NoInternet(
-      message,
-    );
+  _NoInternet noInternet() {
+    return const _NoInternet();
   }
 
   _Unknown unknown([String? message]) {
@@ -34,17 +32,15 @@ const $CommonFailure = _$CommonFailureTearOff();
 
 /// @nodoc
 mixin _$CommonFailure {
-  String? get message => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) noInternet,
+    required TResult Function() noInternet,
     required TResult Function(String? message) unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? noInternet,
+    TResult Function()? noInternet,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
   }) =>
@@ -62,10 +58,6 @@ mixin _$CommonFailure {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $CommonFailureCopyWith<CommonFailure> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -73,7 +65,6 @@ abstract class $CommonFailureCopyWith<$Res> {
   factory $CommonFailureCopyWith(
           CommonFailure value, $Res Function(CommonFailure) then) =
       _$CommonFailureCopyWithImpl<$Res>;
-  $Res call({String? message});
 }
 
 /// @nodoc
@@ -84,28 +75,13 @@ class _$CommonFailureCopyWithImpl<$Res>
   final CommonFailure _value;
   // ignore: unused_field
   final $Res Function(CommonFailure) _then;
-
-  @override
-  $Res call({
-    Object? message = freezed,
-  }) {
-    return _then(_value.copyWith(
-      message: message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$NoInternetCopyWith<$Res>
-    implements $CommonFailureCopyWith<$Res> {
+abstract class _$NoInternetCopyWith<$Res> {
   factory _$NoInternetCopyWith(
           _NoInternet value, $Res Function(_NoInternet) then) =
       __$NoInternetCopyWithImpl<$Res>;
-  @override
-  $Res call({String? message});
 }
 
 /// @nodoc
@@ -117,68 +93,44 @@ class __$NoInternetCopyWithImpl<$Res> extends _$CommonFailureCopyWithImpl<$Res>
 
   @override
   _NoInternet get _value => super._value as _NoInternet;
-
-  @override
-  $Res call({
-    Object? message = freezed,
-  }) {
-    return _then(_NoInternet(
-      message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_NoInternet extends _NoInternet {
-  const _$_NoInternet([this.message]) : super._();
-
-  @override
-  final String? message;
+  const _$_NoInternet() : super._();
 
   @override
   String toString() {
-    return 'CommonFailure.noInternet(message: $message)';
+    return 'CommonFailure.noInternet()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _NoInternet &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+    return identical(this, other) || (other is _NoInternet);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
-
-  @JsonKey(ignore: true)
-  @override
-  _$NoInternetCopyWith<_NoInternet> get copyWith =>
-      __$NoInternetCopyWithImpl<_NoInternet>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) noInternet,
+    required TResult Function() noInternet,
     required TResult Function(String? message) unknown,
   }) {
-    return noInternet(message);
+    return noInternet();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? noInternet,
+    TResult Function()? noInternet,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
   }) {
     if (noInternet != null) {
-      return noInternet(message);
+      return noInternet();
     }
     return orElse();
   }
@@ -207,22 +159,14 @@ class _$_NoInternet extends _NoInternet {
 }
 
 abstract class _NoInternet extends CommonFailure {
-  const factory _NoInternet([String? message]) = _$_NoInternet;
+  const factory _NoInternet() = _$_NoInternet;
   const _NoInternet._() : super._();
-
-  @override
-  String? get message => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  _$NoInternetCopyWith<_NoInternet> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$UnknownCopyWith<$Res> implements $CommonFailureCopyWith<$Res> {
+abstract class _$UnknownCopyWith<$Res> {
   factory _$UnknownCopyWith(_Unknown value, $Res Function(_Unknown) then) =
       __$UnknownCopyWithImpl<$Res>;
-  @override
   $Res call({String? message});
 }
 
@@ -281,7 +225,7 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) noInternet,
+    required TResult Function() noInternet,
     required TResult Function(String? message) unknown,
   }) {
     return unknown(message);
@@ -290,7 +234,7 @@ class _$_Unknown extends _Unknown {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? noInternet,
+    TResult Function()? noInternet,
     TResult Function(String? message)? unknown,
     required TResult orElse(),
   }) {
@@ -327,9 +271,7 @@ abstract class _Unknown extends CommonFailure {
   const factory _Unknown([String? message]) = _$_Unknown;
   const _Unknown._() : super._();
 
-  @override
   String? get message => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$UnknownCopyWith<_Unknown> get copyWith =>
       throw _privateConstructorUsedError;
