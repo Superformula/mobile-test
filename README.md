@@ -1,16 +1,29 @@
 # qr_generator
+This project is an implementation of a QR-generator-test
 
-A new Flutter project.
+The project is designed using Domain-Driven Design. The lib folder contains 4 main folders: presentation, application, domain and infrastructure.
+![Clean architecture](https://resocoder.com/wp-content/uploads/2020/03/DDD-Flutter-Diagram-v3.svg)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run the project
+``` console
+flutter run lib/main.dart
+```
 
-A few resources to get you started if this is your first Flutter project:
+fetch dependencies if needed
+``` console
+flutter pub get
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Testing
+To perform unit tests and bloc tests
+``` console
+flutter test
+```
+
+To run integration tests:
+``` console
+flutter drive --driver=test_driver/integration_test.dart --target=integration_test/app_test.dart
+```
