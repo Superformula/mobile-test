@@ -31,6 +31,7 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
       if (seed == null) {
         return left(const CommonFailure.unknown());
       }
+      // Save seed on shared preferences for offline capability
       _sharedPreferences.setString(cacheKey, json.encode(seed.toJson()));
       return right(seed.toDomain());
     } on DioError catch (e) {
@@ -43,10 +44,10 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
 
   @override
   Future<Either<CommonFailure, Unit>> verifySeed(String seed) async {
-    // and how it could be validated with another endpoint.
+    // mock validation with another endpoint.
     return Future.delayed(const Duration(seconds: 3), () => right(unit));
   }
-
+  // This method is called as a fallback when there's no internet connection
   Either<CommonFailure, Seed> _fetchSeedFromCache() {
     final string = _sharedPreferences.getString(cacheKey);
     if (string == null) {

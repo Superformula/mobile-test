@@ -39,12 +39,12 @@ void main() {
     );
 
     blocTest<QrPageCubit, QrPageState>(
-      'Fetches an expired seed from cache, emits [QrPageState.loadError]',
+      'Given no internet connection, Fetches an expired seed from cache' +
+          'emits [QrPageState.loadError]',
       build: () {
         when(() => mockSeedGeneratorRepository.fetchSeed()).thenAnswer(
           (invocation) async => right(
-            Seed(
-              seed: '123456',
+            seed.copyWith(
               expiresAt: now.add(const Duration(seconds: -ttl)),
             ),
           ),
@@ -55,20 +55,9 @@ void main() {
       expect: () =>
           [const QrPageState.loadError(failure: CommonFailure.noInternet())],
     );
-
     blocTest<QrPageCubit, QrPageState>(
-      'Fetches seed with no internet, emits [QrPageState.loadError]',
-      build: () {
-        when(() => mockSeedGeneratorRepository.fetchSeed()).thenAnswer(
-            (invocation) async => left(const CommonFailure.noInternet()));
-        return cubit;
-      },
-      act: (cubit) => cubit.loadQr(now),
-      expect: () =>
-          [const QrPageState.loadError(failure: CommonFailure.noInternet())],
-    );
-    blocTest<QrPageCubit, QrPageState>(
-      'Fetches new seed after expiring, emits [QrPageState.loadError]',
+      'Given no internet connection, Fetches new seed after expiring,' +
+          'Emits [QrPageState.loadError]',
       build: () {
         when(() => mockSeedGeneratorRepository.fetchSeed()).thenAnswer(
             (invocation) async => left(const CommonFailure.noInternet()));
