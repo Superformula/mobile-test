@@ -15,7 +15,7 @@ class SeedGeneratorRepository implements ISeedGeneratorRepository {
   final SharedPreferences _sharedPreferences;
   final Dio _dio;
 
-  static final endpoint = Uri.parse('http://localhost:3000/seed');
+  static final endpoint = Uri.parse('http://mtask.mx/seed');
   static const cacheKey = "seed";
 
   SeedGeneratorRepository(
