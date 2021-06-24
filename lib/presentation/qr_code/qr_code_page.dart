@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/application/qr_page/qr_page_cubit.dart';
 import 'package:qr_generator/injection.dart';
@@ -32,10 +31,6 @@ class QrWidget extends StatelessWidget {
     final ttl =
         (expiresAt.millisecondsSinceEpoch - now.millisecondsSinceEpoch) ~/ 1000;
     return "$ttl seconds";
-    // String twoDigits(int n) => n == 0 ? "" : n.toString().padLeft(2, "0");
-    // final twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    // final twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    // return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
   }
 
   @override

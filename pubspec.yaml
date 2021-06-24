@@ -17,16 +17,20 @@ dependencies:
   flutter_hooks: ^0.17.0
   freezed_annotation: ^0.14.2
   injectable: ^1.4.1
-  intl: ^0.17.0
   json_annotation: ^4.0.1
   qr_code_scanner: ^0.5.1
   qr_flutter: ^4.0.0
   shared_preferences: ^2.0.6
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   auto_route_generator: ^2.1.0
+  bloc_test: ^8.0.2
   build_runner: ^2.0.4
   freezed: ^0.14.2
   injectable_generator: ^1.4.1

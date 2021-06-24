@@ -6,6 +6,6 @@ import 'package:qr_generator/presentation/scan/scan_page.dart';
 @MaterialAutoRouter(routes: [
   MaterialRoute(page: HomePage, initial: true),
   MaterialRoute(page: QRCodePage, path: '/qr-code'),
-  MaterialRoute(page: ScanPage, path: 'scan'),
+  MaterialRoute(page: ScanPage, path: '/scan'),
 ], replaceInRouteName: 'Page,Route')
 class $AppRouter {}
