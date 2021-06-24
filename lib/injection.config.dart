@@ -9,8 +9,8 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
-import 'application/cubit/scan_page_cubit.dart' as _i8;
 import 'application/qr_page/qr_page_cubit.dart' as _i7;
+import 'application/scan_page/scan_page_cubit.dart' as _i8;
 import 'domain/i_seed_generator_repository.dart' as _i5;
 import 'infrastructure/core/injectable_modules.dart' as _i9;
 import 'infrastructure/seed_generator_repository.dart'
