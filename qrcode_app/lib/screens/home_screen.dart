@@ -1,7 +1,10 @@
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:qrcode_app/expandable_fab.dart';
+import 'package:qrcode_app/widgets/expandable_fab.dart';
 import 'package:qrcode_app/presentation/seed_presenter.dart';
+// import 'package:scan/scan.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key, required this.presenter}) : super(key: key);
@@ -11,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  ScanResult? scanResult;
   @override
   void initState() {
     super.initState();
@@ -18,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final scanResult = this.scanResult;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
@@ -70,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(''),
                     );
                   else {
-                    if (snapshot.data == 0) widget.presenter.getData();
+                    // if (snapshot.data == 0) widget.presenter.getData();
                     return Text(snapshot.data.toString());
                   }
                 }),
@@ -86,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Scan',
           ),
           ActionButton(
-            onPressed: () => _showAction(context, 1),
+            onPressed: () => _scan(),
             icon: const Icon(Icons.insert_photo),
             label: 'Code',
           ),
@@ -95,12 +101,36 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void _showAction(BuildContext context, int index) {
+  Future<void> _scan() async {
+    try {
+      final ScanResult result = await BarcodeScanner.scan(
+        options: ScanOptions(
+          restrictFormat: [BarcodeFormat.qr],
+          useCamera: -1, //using default camera
+        ),
+      );
+      print('result scan:' + result.rawContent);
+      _showAction(context, result.rawContent);
+      // setState(() => );
+    } on PlatformException catch (e) {
+      setState(() {
+        scanResult = ScanResult(
+          type: ResultType.Error,
+          format: BarcodeFormat.unknown,
+          rawContent: e.code == BarcodeScanner.cameraAccessDenied
+              ? 'The user did not grant the camera permission!'
+              : 'Unknown error: $e',
+        );
+      });
+    }
+  }
+
+  void _showAction(BuildContext context, String resultScan) {
     showDialog<void>(
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: Text('Fernanda'),
+          content: Text(resultScan),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
