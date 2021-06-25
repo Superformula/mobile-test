@@ -22,8 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final scanResult = this.scanResult;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
