@@ -4,6 +4,6 @@ class SeedApiDatasource {
   static Future<Seed> getSeed() async {
     return Future.delayed(Duration(seconds: 3)).then((value) => Seed(
         seed: 'asdhis',
-        expirationDate: DateTime.now().add(Duration(hours: 2))));
+        expirationDate: DateTime.now().add(Duration(seconds: 10))));
   }
 }
