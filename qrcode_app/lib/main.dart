@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qrcode_app/data/repositories/seeds_repository.dart';
 import 'package:qrcode_app/presentation/seed_presenter.dart';
 
-import 'home_screen.dart';
+import 'screens/home_screen.dart';
 import 'presentation/ticker.dart';
 
 void main() {
@@ -23,4 +23,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
