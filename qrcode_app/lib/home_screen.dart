@@ -66,9 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 stream: widget.presenter.expirationData,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData)
-                    return Container(child: Text('nope'));
-                  else
+                    return Container(
+                      child: Text(''),
+                    );
+                  else {
+                    if (snapshot.data == 0) widget.presenter.getData();
                     return Text(snapshot.data.toString());
+                  }
                 }),
           ],
         ),
