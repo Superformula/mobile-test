@@ -6,8 +6,9 @@ class SeedModel {
 
   Seed fromJson(dynamic json) {
     seed = json['seed'] ?? 'default';
-    expirationDate =
-        json['expiration'] ?? DateTime.now().add(Duration(hours: 1));
+    // expirationDate = DateTime.now().add(Duration(seconds: 10));
+    expirationDate = DateTime.tryParse(json['expiration']) ??
+        DateTime.now().add(Duration(hours: 1));
     return Seed(expirationDate: expirationDate, seed: seed);
   }
 }

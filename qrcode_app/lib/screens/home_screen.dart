@@ -44,7 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Container(
                       child: Text('Error'),
                     );
-                  else
+                  else {
+                    print(snapshot.data!.seed.seed);
                     return CustomPaint(
                       size: Size.square(200),
                       painter: QrPainter(
@@ -58,13 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           dataModuleShape: QrDataModuleShape.circle,
                           color: Color(0xff1a5441),
                         ),
-                        // size: 320.0,
-                        // embeddedImage: snapshot.data,
-                        // embeddedImageStyle: QrEmbeddedImageStyle(
-                        //   size: Size.square(60),
-                        // ),
                       ),
                     );
+                  }
                 }),
             StreamBuilder<int>(
                 stream: widget.presenter.expirationData,
@@ -74,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(''),
                     );
                   else {
-                    // if (snapshot.data == 0) widget.presenter.getData();
+                    if (snapshot.data == 0) widget.presenter.getData();
                     return Text(snapshot.data.toString());
                   }
                 }),
@@ -86,13 +83,13 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           ActionButton(
             onPressed: () => widget.presenter.getData(),
-            icon: const Icon(Icons.format_size),
-            label: 'Scan',
+            icon: const Icon(Icons.code_sharp),
+            label: 'Generate',
           ),
           ActionButton(
             onPressed: () => _scan(),
-            icon: const Icon(Icons.insert_photo),
-            label: 'Code',
+            icon: const Icon(Icons.linked_camera),
+            label: 'Scan',
           ),
         ],
       ),
@@ -108,8 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
       print('result scan:' + result.rawContent);
-      _showAction(context, result.rawContent);
-      // setState(() => );
+      if (result.rawContent.isNotEmpty) _showAction(context, result.rawContent);
     } on PlatformException catch (e) {
       setState(() {
         scanResult = ScanResult(
