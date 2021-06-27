@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'dart:math';
 
 Future<void> main() async {
@@ -10,9 +9,8 @@ Future<void> main() async {
 }
 
 Future<HttpServer> createServer() async {
-  final address = InternetAddress.loopbackIPv4.address;
-  const port = 8080;
-  return await HttpServer.bind(address, port);
+  final port = int.parse(Platform.environment['PORT'] ?? '8000');
+  return await HttpServer.bind(InternetAddress.anyIPv4, port);
 }
 
 Future<void> handleRequests(HttpServer server) async {
@@ -42,7 +40,10 @@ void handleGet(HttpRequest request) {
 }
 
 void returnJson(HttpRequest request, int status) {
-  dynamic response = {'seed': getRandString(8)};
+  dynamic response = {
+    'seed': getRandString(8),
+    'expiration': DateTime.now().add(Duration(seconds: 20)).toString()
+  };
   final jsonString = jsonEncode(response);
   request.response
     ..statusCode = status
