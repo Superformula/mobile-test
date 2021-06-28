@@ -1,4 +1,3 @@
-A simple command-line application.
+Simple API server created in Dart.
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+This API provides a /seed endpoint which returns a random string seed and an expiration date. Its used in QRCode generation.
