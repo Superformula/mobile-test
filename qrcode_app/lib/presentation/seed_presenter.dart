@@ -30,7 +30,7 @@ class SeedPresenter implements Presenter {
       StreamController<PresenterState>.broadcast();
   StreamController<int> _tickController = StreamController<int>.broadcast();
   SeedPresenter(this._ticker, {required this.repository});
-  late StreamSubscription<int> _tickerSubscription;
+  StreamSubscription<int>? _tickerSubscription;
   final Ticker _ticker;
   @override
   bool isValid() {
@@ -46,7 +46,7 @@ class SeedPresenter implements Presenter {
   updateTicker(int value) {
     print('updating ticker $value');
     _tickController.add(value);
-    if (value == 0) _tickerSubscription.cancel();
+    if (value == 0) _tickerSubscription!.cancel();
   }
 
   @override
@@ -65,6 +65,7 @@ class SeedPresenter implements Presenter {
 
   void tick(DateTime expirationDate) {
     Duration difference = DateTime.now().difference(expirationDate);
+    if (_tickerSubscription != null) _tickerSubscription!.cancel();
     _tickerSubscription = _ticker
         .tick(difference.inSeconds)
         .listen((duration) => updateTicker(duration.abs()));
