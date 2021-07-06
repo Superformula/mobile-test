@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrcode_app/data/datasource/seeds_api_datasource.dart';
 import 'package:qrcode_app/data/repositories/seeds_repository.dart';
 import 'package:qrcode_app/presentation/seed_presenter.dart';
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(
-        presenter: SeedPresenter(Ticker(), repository: SeedRepositoryImpl()),
+        presenter: SeedPresenter(Ticker(),
+            repository: SeedRepositoryImpl(SeedApiDatasource())),
       ),
     );
   }

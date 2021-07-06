@@ -7,7 +7,10 @@ abstract class SeedRepository {
 }
 
 class SeedRepositoryImpl implements SeedRepository {
+  final SeedApiDatasource apiDatasource;
   Client client = Client();
+
+  SeedRepositoryImpl(this.apiDatasource);
   @override
-  Future<Seed> getSeed() async => SeedApiDatasource.getSeed(client);
+  Future<Seed> getSeed() async => apiDatasource.getSeed(client);
 }
