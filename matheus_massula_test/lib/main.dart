@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:matheus_massula_test/resources/app_theme_data.dart';
+import 'package:matheus_massula_test/resources/string_constant.dart';
 
 import 'pages/home.dart';
 
@@ -10,8 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Matheus Massula Test',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      title: StringConstant.APP_NAME,
+      theme: AppThemeData.lightThemeData,
       home: HomePage(),
     );
   }
