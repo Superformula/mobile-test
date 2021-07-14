@@ -23,7 +23,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # State management
+  flutter_bloc: ^7.0.1
 
+  # Web communication
+  http_interceptor: ^1.0.1
+  http: ^0.13.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -32,6 +38,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.0.10
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
