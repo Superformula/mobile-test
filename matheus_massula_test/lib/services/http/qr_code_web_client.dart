@@ -13,7 +13,7 @@ class QRCodeWebClient {
   );
   final String url = 'https://8mpaf1q1g5.execute-api.us-west-1.amazonaws.com/';
   
-  Future<QRCodeSeed> getQRCode() async {
+  Future<QRCodeSeed?>? getQRCode() async {
     final headers = {'x-api-key': 'VVTUTAdalB55yRKQzsM7u6RTowrcUUhJLA82hoN6'};
 
     final Response response = await client.get(
