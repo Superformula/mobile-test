@@ -16,7 +16,6 @@ class QRCodeContainer extends StatelessWidget {
 
     return BlocProvider(
       create: (BuildContext context) {
-        //TODO: Find a way to remove the ! (not null)
         final cubit = QrCodeCubit(qrCodeWebClient: dependencies!.qrCodeWebClient);
         cubit.getQRCode();
         return cubit;
