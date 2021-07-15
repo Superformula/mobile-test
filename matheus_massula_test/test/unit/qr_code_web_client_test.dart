@@ -1,8 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:matheus_massula_test/models/remote/qr_code_seed.dart';
 import 'package:mockito/mockito.dart';
-
-import '../../mocks/qr_code_web_client_mock.dart';
+import '../mocks/qr_code_web_client_mock.dart';
 
 void main() {
   test('Should retrieve successfully QR Code Seed', () async {
