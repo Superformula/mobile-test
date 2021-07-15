@@ -31,6 +31,9 @@ dependencies:
   http_interceptor: ^1.0.1
   http: ^0.13.3
 
+  # QR Code presenter
+  qr_flutter: ^4.0.0
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2

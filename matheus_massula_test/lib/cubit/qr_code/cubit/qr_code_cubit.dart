@@ -16,7 +16,7 @@ class QrCodeCubit extends Cubit<QrCodeState> {
 
       await Future.delayed(Duration(seconds: 3)); //TODO: Replace it by the API Call
 
-      emit(QrCodeLoaded(qrCodeSeed: ''));
+      emit(QrCodeLoaded(qrCodeSeed: 'MY QR CODE'));
     } catch (e) {
       print('Error: $e');
       emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));
