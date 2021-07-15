@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:matheus_massula_test/cubit/qr_code/cubit/qr_code_cubit.dart';
 import 'package:matheus_massula_test/resources/string_constant.dart';
+import 'package:matheus_massula_test/services/widgets/app_dependencies.dart';
 
 import 'widgets/seconds_count_down.dart';
 
@@ -10,9 +11,12 @@ class QRCodeContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dependencies = AppDependencies.of(context);
+
     return BlocProvider(
       create: (BuildContext context) {
-        final cubit = QrCodeCubit();
+        //TODO: Find a way to remove the ! (not null)
+        final cubit = QrCodeCubit(qrCodeWebClient: dependencies!.qrCodeWebClient);
         cubit.getQRCode();
         return cubit;
       },
