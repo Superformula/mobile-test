@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:matheus_massula_test/models/home_menu_options.dart';
+import 'package:matheus_massula_test/pages/qr_code.dart';
 import 'package:matheus_massula_test/resources/string_constant.dart';
 
 class HomePage extends StatelessWidget {
@@ -24,35 +25,44 @@ class HomePage extends StatelessWidget {
     ),
     child: PopupMenuButton<HomeMenuOptions>(
       icon: Icon(Icons.add_outlined),
-      onSelected: (HomeMenuOptions selectedOption) async {
-
-      },
+      onSelected: (HomeMenuOptions selectedOption) async => _handleOptionSelection(selectedOption, context),
       itemBuilder: (BuildContext context) => <PopupMenuEntry<HomeMenuOptions>>[
         PopupMenuItem<HomeMenuOptions>(
           value: HomeMenuOptions.scan,
-          child: Row(
-            children: [
-              const Text(StringConstant.SCAN_LABEL),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: const Icon(Icons.qr_code_scanner_rounded),
-              ),
-            ],
+          child: _buildMenuItem(
+            text: StringConstant.SCAN_LABEL,
+            iconData: Icons.qr_code_scanner_rounded
           )
         ),
         PopupMenuItem<HomeMenuOptions>(
           value: HomeMenuOptions.qr_code,
-          child: Row(
-            children: [
-              const Text(StringConstant.QR_CODE_LABEL),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: const Icon(Icons.qr_code_2_rounded),
-              ),
-            ],
+          child: _buildMenuItem(
+            text: StringConstant.QR_CODE_LABEL,
+            iconData: Icons.qr_code_2_rounded
           )
         )
       ],
     ),
   );
+
+  Row _buildMenuItem({required String text, required IconData iconData}) => Row(
+    children: [
+      Text(text),
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: Icon(iconData),
+      ),
+    ],
+  );
+
+  void _handleOptionSelection(HomeMenuOptions selectedOption, BuildContext context) {
+    switch (selectedOption) {
+      case HomeMenuOptions.scan:
+        // TODO: Handle this case.
+        break;
+      case HomeMenuOptions.qr_code:
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => QRCodeContainer()));
+        break;
+    }
+  }
 }
