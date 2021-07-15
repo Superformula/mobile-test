@@ -14,9 +14,9 @@ class QrCodeLoading extends QrCodeState {
 }
 
 class QrCodeLoaded extends QrCodeState {
-  final dynamic qrCodeSeed;
+  final QRCodeSeed qrCodeSeed;
 
-  const QrCodeLoaded({@required this.qrCodeSeed});
+  const QrCodeLoaded({required this.qrCodeSeed});
 
   @override
   bool operator ==(Object o){

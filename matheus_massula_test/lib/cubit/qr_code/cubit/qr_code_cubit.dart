@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:matheus_massula_test/models/remote/qr_code_seed.dart';
 import 'package:matheus_massula_test/resources/string_constant.dart';
 import 'package:matheus_massula_test/services/http/qr_code_web_client.dart';
 import 'package:meta/meta.dart';
@@ -14,9 +15,9 @@ class QrCodeCubit extends Cubit<QrCodeState> {
     try {
       emit(QrCodeLoading());
 
-      await Future.delayed(Duration(seconds: 3)); //TODO: Replace it by the API Call
+      final QRCodeSeed qrCodeSeed = await qrCodeWebClient.getQRCode();
 
-      emit(QrCodeLoaded(qrCodeSeed: 'MY QR CODE'));
+      emit(QrCodeLoaded(qrCodeSeed: qrCodeSeed));
     } catch (e) {
       print('Error: $e');
       emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));

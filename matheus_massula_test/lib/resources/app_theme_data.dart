@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppThemeData {
-  static const _lightFillColor = Colors.black;
+  static const _lightFillColor = Colors.red;
 
   static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
 

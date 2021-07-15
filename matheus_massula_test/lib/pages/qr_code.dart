@@ -35,49 +35,65 @@ class _QRCodePage extends StatelessWidget {
         title: const Text(StringConstant.QR_CODE_PAGE_TITLE),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          BlocConsumer<QrCodeCubit, QrCodeState>(
-            listener: (context, state) {
-              if(state is QrCodeError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(state.message))
-                );
-              }
-            },
-            builder: (context, state) {
-              if(state is QrCodeLoaded) {
-                return Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: QrImage(
-                    data: state.qrCodeSeed,
-                    version: QrVersions.auto,
-                    size: 400.0,
-                  ),
-                );
-              } else if(state is QrCodeError) {
-                return Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Placeholder(color: Colors.red),
-                );
-              } else {
-                return Container(
-                  height: 400,
-                  width: 400,
-                  child: Center(
-                    child: CircularProgressIndicator()
-                  )
-                );
-              }
-            },
-          ),
-          SecondsCountDown(
-            seconds: 15,
-            onEnd: () => print('Time is over.'), //TODO: Should I request a new QR Code?
-          )
-          //Text(StringConstant.SECONDS_LEFT_LABEL)
-        ],
+      body: BlocBuilder<QrCodeCubit, QrCodeState>(
+        builder: (context, state) {
+          if(state is QrCodeLoaded) {
+            return _buildLoadedBody(context, state);
+          } else if(state is QrCodeError) {
+            return _buildErrorBody(context, state);
+          } else {
+            return _buildLoadingBody();
+          }
+        },
       ),
     );
   }
+
+  Container _buildLoadingBody() => Container(
+    height: 400,
+    width: 400,
+    child: Center(
+      child: CircularProgressIndicator()
+    )
+  );
+
+  Column _buildErrorBody(BuildContext context, QrCodeError state) => Column(
+    children: [
+      Container(
+        height: 400,
+        width: 400,
+        child: Center(
+          child: Icon(
+            Icons.error,
+            color: Theme.of(context).errorColor,
+          )
+        )
+      ),
+      Padding(
+        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+        child: Text(state.message),
+      ),
+      OutlinedButton(
+        onPressed: () => context.read<QrCodeCubit>().getQRCode(),
+        child: Text(StringConstant.GENERIC_RETRY)
+      )
+    ],
+  );
+
+  Column _buildLoadedBody(BuildContext context, QrCodeLoaded state) => Column(
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: QrImage(
+          data: state.qrCodeSeed.seed,
+          version: QrVersions.auto,
+          size: 400.0,
+        ),
+      ),
+      SecondsCountDown(
+        seconds: state.qrCodeSeed.expiresAt.difference(DateTime.now()).inSeconds,
+        onEnd: () => context.read<QrCodeCubit>().getQRCode()
+      )
+    ]
+  );
 }
