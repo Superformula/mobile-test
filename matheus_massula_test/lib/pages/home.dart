@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:matheus_massula_test/models/home_menu_options.dart';
 import 'package:matheus_massula_test/pages/qr_code.dart';
 import 'package:matheus_massula_test/resources/string_constant.dart';
@@ -58,11 +59,24 @@ class HomePage extends StatelessWidget {
   void _handleOptionSelection(HomeMenuOptions selectedOption, BuildContext context) {
     switch (selectedOption) {
       case HomeMenuOptions.scan:
-        // TODO: Handle this case.
+        _scanQRCode(context);
         break;
       case HomeMenuOptions.qr_code:
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => QRCodeContainer()));
         break;
     }
+  }
+
+  Future<void> _scanQRCode(BuildContext context) async {
+    String result = await FlutterBarcodeScanner.scanBarcode(
+      '#f44336',
+      StringConstant.GENERIC_CANCEL,
+      true,
+      ScanMode.QR
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('QR Code data: $result'))
+    );
   }
 }

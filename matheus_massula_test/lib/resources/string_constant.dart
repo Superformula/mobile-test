@@ -2,6 +2,7 @@ class StringConstant {
   // Generic
   static const String APP_NAME = 'Matheus Massula Superformula Test';
   static const String GENERIC_RETRIEVE_ERRO_MESSAGE = 'It was not possible to retrieve what you request. Please, try again!';
+  static const String GENERIC_CANCEL = 'Cancel';
   
   // Home page
   static const HOME_PAGE_TITLE = 'Home';
