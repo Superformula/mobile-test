@@ -15,7 +15,10 @@ class QrCodeCubit extends Cubit<QrCodeState> {
     try {
       emit(QrCodeLoading());
 
-      final QRCodeSeed qrCodeSeed = await qrCodeWebClient.getQRCode();
+      final QRCodeSeed? qrCodeSeed = await qrCodeWebClient.getQRCode();
+      if (qrCodeSeed == null) {
+        throw Exception();
+      }
 
       emit(QrCodeLoaded(qrCodeSeed: qrCodeSeed));
     } catch (e) {
