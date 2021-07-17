@@ -31,8 +31,8 @@ class _SecondsCountDownState extends State<SecondsCountDown> {
   }
 
   void rebuildInASecond() async {
-    await Future.delayed(Duration(seconds: 1));
     if(currentSecondsLeft > 0) {
+      await Future.delayed(Duration(seconds: 1));
       if(this.mounted) {
         setState(() => currentSecondsLeft-- );
       }

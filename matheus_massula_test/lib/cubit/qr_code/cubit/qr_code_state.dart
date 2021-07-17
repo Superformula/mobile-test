@@ -1,16 +1,22 @@
 part of 'qr_code_cubit.dart';
 
 @immutable
-abstract class QrCodeState {
+abstract class QrCodeState extends Equatable {
   const QrCodeState();
 }
 
 class QrCodeInitial extends QrCodeState {
   const QrCodeInitial();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class QrCodeLoading extends QrCodeState {
   const QrCodeLoading();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class QrCodeLoaded extends QrCodeState {
@@ -19,13 +25,7 @@ class QrCodeLoaded extends QrCodeState {
   const QrCodeLoaded({required this.qrCodeSeed});
 
   @override
-  bool operator ==(Object o){
-    if(identical(this, o)) return true;
-    return o is QrCodeLoaded && o.qrCodeSeed.hashCode == qrCodeSeed.hashCode;
-  }
-
-  @override
-  int get hashCode => qrCodeSeed.hashCode;
+  List<Object?> get props => [qrCodeSeed];
 }
 
 class QrCodeError extends QrCodeState {
@@ -34,11 +34,5 @@ class QrCodeError extends QrCodeState {
   const QrCodeError({required this.message});
 
   @override
-  bool operator ==(Object o){
-    if(identical(this, o)) return true;
-    return o is QrCodeError && o.message.hashCode == message.hashCode;
-  }
-
-  @override
-  int get hashCode => message.hashCode;
+  List<Object?> get props => [message];
 }
