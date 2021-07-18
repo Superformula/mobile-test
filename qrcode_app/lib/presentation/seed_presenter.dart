@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:qrcode_app/data/repositories/seeds_repository.dart';
 import 'package:qrcode_app/domain/entities/seed.dart';
+import 'package:qrcode_app/domain/repository/seed_repository.dart';
 import 'package:qrcode_app/presentation/ticker.dart';
 
 abstract class Presenter {
@@ -15,7 +14,7 @@ abstract class PresenterState {
 }
 
 class SeedState extends PresenterState {
-  late Seed seed;
+  // late Seed seed;
   bool? isValid;
 }
 
@@ -43,29 +42,35 @@ class SeedPresenter implements Presenter {
     _controller.add(_seedState);
   }
 
-  updateTicker(int value) {
+  updateTicker(int value) async {
     print('updating ticker $value');
     _tickController.add(value);
-    if (value == 0) _tickerSubscription!.cancel();
+    if (value == 0) {
+      await getData();
+    }
   }
 
   @override
   Future getData() async {
     _controller.add(LoadingState());
     _seedState.seed = await repository.getSeed();
-    update();
     tick(_seedState.seed.expirationDate);
+    update();
   }
 
   void dispose() {
     print('disposing presenter');
     _controller.close();
     _tickController.close();
+    _tickerSubscription?.cancel();
   }
 
   void tick(DateTime expirationDate) {
     Duration difference = DateTime.now().difference(expirationDate);
-    if (_tickerSubscription != null) _tickerSubscription!.cancel();
+    // Duration difference = Duration(seconds: -10);
+    if (_tickerSubscription != null) {
+      _tickerSubscription!.cancel();
+    }
     _tickerSubscription = _ticker
         .tick(difference.inSeconds)
         .listen((duration) => updateTicker(duration.abs()));
