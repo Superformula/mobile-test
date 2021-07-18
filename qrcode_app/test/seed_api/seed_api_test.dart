@@ -27,7 +27,8 @@ void main() {
       final client = MockClient();
       when(client.get(Uri.parse(URL)))
           .thenAnswer((_) async => http.Response('Not Found', 404));
-      expect(await apiDatasource.getSeed(client), throwsException);
+
+      expect(() async => await apiDatasource.getSeed(client), throwsException);
     });
   });
 }
