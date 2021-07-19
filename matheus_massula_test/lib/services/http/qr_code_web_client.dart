@@ -6,12 +6,16 @@ import 'package:matheus_massula_test/models/remote/qr_code_seed.dart';
 
 import 'interceptors/qr_code_interceptor.dart';
 
+final Client interceptorClient = InterceptedClient.build(
+  interceptors: [QRCodeInterceptor()],
+  requestTimeout: Duration(seconds: 15)
+);
+final String url = 'https://8mpaf1q1g5.execute-api.us-west-1.amazonaws.com/';
+
 class QRCodeWebClient {
-  final Client client = InterceptedClient.build(
-    interceptors: [QRCodeInterceptor()],
-    requestTimeout: Duration(seconds: 15)
-  );
-  final String url = 'https://8mpaf1q1g5.execute-api.us-west-1.amazonaws.com/';
+  final Client client;
+
+  QRCodeWebClient(this.client);
   
   Future<QRCodeSeed?>? getQRCode() async {
     final headers = {'x-api-key': 'VVTUTAdalB55yRKQzsM7u6RTowrcUUhJLA82hoN6'};

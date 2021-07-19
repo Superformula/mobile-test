@@ -7,7 +7,7 @@ import 'package:matheus_massula_test/services/http/qr_code_web_client.dart';
 import 'pages/home.dart';
 
 void main() {
-  runApp(MyApp(qrCodeWebClient: QRCodeWebClient()));
+  runApp(MyApp(qrCodeWebClient: QRCodeWebClient(interceptorClient)));
 }
 
 class MyApp extends StatelessWidget {
