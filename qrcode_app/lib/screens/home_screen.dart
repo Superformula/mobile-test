@@ -66,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
             StreamBuilder<int>(
                 stream: widget.presenter.expirationData,
                 builder: (context, snapshot) {
-                  if (!snapshot.hasData)
+                  if (!snapshot.hasData || (snapshot.data == 0))
                     return Container(
                       child: Text(''),
                     );
                   else {
-                    if (snapshot.data == 0) widget.presenter.getData();
-                    return Text(snapshot.data.toString());
+                    return Text(
+                        'Expires at ' + snapshot.data.toString() + ' seconds');
                   }
                 }),
           ],
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final ScanResult result = await BarcodeScanner.scan(
         options: ScanOptions(
           restrictFormat: [BarcodeFormat.qr],
-          useCamera: -1, //using default camera
+          useCamera: -1,
         ),
       );
       print('result scan:' + result.rawContent);

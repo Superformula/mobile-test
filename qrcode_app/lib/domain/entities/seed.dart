@@ -5,8 +5,11 @@ import 'package:flutter/foundation.dart';
 class Seed extends Equatable {
   final String seed;
   final DateTime expirationDate;
-
-  const Seed({required this.seed, required this.expirationDate});
+  final int duration;
+  const Seed(
+      {required this.duration,
+      required this.seed,
+      required this.expirationDate});
   @override
   List<Object?> get props => [
         seed,

@@ -8,6 +8,7 @@ part of 'seed_model.dart';
 
 SeedDto _$SeedDtoFromJson(Map<String, dynamic> json) {
   return SeedDto(
+    duration: json['duration'] as int?,
     seed: json['seed'] as String?,
     expiration: json['expiration'] == null
         ? null
@@ -18,4 +19,5 @@ SeedDto _$SeedDtoFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$SeedDtoToJson(SeedDto instance) => <String, dynamic>{
       'seed': instance.seed,
       'expiration': instance.expiration?.toIso8601String(),
+      'duration': instance.duration,
     };

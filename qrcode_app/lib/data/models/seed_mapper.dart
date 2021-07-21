@@ -5,8 +5,11 @@ class SeedMapper {
   Seed toSeed(SeedDto dto) => Seed(
       seed: dto.seed ?? 'default',
       expirationDate:
-          dto.expiration ?? DateTime.now().add(Duration(seconds: 100)));
+          dto.expiration ?? DateTime.now().add(Duration(seconds: 100)),
+      duration: dto.duration ?? 10);
 
-  SeedDto toDto(Seed seed) =>
-      SeedDto(seed: seed.seed, expiration: seed.expirationDate);
+  SeedDto toDto(Seed seed) => SeedDto(
+      seed: seed.seed,
+      expiration: seed.expirationDate,
+      duration: seed.duration);
 }

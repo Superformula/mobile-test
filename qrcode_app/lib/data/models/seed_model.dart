@@ -5,8 +5,10 @@ part 'seed_model.g.dart';
 class SeedDto {
   final String? seed;
   final DateTime? expiration;
+  final int? duration;
 
-  SeedDto({required this.seed, required this.expiration});
+  SeedDto(
+      {required this.duration, required this.seed, required this.expiration});
 
   factory SeedDto.fromJson(Map<String, dynamic> json) =>
       _$SeedDtoFromJson(json);

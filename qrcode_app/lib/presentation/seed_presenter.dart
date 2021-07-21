@@ -14,7 +14,6 @@ abstract class PresenterState {
 }
 
 class SeedState extends PresenterState {
-  // late Seed seed;
   bool? isValid;
 }
 
@@ -38,14 +37,13 @@ class SeedPresenter implements Presenter {
 
   @override
   void update() {
-    print('updating seed state');
     _controller.add(_seedState);
   }
 
   updateTicker(int value) async {
-    print('updating ticker $value');
     _tickController.add(value);
     if (value == 0) {
+      _tickerSubscription?.cancel();
       await getData();
     }
   }
@@ -59,15 +57,13 @@ class SeedPresenter implements Presenter {
   }
 
   void dispose() {
-    print('disposing presenter');
     _controller.close();
     _tickController.close();
     _tickerSubscription?.cancel();
   }
 
   void tick(DateTime expirationDate) {
-    Duration difference = DateTime.now().difference(expirationDate);
-    // Duration difference = Duration(seconds: -10);
+    Duration difference = Duration(seconds: -(_seedState.seed.duration - 1));
     if (_tickerSubscription != null) {
       _tickerSubscription!.cancel();
     }
