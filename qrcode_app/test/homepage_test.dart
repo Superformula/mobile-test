@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:qrcode_app/main.dart';
-import 'package:qrcode_app/presentation/seed_presenter.dart';
 
 void main() {
   testWidgets('Screen starts with no qr code', (WidgetTester tester) async {
