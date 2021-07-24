@@ -1,32 +1,16 @@
-# Superformula Mobile Developer Coding Test
+# qrtestcodeone
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+QR TestCode
 
-## Requirements
+## Getting Started
 
-There is only one test here currently, please review and get back to us.
+This project is a starting point for a Flutter application.
 
-## What We Care About
+A few resources to get you started if this is your first Flutter project:
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
-
-Here's what you should strive for:
-
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
-
-## Review
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions. 
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
