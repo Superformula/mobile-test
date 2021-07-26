@@ -10,7 +10,9 @@ part 'qr_code_state.dart';
 class QrCodeCubit extends Cubit<QrCodeState> {
   final QRCodeWebClient qrCodeWebClient;
 
-  QrCodeCubit({required this.qrCodeWebClient}) : super(QrCodeInitial());
+  QrCodeCubit({required this.qrCodeWebClient}) : super(QrCodeInitial()) {
+    getQRCode();
+  }
 
   Future<void> getQRCode() async {
     try {

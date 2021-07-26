@@ -16,11 +16,7 @@ class QRCodeContainer extends StatelessWidget {
     final qrCodeWebClient = RepositoryProvider.of<QRCodeWebClient>(context);
 
     return BlocProvider(
-      create: (BuildContext context) {
-        final cubit = QrCodeCubit(qrCodeWebClient: qrCodeWebClient);
-        cubit.getQRCode();
-        return cubit;
-      },
+      create: (BuildContext context) => QrCodeCubit(qrCodeWebClient: qrCodeWebClient),
       child: _QRCodePage(),
     );
   }

@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       )
-      //_buildFloatingActionButton(context),
     );
   }
 
