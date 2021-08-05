@@ -1,0 +1,3 @@
+[submodule "qrdemo"]
+	path = qrdemo
+	url = https://github.com/mike-gallego/qrdemo.git
