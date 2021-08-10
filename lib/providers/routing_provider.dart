@@ -20,8 +20,10 @@ class RoutingProvider extends ChangeNotifier {
   }
 
   Future<void> goToHomeScreen(BuildContext context) async {
-    await Navigator.push(
-        context, MaterialPageRoute(builder: (context) => home.HomeScreen()));
+    await Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => home.HomeScreen()),
+        (route) => false);
   }
 
   Future<void> goToHistoryScreen(BuildContext context) async {

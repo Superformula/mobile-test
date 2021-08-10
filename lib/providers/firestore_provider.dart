@@ -1,67 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qrdemo/providers/qr_provider.dart';
-import 'package:qrdemo/providers/routing_provider.dart';
-import 'package:qrdemo/providers/timer_provider.dart';
-import 'package:qrdemo/styles/textstyles.dart';
 
 class FirestoreProvider extends ChangeNotifier {
-  List<String>? _codes = [];
-  List<String>? get codes => _codes;
+  bool? _confirmed;
+  bool? get confirmed => _confirmed;
 
   FirestoreProvider() {
     FirebaseFirestore.instance;
   }
 
-  void confirmScan(Barcode result, BuildContext context) {
+  Future<bool> confirmScan(Barcode result, BuildContext context) async {
     if (result.code == '') {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'QR Expired!',
-              ),
-              TextButton(
-                child: Text('Get a code', style: snackbar),
-                onPressed: () async {
-                  Provider.of<TimerProvider>(context, listen: false).reset();
-                  Provider.of<TimerProvider>(context, listen: false)
-                      .cancelTimer();
-                  Provider.of<QRProvider>(context, listen: false)
-                      .generateCode();
-                  Provider.of<RoutingProvider>(context, listen: false)
-                      .goToQRScreen(context);
-                },
-              ),
-            ],
-          ),
-        ),
-      );
+      _confirmed = false;
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('Code Scanned!'),
-          TextButton(
-            child: Text('See history', style: snackbar),
-            onPressed: () async {
-              Provider.of<RoutingProvider>(context, listen: false)
-                  .goToHistoryScreen(context);
-            },
-          ),
-        ],
-      )));
-      FirebaseFirestore.instance
+      _confirmed = true;
+      await FirebaseFirestore.instance
           .collection('completed')
           .add({'code': result.code, 'time': DateTime.now()});
     }
     notifyListeners();
+    return Future.value(_confirmed);
   }
 
   Stream<QuerySnapshot> fetchHistory() {

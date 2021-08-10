@@ -1,0 +1,606 @@
+define(['dart_sdk', 'packages/qr_flutter/src/types.dart', 'packages/qr_flutter/src/paint_cache.dart', 'packages/qr_flutter/src/qr_versions.dart', 'packages/qr_flutter/src/errors.dart', 'packages/qr_flutter/src/validator.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/rendering/custom_paint.dart', 'packages/qr/src/qr_code.dart'], (function load__packages__qr_flutter__src__qr_painter_dart(dart_sdk, packages__qr_flutter__src__types$46dart, packages__qr_flutter__src__paint_cache$46dart, packages__qr_flutter__src__qr_versions$46dart, packages__qr_flutter__src__errors$46dart, packages__qr_flutter__src__validator$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__rendering__custom_paint$46dart, packages__qr__src__qr_code$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _internal = dart_sdk._internal;
+  const _engine = dart_sdk._engine;
+  const async = dart_sdk.async;
+  const typed_data = dart_sdk.typed_data;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const types = packages__qr_flutter__src__types$46dart.src__types;
+  const paint_cache = packages__qr_flutter__src__paint_cache$46dart.src__paint_cache;
+  const qr_versions = packages__qr_flutter__src__qr_versions$46dart.src__qr_versions;
+  const errors = packages__qr_flutter__src__errors$46dart.src__errors;
+  const validator = packages__qr_flutter__src__validator$46dart.src__validator;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const custom_paint = packages__flutter__src__rendering__custom_paint$46dart.src__rendering__custom_paint;
+  const qr_code = packages__qr__src__qr_code$46dart.src__qr_code;
+  var qr_painter = Object.create(dart.library);
+  var $toDouble = dartx.toDouble;
+  var $toInt = dartx.toInt;
+  var $roundToDouble = dartx.roundToDouble;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    ByteDataN: () => (T.ByteDataN = dart.constFn(dart.nullable(typed_data.ByteData)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: types.QrEyeShape.prototype,
+        [_name]: "QrEyeShape.square",
+        index: 0
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: types.QrEyeStyle.prototype,
+        [QrEyeStyle_color]: C[1] || CT.C1,
+        [QrEyeStyle_eyeShape]: C[2] || CT.C2
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: types.QrDataModuleShape.prototype,
+        [_name]: "QrDataModuleShape.square",
+        index: 0
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: types.QrDataModuleStyle.prototype,
+        [QrDataModuleStyle_color]: C[1] || CT.C1,
+        [QrDataModuleStyle_dataModuleShape]: C[4] || CT.C4
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: ui.ImageByteFormat.prototype,
+        [_name$]: "ImageByteFormat.png",
+        index: 2
+      });
+    }
+  }, false);
+  var C = Array(6).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/qr_flutter-4.0.0/lib/src/qr_painter.dart",
+    "package:qr_flutter/src/qr_painter.dart"
+  ];
+  var version$ = dart.privateName(qr_painter, "QrPainter.version");
+  var errorCorrectionLevel$ = dart.privateName(qr_painter, "QrPainter.errorCorrectionLevel");
+  var color$ = dart.privateName(qr_painter, "QrPainter.color");
+  var emptyColor$ = dart.privateName(qr_painter, "QrPainter.emptyColor");
+  var gapless$ = dart.privateName(qr_painter, "QrPainter.gapless");
+  var embeddedImage$ = dart.privateName(qr_painter, "QrPainter.embeddedImage");
+  var embeddedImageStyle$ = dart.privateName(qr_painter, "QrPainter.embeddedImageStyle");
+  var eyeStyle$ = dart.privateName(qr_painter, "QrPainter.eyeStyle");
+  var dataModuleStyle$ = dart.privateName(qr_painter, "QrPainter.dataModuleStyle");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var QrEyeStyle_color = dart.privateName(types, "QrEyeStyle.color");
+  var _name = dart.privateName(types, "_name");
+  var QrEyeStyle_eyeShape = dart.privateName(types, "QrEyeStyle.eyeShape");
+  var QrDataModuleStyle_color = dart.privateName(types, "QrDataModuleStyle.color");
+  var QrDataModuleStyle_dataModuleShape = dart.privateName(types, "QrDataModuleStyle.dataModuleShape");
+  var __QrPainter__calcVersion = dart.privateName(qr_painter, "_#QrPainter#_calcVersion");
+  var _gapSize = dart.privateName(qr_painter, "_gapSize");
+  var _paintCache = dart.privateName(qr_painter, "_paintCache");
+  var _qr = dart.privateName(qr_painter, "_qr");
+  var _init = dart.privateName(qr_painter, "_init");
+  var _calcVersion = dart.privateName(qr_painter, "_calcVersion");
+  var _initPaints = dart.privateName(qr_painter, "_initPaints");
+  var _drawFinderPatternItem = dart.privateName(qr_painter, "_drawFinderPatternItem");
+  var _isFinderPatternPosition = dart.privateName(qr_painter, "_isFinderPatternPosition");
+  var _hasAdjacentHorizontalPixel = dart.privateName(qr_painter, "_hasAdjacentHorizontalPixel");
+  var _hasAdjacentVerticalPixel = dart.privateName(qr_painter, "_hasAdjacentVerticalPixel");
+  var _scaledAspectSize = dart.privateName(qr_painter, "_scaledAspectSize");
+  var _drawImageOverlay = dart.privateName(qr_painter, "_drawImageOverlay");
+  var _hasOneNonZeroSide = dart.privateName(qr_painter, "_hasOneNonZeroSide");
+  var _name$ = dart.privateName(ui, "_name");
+  qr_painter.QrPainter = class QrPainter extends custom_paint.CustomPainter {
+    get version() {
+      return this[version$];
+    }
+    set version(value) {
+      super.version = value;
+    }
+    get errorCorrectionLevel() {
+      return this[errorCorrectionLevel$];
+    }
+    set errorCorrectionLevel(value) {
+      super.errorCorrectionLevel = value;
+    }
+    get color() {
+      return this[color$];
+    }
+    set color(value) {
+      super.color = value;
+    }
+    get emptyColor() {
+      return this[emptyColor$];
+    }
+    set emptyColor(value) {
+      super.emptyColor = value;
+    }
+    get gapless() {
+      return this[gapless$];
+    }
+    set gapless(value) {
+      super.gapless = value;
+    }
+    get embeddedImage() {
+      return this[embeddedImage$];
+    }
+    set embeddedImage(value) {
+      super.embeddedImage = value;
+    }
+    get embeddedImageStyle() {
+      return this[embeddedImageStyle$];
+    }
+    set embeddedImageStyle(value) {
+      super.embeddedImageStyle = value;
+    }
+    get eyeStyle() {
+      return this[eyeStyle$];
+    }
+    set eyeStyle(value) {
+      super.eyeStyle = value;
+    }
+    get dataModuleStyle() {
+      return this[dataModuleStyle$];
+    }
+    set dataModuleStyle(value) {
+      super.dataModuleStyle = value;
+    }
+    get [_calcVersion]() {
+      let t0;
+      t0 = this[__QrPainter__calcVersion];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_calcVersion")) : t0;
+    }
+    set [_calcVersion](t0) {
+      if (this[__QrPainter__calcVersion] == null)
+        this[__QrPainter__calcVersion] = t0;
+      else
+        dart.throw(new _internal.LateError.fieldAI("_calcVersion"));
+    }
+    [_init](data) {
+      if (!qr_versions.QrVersions.isSupportedVersion(this.version)) {
+        dart.throw(errors.QrUnsupportedVersionException.new(this.version));
+      }
+      let validationResult = validator.QrValidator.validate({data: data, version: this.version, errorCorrectionLevel: this.errorCorrectionLevel});
+      if (!validationResult.isValid) {
+        dart.throw(dart.nullCheck(validationResult.error));
+      }
+      this[_qr] = validationResult.qrCode;
+      this[_calcVersion] = dart.nullCheck(this[_qr]).typeNumber;
+      this[_initPaints]();
+    }
+    [_initPaints]() {
+      let t1, t1$, t1$0, t1$1, t1$2;
+      this[_paintCache].cache((t1 = ui.Paint.new(), (() => {
+        t1.style = ui.PaintingStyle.fill;
+        return t1;
+      })()), types.QrCodeElement.codePixel);
+      this[_paintCache].cache((t1$ = ui.Paint.new(), (() => {
+        t1$.style = ui.PaintingStyle.fill;
+        return t1$;
+      })()), types.QrCodeElement.codePixelEmpty);
+      for (let position of types.FinderPatternPosition.values) {
+        this[_paintCache].cache((t1$0 = ui.Paint.new(), (() => {
+          t1$0.style = ui.PaintingStyle.stroke;
+          return t1$0;
+        })()), types.QrCodeElement.finderPatternOuter, {position: position});
+        this[_paintCache].cache((t1$1 = ui.Paint.new(), (() => {
+          t1$1.style = ui.PaintingStyle.stroke;
+          return t1$1;
+        })()), types.QrCodeElement.finderPatternInner, {position: position});
+        this[_paintCache].cache((t1$2 = ui.Paint.new(), (() => {
+          t1$2.style = ui.PaintingStyle.fill;
+          return t1$2;
+        })()), types.QrCodeElement.finderPatternDot, {position: position});
+      }
+    }
+    paint(canvas, size) {
+      if (size.shortestSide === 0) {
+        core.print("[QR] WARN: width or height is zero. You should set a 'size' value " + "or nest this painter in a Widget that defines a non-zero size");
+        return;
+      }
+      let paintMetrics = new qr_painter._PaintMetrics.new({containerSize: size.shortestSide, moduleCount: dart.nullCheck(this[_qr]).moduleCount, gapSize: this.gapless ? 0.0 : this[_gapSize]});
+      this[_drawFinderPatternItem](types.FinderPatternPosition.topLeft, canvas, paintMetrics);
+      this[_drawFinderPatternItem](types.FinderPatternPosition.bottomLeft, canvas, paintMetrics);
+      this[_drawFinderPatternItem](types.FinderPatternPosition.topRight, canvas, paintMetrics);
+      let left = null;
+      let top = null;
+      let gap = !this.gapless ? this[_gapSize] : 0;
+      let pixelPaint = this[_paintCache].firstPaint(types.QrCodeElement.codePixel);
+      if (this.color != null) {
+        dart.nullCheck(pixelPaint).color = dart.nullCheck(this.color);
+      } else {
+        dart.nullCheck(pixelPaint).color = dart.nullCheck(this.dataModuleStyle.color);
+      }
+      let emptyPixelPaint = null;
+      if (this.emptyColor != null) {
+        emptyPixelPaint = this[_paintCache].firstPaint(types.QrCodeElement.codePixelEmpty);
+        dart.nullCheck(emptyPixelPaint).color = dart.nullCheck(this.emptyColor);
+      }
+      for (let x = 0; x < dart.nullCheck(this[_qr]).moduleCount; x = x + 1) {
+        for (let y = 0; y < dart.nullCheck(this[_qr]).moduleCount; y = y + 1) {
+          if (this[_isFinderPatternPosition](x, y)) continue;
+          let paint = dart.nullCheck(this[_qr]).isDark(y, x) ? pixelPaint : emptyPixelPaint;
+          if (paint == null) continue;
+          left = paintMetrics.inset + x * (paintMetrics.pixelSize + gap);
+          top = paintMetrics.inset + y * (paintMetrics.pixelSize + gap);
+          let pixelHTweak = 0.0;
+          let pixelVTweak = 0.0;
+          if (this.gapless && this[_hasAdjacentHorizontalPixel](x, y, dart.nullCheck(this[_qr]).moduleCount)) {
+            pixelHTweak = 0.5;
+          }
+          if (this.gapless && this[_hasAdjacentVerticalPixel](x, y, dart.nullCheck(this[_qr]).moduleCount)) {
+            pixelVTweak = 0.5;
+          }
+          let squareRect = new ui.Rect.fromLTWH(left, top, paintMetrics.pixelSize + pixelHTweak, paintMetrics.pixelSize + pixelVTweak);
+          if (this.dataModuleStyle.dataModuleShape === types.QrDataModuleShape.square) {
+            canvas.drawRect(squareRect, paint);
+          } else {
+            let roundedRect = new ui.RRect.fromRectAndRadius(squareRect, new ui.Radius.circular(paintMetrics.pixelSize + pixelHTweak));
+            canvas.drawRRect(roundedRect, paint);
+          }
+        }
+      }
+      if (this.embeddedImage != null) {
+        let originalSize = new ui.Size.new(dart.nullCheck(this.embeddedImage).width[$toDouble](), dart.nullCheck(this.embeddedImage).height[$toDouble]());
+        let requestedSize = this.embeddedImageStyle != null ? dart.nullCheck(this.embeddedImageStyle).size : null;
+        let imageSize = this[_scaledAspectSize](size, originalSize, requestedSize);
+        let position = new ui.Offset.new((size.width - imageSize.width) / 2.0, (size.height - imageSize.height) / 2.0);
+        this[_drawImageOverlay](canvas, position, imageSize, this.embeddedImageStyle);
+      }
+    }
+    [_hasAdjacentVerticalPixel](x, y, moduleCount) {
+      if (y + 1 >= moduleCount) return false;
+      return dart.nullCheck(this[_qr]).isDark(y + 1, x);
+    }
+    [_hasAdjacentHorizontalPixel](x, y, moduleCount) {
+      if (x + 1 >= moduleCount) return false;
+      return dart.nullCheck(this[_qr]).isDark(y, x + 1);
+    }
+    [_isFinderPatternPosition](x, y) {
+      let isTopLeft = y < 7 && x < 7;
+      let isBottomLeft = y < 7 && x >= dart.nullCheck(this[_qr]).moduleCount - 7;
+      let isTopRight = y >= dart.nullCheck(this[_qr]).moduleCount - 7 && x < 7;
+      return isTopLeft || isBottomLeft || isTopRight;
+    }
+    [_drawFinderPatternItem](position, canvas, metrics) {
+      let t1;
+      let totalGap = (7 - 1) * metrics.gapSize;
+      let radius = 7 * metrics.pixelSize + totalGap - metrics.pixelSize;
+      let strokeAdjust = metrics.pixelSize / 2.0;
+      let edgePos = metrics.inset + metrics.innerContentSize - (radius + strokeAdjust);
+      let offset = null;
+      if (position === types.FinderPatternPosition.topLeft) {
+        offset = new ui.Offset.new(metrics.inset + strokeAdjust, metrics.inset + strokeAdjust);
+      } else if (position === types.FinderPatternPosition.bottomLeft) {
+        offset = new ui.Offset.new(metrics.inset + strokeAdjust, edgePos);
+      } else {
+        offset = new ui.Offset.new(edgePos, metrics.inset + strokeAdjust);
+      }
+      let outerPaint = dart.nullCheck(this[_paintCache].firstPaint(types.QrCodeElement.finderPatternOuter, {position: position}));
+      outerPaint.strokeWidth = metrics.pixelSize;
+      if (this.color != null) {
+        outerPaint.color = dart.nullCheck(this.color);
+      } else {
+        outerPaint.color = dart.nullCheck(this.eyeStyle.color);
+      }
+      let innerPaint = dart.nullCheck(this[_paintCache].firstPaint(types.QrCodeElement.finderPatternInner, {position: position}));
+      innerPaint.strokeWidth = metrics.pixelSize;
+      innerPaint.color = (t1 = this.emptyColor, t1 == null ? new ui.Color.new(16777215) : t1);
+      let dotPaint = this[_paintCache].firstPaint(types.QrCodeElement.finderPatternDot, {position: position});
+      if (this.color != null) {
+        dart.nullCheck(dotPaint).color = dart.nullCheck(this.color);
+      } else {
+        dart.nullCheck(dotPaint).color = dart.nullCheck(this.eyeStyle.color);
+      }
+      let outerRect = new ui.Rect.fromLTWH(offset.dx, offset.dy, radius, radius);
+      let innerRadius = radius - 2 * metrics.pixelSize;
+      let innerRect = new ui.Rect.fromLTWH(offset.dx + metrics.pixelSize, offset.dy + metrics.pixelSize, innerRadius, innerRadius);
+      let gap = metrics.pixelSize * 2;
+      let dotSize = radius - gap - 2 * strokeAdjust;
+      let dotRect = new ui.Rect.fromLTWH(offset.dx + metrics.pixelSize + strokeAdjust, offset.dy + metrics.pixelSize + strokeAdjust, dotSize, dotSize);
+      if (this.eyeStyle.eyeShape === types.QrEyeShape.square) {
+        canvas.drawRect(outerRect, outerPaint);
+        canvas.drawRect(innerRect, innerPaint);
+        canvas.drawRect(dotRect, dotPaint);
+      } else {
+        let roundedOuterStrokeRect = new ui.RRect.fromRectAndRadius(outerRect, new ui.Radius.circular(radius));
+        canvas.drawRRect(roundedOuterStrokeRect, outerPaint);
+        let roundedInnerStrokeRect = new ui.RRect.fromRectAndRadius(outerRect, new ui.Radius.circular(innerRadius));
+        canvas.drawRRect(roundedInnerStrokeRect, innerPaint);
+        let roundedDotStrokeRect = new ui.RRect.fromRectAndRadius(dotRect, new ui.Radius.circular(dotSize));
+        canvas.drawRRect(roundedDotStrokeRect, dotPaint);
+      }
+    }
+    [_hasOneNonZeroSide](size) {
+      return size.longestSide > 0;
+    }
+    [_scaledAspectSize](widgetSize, originalSize, requestedSize) {
+      if (requestedSize != null && !requestedSize.isEmpty) {
+        return requestedSize;
+      } else if (requestedSize != null && this[_hasOneNonZeroSide](requestedSize)) {
+        let maxSide = requestedSize.longestSide;
+        let ratio = maxSide / originalSize.longestSide;
+        return new ui.Size.new(ratio * originalSize.width, ratio * originalSize.height);
+      } else {
+        let maxSide = 0.25 * widgetSize.shortestSide;
+        let ratio = maxSide / originalSize.longestSide;
+        return new ui.Size.new(ratio * originalSize.width, ratio * originalSize.height);
+      }
+    }
+    [_drawImageOverlay](canvas, position, size, style) {
+      let t1;
+      let paint = (t1 = ui.Paint.new(), (() => {
+        t1.isAntiAlias = true;
+        t1.filterQuality = ui.FilterQuality.high;
+        return t1;
+      })());
+      if (style != null) {
+        if (style.color != null) {
+          paint.colorFilter = new _engine._CkBlendModeColorFilter.new(dart.nullCheck(style.color), ui.BlendMode.srcATop);
+        }
+      }
+      let srcSize = new ui.Size.new(dart.nullCheck(this.embeddedImage).width[$toDouble](), dart.nullCheck(this.embeddedImage).height[$toDouble]());
+      let src = alignment.Alignment.center.inscribe(srcSize, ui.Offset.zero['&'](srcSize));
+      let dst = alignment.Alignment.center.inscribe(size, position['&'](size));
+      canvas.drawImageRect(dart.nullCheck(this.embeddedImage), src, dst, paint);
+    }
+    shouldRepaint(oldPainter) {
+      custom_paint.CustomPainter.as(oldPainter);
+      if (qr_painter.QrPainter.is(oldPainter)) {
+        return this.errorCorrectionLevel !== oldPainter.errorCorrectionLevel || this[_calcVersion] !== oldPainter[_calcVersion] || !dart.equals(this[_qr], oldPainter[_qr]) || this.gapless !== oldPainter.gapless || !dart.equals(this.embeddedImage, oldPainter.embeddedImage) || !dart.equals(this.embeddedImageStyle, oldPainter.embeddedImageStyle) || !this.eyeStyle._equals(oldPainter.eyeStyle) || !this.dataModuleStyle._equals(oldPainter.dataModuleStyle);
+      }
+      return true;
+    }
+    toPicture(size) {
+      let recorder = ui.PictureRecorder.new();
+      let canvas = ui.Canvas.new(recorder);
+      this.paint(canvas, new ui.Size.new(size, size));
+      return recorder.endRecording();
+    }
+    toImage(size, opts) {
+      let format = opts && 'format' in opts ? opts.format : C[5] || CT.C5;
+      return async.async(ui.Image, (function* toImage() {
+        return yield this.toPicture(size).toImage(size[$toInt](), size[$toInt]());
+      }).bind(this));
+    }
+    toImageData(size, opts) {
+      let format = opts && 'format' in opts ? opts.format : C[5] || CT.C5;
+      return async.async(T.ByteDataN(), (function* toImageData() {
+        let image = (yield this.toImage(size, {format: format}));
+        return image.toByteData({format: format});
+      }).bind(this));
+    }
+  };
+  (qr_painter.QrPainter.new = function(opts) {
+    let data = opts && 'data' in opts ? opts.data : null;
+    let version = opts && 'version' in opts ? opts.version : null;
+    let errorCorrectionLevel = opts && 'errorCorrectionLevel' in opts ? opts.errorCorrectionLevel : 1;
+    let color = opts && 'color' in opts ? opts.color : null;
+    let emptyColor = opts && 'emptyColor' in opts ? opts.emptyColor : null;
+    let gapless = opts && 'gapless' in opts ? opts.gapless : false;
+    let embeddedImage = opts && 'embeddedImage' in opts ? opts.embeddedImage : null;
+    let embeddedImageStyle = opts && 'embeddedImageStyle' in opts ? opts.embeddedImageStyle : null;
+    let eyeStyle = opts && 'eyeStyle' in opts ? opts.eyeStyle : C[0] || CT.C0;
+    let dataModuleStyle = opts && 'dataModuleStyle' in opts ? opts.dataModuleStyle : C[3] || CT.C3;
+    this[__QrPainter__calcVersion] = null;
+    this[_gapSize] = 0.25;
+    this[_paintCache] = new paint_cache.PaintCache.new();
+    this[_qr] = null;
+    this[version$] = version;
+    this[errorCorrectionLevel$] = errorCorrectionLevel;
+    this[color$] = color;
+    this[emptyColor$] = emptyColor;
+    this[gapless$] = gapless;
+    this[embeddedImage$] = embeddedImage;
+    this[embeddedImageStyle$] = embeddedImageStyle;
+    this[eyeStyle$] = eyeStyle;
+    this[dataModuleStyle$] = dataModuleStyle;
+    if (!qr_versions.QrVersions.isSupportedVersion(version)) dart.assertFailed(null, I[0], 48, 15, "QrVersions.isSupportedVersion(version)");
+    qr_painter.QrPainter.__proto__.new.call(this);
+    this[_init](data);
+  }).prototype = qr_painter.QrPainter.prototype;
+  (qr_painter.QrPainter.withQr = function(opts) {
+    let qr = opts && 'qr' in opts ? opts.qr : null;
+    let color = opts && 'color' in opts ? opts.color : null;
+    let emptyColor = opts && 'emptyColor' in opts ? opts.emptyColor : null;
+    let gapless = opts && 'gapless' in opts ? opts.gapless : false;
+    let embeddedImage = opts && 'embeddedImage' in opts ? opts.embeddedImage : null;
+    let embeddedImageStyle = opts && 'embeddedImageStyle' in opts ? opts.embeddedImageStyle : null;
+    let eyeStyle = opts && 'eyeStyle' in opts ? opts.eyeStyle : C[0] || CT.C0;
+    let dataModuleStyle = opts && 'dataModuleStyle' in opts ? opts.dataModuleStyle : C[3] || CT.C3;
+    this[__QrPainter__calcVersion] = null;
+    this[_gapSize] = 0.25;
+    this[_paintCache] = new paint_cache.PaintCache.new();
+    this[color$] = color;
+    this[emptyColor$] = emptyColor;
+    this[gapless$] = gapless;
+    this[embeddedImage$] = embeddedImage;
+    this[embeddedImageStyle$] = embeddedImageStyle;
+    this[eyeStyle$] = eyeStyle;
+    this[dataModuleStyle$] = dataModuleStyle;
+    this[_qr] = qr;
+    this[version$] = qr.typeNumber;
+    this[errorCorrectionLevel$] = qr.errorCorrectLevel;
+    qr_painter.QrPainter.__proto__.new.call(this);
+    this[_calcVersion] = this.version;
+    this[_initPaints]();
+  }).prototype = qr_painter.QrPainter.prototype;
+  dart.addTypeTests(qr_painter.QrPainter);
+  dart.addTypeCaches(qr_painter.QrPainter);
+  dart.setMethodSignature(qr_painter.QrPainter, () => ({
+    __proto__: dart.getMethods(qr_painter.QrPainter.__proto__),
+    [_init]: dart.fnType(dart.void, [core.String]),
+    [_initPaints]: dart.fnType(dart.void, []),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Size]),
+    [_hasAdjacentVerticalPixel]: dart.fnType(core.bool, [core.int, core.int, core.int]),
+    [_hasAdjacentHorizontalPixel]: dart.fnType(core.bool, [core.int, core.int, core.int]),
+    [_isFinderPatternPosition]: dart.fnType(core.bool, [core.int, core.int]),
+    [_drawFinderPatternItem]: dart.fnType(dart.void, [types.FinderPatternPosition, ui.Canvas, qr_painter._PaintMetrics]),
+    [_hasOneNonZeroSide]: dart.fnType(core.bool, [ui.Size]),
+    [_scaledAspectSize]: dart.fnType(ui.Size, [ui.Size, ui.Size, dart.nullable(ui.Size)]),
+    [_drawImageOverlay]: dart.fnType(dart.void, [ui.Canvas, ui.Offset, ui.Size, dart.nullable(types.QrEmbeddedImageStyle)]),
+    shouldRepaint: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+    toPicture: dart.fnType(ui.Picture, [core.double]),
+    toImage: dart.fnType(async.Future$(ui.Image), [core.double], {format: ui.ImageByteFormat}, {}),
+    toImageData: dart.fnType(async.Future$(dart.nullable(typed_data.ByteData)), [core.double], {format: ui.ImageByteFormat}, {})
+  }));
+  dart.setGetterSignature(qr_painter.QrPainter, () => ({
+    __proto__: dart.getGetters(qr_painter.QrPainter.__proto__),
+    [_calcVersion]: core.int
+  }));
+  dart.setSetterSignature(qr_painter.QrPainter, () => ({
+    __proto__: dart.getSetters(qr_painter.QrPainter.__proto__),
+    [_calcVersion]: core.int
+  }));
+  dart.setLibraryUri(qr_painter.QrPainter, I[1]);
+  dart.setFieldSignature(qr_painter.QrPainter, () => ({
+    __proto__: dart.getFields(qr_painter.QrPainter.__proto__),
+    version: dart.finalFieldType(core.int),
+    errorCorrectionLevel: dart.finalFieldType(core.int),
+    color: dart.finalFieldType(dart.nullable(ui.Color)),
+    emptyColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    gapless: dart.finalFieldType(core.bool),
+    embeddedImage: dart.finalFieldType(dart.nullable(ui.Image)),
+    embeddedImageStyle: dart.finalFieldType(dart.nullable(types.QrEmbeddedImageStyle)),
+    eyeStyle: dart.finalFieldType(types.QrEyeStyle),
+    dataModuleStyle: dart.finalFieldType(types.QrDataModuleStyle),
+    [_qr]: dart.fieldType(dart.nullable(qr_code.QrCode)),
+    [__QrPainter__calcVersion]: dart.fieldType(dart.nullable(core.int)),
+    [_gapSize]: dart.finalFieldType(core.double),
+    [_paintCache]: dart.finalFieldType(paint_cache.PaintCache)
+  }));
+  var ___PaintMetrics__pixelSize = dart.privateName(qr_painter, "_#_PaintMetrics#_pixelSize");
+  var ___PaintMetrics__innerContentSize = dart.privateName(qr_painter, "_#_PaintMetrics#_innerContentSize");
+  var ___PaintMetrics__inset = dart.privateName(qr_painter, "_#_PaintMetrics#_inset");
+  var _calculateMetrics = dart.privateName(qr_painter, "_calculateMetrics");
+  var _pixelSize = dart.privateName(qr_painter, "_pixelSize");
+  var _innerContentSize = dart.privateName(qr_painter, "_innerContentSize");
+  var _inset = dart.privateName(qr_painter, "_inset");
+  qr_painter._PaintMetrics = class _PaintMetrics extends core.Object {
+    get [_pixelSize]() {
+      let t1;
+      t1 = this[___PaintMetrics__pixelSize];
+      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_pixelSize")) : t1;
+    }
+    set [_pixelSize](t1) {
+      if (this[___PaintMetrics__pixelSize] == null)
+        this[___PaintMetrics__pixelSize] = t1;
+      else
+        dart.throw(new _internal.LateError.fieldAI("_pixelSize"));
+    }
+    get pixelSize() {
+      return this[_pixelSize];
+    }
+    get [_innerContentSize]() {
+      let t2;
+      t2 = this[___PaintMetrics__innerContentSize];
+      return t2 == null ? dart.throw(new _internal.LateError.fieldNI("_innerContentSize")) : t2;
+    }
+    set [_innerContentSize](t2) {
+      if (this[___PaintMetrics__innerContentSize] == null)
+        this[___PaintMetrics__innerContentSize] = t2;
+      else
+        dart.throw(new _internal.LateError.fieldAI("_innerContentSize"));
+    }
+    get innerContentSize() {
+      return this[_innerContentSize];
+    }
+    get [_inset]() {
+      let t3;
+      t3 = this[___PaintMetrics__inset];
+      return t3 == null ? dart.throw(new _internal.LateError.fieldNI("_inset")) : t3;
+    }
+    set [_inset](t3) {
+      if (this[___PaintMetrics__inset] == null)
+        this[___PaintMetrics__inset] = t3;
+      else
+        dart.throw(new _internal.LateError.fieldAI("_inset"));
+    }
+    get inset() {
+      return this[_inset];
+    }
+    [_calculateMetrics]() {
+      let gapTotal = (this.moduleCount - 1) * this.gapSize;
+      let pixelSize = (this.containerSize - gapTotal) / this.moduleCount;
+      this[_pixelSize] = (pixelSize * 2)[$roundToDouble]() / 2;
+      this[_innerContentSize] = this[_pixelSize] * this.moduleCount + gapTotal;
+      this[_inset] = (this.containerSize - this[_innerContentSize]) / 2;
+    }
+  };
+  (qr_painter._PaintMetrics.new = function(opts) {
+    let containerSize = opts && 'containerSize' in opts ? opts.containerSize : null;
+    let gapSize = opts && 'gapSize' in opts ? opts.gapSize : null;
+    let moduleCount = opts && 'moduleCount' in opts ? opts.moduleCount : null;
+    this[___PaintMetrics__pixelSize] = null;
+    this[___PaintMetrics__innerContentSize] = null;
+    this[___PaintMetrics__inset] = null;
+    this.containerSize = containerSize;
+    this.gapSize = gapSize;
+    this.moduleCount = moduleCount;
+    this[_calculateMetrics]();
+  }).prototype = qr_painter._PaintMetrics.prototype;
+  dart.addTypeTests(qr_painter._PaintMetrics);
+  dart.addTypeCaches(qr_painter._PaintMetrics);
+  dart.setMethodSignature(qr_painter._PaintMetrics, () => ({
+    __proto__: dart.getMethods(qr_painter._PaintMetrics.__proto__),
+    [_calculateMetrics]: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(qr_painter._PaintMetrics, () => ({
+    __proto__: dart.getGetters(qr_painter._PaintMetrics.__proto__),
+    [_pixelSize]: core.double,
+    pixelSize: core.double,
+    [_innerContentSize]: core.double,
+    innerContentSize: core.double,
+    [_inset]: core.double,
+    inset: core.double
+  }));
+  dart.setSetterSignature(qr_painter._PaintMetrics, () => ({
+    __proto__: dart.getSetters(qr_painter._PaintMetrics.__proto__),
+    [_pixelSize]: core.double,
+    [_innerContentSize]: core.double,
+    [_inset]: core.double
+  }));
+  dart.setLibraryUri(qr_painter._PaintMetrics, I[1]);
+  dart.setFieldSignature(qr_painter._PaintMetrics, () => ({
+    __proto__: dart.getFields(qr_painter._PaintMetrics.__proto__),
+    moduleCount: dart.finalFieldType(core.int),
+    containerSize: dart.finalFieldType(core.double),
+    gapSize: dart.finalFieldType(core.double),
+    [___PaintMetrics__pixelSize]: dart.fieldType(dart.nullable(core.double)),
+    [___PaintMetrics__innerContentSize]: dart.fieldType(dart.nullable(core.double)),
+    [___PaintMetrics__inset]: dart.fieldType(dart.nullable(core.double))
+  }));
+  dart.defineLazy(qr_painter, {
+    /*qr_painter._finderPatternLimit*/get _finderPatternLimit() {
+      return 7;
+    },
+    /*qr_painter._qrDefaultColor*/get _qrDefaultColor() {
+      return null;
+    }
+  }, false);
+  dart.trackLibraries("packages/qr_flutter/src/qr_painter.dart", {
+    "package:qr_flutter/src/qr_painter.dart": qr_painter
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["qr_painter.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/qr_flutter/src/qr_painter.dart.lib.js"}');
+  // Exports:
+  return {
+    src__qr_painter: qr_painter
+  };
+}));
+
+//# sourceMappingURL=qr_painter.dart.lib.js.map

@@ -1,0 +1,569 @@
+define(['dart_sdk', 'packages/nested/nested.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/collection/src/equality.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/provider/src/provider.dart'], (function load__packages__provider__src__selector_dart(dart_sdk, packages__nested__nested$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__collection__src__equality$46dart, packages__flutter__src__foundation__debug$46dart, packages__provider__src__provider$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const nested = packages__nested__nested$46dart.nested;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const equality = packages__collection__src__equality$46dart.src__equality;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const provider = packages__provider__src__provider$46dart.src__provider;
+  var selector = Object.create(dart.library);
+  var consumer = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(true);
+  var T$ = {
+    DefaultEqualityOfNever: () => (T$.DefaultEqualityOfNever = dart.constFn(equality.DefaultEquality$(dart.Never)))(),
+    WidgetN: () => (T$.WidgetN = dart.constFn(dart.nullable(framework.Widget)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: T$.DefaultEqualityOfNever().prototype
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: equality.DeepCollectionEquality.prototype,
+        [DeepCollectionEquality__unordered]: false,
+        [DeepCollectionEquality__base]: C[1] || CT.C1
+      });
+    }
+  }, false);
+  var C = Array(2).fill(void 0);
+  var I = [
+    "package:provider/src/selector.dart",
+    "package:provider/src/consumer.dart"
+  ];
+  var builder$ = dart.privateName(selector, "Selector0.builder");
+  var selector$ = dart.privateName(selector, "Selector0.selector");
+  var _shouldRebuild = dart.privateName(selector, "_shouldRebuild");
+  const _is_Selector0_default = Symbol('_is_Selector0_default');
+  selector.Selector0$ = dart.generic(T => {
+    var _Selector0StateOfT = () => (_Selector0StateOfT = dart.constFn(selector._Selector0State$(T)))();
+    class Selector0 extends nested.SingleChildStatefulWidget {
+      get builder() {
+        return this[builder$];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      get selector() {
+        return this[selector$];
+      }
+      set selector(value) {
+        super.selector = value;
+      }
+      createState() {
+        return new (_Selector0StateOfT()).new();
+      }
+    }
+    (Selector0.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$] = builder;
+      this[selector$] = selector;
+      this[_shouldRebuild] = shouldRebuild;
+      Selector0.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector0.prototype;
+    dart.addTypeTests(Selector0);
+    Selector0.prototype[_is_Selector0_default] = true;
+    dart.addTypeCaches(Selector0);
+    dart.setMethodSignature(Selector0, () => ({
+      __proto__: dart.getMethods(Selector0.__proto__),
+      createState: dart.fnType(selector._Selector0State$(T), [])
+    }));
+    dart.setLibraryUri(Selector0, I[0]);
+    dart.setFieldSignature(Selector0, () => ({
+      __proto__: dart.getFields(Selector0.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, T, dart.nullable(framework.Widget)])),
+      selector: dart.finalFieldType(dart.fnType(T, [framework.BuildContext])),
+      [_shouldRebuild]: dart.finalFieldType(dart.nullable(dart.fnType(core.bool, [T, T])))
+    }));
+    return Selector0;
+  });
+  selector.Selector0 = selector.Selector0$();
+  dart.addTypeTests(selector.Selector0, _is_Selector0_default);
+  var value$ = dart.privateName(selector, "_Selector0State.value");
+  var DeepCollectionEquality__unordered = dart.privateName(equality, "DeepCollectionEquality._unordered");
+  var DeepCollectionEquality__base = dart.privateName(equality, "DeepCollectionEquality._base");
+  const _is__Selector0State_default = Symbol('_is__Selector0State_default');
+  selector._Selector0State$ = dart.generic(T => {
+    var TN = () => (TN = dart.constFn(dart.nullable(T)))();
+    var TAndTTobool = () => (TAndTTobool = dart.constFn(dart.fnType(core.bool, [T, T])))();
+    var TAndTToNbool = () => (TAndTToNbool = dart.constFn(dart.nullable(TAndTTobool())))();
+    var BuildContextAndTAndWidgetNToWidget = () => (BuildContextAndTAndWidgetNToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T, T$.WidgetN()])))();
+    var DiagnosticsPropertyOfT = () => (DiagnosticsPropertyOfT = dart.constFn(diagnostics.DiagnosticsProperty$(T)))();
+    class _Selector0State extends nested.SingleChildState$(selector.Selector0$(T)) {
+      get value() {
+        return this[value$];
+      }
+      set value(value) {
+        this[value$] = TN().as(value);
+      }
+      buildWithChild(context, child) {
+        let t1, t0, t3, t2, t1$, t0$;
+        let selected = (t0 = this.widget, t1 = context, t0.selector(t1));
+        let shouldInvalidateCache = !dart.equals(this.oldWidget, this.widget) || TAndTToNbool().as(this.widget[_shouldRebuild]) != null && dart.nullCheck(TAndTToNbool().as(this.widget[_shouldRebuild]))(T.as(this.value), selected) || TAndTToNbool().as(this.widget[_shouldRebuild]) == null && !(C[0] || CT.C0).equals(this.value, selected);
+        if (shouldInvalidateCache) {
+          this.value = selected;
+          this.oldWidget = this.widget;
+          this.cache = (t0$ = this.widget, t1$ = context, t2 = selected, t3 = child, BuildContextAndTAndWidgetNToWidget().as(t0$.builder)(t1$, t2, t3));
+        }
+        return dart.nullCheck(this.cache);
+      }
+      debugFillProperties(properties) {
+        super.debugFillProperties(properties);
+        properties.add(new (DiagnosticsPropertyOfT()).new("value", this.value));
+      }
+    }
+    (_Selector0State.new = function() {
+      this[value$] = null;
+      this.cache = null;
+      this.oldWidget = null;
+      _Selector0State.__proto__.new.call(this);
+      ;
+    }).prototype = _Selector0State.prototype;
+    dart.addTypeTests(_Selector0State);
+    _Selector0State.prototype[_is__Selector0State_default] = true;
+    dart.addTypeCaches(_Selector0State);
+    dart.setMethodSignature(_Selector0State, () => ({
+      __proto__: dart.getMethods(_Selector0State.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(_Selector0State, I[0]);
+    dart.setFieldSignature(_Selector0State, () => ({
+      __proto__: dart.getFields(_Selector0State.__proto__),
+      value: dart.fieldType(dart.nullable(T)),
+      cache: dart.fieldType(dart.nullable(framework.Widget)),
+      oldWidget: dart.fieldType(dart.nullable(framework.Widget))
+    }));
+    return _Selector0State;
+  });
+  selector._Selector0State = selector._Selector0State$();
+  dart.addTypeTests(selector._Selector0State, _is__Selector0State_default);
+  const _is_Selector_default = Symbol('_is_Selector_default');
+  selector.Selector$ = dart.generic((A, S) => {
+    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
+    class Selector extends selector.Selector0$(S) {}
+    (Selector.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      Selector.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => selector(context, provider.Provider.of(A, context)), BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector.prototype;
+    dart.addTypeTests(Selector);
+    Selector.prototype[_is_Selector_default] = true;
+    dart.addTypeCaches(Selector);
+    dart.setLibraryUri(Selector, I[0]);
+    return Selector;
+  });
+  selector.Selector = selector.Selector$();
+  dart.addTypeTests(selector.Selector, _is_Selector_default);
+  const _is_Selector2_default = Symbol('_is_Selector2_default');
+  selector.Selector2$ = dart.generic((A, B, S) => {
+    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
+    class Selector2 extends selector.Selector0$(S) {}
+    (Selector2.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      Selector2.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context)), BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector2.prototype;
+    dart.addTypeTests(Selector2);
+    Selector2.prototype[_is_Selector2_default] = true;
+    dart.addTypeCaches(Selector2);
+    dart.setLibraryUri(Selector2, I[0]);
+    return Selector2;
+  });
+  selector.Selector2 = selector.Selector2$();
+  dart.addTypeTests(selector.Selector2, _is_Selector2_default);
+  const _is_Selector3_default = Symbol('_is_Selector3_default');
+  selector.Selector3$ = dart.generic((A, B, C, S) => {
+    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
+    class Selector3 extends selector.Selector0$(S) {}
+    (Selector3.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      Selector3.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context)), BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector3.prototype;
+    dart.addTypeTests(Selector3);
+    Selector3.prototype[_is_Selector3_default] = true;
+    dart.addTypeCaches(Selector3);
+    dart.setLibraryUri(Selector3, I[0]);
+    return Selector3;
+  });
+  selector.Selector3 = selector.Selector3$();
+  dart.addTypeTests(selector.Selector3, _is_Selector3_default);
+  const _is_Selector4_default = Symbol('_is_Selector4_default');
+  selector.Selector4$ = dart.generic((A, B, C, D, S) => {
+    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
+    class Selector4 extends selector.Selector0$(S) {}
+    (Selector4.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      Selector4.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context), provider.Provider.of(D, context)), BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector4.prototype;
+    dart.addTypeTests(Selector4);
+    Selector4.prototype[_is_Selector4_default] = true;
+    dart.addTypeCaches(Selector4);
+    dart.setLibraryUri(Selector4, I[0]);
+    return Selector4;
+  });
+  selector.Selector4 = selector.Selector4$();
+  dart.addTypeTests(selector.Selector4, _is_Selector4_default);
+  const _is_Selector5_default = Symbol('_is_Selector5_default');
+  selector.Selector5$ = dart.generic((A, B, C, D, E, S) => {
+    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
+    class Selector5 extends selector.Selector0$(S) {}
+    (Selector5.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      Selector5.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context), provider.Provider.of(D, context), provider.Provider.of(E, context)), BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector5.prototype;
+    dart.addTypeTests(Selector5);
+    Selector5.prototype[_is_Selector5_default] = true;
+    dart.addTypeCaches(Selector5);
+    dart.setLibraryUri(Selector5, I[0]);
+    return Selector5;
+  });
+  selector.Selector5 = selector.Selector5$();
+  dart.addTypeTests(selector.Selector5, _is_Selector5_default);
+  const _is_Selector6_default = Symbol('_is_Selector6_default');
+  selector.Selector6$ = dart.generic((A, B, C, D, E, F, S) => {
+    var BuildContextToS = () => (BuildContextToS = dart.constFn(dart.fnType(S, [framework.BuildContext])))();
+    class Selector6 extends selector.Selector0$(S) {}
+    (Selector6.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let selector = opts && 'selector' in opts ? opts.selector : null;
+      let shouldRebuild = opts && 'shouldRebuild' in opts ? opts.shouldRebuild : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      Selector6.__proto__.new.call(this, {key: key, shouldRebuild: shouldRebuild, builder: builder, selector: dart.fn(context => selector(context, provider.Provider.of(A, context), provider.Provider.of(B, context), provider.Provider.of(C, context), provider.Provider.of(D, context), provider.Provider.of(E, context), provider.Provider.of(F, context)), BuildContextToS()), child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Selector6.prototype;
+    dart.addTypeTests(Selector6);
+    Selector6.prototype[_is_Selector6_default] = true;
+    dart.addTypeCaches(Selector6);
+    dart.setLibraryUri(Selector6, I[0]);
+    return Selector6;
+  });
+  selector.Selector6 = selector.Selector6$();
+  dart.addTypeTests(selector.Selector6, _is_Selector6_default);
+  var builder$0 = dart.privateName(consumer, "Consumer.builder");
+  const _is_Consumer_default = Symbol('_is_Consumer_default');
+  consumer.Consumer$ = dart.generic(T => {
+    class Consumer extends nested.SingleChildStatelessWidget {
+      get builder() {
+        return this[builder$0];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      buildWithChild(context, child) {
+        let t2, t1, t0;
+        t0 = context;
+        t1 = provider.Provider.of(T, context);
+        t2 = child;
+        return this.builder(t0, t1, t2);
+      }
+    }
+    (Consumer.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$0] = builder;
+      Consumer.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Consumer.prototype;
+    dart.addTypeTests(Consumer);
+    Consumer.prototype[_is_Consumer_default] = true;
+    dart.addTypeCaches(Consumer);
+    dart.setMethodSignature(Consumer, () => ({
+      __proto__: dart.getMethods(Consumer.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(Consumer, I[1]);
+    dart.setFieldSignature(Consumer, () => ({
+      __proto__: dart.getFields(Consumer.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, T, dart.nullable(framework.Widget)]))
+    }));
+    return Consumer;
+  });
+  consumer.Consumer = consumer.Consumer$();
+  dart.addTypeTests(consumer.Consumer, _is_Consumer_default);
+  var builder$1 = dart.privateName(consumer, "Consumer2.builder");
+  const _is_Consumer2_default = Symbol('_is_Consumer2_default');
+  consumer.Consumer2$ = dart.generic((A, B) => {
+    class Consumer2 extends nested.SingleChildStatelessWidget {
+      get builder() {
+        return this[builder$1];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      buildWithChild(context, child) {
+        let t3, t2, t1, t0;
+        t0 = context;
+        t1 = provider.Provider.of(A, context);
+        t2 = provider.Provider.of(B, context);
+        t3 = child;
+        return this.builder(t0, t1, t2, t3);
+      }
+    }
+    (Consumer2.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$1] = builder;
+      Consumer2.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Consumer2.prototype;
+    dart.addTypeTests(Consumer2);
+    Consumer2.prototype[_is_Consumer2_default] = true;
+    dart.addTypeCaches(Consumer2);
+    dart.setMethodSignature(Consumer2, () => ({
+      __proto__: dart.getMethods(Consumer2.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(Consumer2, I[1]);
+    dart.setFieldSignature(Consumer2, () => ({
+      __proto__: dart.getFields(Consumer2.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, dart.nullable(framework.Widget)]))
+    }));
+    return Consumer2;
+  });
+  consumer.Consumer2 = consumer.Consumer2$();
+  dart.addTypeTests(consumer.Consumer2, _is_Consumer2_default);
+  var builder$2 = dart.privateName(consumer, "Consumer3.builder");
+  const _is_Consumer3_default = Symbol('_is_Consumer3_default');
+  consumer.Consumer3$ = dart.generic((A, B, C) => {
+    class Consumer3 extends nested.SingleChildStatelessWidget {
+      get builder() {
+        return this[builder$2];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      buildWithChild(context, child) {
+        let t4, t3, t2, t1, t0;
+        t0 = context;
+        t1 = provider.Provider.of(A, context);
+        t2 = provider.Provider.of(B, context);
+        t3 = provider.Provider.of(C, context);
+        t4 = child;
+        return this.builder(t0, t1, t2, t3, t4);
+      }
+    }
+    (Consumer3.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$2] = builder;
+      Consumer3.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Consumer3.prototype;
+    dart.addTypeTests(Consumer3);
+    Consumer3.prototype[_is_Consumer3_default] = true;
+    dart.addTypeCaches(Consumer3);
+    dart.setMethodSignature(Consumer3, () => ({
+      __proto__: dart.getMethods(Consumer3.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(Consumer3, I[1]);
+    dart.setFieldSignature(Consumer3, () => ({
+      __proto__: dart.getFields(Consumer3.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, dart.nullable(framework.Widget)]))
+    }));
+    return Consumer3;
+  });
+  consumer.Consumer3 = consumer.Consumer3$();
+  dart.addTypeTests(consumer.Consumer3, _is_Consumer3_default);
+  var builder$3 = dart.privateName(consumer, "Consumer4.builder");
+  const _is_Consumer4_default = Symbol('_is_Consumer4_default');
+  consumer.Consumer4$ = dart.generic((A, B, C, D) => {
+    class Consumer4 extends nested.SingleChildStatelessWidget {
+      get builder() {
+        return this[builder$3];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      buildWithChild(context, child) {
+        let t5, t4, t3, t2, t1, t0;
+        t0 = context;
+        t1 = provider.Provider.of(A, context);
+        t2 = provider.Provider.of(B, context);
+        t3 = provider.Provider.of(C, context);
+        t4 = provider.Provider.of(D, context);
+        t5 = child;
+        return this.builder(t0, t1, t2, t3, t4, t5);
+      }
+    }
+    (Consumer4.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$3] = builder;
+      Consumer4.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Consumer4.prototype;
+    dart.addTypeTests(Consumer4);
+    Consumer4.prototype[_is_Consumer4_default] = true;
+    dart.addTypeCaches(Consumer4);
+    dart.setMethodSignature(Consumer4, () => ({
+      __proto__: dart.getMethods(Consumer4.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(Consumer4, I[1]);
+    dart.setFieldSignature(Consumer4, () => ({
+      __proto__: dart.getFields(Consumer4.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, D, dart.nullable(framework.Widget)]))
+    }));
+    return Consumer4;
+  });
+  consumer.Consumer4 = consumer.Consumer4$();
+  dart.addTypeTests(consumer.Consumer4, _is_Consumer4_default);
+  var builder$4 = dart.privateName(consumer, "Consumer5.builder");
+  const _is_Consumer5_default = Symbol('_is_Consumer5_default');
+  consumer.Consumer5$ = dart.generic((A, B, C, D, E) => {
+    class Consumer5 extends nested.SingleChildStatelessWidget {
+      get builder() {
+        return this[builder$4];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      buildWithChild(context, child) {
+        let t6, t5, t4, t3, t2, t1, t0;
+        t0 = context;
+        t1 = provider.Provider.of(A, context);
+        t2 = provider.Provider.of(B, context);
+        t3 = provider.Provider.of(C, context);
+        t4 = provider.Provider.of(D, context);
+        t5 = provider.Provider.of(E, context);
+        t6 = child;
+        return this.builder(t0, t1, t2, t3, t4, t5, t6);
+      }
+    }
+    (Consumer5.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$4] = builder;
+      Consumer5.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Consumer5.prototype;
+    dart.addTypeTests(Consumer5);
+    Consumer5.prototype[_is_Consumer5_default] = true;
+    dart.addTypeCaches(Consumer5);
+    dart.setMethodSignature(Consumer5, () => ({
+      __proto__: dart.getMethods(Consumer5.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(Consumer5, I[1]);
+    dart.setFieldSignature(Consumer5, () => ({
+      __proto__: dart.getFields(Consumer5.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, D, E, dart.nullable(framework.Widget)]))
+    }));
+    return Consumer5;
+  });
+  consumer.Consumer5 = consumer.Consumer5$();
+  dart.addTypeTests(consumer.Consumer5, _is_Consumer5_default);
+  var builder$5 = dart.privateName(consumer, "Consumer6.builder");
+  const _is_Consumer6_default = Symbol('_is_Consumer6_default');
+  consumer.Consumer6$ = dart.generic((A, B, C, D, E, F) => {
+    class Consumer6 extends nested.SingleChildStatelessWidget {
+      get builder() {
+        return this[builder$5];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      buildWithChild(context, child) {
+        let t7, t6, t5, t4, t3, t2, t1, t0;
+        t0 = context;
+        t1 = provider.Provider.of(A, context);
+        t2 = provider.Provider.of(B, context);
+        t3 = provider.Provider.of(C, context);
+        t4 = provider.Provider.of(D, context);
+        t5 = provider.Provider.of(E, context);
+        t6 = provider.Provider.of(F, context);
+        t7 = child;
+        return this.builder(t0, t1, t2, t3, t4, t5, t6, t7);
+      }
+    }
+    (Consumer6.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$5] = builder;
+      Consumer6.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = Consumer6.prototype;
+    dart.addTypeTests(Consumer6);
+    Consumer6.prototype[_is_Consumer6_default] = true;
+    dart.addTypeCaches(Consumer6);
+    dart.setMethodSignature(Consumer6, () => ({
+      __proto__: dart.getMethods(Consumer6.__proto__),
+      buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+    }));
+    dart.setLibraryUri(Consumer6, I[1]);
+    dart.setFieldSignature(Consumer6, () => ({
+      __proto__: dart.getFields(Consumer6.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, A, B, C, D, E, F, dart.nullable(framework.Widget)]))
+    }));
+    return Consumer6;
+  });
+  consumer.Consumer6 = consumer.Consumer6$();
+  dart.addTypeTests(consumer.Consumer6, _is_Consumer6_default);
+  dart.trackLibraries("packages/provider/src/selector.dart", {
+    "package:provider/src/selector.dart": selector,
+    "package:provider/src/consumer.dart": consumer
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["selector.dart","consumer.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/provider/src/selector.dart.lib.js"}');
+  // Exports:
+  return {
+    src__selector: selector,
+    src__consumer: consumer
+  };
+}));
+
+//# sourceMappingURL=selector.dart.lib.js.map

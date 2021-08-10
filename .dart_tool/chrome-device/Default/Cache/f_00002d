@@ -1,0 +1,2047 @@
+define(['dart_sdk', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/painting/decoration.dart', 'packages/flutter/src/gestures/monodrag.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/rendering/stack.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/painting/gradient.dart', 'packages/flutter/src/painting/_network_image_web.dart', 'packages/flutter/src/cupertino/interface_level.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/cupertino/debug.dart', 'packages/flutter/src/cupertino/text_theme.dart', 'packages/flutter/src/widgets/implicit_animations.dart'], (function load__packages__cupertino_will_pop_scope__src__cupertino_page_route_dart(dart_sdk, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__painting__decoration$46dart, packages__flutter__src__gestures__monodrag$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__rendering__stack$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__painting__gradient$46dart, packages__flutter__src__painting___network_image_web$46dart, packages__flutter__src__cupertino__interface_level$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__cupertino__debug$46dart, packages__flutter__src__cupertino__text_theme$46dart, packages__flutter__src__widgets__implicit_animations$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const async = dart_sdk.async;
+  const ui = dart_sdk.ui;
+  const _internal = dart_sdk._internal;
+  const math = dart_sdk.math;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
+  const animation$ = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
+  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
+  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const routes = packages__flutter__src__widgets__widget_span$46dart.src__widgets__routes;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  const decoration = packages__flutter__src__painting__decoration$46dart.src__painting__decoration;
+  const monodrag = packages__flutter__src__gestures__monodrag$46dart.src__gestures__monodrag;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const stack = packages__flutter__src__rendering__stack$46dart.src__rendering__stack;
+  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const gradient = packages__flutter__src__painting__gradient$46dart.src__painting__gradient;
+  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
+  const interface_level = packages__flutter__src__cupertino__interface_level$46dart.src__cupertino__interface_level;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const localizations = packages__flutter__src__cupertino__debug$46dart.src__cupertino__localizations;
+  const colors = packages__flutter__src__cupertino__text_theme$46dart.src__cupertino__colors;
+  const implicit_animations = packages__flutter__src__widgets__implicit_animations$46dart.src__widgets__implicit_animations;
+  var cupertino_page_route = Object.create(dart.library);
+  var $abs = dartx.abs;
+  var $floor = dartx.floor;
+  var $runtimeType = dartx.runtimeType;
+  var $hashCode = dartx.hashCode;
+  dart._checkModuleNullSafetyMode(true);
+  var T$ = {
+    StringN: () => (T$.StringN = dart.constFn(dart.nullable(core.String)))(),
+    ValueNotifierOfStringN: () => (T$.ValueNotifierOfStringN = dart.constFn(change_notifier.ValueNotifier$(T$.StringN())))(),
+    JSArrayOfDiagnosticsNode: () => (T$.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    FutureOfRoutePopDisposition: () => (T$.FutureOfRoutePopDisposition = dart.constFn(async.Future$(navigator.RoutePopDisposition)))(),
+    dynamicToFutureOfRoutePopDisposition: () => (T$.dynamicToFutureOfRoutePopDisposition = dart.constFn(dart.fnType(T$.FutureOfRoutePopDisposition(), [dart.dynamic])))(),
+    VoidToFutureOfRoutePopDisposition: () => (T$.VoidToFutureOfRoutePopDisposition = dart.constFn(dart.fnType(T$.FutureOfRoutePopDisposition(), [])))(),
+    VoidToNFutureOfRoutePopDisposition: () => (T$.VoidToNFutureOfRoutePopDisposition = dart.constFn(dart.nullable(T$.VoidToFutureOfRoutePopDisposition())))(),
+    VoidToFn: () => (T$.VoidToFn = dart.constFn(dart.fnType(T$.VoidToNFutureOfRoutePopDisposition(), [])))(),
+    VoidTodynamic: () => (T$.VoidTodynamic = dart.constFn(dart.fnType(dart.dynamic, [])))(),
+    VoidToNdynamic: () => (T$.VoidToNdynamic = dart.constFn(dart.nullable(T$.VoidTodynamic())))(),
+    JSArrayOfWidget: () => (T$.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    AnimationStatusTovoid: () => (T$.AnimationStatusTovoid = dart.constFn(dart.fnType(dart.void, [animation$.AnimationStatus])))(),
+    VoidToFn$1: () => (T$.VoidToFn$1 = dart.constFn(dart.fnType(T$.AnimationStatusTovoid(), [])))(),
+    FnTodynamic: () => (T$.FnTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.AnimationStatusTovoid()])))(),
+    DiagnosticsPropertyOfLinearGradient: () => (T$.DiagnosticsPropertyOfLinearGradient = dart.constFn(diagnostics.DiagnosticsProperty$(gradient.LinearGradient)))(),
+    TweenOfOffset: () => (T$.TweenOfOffset = dart.constFn(tween.Tween$(ui.Offset)))(),
+    AnimationOfdouble: () => (T$.AnimationOfdouble = dart.constFn(animation$.Animation$(core.double)))(),
+    BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget: () => (T$.BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T$.AnimationOfdouble(), T$.AnimationOfdouble(), framework.Widget])))(),
+    BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget: () => (T$.BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T$.AnimationOfdouble(), T$.AnimationOfdouble()])))(),
+    TweenOfdouble: () => (T$.TweenOfdouble = dart.constFn(tween.Tween$(core.double)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 400000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scopesRoute",
+        [_Location_column]: 7,
+        [_Location_line]: 228,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "explicitChildNodes",
+        [_Location_column]: 7,
+        [_Location_line]: 229,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 230,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], widget_inspector._Location);
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 227,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "primaryRouteAnimation",
+        [_Location_column]: 9,
+        [_Location_line]: 302,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "secondaryRouteAnimation",
+        [_Location_column]: 9,
+        [_Location_line]: 303,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 304,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "linearTransition",
+        [_Location_column]: 9,
+        [_Location_line]: 305,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], widget_inspector._Location);
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[7] || CT.C7,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 301,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "enabledCallback",
+        [_Location_column]: 11,
+        [_Location_line]: 313,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "getWillPopCallback",
+        [_Location_column]: 11,
+        [_Location_line]: 314,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onStartPopGesture",
+        [_Location_column]: 11,
+        [_Location_line]: 315,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 316,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.constList([C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], widget_inspector._Location);
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[13] || CT.C13,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 312,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "primaryRouteAnimation",
+        [_Location_column]: 9,
+        [_Location_line]: 309,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "secondaryRouteAnimation",
+        [_Location_column]: 9,
+        [_Location_line]: 310,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "linearTransition",
+        [_Location_column]: 9,
+        [_Location_line]: 311,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 312,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23], widget_inspector._Location);
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 308,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 11,
+        [_Location_line]: 540,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 541,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26, C[27] || CT.C27], widget_inspector._Location);
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 539,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "position",
+        [_Location_column]: 9,
+        [_Location_line]: 537,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textDirection",
+        [_Location_column]: 9,
+        [_Location_line]: 538,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 539,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.constList([C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32], widget_inspector._Location);
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[29] || CT.C29,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 536,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "position",
+        [_Location_column]: 7,
+        [_Location_line]: 533,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textDirection",
+        [_Location_column]: 7,
+        [_Location_line]: 534,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "transformHitTests",
+        [_Location_column]: 7,
+        [_Location_line]: 535,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 536,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.constList([C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37, C[38] || CT.C38], widget_inspector._Location);
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[34] || CT.C34,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 532,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "position",
+        [_Location_column]: 9,
+        [_Location_line]: 600,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 601,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([C[41] || CT.C41, C[42] || CT.C42], widget_inspector._Location);
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 599,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "position",
+        [_Location_column]: 7,
+        [_Location_line]: 596,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textDirection",
+        [_Location_column]: 7,
+        [_Location_line]: 597,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "transformHitTests",
+        [_Location_column]: 7,
+        [_Location_line]: 598,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 599,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.constList([C[45] || CT.C45, C[46] || CT.C46, C[47] || CT.C47, C[48] || CT.C48], widget_inspector._Location);
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[44] || CT.C44,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 595,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name]: "TextDirection.rtl",
+        index: 0
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name]: "TextDirection.ltr",
+        index: 1
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPointerDown",
+        [_Location_column]: 13,
+        [_Location_line]: 737,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "behavior",
+        [_Location_column]: 13,
+        [_Location_line]: 738,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54], widget_inspector._Location);
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[52] || CT.C52,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 736,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "start",
+        [_Location_column]: 11,
+        [_Location_line]: 732,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 11,
+        [_Location_line]: 733,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 11,
+        [_Location_line]: 734,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 11,
+        [_Location_line]: 735,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 736,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60, C[61] || CT.C61], widget_inspector._Location);
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 731,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 7,
+        [_Location_line]: 728,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 729,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65], widget_inspector._Location);
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 727,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 0.04,
+        [Cubic_b]: 1,
+        [Cubic_a]: 0.18
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: cupertino_page_route._CupertinoEdgeShadowDecoration.prototype,
+        [edgeGradient$]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 1,
+        [OffsetBase__dx]: 0
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 22,
+        [_Location_line]: 1032,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.constList([C[71] || CT.C71], widget_inspector._Location);
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[70] || CT.C70,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 1032,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 7,
+        [_Location_line]: 1031,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 1032,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.constList([C[74] || CT.C74, C[75] || CT.C75], widget_inspector._Location);
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[73] || CT.C73,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 1030,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "translation",
+        [_Location_column]: 9,
+        [_Location_line]: 1042,
+        [_Location_file]: null
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 1043,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.constList([C[78] || CT.C78, C[79] || CT.C79], widget_inspector._Location);
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[77] || CT.C77,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 1041,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 7,
+        [_Location_line]: 1040,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 1041,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.constList([C[82] || CT.C82, C[83] || CT.C83], widget_inspector._Location);
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[81] || CT.C81,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 1039,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 250000
+      });
+    },
+    get C85() {
+      return C[85] = dart.fn(cupertino_page_route._buildCupertinoDialogTransitions, T$.BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget());
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 2046820352
+      });
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 855638016
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: colors.CupertinoDynamicColor.prototype,
+        [Color_value]: 0,
+        [CupertinoDynamicColor_darkHighContrastElevatedColor]: C[87] || CT.C87,
+        [CupertinoDynamicColor_highContrastElevatedColor]: C[88] || CT.C88,
+        [CupertinoDynamicColor_darkElevatedColor]: C[87] || CT.C87,
+        [CupertinoDynamicColor_elevatedColor]: C[88] || CT.C88,
+        [CupertinoDynamicColor_darkHighContrastColor]: C[87] || CT.C87,
+        [CupertinoDynamicColor_highContrastColor]: C[88] || CT.C88,
+        [CupertinoDynamicColor_darkColor]: C[87] || CT.C87,
+        [CupertinoDynamicColor_color]: C[88] || CT.C88,
+        [CupertinoDynamicColor__debugResolveContext]: null,
+        [CupertinoDynamicColor__debugLabel]: null,
+        [CupertinoDynamicColor__effectiveColor]: C[88] || CT.C88
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 7,
+        [_Location_line]: 1131,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 1132,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.constList([C[91] || CT.C91, C[92] || CT.C92], widget_inspector._Location);
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[90] || CT.C90,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 1130,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 1138,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "scale",
+        [_Location_column]: 7,
+        [_Location_line]: 1139,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.constList([C[95] || CT.C95, C[96] || CT.C96], widget_inspector._Location);
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[94] || CT.C94,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 1137,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "opacity",
+        [_Location_column]: 5,
+        [_Location_line]: 1136,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 5,
+        [_Location_line]: 1137,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.constList([C[99] || CT.C99, C[100] || CT.C100], widget_inspector._Location);
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[98] || CT.C98,
+        [_Location_name]: null,
+        [_Location_column]: 10,
+        [_Location_line]: 1135,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 335000
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 1
+      });
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: -0.3333333333333333
+      });
+    },
+    get C106() {
+      return C[106] = dart.constList([0, 0.3, 0.6, 1], core.double);
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 0
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 67108864
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 301989888
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 939524096
+      });
+    },
+    get C107() {
+      return C[107] = dart.constList([C[108] || CT.C108, C[109] || CT.C109, C[110] || CT.C110, C[111] || CT.C111], ui.Color);
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: ui.TileMode.prototype,
+        [_name]: "TileMode.clamp",
+        index: 0
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: alignment.AlignmentDirectional.prototype,
+        [AlignmentDirectional_y]: 0,
+        [AlignmentDirectional_start]: 1
+      });
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: alignment.AlignmentDirectional.prototype,
+        [AlignmentDirectional_y]: 0,
+        [AlignmentDirectional_start]: 0.9
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: gradient.LinearGradient.prototype,
+        [Gradient_transform]: null,
+        [Gradient_stops]: C[106] || CT.C106,
+        [Gradient_colors]: C[107] || CT.C107,
+        [LinearGradient_tileMode]: C[112] || CT.C112,
+        [LinearGradient_end]: C[113] || CT.C113,
+        [LinearGradient_begin]: C[114] || CT.C114
+      });
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: cupertino_page_route._CupertinoEdgeShadowDecoration.prototype,
+        [edgeGradient$]: C[105] || CT.C105
+      });
+    }
+  }, false);
+  var C = Array(115).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_will_pop_scope-1.1.0/lib/src/cupertino_page_route.dart",
+    "package:cupertino_will_pop_scope/src/cupertino_page_route.dart"
+  ];
+  var _previousTitle = dart.privateName(cupertino_page_route, "CupertinoRouteTransitionMixin._previousTitle");
+  var _previousTitle$ = dart.privateName(cupertino_page_route, "_previousTitle");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const _is_CupertinoRouteTransitionMixin_default = Symbol('_is_CupertinoRouteTransitionMixin_default');
+  cupertino_page_route.CupertinoRouteTransitionMixin$ = dart.generic(T => {
+    class CupertinoRouteTransitionMixin extends pages.PageRoute$(T) {
+      static isPopGestureInProgress(route) {
+        return dart.nullCheck(route.navigator).userGestureInProgress;
+      }
+      static _isPopGestureEnabled(T, route) {
+        if (route.isFirst) return false;
+        if (route.willHandlePopInternally) return false;
+        if (route.fullscreenDialog) return false;
+        if (dart.nullCheck(route.animation).status !== animation$.AnimationStatus.completed) return false;
+        if (dart.nullCheck(route.secondaryAnimation).status !== animation$.AnimationStatus.dismissed) return false;
+        if (cupertino_page_route.CupertinoRouteTransitionMixin.isPopGestureInProgress(route)) return false;
+        return true;
+      }
+      static _getRouteWillPopCallbacks(T, route) {
+        return route.hasScopedWillPopCallback ? dart.fn(() => async.Future.delayed(new core.Duration.new({milliseconds: 60})).then(navigator.RoutePopDisposition, dart.fn(_ => route.willPop(), T$.dynamicToFutureOfRoutePopDisposition())), T$.VoidToFutureOfRoutePopDisposition()) : null;
+      }
+      static _startPopGesture(T, route) {
+        if (!cupertino_page_route.CupertinoRouteTransitionMixin._isPopGestureEnabled(T, route)) dart.assertFailed(null, I[0], 265, 12, "_isPopGestureEnabled(route)");
+        return new (cupertino_page_route._CupertinoBackGestureController$(T)).new({navigator: dart.nullCheck(route.navigator), controller: dart.nullCheck(route.controller)});
+      }
+      static buildPageTransitions(T, route, context, animation, secondaryAnimation, child) {
+        let linearTransition = cupertino_page_route.CupertinoRouteTransitionMixin.isPopGestureInProgress(route);
+        if (route.fullscreenDialog) {
+          return new cupertino_page_route.CupertinoFullscreenDialogTransition.new({primaryRouteAnimation: animation, secondaryRouteAnimation: secondaryAnimation, child: child, linearTransition: linearTransition, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6});
+        } else {
+          return new cupertino_page_route.CupertinoPageTransition.new({primaryRouteAnimation: animation, secondaryRouteAnimation: secondaryAnimation, linearTransition: linearTransition, child: new (cupertino_page_route._CupertinoBackGestureDetector$(T)).new({enabledCallback: dart.fn(() => cupertino_page_route.CupertinoRouteTransitionMixin._isPopGestureEnabled(T, route), T$.VoidTobool()), getWillPopCallback: dart.fn(() => cupertino_page_route.CupertinoRouteTransitionMixin._getRouteWillPopCallbacks(T, route), T$.VoidToFn()), onStartPopGesture: dart.fn(() => cupertino_page_route.CupertinoRouteTransitionMixin._startPopGesture(T, route), dart.fnType(cupertino_page_route._CupertinoBackGestureController$(T), [])), child: child, $creationLocationd_0dea112b090073317d4: C[12] || CT.C12}), $creationLocationd_0dea112b090073317d4: C[18] || CT.C18});
+        }
+      }
+    }
+    CupertinoRouteTransitionMixin[dart.mixinOn] = PageRoute => class CupertinoRouteTransitionMixin extends PageRoute {
+      get [_previousTitle$]() {
+        return this[_previousTitle];
+      }
+      set [_previousTitle$](value) {
+        this[_previousTitle] = value;
+      }
+      get previousTitle() {
+        if (!(this[_previousTitle$] != null)) dart.assertFailed("Cannot read the previousTitle for a route that has not yet been installed", I[0], 125, 7, "_previousTitle != null");
+        return dart.nullCheck(this[_previousTitle$]);
+      }
+      didChangePrevious(previousRoute) {
+        let previousTitleString = cupertino_page_route.CupertinoRouteTransitionMixin.is(previousRoute) ? previousRoute.title : null;
+        if (this[_previousTitle$] == null) {
+          this[_previousTitle$] = new (T$.ValueNotifierOfStringN()).new(previousTitleString);
+        } else {
+          dart.nullCheck(this[_previousTitle$]).value = previousTitleString;
+        }
+        super.didChangePrevious(previousRoute);
+      }
+      get transitionDuration() {
+        return C[0] || CT.C0;
+      }
+      get barrierColor() {
+        return null;
+      }
+      get barrierLabel() {
+        return null;
+      }
+      canTransitionTo(nextRoute) {
+        return cupertino_page_route.CupertinoRouteTransitionMixin.is(nextRoute) && !nextRoute.fullscreenDialog;
+      }
+      get popGestureInProgress() {
+        return cupertino_page_route.CupertinoRouteTransitionMixin.isPopGestureInProgress(this);
+      }
+      get popGestureEnabled() {
+        return cupertino_page_route.CupertinoRouteTransitionMixin._isPopGestureEnabled(T, this);
+      }
+      buildPage(context, animation, secondaryAnimation) {
+        let child = this.buildContent(context);
+        let result = new basic.Semantics.new({scopesRoute: true, explicitChildNodes: true, child: child, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
+        if (!dart.fn(() => {
+          if (child === null) {
+            dart.throw(new assertions.FlutterError.fromParts(T$.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("The builder for route \"" + dart.str(this.settings.name) + "\" returned null."), new assertions.ErrorDescription.new("Route builders must never return null.")])));
+          }
+          return true;
+        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 232, 12, "() {\n      // `child` has a non-nullable return type, but might be null when\n      // running with weak checking, so we need to null check it anyway (and\n      // ignore the warning that the null-handling logic is dead code).\n      if (child == null) {\n        // ignore: dead_code\n        throw FlutterError.fromParts(<DiagnosticsNode>[\n          ErrorSummary(\n              'The builder for route \"${settings.name}\" returned null.'),\n          ErrorDescription('Route builders must never return null.'),\n        ]);\n      }\n      return true;\n    }()");
+        return result;
+      }
+      buildTransitions(context, animation, secondaryAnimation, child) {
+        return cupertino_page_route.CupertinoRouteTransitionMixin.buildPageTransitions(T, this, context, animation, secondaryAnimation, child);
+      }
+    };
+    (CupertinoRouteTransitionMixin[dart.mixinNew] = function() {
+      this[_previousTitle] = null;
+    }).prototype = CupertinoRouteTransitionMixin.prototype;
+    dart.addTypeTests(CupertinoRouteTransitionMixin);
+    CupertinoRouteTransitionMixin.prototype[_is_CupertinoRouteTransitionMixin_default] = true;
+    dart.addTypeCaches(CupertinoRouteTransitionMixin);
+    CupertinoRouteTransitionMixin[dart.implements] = () => [pages.PageRoute$(T)];
+    dart.setMethodSignature(CupertinoRouteTransitionMixin, () => ({
+      __proto__: dart.getMethods(CupertinoRouteTransitionMixin.__proto__),
+      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation$.Animation$(core.double), animation$.Animation$(core.double)])
+    }));
+    dart.setGetterSignature(CupertinoRouteTransitionMixin, () => ({
+      __proto__: dart.getGetters(CupertinoRouteTransitionMixin.__proto__),
+      previousTitle: change_notifier.ValueListenable$(dart.nullable(core.String)),
+      transitionDuration: core.Duration,
+      barrierColor: dart.nullable(ui.Color),
+      barrierLabel: dart.nullable(core.String),
+      popGestureInProgress: core.bool,
+      popGestureEnabled: core.bool
+    }));
+    dart.setLibraryUri(CupertinoRouteTransitionMixin, I[1]);
+    dart.setFieldSignature(CupertinoRouteTransitionMixin, () => ({
+      __proto__: dart.getFields(CupertinoRouteTransitionMixin.__proto__),
+      [_previousTitle$]: dart.fieldType(dart.nullable(change_notifier.ValueNotifier$(dart.nullable(core.String))))
+    }));
+    return CupertinoRouteTransitionMixin;
+  });
+  cupertino_page_route.CupertinoRouteTransitionMixin = cupertino_page_route.CupertinoRouteTransitionMixin$();
+  dart.addTypeTests(cupertino_page_route.CupertinoRouteTransitionMixin, _is_CupertinoRouteTransitionMixin_default);
+  var builder$ = dart.privateName(cupertino_page_route, "CupertinoPageRoute.builder");
+  var title$ = dart.privateName(cupertino_page_route, "CupertinoPageRoute.title");
+  var maintainState$ = dart.privateName(cupertino_page_route, "CupertinoPageRoute.maintainState");
+  const _is_CupertinoPageRoute_default = Symbol('_is_CupertinoPageRoute_default');
+  cupertino_page_route.CupertinoPageRoute$ = dart.generic(T => {
+    const PageRoute_CupertinoRouteTransitionMixin$36 = class PageRoute_CupertinoRouteTransitionMixin extends pages.PageRoute$(T) {};
+    (PageRoute_CupertinoRouteTransitionMixin$36.new = function(opts) {
+      cupertino_page_route.CupertinoRouteTransitionMixin$(T)[dart.mixinNew].call(this);
+      PageRoute_CupertinoRouteTransitionMixin$36.__proto__.new.call(this, opts);
+    }).prototype = PageRoute_CupertinoRouteTransitionMixin$36.prototype;
+    dart.applyMixin(PageRoute_CupertinoRouteTransitionMixin$36, cupertino_page_route.CupertinoRouteTransitionMixin$(T));
+    class CupertinoPageRoute extends PageRoute_CupertinoRouteTransitionMixin$36 {
+      get builder() {
+        return this[builder$];
+      }
+      set builder(value) {
+        super.builder = value;
+      }
+      get title() {
+        return this[title$];
+      }
+      set title(value) {
+        super.title = value;
+      }
+      get maintainState() {
+        return this[maintainState$];
+      }
+      set maintainState(value) {
+        super.maintainState = value;
+      }
+      buildContent(context) {
+        let t0;
+        t0 = context;
+        return this.builder(t0);
+      }
+      get debugLabel() {
+        return super.debugLabel + "(" + dart.str(this.settings.name) + ")";
+      }
+    }
+    (CupertinoPageRoute.new = function(opts) {
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let settings = opts && 'settings' in opts ? opts.settings : null;
+      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
+      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
+      this[builder$] = builder;
+      this[title$] = title;
+      this[maintainState$] = maintainState;
+      if (!(builder !== null)) dart.assertFailed(null, I[0], 365, 16, "builder != null");
+      if (!(maintainState !== null)) dart.assertFailed(null, I[0], 366, 16, "maintainState != null");
+      if (!(fullscreenDialog !== null)) dart.assertFailed(null, I[0], 367, 16, "fullscreenDialog != null");
+      CupertinoPageRoute.__proto__.new.call(this, {settings: settings, fullscreenDialog: fullscreenDialog});
+      if (!this.opaque) dart.assertFailed(null, I[0], 369, 12, "opaque");
+    }).prototype = CupertinoPageRoute.prototype;
+    dart.addTypeTests(CupertinoPageRoute);
+    CupertinoPageRoute.prototype[_is_CupertinoPageRoute_default] = true;
+    dart.addTypeCaches(CupertinoPageRoute);
+    dart.setMethodSignature(CupertinoPageRoute, () => ({
+      __proto__: dart.getMethods(CupertinoPageRoute.__proto__),
+      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(CupertinoPageRoute, I[1]);
+    dart.setFieldSignature(CupertinoPageRoute, () => ({
+      __proto__: dart.getFields(CupertinoPageRoute.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
+      title: dart.finalFieldType(dart.nullable(core.String)),
+      maintainState: dart.finalFieldType(core.bool)
+    }));
+    return CupertinoPageRoute;
+  });
+  cupertino_page_route.CupertinoPageRoute = cupertino_page_route.CupertinoPageRoute$();
+  dart.addTypeTests(cupertino_page_route.CupertinoPageRoute, _is_CupertinoPageRoute_default);
+  var _page = dart.privateName(cupertino_page_route, "_page");
+  const _is__PageBasedCupertinoPageRoute_default = Symbol('_is__PageBasedCupertinoPageRoute_default');
+  cupertino_page_route._PageBasedCupertinoPageRoute$ = dart.generic(T => {
+    var CupertinoPageOfT = () => (CupertinoPageOfT = dart.constFn(cupertino_page_route.CupertinoPage$(T)))();
+    const PageRoute_CupertinoRouteTransitionMixin$36 = class PageRoute_CupertinoRouteTransitionMixin extends pages.PageRoute$(T) {};
+    (PageRoute_CupertinoRouteTransitionMixin$36.new = function(opts) {
+      cupertino_page_route.CupertinoRouteTransitionMixin$(T)[dart.mixinNew].call(this);
+      PageRoute_CupertinoRouteTransitionMixin$36.__proto__.new.call(this, opts);
+    }).prototype = PageRoute_CupertinoRouteTransitionMixin$36.prototype;
+    dart.applyMixin(PageRoute_CupertinoRouteTransitionMixin$36, cupertino_page_route.CupertinoRouteTransitionMixin$(T));
+    class _PageBasedCupertinoPageRoute extends PageRoute_CupertinoRouteTransitionMixin$36 {
+      get [_page]() {
+        return CupertinoPageOfT().as(this.settings);
+      }
+      buildContent(context) {
+        return this[_page].child;
+      }
+      get title() {
+        return this[_page].title;
+      }
+      get maintainState() {
+        return this[_page].maintainState;
+      }
+      get fullscreenDialog() {
+        return this[_page].fullscreenDialog;
+      }
+      get debugLabel() {
+        return super.debugLabel + "(" + dart.str(this[_page].name) + ")";
+      }
+    }
+    (_PageBasedCupertinoPageRoute.new = function(opts) {
+      let page = opts && 'page' in opts ? opts.page : null;
+      if (!(page !== null)) dart.assertFailed(null, I[0], 396, 17, "page != null");
+      _PageBasedCupertinoPageRoute.__proto__.new.call(this, {settings: page});
+      if (!this.opaque) dart.assertFailed(null, I[0], 398, 12, "opaque");
+    }).prototype = _PageBasedCupertinoPageRoute.prototype;
+    dart.addTypeTests(_PageBasedCupertinoPageRoute);
+    _PageBasedCupertinoPageRoute.prototype[_is__PageBasedCupertinoPageRoute_default] = true;
+    dart.addTypeCaches(_PageBasedCupertinoPageRoute);
+    dart.setMethodSignature(_PageBasedCupertinoPageRoute, () => ({
+      __proto__: dart.getMethods(_PageBasedCupertinoPageRoute.__proto__),
+      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setGetterSignature(_PageBasedCupertinoPageRoute, () => ({
+      __proto__: dart.getGetters(_PageBasedCupertinoPageRoute.__proto__),
+      [_page]: cupertino_page_route.CupertinoPage$(T),
+      title: dart.nullable(core.String),
+      maintainState: core.bool,
+      fullscreenDialog: core.bool
+    }));
+    dart.setLibraryUri(_PageBasedCupertinoPageRoute, I[1]);
+    return _PageBasedCupertinoPageRoute;
+  });
+  cupertino_page_route._PageBasedCupertinoPageRoute = cupertino_page_route._PageBasedCupertinoPageRoute$();
+  dart.addTypeTests(cupertino_page_route._PageBasedCupertinoPageRoute, _is__PageBasedCupertinoPageRoute_default);
+  var child$ = dart.privateName(cupertino_page_route, "CupertinoPage.child");
+  var title$0 = dart.privateName(cupertino_page_route, "CupertinoPage.title");
+  var maintainState$0 = dart.privateName(cupertino_page_route, "CupertinoPage.maintainState");
+  var fullscreenDialog$ = dart.privateName(cupertino_page_route, "CupertinoPage.fullscreenDialog");
+  const _is_CupertinoPage_default = Symbol('_is_CupertinoPage_default');
+  cupertino_page_route.CupertinoPage$ = dart.generic(T => {
+    var _PageBasedCupertinoPageRouteOfT = () => (_PageBasedCupertinoPageRouteOfT = dart.constFn(cupertino_page_route._PageBasedCupertinoPageRoute$(T)))();
+    class CupertinoPage extends navigator.Page$(T) {
+      get child() {
+        return this[child$];
+      }
+      set child(value) {
+        super.child = value;
+      }
+      get title() {
+        return this[title$0];
+      }
+      set title(value) {
+        super.title = value;
+      }
+      get maintainState() {
+        return this[maintainState$0];
+      }
+      set maintainState(value) {
+        super.maintainState = value;
+      }
+      get fullscreenDialog() {
+        return this[fullscreenDialog$];
+      }
+      set fullscreenDialog(value) {
+        super.fullscreenDialog = value;
+      }
+      createRoute(context) {
+        return new (_PageBasedCupertinoPageRouteOfT()).new({page: this});
+      }
+    }
+    (CupertinoPage.new = function(opts) {
+      let child = opts && 'child' in opts ? opts.child : null;
+      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
+      let key = opts && 'key' in opts ? opts.key : null;
+      let name = opts && 'name' in opts ? opts.name : null;
+      let $arguments = opts && 'arguments' in opts ? opts.arguments : null;
+      this[child$] = child;
+      this[maintainState$0] = maintainState;
+      this[title$0] = title;
+      this[fullscreenDialog$] = fullscreenDialog;
+      if (!(child !== null)) dart.assertFailed(null, I[0], 445, 16, "child != null");
+      if (!(maintainState !== null)) dart.assertFailed(null, I[0], 446, 16, "maintainState != null");
+      if (!(fullscreenDialog !== null)) dart.assertFailed(null, I[0], 447, 16, "fullscreenDialog != null");
+      CupertinoPage.__proto__.new.call(this, {key: key, name: name, arguments: $arguments});
+      ;
+    }).prototype = CupertinoPage.prototype;
+    dart.addTypeTests(CupertinoPage);
+    CupertinoPage.prototype[_is_CupertinoPage_default] = true;
+    dart.addTypeCaches(CupertinoPage);
+    dart.setMethodSignature(CupertinoPage, () => ({
+      __proto__: dart.getMethods(CupertinoPage.__proto__),
+      createRoute: dart.fnType(navigator.Route$(T), [framework.BuildContext])
+    }));
+    dart.setLibraryUri(CupertinoPage, I[1]);
+    dart.setFieldSignature(CupertinoPage, () => ({
+      __proto__: dart.getFields(CupertinoPage.__proto__),
+      child: dart.finalFieldType(framework.Widget),
+      title: dart.finalFieldType(dart.nullable(core.String)),
+      maintainState: dart.finalFieldType(core.bool),
+      fullscreenDialog: dart.finalFieldType(core.bool)
+    }));
+    return CupertinoPage;
+  });
+  cupertino_page_route.CupertinoPage = cupertino_page_route.CupertinoPage$();
+  dart.addTypeTests(cupertino_page_route.CupertinoPage, _is_CupertinoPage_default);
+  var child$0 = dart.privateName(cupertino_page_route, "CupertinoPageTransition.child");
+  var _primaryPositionAnimation = dart.privateName(cupertino_page_route, "_primaryPositionAnimation");
+  var _secondaryPositionAnimation = dart.privateName(cupertino_page_route, "_secondaryPositionAnimation");
+  var _primaryShadowAnimation = dart.privateName(cupertino_page_route, "_primaryShadowAnimation");
+  cupertino_page_route.CupertinoPageTransition = class CupertinoPageTransition extends framework.StatelessWidget {
+    get child() {
+      return this[child$0];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    build(context) {
+      if (!debug.debugCheckHasDirectionality(context)) dart.assertFailed(null, I[0], 530, 12, "debugCheckHasDirectionality(context)");
+      let textDirection = basic.Directionality.of(context);
+      return new transitions.SlideTransition.new({position: this[_secondaryPositionAnimation], textDirection: textDirection, transformHitTests: false, child: new transitions.SlideTransition.new({position: this[_primaryPositionAnimation], textDirection: textDirection, child: new transitions.DecoratedBoxTransition.new({decoration: this[_primaryShadowAnimation], child: this.child, $creationLocationd_0dea112b090073317d4: C[24] || CT.C24}), $creationLocationd_0dea112b090073317d4: C[28] || CT.C28}), $creationLocationd_0dea112b090073317d4: C[33] || CT.C33});
+    }
+  };
+  (cupertino_page_route.CupertinoPageTransition.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let primaryRouteAnimation = opts && 'primaryRouteAnimation' in opts ? opts.primaryRouteAnimation : null;
+    let secondaryRouteAnimation = opts && 'secondaryRouteAnimation' in opts ? opts.secondaryRouteAnimation : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let linearTransition = opts && 'linearTransition' in opts ? opts.linearTransition : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[child$0] = child;
+    if (!(linearTransition !== null)) dart.assertFailed(null, I[0], 487, 17, "linearTransition != null");
+    this[_primaryPositionAnimation] = (linearTransition ? primaryRouteAnimation : new animations.CurvedAnimation.new({parent: primaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.easeInToLinear})).drive(ui.Offset, cupertino_page_route._kRightMiddleTween);
+    this[_secondaryPositionAnimation] = (linearTransition ? secondaryRouteAnimation : new animations.CurvedAnimation.new({parent: secondaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.easeInToLinear})).drive(ui.Offset, cupertino_page_route._kMiddleLeftTween);
+    this[_primaryShadowAnimation] = (linearTransition ? primaryRouteAnimation : new animations.CurvedAnimation.new({parent: primaryRouteAnimation, curve: curves.Curves.linearToEaseOut})).drive(decoration.Decoration, cupertino_page_route._kGradientShadowTween);
+    cupertino_page_route.CupertinoPageTransition.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = cupertino_page_route.CupertinoPageTransition.prototype;
+  dart.addTypeTests(cupertino_page_route.CupertinoPageTransition);
+  dart.addTypeCaches(cupertino_page_route.CupertinoPageTransition);
+  dart.setMethodSignature(cupertino_page_route.CupertinoPageTransition, () => ({
+    __proto__: dart.getMethods(cupertino_page_route.CupertinoPageTransition.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(cupertino_page_route.CupertinoPageTransition, I[1]);
+  dart.setFieldSignature(cupertino_page_route.CupertinoPageTransition, () => ({
+    __proto__: dart.getFields(cupertino_page_route.CupertinoPageTransition.__proto__),
+    [_primaryPositionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
+    [_secondaryPositionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
+    [_primaryShadowAnimation]: dart.finalFieldType(animation$.Animation$(decoration.Decoration)),
+    child: dart.finalFieldType(framework.Widget)
+  }));
+  var child$1 = dart.privateName(cupertino_page_route, "CupertinoFullscreenDialogTransition.child");
+  var _positionAnimation = dart.privateName(cupertino_page_route, "_positionAnimation");
+  cupertino_page_route.CupertinoFullscreenDialogTransition = class CupertinoFullscreenDialogTransition extends framework.StatelessWidget {
+    get child() {
+      return this[child$1];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    build(context) {
+      if (!debug.debugCheckHasDirectionality(context)) dart.assertFailed(null, I[0], 593, 12, "debugCheckHasDirectionality(context)");
+      let textDirection = basic.Directionality.of(context);
+      return new transitions.SlideTransition.new({position: this[_secondaryPositionAnimation], textDirection: textDirection, transformHitTests: false, child: new transitions.SlideTransition.new({position: this[_positionAnimation], child: this.child, $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}), $creationLocationd_0dea112b090073317d4: C[43] || CT.C43});
+    }
+  };
+  (cupertino_page_route.CupertinoFullscreenDialogTransition.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let primaryRouteAnimation = opts && 'primaryRouteAnimation' in opts ? opts.primaryRouteAnimation : null;
+    let secondaryRouteAnimation = opts && 'secondaryRouteAnimation' in opts ? opts.secondaryRouteAnimation : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let linearTransition = opts && 'linearTransition' in opts ? opts.linearTransition : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[child$1] = child;
+    this[_positionAnimation] = new animations.CurvedAnimation.new({parent: primaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.linearToEaseOut.flipped}).drive(ui.Offset, cupertino_page_route._kBottomUpTween);
+    this[_secondaryPositionAnimation] = (linearTransition ? secondaryRouteAnimation : new animations.CurvedAnimation.new({parent: secondaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.easeInToLinear})).drive(ui.Offset, cupertino_page_route._kMiddleLeftTween);
+    cupertino_page_route.CupertinoFullscreenDialogTransition.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = cupertino_page_route.CupertinoFullscreenDialogTransition.prototype;
+  dart.addTypeTests(cupertino_page_route.CupertinoFullscreenDialogTransition);
+  dart.addTypeCaches(cupertino_page_route.CupertinoFullscreenDialogTransition);
+  dart.setMethodSignature(cupertino_page_route.CupertinoFullscreenDialogTransition, () => ({
+    __proto__: dart.getMethods(cupertino_page_route.CupertinoFullscreenDialogTransition.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(cupertino_page_route.CupertinoFullscreenDialogTransition, I[1]);
+  dart.setFieldSignature(cupertino_page_route.CupertinoFullscreenDialogTransition, () => ({
+    __proto__: dart.getFields(cupertino_page_route.CupertinoFullscreenDialogTransition.__proto__),
+    [_positionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
+    [_secondaryPositionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
+    child: dart.finalFieldType(framework.Widget)
+  }));
+  var child$2 = dart.privateName(cupertino_page_route, "_CupertinoBackGestureDetector.child");
+  var enabledCallback$ = dart.privateName(cupertino_page_route, "_CupertinoBackGestureDetector.enabledCallback");
+  var getWillPopCallback$ = dart.privateName(cupertino_page_route, "_CupertinoBackGestureDetector.getWillPopCallback");
+  var onStartPopGesture$ = dart.privateName(cupertino_page_route, "_CupertinoBackGestureDetector.onStartPopGesture");
+  const _is__CupertinoBackGestureDetector_default = Symbol('_is__CupertinoBackGestureDetector_default');
+  cupertino_page_route._CupertinoBackGestureDetector$ = dart.generic(T => {
+    var _CupertinoBackGestureDetectorStateOfT = () => (_CupertinoBackGestureDetectorStateOfT = dart.constFn(cupertino_page_route._CupertinoBackGestureDetectorState$(T)))();
+    class _CupertinoBackGestureDetector extends framework.StatefulWidget {
+      get child() {
+        return this[child$2];
+      }
+      set child(value) {
+        super.child = value;
+      }
+      get enabledCallback() {
+        return this[enabledCallback$];
+      }
+      set enabledCallback(value) {
+        super.enabledCallback = value;
+      }
+      get getWillPopCallback() {
+        return this[getWillPopCallback$];
+      }
+      set getWillPopCallback(value) {
+        super.getWillPopCallback = value;
+      }
+      get onStartPopGesture() {
+        return this[onStartPopGesture$];
+      }
+      set onStartPopGesture(value) {
+        super.onStartPopGesture = value;
+      }
+      createState() {
+        return new (_CupertinoBackGestureDetectorStateOfT()).new();
+      }
+    }
+    (_CupertinoBackGestureDetector.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let enabledCallback = opts && 'enabledCallback' in opts ? opts.enabledCallback : null;
+      let getWillPopCallback = opts && 'getWillPopCallback' in opts ? opts.getWillPopCallback : null;
+      let onStartPopGesture = opts && 'onStartPopGesture' in opts ? opts.onStartPopGesture : null;
+      let child = opts && 'child' in opts ? opts.child : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[enabledCallback$] = enabledCallback;
+      this[getWillPopCallback$] = getWillPopCallback;
+      this[onStartPopGesture$] = onStartPopGesture;
+      this[child$2] = child;
+      if (!(enabledCallback !== null)) dart.assertFailed(null, I[0], 625, 17, "enabledCallback != null");
+      if (!(getWillPopCallback !== null)) dart.assertFailed(null, I[0], 626, 16, "getWillPopCallback != null");
+      if (!(onStartPopGesture !== null)) dart.assertFailed(null, I[0], 627, 16, "onStartPopGesture != null");
+      if (!(child !== null)) dart.assertFailed(null, I[0], 628, 16, "child != null");
+      _CupertinoBackGestureDetector.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = _CupertinoBackGestureDetector.prototype;
+    dart.addTypeTests(_CupertinoBackGestureDetector);
+    _CupertinoBackGestureDetector.prototype[_is__CupertinoBackGestureDetector_default] = true;
+    dart.addTypeCaches(_CupertinoBackGestureDetector);
+    dart.setMethodSignature(_CupertinoBackGestureDetector, () => ({
+      __proto__: dart.getMethods(_CupertinoBackGestureDetector.__proto__),
+      createState: dart.fnType(cupertino_page_route._CupertinoBackGestureDetectorState$(T), [])
+    }));
+    dart.setLibraryUri(_CupertinoBackGestureDetector, I[1]);
+    dart.setFieldSignature(_CupertinoBackGestureDetector, () => ({
+      __proto__: dart.getFields(_CupertinoBackGestureDetector.__proto__),
+      child: dart.finalFieldType(framework.Widget),
+      enabledCallback: dart.finalFieldType(dart.fnType(core.bool, [])),
+      getWillPopCallback: dart.finalFieldType(dart.fnType(dart.dynamic, [])),
+      onStartPopGesture: dart.finalFieldType(dart.fnType(cupertino_page_route._CupertinoBackGestureController$(T), []))
+    }));
+    return _CupertinoBackGestureDetector;
+  });
+  cupertino_page_route._CupertinoBackGestureDetector = cupertino_page_route._CupertinoBackGestureDetector$();
+  dart.addTypeTests(cupertino_page_route._CupertinoBackGestureDetector, _is__CupertinoBackGestureDetector_default);
+  var _backGestureController = dart.privateName(cupertino_page_route, "_backGestureController");
+  var ___CupertinoBackGestureDetectorState__recognizer = dart.privateName(cupertino_page_route, "_#_CupertinoBackGestureDetectorState#_recognizer");
+  var _willPopCallback = dart.privateName(cupertino_page_route, "_willPopCallback");
+  var _recognizer = dart.privateName(cupertino_page_route, "_recognizer");
+  var _handleDragStart = dart.privateName(cupertino_page_route, "_handleDragStart");
+  var _handleDragUpdate = dart.privateName(cupertino_page_route, "_handleDragUpdate");
+  var _handleDragEnd = dart.privateName(cupertino_page_route, "_handleDragEnd");
+  var _handleDragCancel = dart.privateName(cupertino_page_route, "_handleDragCancel");
+  var _convertToLogical = dart.privateName(cupertino_page_route, "_convertToLogical");
+  var _handlePointerDown = dart.privateName(cupertino_page_route, "_handlePointerDown");
+  var _name = dart.privateName(ui, "_name");
+  const _is__CupertinoBackGestureDetectorState_default = Symbol('_is__CupertinoBackGestureDetectorState_default');
+  cupertino_page_route._CupertinoBackGestureDetectorState$ = dart.generic(T => {
+    class _CupertinoBackGestureDetectorState extends framework.State$(cupertino_page_route._CupertinoBackGestureDetector$(T)) {
+      get [_recognizer]() {
+        let t0;
+        t0 = this[___CupertinoBackGestureDetectorState__recognizer];
+        return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_recognizer")) : t0;
+      }
+      set [_recognizer](t0) {
+        this[___CupertinoBackGestureDetectorState__recognizer] = t0;
+      }
+      initState() {
+        let t1;
+        super.initState();
+        this[_recognizer] = (t1 = new monodrag.HorizontalDragGestureRecognizer.new({debugOwner: this}), (() => {
+          t1.onStart = dart.bind(this, _handleDragStart);
+          t1.onUpdate = dart.bind(this, _handleDragUpdate);
+          t1.onEnd = dart.bind(this, _handleDragEnd);
+          t1.onCancel = dart.bind(this, _handleDragCancel);
+          return t1;
+        })());
+      }
+      dispose() {
+        this[_recognizer].dispose();
+        super.dispose();
+      }
+      [_handleDragStart](details) {
+        if (!this.mounted) dart.assertFailed(null, I[0], 669, 12, "mounted");
+        if (!(this[_backGestureController] == null)) dart.assertFailed(null, I[0], 670, 12, "_backGestureController == null");
+        this[_willPopCallback] = T$.VoidToNdynamic().as(this.widget.getWillPopCallback());
+        this[_backGestureController] = this.widget.onStartPopGesture();
+      }
+      [_handleDragUpdate](details) {
+        let t1;
+        if (!this.mounted) dart.assertFailed(null, I[0], 676, 12, "mounted");
+        if (this[_willPopCallback] == null || details.globalPosition.dx < dart.nullCheck(this.context.size).width * cupertino_page_route._kMaxSwipeDistance) {
+          t1 = this[_backGestureController];
+          t1 == null ? null : t1.dragUpdate(this[_convertToLogical](dart.nullCheck(details.primaryDelta) / dart.nullCheck(this.context.size).width));
+        } else {
+          dart.nullCheck(this[_willPopCallback])();
+          this[_handleDragEnd](new drag_details.DragEndDetails.new());
+        }
+      }
+      [_handleDragEnd](details) {
+        let t1;
+        if (!this.mounted) dart.assertFailed(null, I[0], 689, 12, "mounted");
+        t1 = this[_backGestureController];
+        t1 == null ? null : t1.dragEnd(this[_convertToLogical](details.velocity.pixelsPerSecond.dx / dart.nullCheck(this.context.size).width));
+        this[_backGestureController] = null;
+        this[_willPopCallback] = null;
+      }
+      [_handleDragCancel]() {
+        let t1;
+        if (!this.mounted) dart.assertFailed(null, I[0], 698, 12, "mounted");
+        t1 = this[_backGestureController];
+        t1 == null ? null : t1.dragEnd(0.0);
+        this[_backGestureController] = null;
+      }
+      [_handlePointerDown](event) {
+        if (this.widget.enabledCallback()) this[_recognizer].addPointer(event);
+      }
+      [_convertToLogical](value) {
+        switch (basic.Directionality.of(this.context)) {
+          case C[49] || CT.C49:
+          {
+            return -value;
+          }
+          case C[50] || CT.C50:
+          {
+            return value;
+          }
+        }
+      }
+      build(context) {
+        if (!debug.debugCheckHasDirectionality(context)) dart.assertFailed(null, I[0], 720, 12, "debugCheckHasDirectionality(context)");
+        let dragAreaWidth = basic.Directionality.of(context) === ui.TextDirection.ltr ? media_query.MediaQuery.of(context).padding.left : media_query.MediaQuery.of(context).padding.right;
+        dragAreaWidth = math.max(core.double, dragAreaWidth, 20);
+        return new basic.Stack.new({fit: stack.StackFit.passthrough, children: T$.JSArrayOfWidget().of([this.widget.child, new basic.PositionedDirectional.new({start: 0.0, width: dragAreaWidth, top: 0.0, bottom: 0.0, child: new basic.Listener.new({onPointerDown: dart.bind(this, _handlePointerDown), behavior: proxy_box.HitTestBehavior.translucent, $creationLocationd_0dea112b090073317d4: C[51] || CT.C51}), $creationLocationd_0dea112b090073317d4: C[55] || CT.C55})]), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62});
+      }
+    }
+    (_CupertinoBackGestureDetectorState.new = function() {
+      this[_backGestureController] = null;
+      this[___CupertinoBackGestureDetectorState__recognizer] = null;
+      this[_willPopCallback] = null;
+      _CupertinoBackGestureDetectorState.__proto__.new.call(this);
+      ;
+    }).prototype = _CupertinoBackGestureDetectorState.prototype;
+    dart.addTypeTests(_CupertinoBackGestureDetectorState);
+    _CupertinoBackGestureDetectorState.prototype[_is__CupertinoBackGestureDetectorState_default] = true;
+    dart.addTypeCaches(_CupertinoBackGestureDetectorState);
+    dart.setMethodSignature(_CupertinoBackGestureDetectorState, () => ({
+      __proto__: dart.getMethods(_CupertinoBackGestureDetectorState.__proto__),
+      [_handleDragStart]: dart.fnType(dart.void, [drag_details.DragStartDetails]),
+      [_handleDragUpdate]: dart.fnType(dart.void, [drag_details.DragUpdateDetails]),
+      [_handleDragEnd]: dart.fnType(dart.void, [drag_details.DragEndDetails]),
+      [_handleDragCancel]: dart.fnType(dart.void, []),
+      [_handlePointerDown]: dart.fnType(dart.void, [events.PointerDownEvent]),
+      [_convertToLogical]: dart.fnType(core.double, [core.double]),
+      build: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setGetterSignature(_CupertinoBackGestureDetectorState, () => ({
+      __proto__: dart.getGetters(_CupertinoBackGestureDetectorState.__proto__),
+      [_recognizer]: monodrag.HorizontalDragGestureRecognizer
+    }));
+    dart.setSetterSignature(_CupertinoBackGestureDetectorState, () => ({
+      __proto__: dart.getSetters(_CupertinoBackGestureDetectorState.__proto__),
+      [_recognizer]: monodrag.HorizontalDragGestureRecognizer
+    }));
+    dart.setLibraryUri(_CupertinoBackGestureDetectorState, I[1]);
+    dart.setFieldSignature(_CupertinoBackGestureDetectorState, () => ({
+      __proto__: dart.getFields(_CupertinoBackGestureDetectorState.__proto__),
+      [_backGestureController]: dart.fieldType(dart.nullable(cupertino_page_route._CupertinoBackGestureController$(T))),
+      [___CupertinoBackGestureDetectorState__recognizer]: dart.fieldType(dart.nullable(monodrag.HorizontalDragGestureRecognizer)),
+      [_willPopCallback]: dart.fieldType(dart.nullable(dart.fnType(dart.dynamic, [])))
+    }));
+    return _CupertinoBackGestureDetectorState;
+  });
+  cupertino_page_route._CupertinoBackGestureDetectorState = cupertino_page_route._CupertinoBackGestureDetectorState$();
+  dart.addTypeTests(cupertino_page_route._CupertinoBackGestureDetectorState, _is__CupertinoBackGestureDetectorState_default);
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  const _is__CupertinoBackGestureController_default = Symbol('_is__CupertinoBackGestureController_default');
+  cupertino_page_route._CupertinoBackGestureController$ = dart.generic(T => {
+    class _CupertinoBackGestureController extends core.Object {
+      dragUpdate(delta) {
+        let t1;
+        t1 = this.controller;
+        t1.value = t1.value - delta;
+      }
+      dragEnd(velocity) {
+        let animationCurve = C[66] || CT.C66;
+        let animateForward = null;
+        if (velocity[$abs]() >= 1)
+          animateForward = velocity <= 0;
+        else
+          animateForward = this.controller.value > 0.5;
+        if (animateForward) {
+          let droppedPageForwardAnimationTime = math.min(core.int, dart.nullCheck(ui.lerpDouble(800, 0, this.controller.value))[$floor](), 300);
+          this.controller.animateTo(1.0, {duration: new core.Duration.new({milliseconds: droppedPageForwardAnimationTime}), curve: animationCurve});
+        } else {
+          this.navigator.pop(T$.ObjectN());
+          if (this.controller.isAnimating) {
+            let droppedPageBackAnimationTime = dart.nullCheck(ui.lerpDouble(0, 800, this.controller.value))[$floor]();
+            this.controller.animateBack(0.0, {duration: new core.Duration.new({milliseconds: droppedPageBackAnimationTime}), curve: animationCurve});
+          }
+        }
+        if (this.controller.isAnimating) {
+          let animationStatusCallback = null;
+          function animationStatusCallback$35get() {
+            let t2;
+            t2 = animationStatusCallback;
+            return t2 == null ? dart.throw(new _internal.LateError.localNI("animationStatusCallback")) : t2;
+          }
+          dart.fn(animationStatusCallback$35get, T$.VoidToFn$1());
+          function animationStatusCallback$35set(t3) {
+            return animationStatusCallback = t3;
+          }
+          dart.fn(animationStatusCallback$35set, T$.FnTodynamic());
+          animationStatusCallback$35set(dart.fn(status => {
+            this.navigator.didStopUserGesture();
+            this.controller.removeStatusListener(animationStatusCallback$35get());
+          }, T$.AnimationStatusTovoid()));
+          this.controller.addStatusListener(animationStatusCallback$35get());
+        } else {
+          this.navigator.didStopUserGesture();
+        }
+      }
+    }
+    (_CupertinoBackGestureController.new = function(opts) {
+      let navigator = opts && 'navigator' in opts ? opts.navigator : null;
+      let controller = opts && 'controller' in opts ? opts.controller : null;
+      this.navigator = navigator;
+      this.controller = controller;
+      if (!(navigator !== null)) dart.assertFailed(null, I[0], 765, 17, "navigator != null");
+      if (!(controller !== null)) dart.assertFailed(null, I[0], 766, 16, "controller != null");
+      this.navigator.didStartUserGesture();
+    }).prototype = _CupertinoBackGestureController.prototype;
+    dart.addTypeTests(_CupertinoBackGestureController);
+    _CupertinoBackGestureController.prototype[_is__CupertinoBackGestureController_default] = true;
+    dart.addTypeCaches(_CupertinoBackGestureController);
+    dart.setMethodSignature(_CupertinoBackGestureController, () => ({
+      __proto__: dart.getMethods(_CupertinoBackGestureController.__proto__),
+      dragUpdate: dart.fnType(dart.void, [core.double]),
+      dragEnd: dart.fnType(dart.void, [core.double])
+    }));
+    dart.setLibraryUri(_CupertinoBackGestureController, I[1]);
+    dart.setFieldSignature(_CupertinoBackGestureController, () => ({
+      __proto__: dart.getFields(_CupertinoBackGestureController.__proto__),
+      controller: dart.finalFieldType(animation_controller.AnimationController),
+      navigator: dart.finalFieldType(navigator.NavigatorState)
+    }));
+    return _CupertinoBackGestureController;
+  });
+  cupertino_page_route._CupertinoBackGestureController = cupertino_page_route._CupertinoBackGestureController$();
+  dart.addTypeTests(cupertino_page_route._CupertinoBackGestureController, _is__CupertinoBackGestureController_default);
+  var edgeGradient$ = dart.privateName(cupertino_page_route, "_CupertinoEdgeShadowDecoration.edgeGradient");
+  cupertino_page_route._CupertinoEdgeShadowDecoration = class _CupertinoEdgeShadowDecoration extends decoration.Decoration {
+    get edgeGradient() {
+      return this[edgeGradient$];
+    }
+    set edgeGradient(value) {
+      super.edgeGradient = value;
+    }
+    static lerp(a, b, t) {
+      let t5, t5$;
+      if (!(t !== null)) dart.assertFailed(null, I[0], 888, 12, "t != null");
+      if (a == null && b == null) return null;
+      return new cupertino_page_route._CupertinoEdgeShadowDecoration.new({edgeGradient: gradient.LinearGradient.lerp((t5 = a, t5 == null ? null : t5.edgeGradient), (t5$ = b, t5$ == null ? null : t5$.edgeGradient), t)});
+    }
+    lerpFrom(a, t) {
+      if (cupertino_page_route._CupertinoEdgeShadowDecoration.is(a)) return dart.nullCheck(cupertino_page_route._CupertinoEdgeShadowDecoration.lerp(a, this, t));
+      return dart.nullCheck(cupertino_page_route._CupertinoEdgeShadowDecoration.lerp(null, this, t));
+    }
+    lerpTo(b, t) {
+      if (cupertino_page_route._CupertinoEdgeShadowDecoration.is(b)) return dart.nullCheck(cupertino_page_route._CupertinoEdgeShadowDecoration.lerp(this, b, t));
+      return dart.nullCheck(cupertino_page_route._CupertinoEdgeShadowDecoration.lerp(this, null, t));
+    }
+    createBoxPainter(onChanged = null) {
+      return new cupertino_page_route._CupertinoEdgeShadowPainter.new(this, onChanged);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return cupertino_page_route._CupertinoEdgeShadowDecoration.is(other) && dart.equals(other.edgeGradient, this.edgeGradient);
+    }
+    get hashCode() {
+      return dart.hashCode(this.edgeGradient);
+    }
+    debugFillProperties(properties) {
+      super.debugFillProperties(properties);
+      properties.add(new (T$.DiagnosticsPropertyOfLinearGradient()).new("edgeGradient", this.edgeGradient));
+    }
+  };
+  (cupertino_page_route._CupertinoEdgeShadowDecoration.new = function(opts) {
+    let edgeGradient = opts && 'edgeGradient' in opts ? opts.edgeGradient : null;
+    this[edgeGradient$] = edgeGradient;
+    cupertino_page_route._CupertinoEdgeShadowDecoration.__proto__.new.call(this);
+    ;
+  }).prototype = cupertino_page_route._CupertinoEdgeShadowDecoration.prototype;
+  dart.addTypeTests(cupertino_page_route._CupertinoEdgeShadowDecoration);
+  dart.addTypeCaches(cupertino_page_route._CupertinoEdgeShadowDecoration);
+  dart.setMethodSignature(cupertino_page_route._CupertinoEdgeShadowDecoration, () => ({
+    __proto__: dart.getMethods(cupertino_page_route._CupertinoEdgeShadowDecoration.__proto__),
+    lerpFrom: dart.fnType(cupertino_page_route._CupertinoEdgeShadowDecoration, [dart.nullable(decoration.Decoration), core.double]),
+    lerpTo: dart.fnType(cupertino_page_route._CupertinoEdgeShadowDecoration, [dart.nullable(decoration.Decoration), core.double]),
+    createBoxPainter: dart.fnType(cupertino_page_route._CupertinoEdgeShadowPainter, [], [dart.nullable(dart.fnType(dart.void, []))])
+  }));
+  dart.setLibraryUri(cupertino_page_route._CupertinoEdgeShadowDecoration, I[1]);
+  dart.setFieldSignature(cupertino_page_route._CupertinoEdgeShadowDecoration, () => ({
+    __proto__: dart.getFields(cupertino_page_route._CupertinoEdgeShadowDecoration.__proto__),
+    edgeGradient: dart.finalFieldType(dart.nullable(gradient.LinearGradient))
+  }));
+  dart.defineExtensionMethods(cupertino_page_route._CupertinoEdgeShadowDecoration, ['_equals']);
+  dart.defineExtensionAccessors(cupertino_page_route._CupertinoEdgeShadowDecoration, ['hashCode']);
+  dart.defineLazy(cupertino_page_route._CupertinoEdgeShadowDecoration, {
+    /*cupertino_page_route._CupertinoEdgeShadowDecoration.none*/get none() {
+      return C[67] || CT.C67;
+    }
+  }, false);
+  var _decoration$ = dart.privateName(cupertino_page_route, "_decoration");
+  cupertino_page_route._CupertinoEdgeShadowPainter = class _CupertinoEdgeShadowPainter extends decoration.BoxPainter {
+    paint(canvas, offset, configuration) {
+      let t5;
+      let gradient = this[_decoration$].edgeGradient;
+      if (gradient == null) return;
+      let textDirection = configuration.textDirection;
+      if (!(textDirection != null)) dart.assertFailed(null, I[0], 949, 12, "textDirection != null");
+      let deltaX = null;
+      switch (dart.nullCheck(textDirection)) {
+        case C[49] || CT.C49:
+        {
+          deltaX = dart.nullCheck(configuration.size).width;
+          break;
+        }
+        case C[50] || CT.C50:
+        {
+          deltaX = -dart.nullCheck(configuration.size).width;
+          break;
+        }
+      }
+      let rect = offset['&'](dart.nullCheck(configuration.size)).translate(deltaX, 0.0);
+      let paint = (t5 = ui.Paint.new(), (() => {
+        t5.shader = gradient.createShader(rect, {textDirection: textDirection});
+        return t5;
+      })());
+      canvas.drawRect(rect, paint);
+    }
+  };
+  (cupertino_page_route._CupertinoEdgeShadowPainter.new = function(_decoration, onChange) {
+    this[_decoration$] = _decoration;
+    if (!(_decoration !== null)) dart.assertFailed(null, I[0], 937, 16, "_decoration != null");
+    cupertino_page_route._CupertinoEdgeShadowPainter.__proto__.new.call(this, onChange);
+    ;
+  }).prototype = cupertino_page_route._CupertinoEdgeShadowPainter.prototype;
+  dart.addTypeTests(cupertino_page_route._CupertinoEdgeShadowPainter);
+  dart.addTypeCaches(cupertino_page_route._CupertinoEdgeShadowPainter);
+  dart.setMethodSignature(cupertino_page_route._CupertinoEdgeShadowPainter, () => ({
+    __proto__: dart.getMethods(cupertino_page_route._CupertinoEdgeShadowPainter.__proto__),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Offset, image_provider.ImageConfiguration])
+  }));
+  dart.setLibraryUri(cupertino_page_route._CupertinoEdgeShadowPainter, I[1]);
+  dart.setFieldSignature(cupertino_page_route._CupertinoEdgeShadowPainter, () => ({
+    __proto__: dart.getFields(cupertino_page_route._CupertinoEdgeShadowPainter.__proto__),
+    [_decoration$]: dart.finalFieldType(cupertino_page_route._CupertinoEdgeShadowDecoration)
+  }));
+  var barrierLabel$ = dart.privateName(cupertino_page_route, "_CupertinoModalPopupRoute.barrierLabel");
+  var barrierColor$ = dart.privateName(cupertino_page_route, "_CupertinoModalPopupRoute.barrierColor");
+  var _barrierDismissible = dart.privateName(cupertino_page_route, "_barrierDismissible");
+  var _semanticsDismissible = dart.privateName(cupertino_page_route, "_semanticsDismissible");
+  var _animation = dart.privateName(cupertino_page_route, "_animation");
+  var ___CupertinoModalPopupRoute__offsetTween = dart.privateName(cupertino_page_route, "_#_CupertinoModalPopupRoute#_offsetTween");
+  var _offsetTween = dart.privateName(cupertino_page_route, "_offsetTween");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  const _is__CupertinoModalPopupRoute_default = Symbol('_is__CupertinoModalPopupRoute_default');
+  cupertino_page_route._CupertinoModalPopupRoute$ = dart.generic(T => {
+    class _CupertinoModalPopupRoute extends routes.PopupRoute$(T) {
+      get barrierLabel() {
+        return this[barrierLabel$];
+      }
+      set barrierLabel(value) {
+        super.barrierLabel = value;
+      }
+      get barrierColor() {
+        return this[barrierColor$];
+      }
+      set barrierColor(value) {
+        super.barrierColor = value;
+      }
+      get barrierDismissible() {
+        let t5;
+        t5 = this[_barrierDismissible];
+        return t5 == null ? true : t5;
+      }
+      get semanticsDismissible() {
+        let t5;
+        t5 = this[_semanticsDismissible];
+        return t5 == null ? false : t5;
+      }
+      get transitionDuration() {
+        return cupertino_page_route._kModalPopupTransitionDuration;
+      }
+      get [_offsetTween]() {
+        let t5;
+        t5 = this[___CupertinoModalPopupRoute__offsetTween];
+        return t5 == null ? dart.throw(new _internal.LateError.fieldNI("_offsetTween")) : t5;
+      }
+      set [_offsetTween](t5) {
+        this[___CupertinoModalPopupRoute__offsetTween] = t5;
+      }
+      createAnimation() {
+        if (!(this[_animation] == null)) dart.assertFailed(null, I[0], 1011, 12, "_animation == null");
+        this[_animation] = new animations.CurvedAnimation.new({parent: super.createAnimation(), curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.linearToEaseOut.flipped});
+        this[_offsetTween] = new (T$.TweenOfOffset()).new({begin: C[68] || CT.C68, end: ui.Offset.zero});
+        return dart.nullCheck(this[_animation]);
+      }
+      buildPage(context, animation, secondaryAnimation) {
+        return new interface_level.CupertinoUserInterfaceLevel.new({data: interface_level.CupertinoUserInterfaceLevelData.elevated, child: new basic.Builder.new({builder: this.builder, $creationLocationd_0dea112b090073317d4: C[69] || CT.C69}), $creationLocationd_0dea112b090073317d4: C[72] || CT.C72});
+      }
+      buildTransitions(context, animation, secondaryAnimation, child) {
+        return new basic.Align.new({alignment: alignment.Alignment.bottomCenter, child: new basic.FractionalTranslation.new({translation: this[_offsetTween].evaluate(dart.nullCheck(this[_animation])), child: child, $creationLocationd_0dea112b090073317d4: C[76] || CT.C76}), $creationLocationd_0dea112b090073317d4: C[80] || CT.C80});
+      }
+    }
+    (_CupertinoModalPopupRoute.new = function(opts) {
+      let barrierColor = opts && 'barrierColor' in opts ? opts.barrierColor : null;
+      let barrierLabel = opts && 'barrierLabel' in opts ? opts.barrierLabel : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : null;
+      let semanticsDismissible = opts && 'semanticsDismissible' in opts ? opts.semanticsDismissible : null;
+      let filter = opts && 'filter' in opts ? opts.filter : null;
+      let settings = opts && 'settings' in opts ? opts.settings : null;
+      this[_barrierDismissible] = null;
+      this[_semanticsDismissible] = null;
+      this[_animation] = null;
+      this[___CupertinoModalPopupRoute__offsetTween] = null;
+      this[barrierColor$] = barrierColor;
+      this[barrierLabel$] = barrierLabel;
+      this.builder = builder;
+      _CupertinoModalPopupRoute.__proto__.new.call(this, {filter: filter, settings: settings});
+      this[_barrierDismissible] = barrierDismissible;
+      this[_semanticsDismissible] = semanticsDismissible;
+    }).prototype = _CupertinoModalPopupRoute.prototype;
+    dart.addTypeTests(_CupertinoModalPopupRoute);
+    _CupertinoModalPopupRoute.prototype[_is__CupertinoModalPopupRoute_default] = true;
+    dart.addTypeCaches(_CupertinoModalPopupRoute);
+    dart.setMethodSignature(_CupertinoModalPopupRoute, () => ({
+      __proto__: dart.getMethods(_CupertinoModalPopupRoute.__proto__),
+      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation$.Animation$(core.double), animation$.Animation$(core.double)])
+    }));
+    dart.setGetterSignature(_CupertinoModalPopupRoute, () => ({
+      __proto__: dart.getGetters(_CupertinoModalPopupRoute.__proto__),
+      barrierDismissible: core.bool,
+      transitionDuration: core.Duration,
+      [_offsetTween]: tween.Tween$(ui.Offset)
+    }));
+    dart.setSetterSignature(_CupertinoModalPopupRoute, () => ({
+      __proto__: dart.getSetters(_CupertinoModalPopupRoute.__proto__),
+      [_offsetTween]: tween.Tween$(ui.Offset)
+    }));
+    dart.setLibraryUri(_CupertinoModalPopupRoute, I[1]);
+    dart.setFieldSignature(_CupertinoModalPopupRoute, () => ({
+      __proto__: dart.getFields(_CupertinoModalPopupRoute.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
+      [_barrierDismissible]: dart.fieldType(dart.nullable(core.bool)),
+      [_semanticsDismissible]: dart.fieldType(dart.nullable(core.bool)),
+      barrierLabel: dart.finalFieldType(core.String),
+      barrierColor: dart.finalFieldType(dart.nullable(ui.Color)),
+      [_animation]: dart.fieldType(dart.nullable(animation$.Animation$(core.double))),
+      [___CupertinoModalPopupRoute__offsetTween]: dart.fieldType(dart.nullable(tween.Tween$(ui.Offset)))
+    }));
+    return _CupertinoModalPopupRoute;
+  });
+  cupertino_page_route._CupertinoModalPopupRoute = cupertino_page_route._CupertinoModalPopupRoute$();
+  dart.addTypeTests(cupertino_page_route._CupertinoModalPopupRoute, _is__CupertinoModalPopupRoute_default);
+  const _is_CupertinoDialogRoute_default = Symbol('_is_CupertinoDialogRoute_default');
+  cupertino_page_route.CupertinoDialogRoute$ = dart.generic(T => {
+    class CupertinoDialogRoute extends routes.RawDialogRoute$(T) {}
+    (CupertinoDialogRoute.new = function(opts) {
+      let t6, t6$;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let context = opts && 'context' in opts ? opts.context : null;
+      let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : true;
+      let barrierColor = opts && 'barrierColor' in opts ? opts.barrierColor : null;
+      let barrierLabel = opts && 'barrierLabel' in opts ? opts.barrierLabel : null;
+      let transitionDuration = opts && 'transitionDuration' in opts ? opts.transitionDuration : C[84] || CT.C84;
+      let transitionBuilder = opts && 'transitionBuilder' in opts ? opts.transitionBuilder : C[85] || CT.C85;
+      let settings = opts && 'settings' in opts ? opts.settings : null;
+      if (!(barrierDismissible !== null)) dart.assertFailed(null, I[0], 1317, 16, "barrierDismissible != null");
+      CupertinoDialogRoute.__proto__.new.call(this, {pageBuilder: dart.fn((context, animation, secondaryAnimation) => builder(context), T$.BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget()), barrierDismissible: barrierDismissible, barrierLabel: (t6 = barrierLabel, t6 == null ? localizations.CupertinoLocalizations.of(context).modalBarrierDismissLabel : t6), barrierColor: (t6$ = barrierColor, t6$ == null ? colors.CupertinoDynamicColor.resolve(cupertino_page_route._kModalBarrierColor, context) : t6$), transitionDuration: transitionDuration, transitionBuilder: transitionBuilder, settings: settings});
+      ;
+    }).prototype = CupertinoDialogRoute.prototype;
+    dart.addTypeTests(CupertinoDialogRoute);
+    CupertinoDialogRoute.prototype[_is_CupertinoDialogRoute_default] = true;
+    dart.addTypeCaches(CupertinoDialogRoute);
+    dart.setLibraryUri(CupertinoDialogRoute, I[1]);
+    return CupertinoDialogRoute;
+  });
+  cupertino_page_route.CupertinoDialogRoute = cupertino_page_route.CupertinoDialogRoute$();
+  dart.addTypeTests(cupertino_page_route.CupertinoDialogRoute, _is_CupertinoDialogRoute_default);
+  var Color_value = dart.privateName(ui, "Color.value");
+  var CupertinoDynamicColor_darkHighContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastElevatedColor");
+  var CupertinoDynamicColor_highContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastElevatedColor");
+  var CupertinoDynamicColor_darkElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkElevatedColor");
+  var CupertinoDynamicColor_elevatedColor = dart.privateName(colors, "CupertinoDynamicColor.elevatedColor");
+  var CupertinoDynamicColor_darkHighContrastColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastColor");
+  var CupertinoDynamicColor_highContrastColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastColor");
+  var CupertinoDynamicColor_darkColor = dart.privateName(colors, "CupertinoDynamicColor.darkColor");
+  var CupertinoDynamicColor_color = dart.privateName(colors, "CupertinoDynamicColor.color");
+  var CupertinoDynamicColor__debugResolveContext = dart.privateName(colors, "CupertinoDynamicColor._debugResolveContext");
+  var CupertinoDynamicColor__debugLabel = dart.privateName(colors, "CupertinoDynamicColor._debugLabel");
+  var CupertinoDynamicColor__effectiveColor = dart.privateName(colors, "CupertinoDynamicColor._effectiveColor");
+  cupertino_page_route.showCupertinoModalPopup = function showCupertinoModalPopup(T, opts) {
+    let context = opts && 'context' in opts ? opts.context : null;
+    let builder = opts && 'builder' in opts ? opts.builder : null;
+    let filter = opts && 'filter' in opts ? opts.filter : null;
+    let barrierColor = opts && 'barrierColor' in opts ? opts.barrierColor : C[86] || CT.C86;
+    let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : true;
+    let useRootNavigator = opts && 'useRootNavigator' in opts ? opts.useRootNavigator : true;
+    let semanticsDismissible = opts && 'semanticsDismissible' in opts ? opts.semanticsDismissible : null;
+    let routeSettings = opts && 'routeSettings' in opts ? opts.routeSettings : null;
+    if (!(useRootNavigator !== null)) dart.assertFailed(null, I[0], 1100, 10, "useRootNavigator != null");
+    return navigator.Navigator.of(context, {rootNavigator: useRootNavigator}).push(T, new (cupertino_page_route._CupertinoModalPopupRoute$(T)).new({barrierColor: colors.CupertinoDynamicColor.resolve(barrierColor, context), barrierDismissible: barrierDismissible, barrierLabel: "Dismiss", builder: builder, filter: filter, semanticsDismissible: semanticsDismissible, settings: routeSettings}));
+  };
+  cupertino_page_route._buildCupertinoDialogTransitions = function _buildCupertinoDialogTransitions(context, animation, secondaryAnimation, child) {
+    let fadeAnimation = new animations.CurvedAnimation.new({parent: animation, curve: curves.Curves.easeInOut});
+    if (animation.status === animation$.AnimationStatus.reverse) {
+      return new transitions.FadeTransition.new({opacity: fadeAnimation, child: child, $creationLocationd_0dea112b090073317d4: C[89] || CT.C89});
+    }
+    return new transitions.FadeTransition.new({opacity: fadeAnimation, child: new transitions.ScaleTransition.new({child: child, scale: animation.drive(core.double, cupertino_page_route._dialogScaleTween), $creationLocationd_0dea112b090073317d4: C[93] || CT.C93}), $creationLocationd_0dea112b090073317d4: C[97] || CT.C97});
+  };
+  cupertino_page_route.showCupertinoDialog = function showCupertinoDialog(T, opts) {
+    let context = opts && 'context' in opts ? opts.context : null;
+    let builder = opts && 'builder' in opts ? opts.builder : null;
+    let barrierLabel = opts && 'barrierLabel' in opts ? opts.barrierLabel : null;
+    let useRootNavigator = opts && 'useRootNavigator' in opts ? opts.useRootNavigator : true;
+    let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : false;
+    let routeSettings = opts && 'routeSettings' in opts ? opts.routeSettings : null;
+    if (!(builder !== null)) dart.assertFailed(null, I[0], 1257, 10, "builder != null");
+    if (!(useRootNavigator !== null)) dart.assertFailed(null, I[0], 1258, 10, "useRootNavigator != null");
+    return navigator.Navigator.of(context, {rootNavigator: useRootNavigator}).push(T, new (cupertino_page_route.CupertinoDialogRoute$(T)).new({builder: builder, context: context, barrierDismissible: barrierDismissible, barrierLabel: barrierLabel, barrierColor: colors.CupertinoDynamicColor.resolve(cupertino_page_route._kModalBarrierColor, context), settings: routeSettings}));
+  };
+  var Gradient_transform = dart.privateName(gradient, "Gradient.transform");
+  var Gradient_stops = dart.privateName(gradient, "Gradient.stops");
+  var Gradient_colors = dart.privateName(gradient, "Gradient.colors");
+  var LinearGradient_tileMode = dart.privateName(gradient, "LinearGradient.tileMode");
+  var AlignmentDirectional_y = dart.privateName(alignment, "AlignmentDirectional.y");
+  var AlignmentDirectional_start = dart.privateName(alignment, "AlignmentDirectional.start");
+  var LinearGradient_end = dart.privateName(gradient, "LinearGradient.end");
+  var LinearGradient_begin = dart.privateName(gradient, "LinearGradient.begin");
+  dart.defineLazy(cupertino_page_route, {
+    /*cupertino_page_route._kBackGestureWidth*/get _kBackGestureWidth() {
+      return 20;
+    },
+    /*cupertino_page_route._kMaxSwipeDistance*/get _kMaxSwipeDistance() {
+      return 0.42;
+    },
+    /*cupertino_page_route._kMinFlingVelocity*/get _kMinFlingVelocity() {
+      return 1;
+    },
+    /*cupertino_page_route._kMaxDroppedSwipePageForwardAnimationTime*/get _kMaxDroppedSwipePageForwardAnimationTime() {
+      return 800;
+    },
+    /*cupertino_page_route._kMaxPageBackAnimationTime*/get _kMaxPageBackAnimationTime() {
+      return 300;
+    },
+    /*cupertino_page_route._kModalBarrierColor*/get _kModalBarrierColor() {
+      return C[86] || CT.C86;
+    },
+    /*cupertino_page_route._kModalPopupTransitionDuration*/get _kModalPopupTransitionDuration() {
+      return C[101] || CT.C101;
+    },
+    /*cupertino_page_route._kRightMiddleTween*/get _kRightMiddleTween() {
+      return new (T$.TweenOfOffset()).new({begin: C[102] || CT.C102, end: ui.Offset.zero});
+    },
+    /*cupertino_page_route._kMiddleLeftTween*/get _kMiddleLeftTween() {
+      return new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[103] || CT.C103});
+    },
+    /*cupertino_page_route._kBottomUpTween*/get _kBottomUpTween() {
+      return new (T$.TweenOfOffset()).new({begin: C[68] || CT.C68, end: ui.Offset.zero});
+    },
+    /*cupertino_page_route._kGradientShadowTween*/get _kGradientShadowTween() {
+      return new implicit_animations.DecorationTween.new({begin: cupertino_page_route._CupertinoEdgeShadowDecoration.none, end: C[104] || CT.C104});
+    },
+    /*cupertino_page_route._dialogScaleTween*/get _dialogScaleTween() {
+      return new (T$.TweenOfdouble()).new({begin: 1.3, end: 1.0}).chain(new tween.CurveTween.new({curve: curves.Curves.linearToEaseOut}));
+    }
+  }, false);
+  dart.trackLibraries("packages/cupertino_will_pop_scope/src/cupertino_page_route.dart", {
+    "package:cupertino_will_pop_scope/src/cupertino_page_route.dart": cupertino_page_route
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["cupertino_page_route.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/cupertino_will_pop_scope/src/cupertino_page_route.dart.lib.js"}');
+  // Exports:
+  return {
+    src__cupertino_page_route: cupertino_page_route
+  };
+}));
+
+//# sourceMappingURL=cupertino_page_route.dart.lib.js.map

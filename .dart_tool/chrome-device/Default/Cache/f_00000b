@@ -1,0 +1,626 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart'], (function load__packages__nested__nested_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const collection = dart_sdk.collection;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  var nested = Object.create(dart.library);
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $reversed = dartx.reversed;
+  dart._checkModuleNullSafetyMode(true);
+  var T = {
+    LinkedHashSetOf_NestedHookElement: () => (T.LinkedHashSetOf_NestedHookElement = dart.constFn(collection.LinkedHashSet$(nested._NestedHookElement)))(),
+    _NestedHookElementN: () => (T._NestedHookElementN = dart.constFn(dart.nullable(nested._NestedHookElement)))(),
+    ElementTobool: () => (T.ElementTobool = dart.constFn(dart.fnType(core.bool, [framework.Element])))(),
+    ElementTovoid: () => (T.ElementTovoid = dart.constFn(dart.fnType(dart.void, [framework.Element])))(),
+    SingleChildStateOfSingleChildStatefulWidget: () => (T.SingleChildStateOfSingleChildStatefulWidget = dart.constFn(nested.SingleChildState$(nested.SingleChildStatefulWidget)))(),
+    SingleChildStateMixinOfStatefulWidget: () => (T.SingleChildStateMixinOfStatefulWidget = dart.constFn(nested.SingleChildStateMixin$(framework.StatefulWidget)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "owner",
+        [_Location_column]: 9,
+        [_Location_line]: 104,
+        [_Location_file]: null
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "wrappedWidget",
+        [_Location_column]: 9,
+        [_Location_line]: 105,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "injectedChild",
+        [_Location_column]: 9,
+        [_Location_line]: 106,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4], widget_inspector._Location);
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 31,
+        [_Location_line]: 103,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0/lib/nested.dart"
+      });
+    }
+  }, false);
+  var C = Array(5).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0/lib/nested.dart",
+    "package:nested/nested.dart"
+  ];
+  var _children = dart.privateName(nested, "_children");
+  var _child = dart.privateName(nested, "_child");
+  nested.Nested = class Nested extends framework.StatelessWidget {
+    build(context) {
+      dart.throw(new core.StateError.new("implemented internally"));
+    }
+    createElement() {
+      return new nested._NestedElement.new(this);
+    }
+  };
+  (nested.Nested.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let children = opts && 'children' in opts ? opts.children : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    if (!children[$isNotEmpty]) dart.assertFailed(null, I[0], 71, 16, "children.isNotEmpty");
+    this[_children] = children;
+    this[_child] = child;
+    nested.Nested.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = nested.Nested.prototype;
+  dart.addTypeTests(nested.Nested);
+  dart.addTypeCaches(nested.Nested);
+  nested.Nested[dart.implements] = () => [nested.SingleChildWidget];
+  dart.setMethodSignature(nested.Nested, () => ({
+    __proto__: dart.getMethods(nested.Nested.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext]),
+    createElement: dart.fnType(nested._NestedElement, [])
+  }));
+  dart.setLibraryUri(nested.Nested, I[1]);
+  dart.setFieldSignature(nested.Nested, () => ({
+    __proto__: dart.getFields(nested.Nested.__proto__),
+    [_children]: dart.finalFieldType(core.List$(nested.SingleChildWidget)),
+    [_child]: dart.finalFieldType(dart.nullable(framework.Widget))
+  }));
+  var _parent = dart.privateName(nested, "_parent");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _parent$ = dart.privateName(nested, "SingleChildWidgetElementMixin._parent");
+  nested.SingleChildWidgetElementMixin = class SingleChildWidgetElementMixin extends framework.Element {};
+  nested.SingleChildWidgetElementMixin[dart.mixinOn] = Element => class SingleChildWidgetElementMixin extends Element {
+    get [_parent]() {
+      return this[_parent$];
+    }
+    set [_parent](value) {
+      this[_parent$] = value;
+    }
+    mount(parent, newSlot) {
+      if (T._NestedHookElementN().is(parent)) {
+        this[_parent] = parent;
+      }
+      super.mount(parent, newSlot);
+    }
+    activate() {
+      super.activate();
+      this.visitAncestorElements(dart.fn(parent => {
+        if (nested._NestedHookElement.is(parent)) {
+          this[_parent] = parent;
+        }
+        return false;
+      }, T.ElementTobool()));
+    }
+  };
+  (nested.SingleChildWidgetElementMixin[dart.mixinNew] = function() {
+    this[_parent$] = null;
+  }).prototype = nested.SingleChildWidgetElementMixin.prototype;
+  dart.addTypeTests(nested.SingleChildWidgetElementMixin);
+  dart.addTypeCaches(nested.SingleChildWidgetElementMixin);
+  nested.SingleChildWidgetElementMixin[dart.implements] = () => [framework.Element];
+  dart.setMethodSignature(nested.SingleChildWidgetElementMixin, () => ({
+    __proto__: dart.getMethods(nested.SingleChildWidgetElementMixin.__proto__),
+    mount: dart.fnType(dart.void, [dart.nullable(framework.Element), dart.dynamic])
+  }));
+  dart.setLibraryUri(nested.SingleChildWidgetElementMixin, I[1]);
+  dart.setFieldSignature(nested.SingleChildWidgetElementMixin, () => ({
+    __proto__: dart.getFields(nested.SingleChildWidgetElementMixin.__proto__),
+    [_parent]: dart.fieldType(dart.nullable(nested._NestedHookElement))
+  }));
+  const StatelessElement_SingleChildWidgetElementMixin$36 = class StatelessElement_SingleChildWidgetElementMixin extends framework.StatelessElement {};
+  (StatelessElement_SingleChildWidgetElementMixin$36.new = function(widget) {
+    nested.SingleChildWidgetElementMixin[dart.mixinNew].call(this);
+    StatelessElement_SingleChildWidgetElementMixin$36.__proto__.new.call(this, widget);
+  }).prototype = StatelessElement_SingleChildWidgetElementMixin$36.prototype;
+  dart.applyMixin(StatelessElement_SingleChildWidgetElementMixin$36, nested.SingleChildWidgetElementMixin);
+  nested._NestedElement = class _NestedElement extends StatelessElement_SingleChildWidgetElementMixin$36 {
+    get widget() {
+      return nested.Nested.as(super.widget);
+    }
+    build() {
+      let t0, t0$, t0$0;
+      let nestedHook = null;
+      let nextNode = (t0$ = (t0 = this[_parent], t0 == null ? null : t0.injectedChild), t0$ == null ? this.widget[_child] : t0$);
+      for (let child of this.widget[_children][$reversed]) {
+        nextNode = nestedHook = new nested._NestedHook.new({owner: this, wrappedWidget: child, injectedChild: nextNode, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
+      }
+      if (nestedHook != null) {
+        for (let node of this.nodes) {
+          t0$0 = node;
+          (() => {
+            t0$0.wrappedChild = dart.nullCheck(nestedHook).wrappedWidget;
+            t0$0.injectedChild = nestedHook.injectedChild;
+            return t0$0;
+          })();
+          let next = nestedHook.injectedChild;
+          if (nested._NestedHook.is(next)) {
+            nestedHook = next;
+          } else {
+            break;
+          }
+        }
+      }
+      return dart.nullCheck(nextNode);
+    }
+  };
+  (nested._NestedElement.new = function(widget) {
+    this.nodes = T.LinkedHashSetOf_NestedHookElement().new();
+    nested._NestedElement.__proto__.new.call(this, widget);
+    ;
+  }).prototype = nested._NestedElement.prototype;
+  dart.addTypeTests(nested._NestedElement);
+  dart.addTypeCaches(nested._NestedElement);
+  dart.setGetterSignature(nested._NestedElement, () => ({
+    __proto__: dart.getGetters(nested._NestedElement.__proto__),
+    widget: nested.Nested
+  }));
+  dart.setLibraryUri(nested._NestedElement, I[1]);
+  dart.setFieldSignature(nested._NestedElement, () => ({
+    __proto__: dart.getFields(nested._NestedElement.__proto__),
+    nodes: dart.finalFieldType(core.Set$(nested._NestedHookElement))
+  }));
+  nested._NestedHook = class _NestedHook extends framework.StatelessWidget {
+    createElement() {
+      return new nested._NestedHookElement.new(this);
+    }
+    build(context) {
+      return dart.throw(new core.StateError.new("handled internally"));
+    }
+  };
+  (nested._NestedHook.new = function(opts) {
+    let injectedChild = opts && 'injectedChild' in opts ? opts.injectedChild : null;
+    let wrappedWidget = opts && 'wrappedWidget' in opts ? opts.wrappedWidget : null;
+    let owner = opts && 'owner' in opts ? opts.owner : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this.injectedChild = injectedChild;
+    this.wrappedWidget = wrappedWidget;
+    this.owner = owner;
+    nested._NestedHook.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = nested._NestedHook.prototype;
+  dart.addTypeTests(nested._NestedHook);
+  dart.addTypeCaches(nested._NestedHook);
+  dart.setMethodSignature(nested._NestedHook, () => ({
+    __proto__: dart.getMethods(nested._NestedHook.__proto__),
+    createElement: dart.fnType(nested._NestedHookElement, []),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(nested._NestedHook, I[1]);
+  dart.setFieldSignature(nested._NestedHook, () => ({
+    __proto__: dart.getFields(nested._NestedHook.__proto__),
+    wrappedWidget: dart.finalFieldType(nested.SingleChildWidget),
+    injectedChild: dart.finalFieldType(dart.nullable(framework.Widget)),
+    owner: dart.finalFieldType(nested._NestedElement)
+  }));
+  var _injectedChild = dart.privateName(nested, "_injectedChild");
+  var _wrappedChild = dart.privateName(nested, "_wrappedChild");
+  nested._NestedHookElement = class _NestedHookElement extends framework.StatelessElement {
+    get widget() {
+      return nested._NestedHook.as(super.widget);
+    }
+    get injectedChild() {
+      return this[_injectedChild];
+    }
+    set injectedChild(value) {
+      let previous = this[_injectedChild];
+      if (nested._NestedHook.is(value) && nested._NestedHook.is(previous) && framework.Widget.canUpdate(value.wrappedWidget, previous.wrappedWidget)) {
+        return;
+      }
+      if (!dart.equals(previous, value)) {
+        this[_injectedChild] = value;
+        this.visitChildren(dart.fn(e => e.markNeedsBuild(), T.ElementTovoid()));
+      }
+    }
+    get wrappedChild() {
+      return this[_wrappedChild];
+    }
+    set wrappedChild(value) {
+      if (!dart.equals(this[_wrappedChild], value)) {
+        this[_wrappedChild] = value;
+        this.markNeedsBuild();
+      }
+    }
+    mount(parent, newSlot) {
+      this.widget.owner.nodes.add(this);
+      this[_wrappedChild] = this.widget.wrappedWidget;
+      this[_injectedChild] = this.widget.injectedChild;
+      super.mount(parent, newSlot);
+    }
+    unmount() {
+      this.widget.owner.nodes.remove(this);
+      super.unmount();
+    }
+    build() {
+      return dart.nullCheck(this.wrappedChild);
+    }
+  };
+  (nested._NestedHookElement.new = function(widget) {
+    this[_injectedChild] = null;
+    this[_wrappedChild] = null;
+    nested._NestedHookElement.__proto__.new.call(this, widget);
+    ;
+  }).prototype = nested._NestedHookElement.prototype;
+  dart.addTypeTests(nested._NestedHookElement);
+  dart.addTypeCaches(nested._NestedHookElement);
+  dart.setMethodSignature(nested._NestedHookElement, () => ({
+    __proto__: dart.getMethods(nested._NestedHookElement.__proto__),
+    mount: dart.fnType(dart.void, [dart.nullable(framework.Element), dart.dynamic])
+  }));
+  dart.setGetterSignature(nested._NestedHookElement, () => ({
+    __proto__: dart.getGetters(nested._NestedHookElement.__proto__),
+    widget: nested._NestedHook,
+    injectedChild: dart.nullable(framework.Widget),
+    wrappedChild: dart.nullable(nested.SingleChildWidget)
+  }));
+  dart.setSetterSignature(nested._NestedHookElement, () => ({
+    __proto__: dart.getSetters(nested._NestedHookElement.__proto__),
+    injectedChild: dart.nullable(framework.Widget),
+    wrappedChild: dart.nullable(nested.SingleChildWidget)
+  }));
+  dart.setLibraryUri(nested._NestedHookElement, I[1]);
+  dart.setFieldSignature(nested._NestedHookElement, () => ({
+    __proto__: dart.getFields(nested._NestedHookElement.__proto__),
+    [_injectedChild]: dart.fieldType(dart.nullable(framework.Widget)),
+    [_wrappedChild]: dart.fieldType(dart.nullable(nested.SingleChildWidget))
+  }));
+  nested.SingleChildWidget = class SingleChildWidget extends core.Object {};
+  (nested.SingleChildWidget.new = function() {
+    ;
+  }).prototype = nested.SingleChildWidget.prototype;
+  dart.addTypeTests(nested.SingleChildWidget);
+  dart.addTypeCaches(nested.SingleChildWidget);
+  nested.SingleChildWidget[dart.implements] = () => [framework.Widget];
+  dart.setLibraryUri(nested.SingleChildWidget, I[1]);
+  var _child$ = dart.privateName(nested, "SingleChildStatelessWidget._child");
+  nested.SingleChildStatelessWidget = class SingleChildStatelessWidget extends framework.StatelessWidget {
+    get [_child]() {
+      return this[_child$];
+    }
+    set [_child](value) {
+      super[_child] = value;
+    }
+    build(context) {
+      return this.buildWithChild(context, this[_child]);
+    }
+    createElement() {
+      return new nested.SingleChildStatelessElement.new(this);
+    }
+  };
+  (nested.SingleChildStatelessWidget.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[_child$] = child;
+    nested.SingleChildStatelessWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = nested.SingleChildStatelessWidget.prototype;
+  dart.addTypeTests(nested.SingleChildStatelessWidget);
+  dart.addTypeCaches(nested.SingleChildStatelessWidget);
+  nested.SingleChildStatelessWidget[dart.implements] = () => [nested.SingleChildWidget];
+  dart.setMethodSignature(nested.SingleChildStatelessWidget, () => ({
+    __proto__: dart.getMethods(nested.SingleChildStatelessWidget.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext]),
+    createElement: dart.fnType(nested.SingleChildStatelessElement, [])
+  }));
+  dart.setLibraryUri(nested.SingleChildStatelessWidget, I[1]);
+  dart.setFieldSignature(nested.SingleChildStatelessWidget, () => ({
+    __proto__: dart.getFields(nested.SingleChildStatelessWidget.__proto__),
+    [_child]: dart.finalFieldType(dart.nullable(framework.Widget))
+  }));
+  const StatelessElement_SingleChildWidgetElementMixin$36$ = class StatelessElement_SingleChildWidgetElementMixin extends framework.StatelessElement {};
+  (StatelessElement_SingleChildWidgetElementMixin$36$.new = function(widget) {
+    nested.SingleChildWidgetElementMixin[dart.mixinNew].call(this);
+    StatelessElement_SingleChildWidgetElementMixin$36$.__proto__.new.call(this, widget);
+  }).prototype = StatelessElement_SingleChildWidgetElementMixin$36$.prototype;
+  dart.applyMixin(StatelessElement_SingleChildWidgetElementMixin$36$, nested.SingleChildWidgetElementMixin);
+  nested.SingleChildStatelessElement = class SingleChildStatelessElement extends StatelessElement_SingleChildWidgetElementMixin$36$ {
+    build() {
+      if (this[_parent] != null) {
+        return this.widget.buildWithChild(this, dart.nullCheck(this[_parent]).injectedChild);
+      }
+      return super.build();
+    }
+    get widget() {
+      return nested.SingleChildStatelessWidget.as(super.widget);
+    }
+  };
+  (nested.SingleChildStatelessElement.new = function(widget) {
+    nested.SingleChildStatelessElement.__proto__.new.call(this, widget);
+    ;
+  }).prototype = nested.SingleChildStatelessElement.prototype;
+  dart.addTypeTests(nested.SingleChildStatelessElement);
+  dart.addTypeCaches(nested.SingleChildStatelessElement);
+  dart.setGetterSignature(nested.SingleChildStatelessElement, () => ({
+    __proto__: dart.getGetters(nested.SingleChildStatelessElement.__proto__),
+    widget: nested.SingleChildStatelessWidget
+  }));
+  dart.setLibraryUri(nested.SingleChildStatelessElement, I[1]);
+  var _child$0 = dart.privateName(nested, "SingleChildStatefulWidget._child");
+  nested.SingleChildStatefulWidget = class SingleChildStatefulWidget extends framework.StatefulWidget {
+    get [_child]() {
+      return this[_child$0];
+    }
+    set [_child](value) {
+      super[_child] = value;
+    }
+    createElement() {
+      return new nested.SingleChildStatefulElement.new(this);
+    }
+  };
+  (nested.SingleChildStatefulWidget.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[_child$0] = child;
+    nested.SingleChildStatefulWidget.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = nested.SingleChildStatefulWidget.prototype;
+  dart.addTypeTests(nested.SingleChildStatefulWidget);
+  dart.addTypeCaches(nested.SingleChildStatefulWidget);
+  nested.SingleChildStatefulWidget[dart.implements] = () => [nested.SingleChildWidget];
+  dart.setMethodSignature(nested.SingleChildStatefulWidget, () => ({
+    __proto__: dart.getMethods(nested.SingleChildStatefulWidget.__proto__),
+    createElement: dart.fnType(nested.SingleChildStatefulElement, [])
+  }));
+  dart.setLibraryUri(nested.SingleChildStatefulWidget, I[1]);
+  dart.setFieldSignature(nested.SingleChildStatefulWidget, () => ({
+    __proto__: dart.getFields(nested.SingleChildStatefulWidget.__proto__),
+    [_child]: dart.finalFieldType(dart.nullable(framework.Widget))
+  }));
+  const _is_SingleChildState_default = Symbol('_is_SingleChildState_default');
+  nested.SingleChildState$ = dart.generic(T => {
+    class SingleChildState extends framework.State$(T) {
+      build(context) {
+        return this.buildWithChild(context, this.widget[_child]);
+      }
+    }
+    (SingleChildState.new = function() {
+      SingleChildState.__proto__.new.call(this);
+      ;
+    }).prototype = SingleChildState.prototype;
+    dart.addTypeTests(SingleChildState);
+    SingleChildState.prototype[_is_SingleChildState_default] = true;
+    dart.addTypeCaches(SingleChildState);
+    dart.setMethodSignature(SingleChildState, () => ({
+      __proto__: dart.getMethods(SingleChildState.__proto__),
+      build: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(SingleChildState, I[1]);
+    return SingleChildState;
+  });
+  nested.SingleChildState = nested.SingleChildState$();
+  dart.addTypeTests(nested.SingleChildState, _is_SingleChildState_default);
+  const StatefulElement_SingleChildWidgetElementMixin$36 = class StatefulElement_SingleChildWidgetElementMixin extends framework.StatefulElement {};
+  (StatefulElement_SingleChildWidgetElementMixin$36.new = function(widget) {
+    nested.SingleChildWidgetElementMixin[dart.mixinNew].call(this);
+    StatefulElement_SingleChildWidgetElementMixin$36.__proto__.new.call(this, widget);
+  }).prototype = StatefulElement_SingleChildWidgetElementMixin$36.prototype;
+  dart.applyMixin(StatefulElement_SingleChildWidgetElementMixin$36, nested.SingleChildWidgetElementMixin);
+  nested.SingleChildStatefulElement = class SingleChildStatefulElement extends StatefulElement_SingleChildWidgetElementMixin$36 {
+    get widget() {
+      return nested.SingleChildStatefulWidget.as(super.widget);
+    }
+    get state() {
+      return T.SingleChildStateOfSingleChildStatefulWidget().as(super.state);
+    }
+    build() {
+      if (this[_parent] != null) {
+        return this.state.buildWithChild(this, dart.nullCheck(dart.nullCheck(this[_parent]).injectedChild));
+      }
+      return super.build();
+    }
+  };
+  (nested.SingleChildStatefulElement.new = function(widget) {
+    nested.SingleChildStatefulElement.__proto__.new.call(this, widget);
+    ;
+  }).prototype = nested.SingleChildStatefulElement.prototype;
+  dart.addTypeTests(nested.SingleChildStatefulElement);
+  dart.addTypeCaches(nested.SingleChildStatefulElement);
+  dart.setGetterSignature(nested.SingleChildStatefulElement, () => ({
+    __proto__: dart.getGetters(nested.SingleChildStatefulElement.__proto__),
+    widget: nested.SingleChildStatefulWidget,
+    state: nested.SingleChildState$(nested.SingleChildStatefulWidget)
+  }));
+  dart.setLibraryUri(nested.SingleChildStatefulElement, I[1]);
+  var builder$ = dart.privateName(nested, "SingleChildBuilder.builder");
+  nested.SingleChildBuilder = class SingleChildBuilder extends nested.SingleChildStatelessWidget {
+    get builder() {
+      return this[builder$];
+    }
+    set builder(value) {
+      super.builder = value;
+    }
+    buildWithChild(context, child) {
+      let t1, t0;
+      t0 = context;
+      t1 = child;
+      return this.builder(t0, t1);
+    }
+  };
+  (nested.SingleChildBuilder.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let builder = opts && 'builder' in opts ? opts.builder : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[builder$] = builder;
+    nested.SingleChildBuilder.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = nested.SingleChildBuilder.prototype;
+  dart.addTypeTests(nested.SingleChildBuilder);
+  dart.addTypeCaches(nested.SingleChildBuilder);
+  dart.setMethodSignature(nested.SingleChildBuilder, () => ({
+    __proto__: dart.getMethods(nested.SingleChildBuilder.__proto__),
+    buildWithChild: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)])
+  }));
+  dart.setLibraryUri(nested.SingleChildBuilder, I[1]);
+  dart.setFieldSignature(nested.SingleChildBuilder, () => ({
+    __proto__: dart.getFields(nested.SingleChildBuilder.__proto__),
+    builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]))
+  }));
+  nested.SingleChildStatelessWidgetMixin = class SingleChildStatelessWidgetMixin extends core.Object {};
+  nested.SingleChildStatelessWidgetMixin[dart.mixinOn] = Object => class SingleChildStatelessWidgetMixin extends Object {
+    get [_child]() {
+      return this.child;
+    }
+    createElement() {
+      return new nested.SingleChildStatelessElement.new(this);
+    }
+    build(context) {
+      return this.buildWithChild(context, this.child);
+    }
+  };
+  (nested.SingleChildStatelessWidgetMixin[dart.mixinNew] = function() {
+  }).prototype = nested.SingleChildStatelessWidgetMixin.prototype;
+  dart.addTypeTests(nested.SingleChildStatelessWidgetMixin);
+  dart.addTypeCaches(nested.SingleChildStatelessWidgetMixin);
+  nested.SingleChildStatelessWidgetMixin[dart.implements] = () => [framework.StatelessWidget, nested.SingleChildStatelessWidget, core.Object];
+  dart.setMethodSignature(nested.SingleChildStatelessWidgetMixin, () => ({
+    __proto__: dart.getMethods(nested.SingleChildStatelessWidgetMixin.__proto__),
+    createElement: dart.fnType(nested.SingleChildStatelessElement, []),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setGetterSignature(nested.SingleChildStatelessWidgetMixin, () => ({
+    __proto__: dart.getGetters(nested.SingleChildStatelessWidgetMixin.__proto__),
+    [_child]: dart.nullable(framework.Widget)
+  }));
+  dart.setLibraryUri(nested.SingleChildStatelessWidgetMixin, I[1]);
+  nested.SingleChildStatefulWidgetMixin = class SingleChildStatefulWidgetMixin extends framework.StatefulWidget {};
+  nested.SingleChildStatefulWidgetMixin[dart.mixinOn] = StatefulWidget => class SingleChildStatefulWidgetMixin extends StatefulWidget {
+    createElement() {
+      return new nested._SingleChildStatefulMixinElement.new(this);
+    }
+  };
+  dart.addTypeTests(nested.SingleChildStatefulWidgetMixin);
+  dart.addTypeCaches(nested.SingleChildStatefulWidgetMixin);
+  nested.SingleChildStatefulWidgetMixin[dart.implements] = () => [nested.SingleChildWidget, framework.StatefulWidget];
+  dart.setMethodSignature(nested.SingleChildStatefulWidgetMixin, () => ({
+    __proto__: dart.getMethods(nested.SingleChildStatefulWidgetMixin.__proto__),
+    createElement: dart.fnType(nested._SingleChildStatefulMixinElement, [])
+  }));
+  dart.setLibraryUri(nested.SingleChildStatefulWidgetMixin, I[1]);
+  const _is_SingleChildStateMixin_default = Symbol('_is_SingleChildStateMixin_default');
+  nested.SingleChildStateMixin$ = dart.generic(T => {
+    class SingleChildStateMixin extends framework.State$(T) {}
+    SingleChildStateMixin[dart.mixinOn] = State => class SingleChildStateMixin extends State {
+      build(context) {
+        return this.buildWithChild(context, dart.nullCheck(nested.SingleChildStatefulWidgetMixin.as(this.widget).child));
+      }
+    };
+    dart.addTypeTests(SingleChildStateMixin);
+    SingleChildStateMixin.prototype[_is_SingleChildStateMixin_default] = true;
+    dart.addTypeCaches(SingleChildStateMixin);
+    SingleChildStateMixin[dart.implements] = () => [framework.State$(T)];
+    dart.setMethodSignature(SingleChildStateMixin, () => ({
+      __proto__: dart.getMethods(SingleChildStateMixin.__proto__),
+      build: dart.fnType(framework.Widget, [framework.BuildContext])
+    }));
+    dart.setLibraryUri(SingleChildStateMixin, I[1]);
+    return SingleChildStateMixin;
+  });
+  nested.SingleChildStateMixin = nested.SingleChildStateMixin$();
+  dart.addTypeTests(nested.SingleChildStateMixin, _is_SingleChildStateMixin_default);
+  const StatefulElement_SingleChildWidgetElementMixin$36$ = class StatefulElement_SingleChildWidgetElementMixin extends framework.StatefulElement {};
+  (StatefulElement_SingleChildWidgetElementMixin$36$.new = function(widget) {
+    nested.SingleChildWidgetElementMixin[dart.mixinNew].call(this);
+    StatefulElement_SingleChildWidgetElementMixin$36$.__proto__.new.call(this, widget);
+  }).prototype = StatefulElement_SingleChildWidgetElementMixin$36$.prototype;
+  dart.applyMixin(StatefulElement_SingleChildWidgetElementMixin$36$, nested.SingleChildWidgetElementMixin);
+  nested._SingleChildStatefulMixinElement = class _SingleChildStatefulMixinElement extends StatefulElement_SingleChildWidgetElementMixin$36$ {
+    get widget() {
+      return nested.SingleChildStatefulWidgetMixin.as(super.widget);
+    }
+    get state() {
+      return T.SingleChildStateMixinOfStatefulWidget().as(super.state);
+    }
+    build() {
+      if (this[_parent] != null) {
+        return this.state.buildWithChild(this, dart.nullCheck(dart.nullCheck(this[_parent]).injectedChild));
+      }
+      return super.build();
+    }
+  };
+  (nested._SingleChildStatefulMixinElement.new = function(widget) {
+    nested._SingleChildStatefulMixinElement.__proto__.new.call(this, widget);
+    ;
+  }).prototype = nested._SingleChildStatefulMixinElement.prototype;
+  dart.addTypeTests(nested._SingleChildStatefulMixinElement);
+  dart.addTypeCaches(nested._SingleChildStatefulMixinElement);
+  dart.setGetterSignature(nested._SingleChildStatefulMixinElement, () => ({
+    __proto__: dart.getGetters(nested._SingleChildStatefulMixinElement.__proto__),
+    widget: nested.SingleChildStatefulWidgetMixin,
+    state: nested.SingleChildStateMixin$(framework.StatefulWidget)
+  }));
+  dart.setLibraryUri(nested._SingleChildStatefulMixinElement, I[1]);
+  nested.SingleChildInheritedElementMixin = class SingleChildInheritedElementMixin extends core.Object {};
+  nested.SingleChildInheritedElementMixin[dart.mixinOn] = _SingleChildInheritedElementMixin$36InheritedElement$36SingleChildWidgetElementMixin => class SingleChildInheritedElementMixin extends _SingleChildInheritedElementMixin$36InheritedElement$36SingleChildWidgetElementMixin {
+    build() {
+      if (this[_parent] != null) {
+        return dart.nullCheck(dart.nullCheck(this[_parent]).injectedChild);
+      }
+      return super.build();
+    }
+  };
+  dart.addTypeTests(nested.SingleChildInheritedElementMixin);
+  dart.addTypeCaches(nested.SingleChildInheritedElementMixin);
+  nested.SingleChildInheritedElementMixin[dart.implements] = () => [nested.SingleChildWidgetElementMixin, framework.InheritedElement];
+  dart.setMethodSignature(nested.SingleChildInheritedElementMixin, () => ({
+    __proto__: dart.getMethods(nested.SingleChildInheritedElementMixin.__proto__),
+    build: dart.fnType(framework.Widget, [])
+  }));
+  dart.setLibraryUri(nested.SingleChildInheritedElementMixin, I[1]);
+  dart.trackLibraries("packages/nested/nested.dart", {
+    "package:nested/nested.dart": nested
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["nested.dart","../../../../../packages/flutter/lib/src/widgets/framework.dart"],"names":[],"mappings":"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","file":"../../../../../../packages/nested/nested.dart.lib.js"}');
+  // Exports:
+  return {
+    nested: nested
+  };
+}));
+
+//# sourceMappingURL=nested.dart.lib.js.map
