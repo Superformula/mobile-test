@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -61,8 +62,12 @@ class _QRImageViewState extends State<QRImageView> {
   }
 
   Future<bool> onWillPop() async {
-    await Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    await Navigator.pushAndRemoveUntil(
+        context,
+        Platform.isIOS
+            ? CupertinoPageRoute(builder: (context) => HomeScreen())
+            : MaterialPageRoute(builder: (context) => HomeScreen()),
+        (route) => false);
     return Future.value(true);
   }
 

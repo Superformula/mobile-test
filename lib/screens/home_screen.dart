@@ -16,58 +16,43 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<void>(
-      future: reset(context),
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-            return Scaffold(
-                body: Container(
-                    child: Center(child: CircularProgressIndicator())));
-          case ConnectionState.done:
-            return Scaffold(
-              appBar: AppBar(
-                title: Text('Home'),
-                centerTitle: true,
-                leading: Container(),
-              ),
-              floatingActionButton: SpeedDial(
-                child: Icon(Icons.add),
-                speedDialChildren: [
-                  SpeedDialChild(
-                      child: Icon(Icons.qr_code_scanner),
-                      label: 'scan',
-                      backgroundColor: Colors.redAccent,
-                      onPressed: () async {
-                        await Provider.of<RoutingProvider>(context,
-                                listen: false)
-                            .goToScannerScreen(context);
-                      }),
-                  SpeedDialChild(
-                    onPressed: () async {
-                      Provider.of<TimerProvider>(context, listen: false)
-                          .reset();
-                      Provider.of<TimerProvider>(context, listen: false)
-                          .cancelTimer();
-                      Provider.of<QRProvider>(context, listen: false)
-                          .generateCode();
-                      await Provider.of<RoutingProvider>(context, listen: false)
-                          .goToQRScreen(context);
-                    },
-                    child: Icon(
-                      Icons.qr_code,
-                      color: Colors.black,
-                    ),
-                    label: 'generate qr code',
-                    backgroundColor: Colors.yellowAccent,
-                  ),
-                ],
-              ),
-            );
-        }
-      },
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      reset(context);
+    });
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+        centerTitle: true,
+        leading: Container(),
+      ),
+      floatingActionButton: SpeedDial(
+        child: Icon(Icons.add),
+        speedDialChildren: [
+          SpeedDialChild(
+              child: Icon(Icons.qr_code_scanner),
+              label: 'scan',
+              backgroundColor: Colors.redAccent,
+              onPressed: () async {
+                await Provider.of<RoutingProvider>(context, listen: false)
+                    .goToScannerScreen(context);
+              }),
+          SpeedDialChild(
+            onPressed: () async {
+              Provider.of<TimerProvider>(context, listen: false).reset();
+              Provider.of<TimerProvider>(context, listen: false).cancelTimer();
+              Provider.of<QRProvider>(context, listen: false).generateCode();
+              await Provider.of<RoutingProvider>(context, listen: false)
+                  .goToQRScreen(context);
+            },
+            child: Icon(
+              Icons.qr_code,
+              color: Colors.black,
+            ),
+            label: 'generate qr code',
+            backgroundColor: Colors.yellowAccent,
+          ),
+        ],
+      ),
     );
   }
 }
