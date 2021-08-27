@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:superformula_test/router/router.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title = 'Home'}) : super(key: key);
 
   final String title;
 
@@ -11,18 +12,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Center(
               child: Text(
             widget.title,
@@ -35,11 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'You have pushed the button this many times as well:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
+                'SUPERFORMULA TEST',
               ),
             ],
           ),
@@ -62,7 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Icons.qr_code,
                   color: Colors.green[700],
                 ),
-                label: 'QR Code'),
+                label: 'QR Code',
+                onTap: () {
+                  AppRoutes.navigate(context, '/qrcode', args: 'QR Code');
+                }),
             SpeedDialChild(
                 backgroundColor: Colors.black,
                 child: Icon(
