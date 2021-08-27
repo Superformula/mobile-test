@@ -20,28 +20,30 @@ class QrCodePage extends StatelessWidget {
         backgroundColor: Colors.black,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            QrImage(
-              data: 'This is a simple QR code',
-              version: QrVersions.auto,
-              size: 250,
-              gapless: true,
-            ),
-            SizedBox(height: 20),
-            ChangeNotifierProvider<QRProvider>(
-                create: (_) => QRProvider(),
-                builder: (context, snapshot) {
-                  return Consumer<QRProvider>(
-                      builder: (context, provider, snapshot) {
-                    return Text(provider.countdown == 0
-                        ? 'Timer Expired'
-                        : provider.countdown.toString() + 's');
-                  });
-                })
-          ],
-        ),
+        child: ChangeNotifierProvider<QRProvider>(
+            create: (_) => QRProvider(),
+            builder: (context, snapshot) {
+              return Consumer<QRProvider>(
+                  builder: (context, provider, snapshot) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    QrImage(
+                      data: 'This is a simple QR code',
+                      version: QrVersions.auto,
+                      size: 250,
+                      gapless: true,
+                    ),
+                    SizedBox(height: 20),
+                    Text(provider.isLoading
+                        ? 'Loading'
+                        : provider.countdown == 0
+                            ? 'Timer Expired'
+                            : provider.countdown.toString() + 's')
+                  ],
+                );
+              });
+            }),
       ),
     );
   }
