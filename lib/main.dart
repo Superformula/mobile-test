@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:superformula_test/pages/home_page.dart';
 
 void main() {
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MyApp());
 }
 
@@ -13,6 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,

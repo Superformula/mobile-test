@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_speed_dial: ^4.2.0
+  fluro: ^2.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
