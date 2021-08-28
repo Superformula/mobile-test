@@ -62,7 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   Icons.qr_code_scanner,
                   color: Colors.green[700],
                 ),
-                label: 'QR Scanner')
+                label: 'QR Scanner',
+                onTap: () {
+                  AppRoutes.navigate(context, '/qrscanner', args: 'QR Scanner');
+                })
           ],
         )
         // FloatingActionButton(

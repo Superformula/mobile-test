@@ -26,6 +26,7 @@ dependencies:
   flutter_speed_dial: ^4.2.0
   fluro: ^2.0.3
   qr_flutter: ^4.0.0
+  qr_code_scanner: ^0.5.2
   provider: ^6.0.0
 
 
