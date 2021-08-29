@@ -1,18 +1,39 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:superformula_test/core/service_locator.dart';
+import 'package:superformula_test/domain/qr_code/repository/qr_code_repo.dart';
 
 class QRProvider extends ChangeNotifier {
+  final RestClient client = ServiceLocator.locator<RestClient>();
   bool isLoading = false;
+  bool isDispose = false;
+  String? decodedString;
 
   QRProvider() {
     _startLoading();
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    client.getSeed().then((value) {
+      print('Value of Seed is ${value.seed}');
+      Codec<String, String> stringToBase64 = utf8.fuse(base64);
+      decodedString = stringToBase64.decode(value.seed ?? '');
+      print('Value of Decoded Seed is $decodedString');
+
       _stopLoading();
       startTimer(countDownValue: 30);
     }).onError((error, stackTrace) {
+      print(error);
       _stopLoading();
     });
+  }
+
+  @override
+  void dispose() {
+    if (_timer != null) {
+      _timer?.cancel();
+    }
+    isDispose = true;
+    super.dispose();
   }
 
   Timer? _timer;
@@ -23,12 +44,12 @@ class QRProvider extends ChangeNotifier {
       _timer?.cancel();
     }
     countdown = countDownValue;
-    notifyListeners();
+    refreshUI();
 
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (countdown > 0) {
         countdown--;
-        notifyListeners();
+        refreshUI();
       } else {
         timer.cancel();
       }
@@ -37,11 +58,17 @@ class QRProvider extends ChangeNotifier {
 
   void _startLoading() {
     isLoading = true;
-    notifyListeners();
+    refreshUI();
   }
 
   void _stopLoading() {
     isLoading = false;
-    notifyListeners();
+    refreshUI();
+  }
+
+  void refreshUI() {
+    if (!isDispose) {
+      notifyListeners();
+    }
   }
 }

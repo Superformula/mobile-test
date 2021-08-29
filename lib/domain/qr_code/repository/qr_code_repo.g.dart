@@ -8,7 +8,7 @@ part of 'qr_code_repo.dart';
 
 class _RestClient implements RestClient {
   _RestClient(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'http://127.0.0.1:8081/api';
+    baseUrl ??= 'https://powerful-refuge-70768.herokuapp.com/api';
   }
 
   final Dio _dio;
