@@ -15,9 +15,9 @@ class QrCodePage extends StatelessWidget {
         title: Center(
             child: Text(
           title ?? '',
-          style: TextStyle(color: Colors.green[700]),
+          style: TextStyle(color: Theme.of(context).accentColor),
         )),
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Center(
         child: ChangeNotifierProvider<QRProvider>(
@@ -33,6 +33,7 @@ class QrCodePage extends StatelessWidget {
                       version: QrVersions.auto,
                       size: 250,
                       gapless: true,
+                      foregroundColor: Theme.of(context).accentColor,
                     ),
                     SizedBox(height: 20),
                     Text(provider.isLoading

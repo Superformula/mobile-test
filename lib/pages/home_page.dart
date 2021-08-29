@@ -20,9 +20,9 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Center(
               child: Text(
             widget.title,
-            style: TextStyle(color: Colors.green[700]),
+            style: TextStyle(color: Theme.of(context).accentColor),
           )),
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
         body: Center(
           child: Column(
@@ -36,35 +36,36 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         floatingActionButton: SpeedDial(
           overlayOpacity: 0,
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).buttonColor,
           activeChild: Icon(
             Icons.close,
-            color: Colors.green[700],
+            color: Theme.of(context).accentColor,
           ),
           child: Icon(
             Icons.add,
-            color: Colors.green[700],
+            color: Theme.of(context).accentColor,
           ),
           children: [
             SpeedDialChild(
-                backgroundColor: Colors.black,
+                backgroundColor: Theme.of(context).buttonColor,
                 child: Icon(
                   Icons.qr_code,
-                  color: Colors.green[700],
+                  color: Theme.of(context).accentColor,
                 ),
                 label: 'QR Code',
                 onTap: () {
                   AppRoutes.navigate(context, '/qrcode', args: 'QR Code');
                 }),
             SpeedDialChild(
-                backgroundColor: Colors.black,
+                backgroundColor: Theme.of(context).buttonColor,
                 child: Icon(
                   Icons.qr_code_scanner,
-                  color: Colors.green[700],
+                  color: Theme.of(context).accentColor,
                 ),
                 label: 'QR Scanner',
                 onTap: () {
-                  AppRoutes.navigate(context, '/qrscanner', args: 'QR Scanner');
+                  AppRoutes.navigate(context, '/qrscanner',
+                      args: 'Scan QR Code');
                 })
           ],
         )
