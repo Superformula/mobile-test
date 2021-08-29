@@ -16,7 +16,7 @@ class AppRoutes {
   }
 
   static void createRoutes() {
-    router.define('/home', handler: Handler(handlerFunc: (context, params) {
+    router.define('home', handler: Handler(handlerFunc: (context, params) {
       dynamic args = context!.settings!.arguments;
       return MyHomePage(title: args);
     }));

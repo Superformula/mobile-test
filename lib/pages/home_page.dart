@@ -12,6 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String? updatedText;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'SUPERFORMULA TEST',
+                updatedText != null ? updatedText!.toUpperCase() : 'SUPERFORMULA TEST',
               ),
             ],
           ),
@@ -65,15 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: 'QR Scanner',
                 onTap: () {
                   AppRoutes.navigate(context, '/qrscanner',
-                      args: 'Scan QR Code');
+                          args: 'Scan QR Code')
+                      .then((value) {
+                    setState(() => updatedText = value);
+                  });
                 })
           ],
-        )
-        // FloatingActionButton(
-        //   onPressed: _incrementCounter,
-        //   tooltip: 'Increment',
-        //   child: Icon(Icons.add),
-        // ),
-        );
+        ));
   }
 }

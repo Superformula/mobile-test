@@ -16,8 +16,8 @@ class ScannerProvider extends ChangeNotifier {
   }
 
   void clearData() {
-    format = '';
-    result = '';
+    format = null;
+    result = null;
     notifyListeners();
   }
 }
