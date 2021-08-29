@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:superformula_test/core/service_locator.dart';
+import 'package:superformula_test/core/utilities.dart';
 import 'package:superformula_test/domain/qr_code/repository/qr_code_repo.dart';
 
 class QRProvider extends ChangeNotifier {
@@ -14,13 +14,9 @@ class QRProvider extends ChangeNotifier {
   QRProvider() {
     _startLoading();
     client.getSeed().then((value) {
-      print('Value of Seed is ${value.seed}');
-      Codec<String, String> stringToBase64 = utf8.fuse(base64);
-      decodedString = stringToBase64.decode(value.seed ?? '');
-      print('Value of Decoded Seed is $decodedString');
-
+      decodedString = Utils.decodeString(value.seed);
       _stopLoading();
-      startTimer(countDownValue: 30);
+      startTimer(countDownValue: getDuration(value.expiresAt));
     }).onError((error, stackTrace) {
       print(error);
       _stopLoading();
@@ -64,6 +60,13 @@ class QRProvider extends ChangeNotifier {
   void _stopLoading() {
     isLoading = false;
     refreshUI();
+  }
+
+  int getDuration(DateTime? dateTime) {
+    if (dateTime != null) {
+      return dateTime.difference(DateTime.now()).inSeconds;
+    }
+    return 0;
   }
 
   void refreshUI() {

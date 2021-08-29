@@ -28,13 +28,15 @@ class QrCodePage extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    QrImage(
-                      data: 'This is a simple QR code',
-                      version: QrVersions.auto,
-                      size: 250,
-                      gapless: true,
-                      foregroundColor: Theme.of(context).accentColor,
-                    ),
+                    provider.isLoading
+                        ? SizedBox.shrink()
+                        : QrImage(
+                            data: provider.decodedString ?? '',
+                            version: QrVersions.auto,
+                            size: 250,
+                            gapless: true,
+                            foregroundColor: Theme.of(context).primaryColor,
+                          ),
                     SizedBox(height: 20),
                     Text(provider.isLoading
                         ? 'Loading'

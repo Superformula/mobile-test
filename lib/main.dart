@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
-        accentColor: Colors.tealAccent[700],
+        accentColor: Colors.white,
         buttonColor: Colors.blueGrey[500],
         appBarTheme: AppBarTheme(
             backgroundColor: Colors.blueGrey[700], brightness: Brightness.dark),

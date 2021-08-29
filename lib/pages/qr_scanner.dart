@@ -67,7 +67,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     backgroundColor:
-                                        Theme.of(context).accentColor,
+                                        Theme.of(context).primaryColor,
                                     content: Row(
                                       children: [
                                         Spacer(),
