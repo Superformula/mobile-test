@@ -1,0 +1,44 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'qr_code_repo.dart';
+
+// **************************************************************************
+// RetrofitGenerator
+// **************************************************************************
+
+class _RestClient implements RestClient {
+  _RestClient(this._dio, {this.baseUrl}) {
+    baseUrl ??= 'http://127.0.0.1:8081/api';
+  }
+
+  final Dio _dio;
+
+  String? baseUrl;
+
+  @override
+  Future<Seed> getSeed() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Seed>(
+        Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/Seed',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Seed.fromJson(_result.data!);
+    return value;
+  }
+
+  RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
+    if (T != dynamic &&
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
+      if (T == String) {
+        requestOptions.responseType = ResponseType.plain;
+      } else {
+        requestOptions.responseType = ResponseType.json;
+      }
+    }
+    return requestOptions;
+  }
+}

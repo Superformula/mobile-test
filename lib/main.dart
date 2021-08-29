@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:superformula_test/core/service_locator.dart';
 import 'package:superformula_test/pages/home_page.dart';
 import 'package:superformula_test/router/router.dart';
 
@@ -7,6 +8,7 @@ void main() {
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: Colors.blueGrey[700]));
   AppRoutes.createRoutes();
+  ServiceLocator.register();
   runApp(MyApp());
 }
 
