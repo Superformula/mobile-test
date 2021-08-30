@@ -1,32 +1,50 @@
-# Superformula Mobile Developer Coding Test
+# SuperFormula Test
+## Build Instructions For Windows
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+1. Install [Flutter](https://flutter.dev/docs/get-started/install) SDK on local machine
+2. Make sure you've installed Android Studio or VScode with their respective flutter plugins.
+3. Clone the repo
+4. Generating **json serialization** code for your models use this command:
 
-## Requirements
+```engine='sh'
+cd path/to-your-project
+flutter pub get 
+flutter pub run build_runner build --delete-conflicting-outputs
+flutter run
+```
 
-There is only one test here currently, please review and get back to us.
+## Design Pattern 
+The design pattern currently being use is based on the **Domain Driven Design (DDD)** where features are grouped under a single domain and this helps our code to be more:
 
-## What We Care About
+1. **Maintainability**: no messed code, no cross-referencing between segments.
+2. **Scalability**: You can add new functionality more easily
+3. **Testability**: You can mock dependencies.
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+## Project Structure #
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+Our project consist of a **core**, **domain**, **pages**, **router**, and **services** folder at a high level and is broken down as shown below
 
-Here's what you should strive for:
+**Core** consist of functions, features and widgets that will be used thoughtout the app.
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+ **Domain** consist of features folders and each of these folder has the following folders:
+- **Models**: Defines the structure of the data
+- **Providers**: Provides data to views, update view states
+- **Repository**: Contains classes that is use fetches data from a both local and remote sources
+ 
+**Pages** this holds views/widget that has a navigation route associated with them in the app of the project and are grouped based on domain
 
-## Q&A
+**Router** contains the routing for all pages
 
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
-
-> What if I have a question?
-
-Just create a new issue in this repo and we will respond and get back to you quickly.
-
-## Review
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions. 
+## Directory structure # 
+    .             
+    ├── libs                    
+    │   ├── core                
+    │   ├── domain
+    │   │   └── feature   
+    │   │       ├── models      
+    │   │       ├── providers   
+    │   │       └── repository  # classes that pulls data remotely or locally
+    │   ├── router              # definition of navigation routes in the app
+    │   ├── pages               # contains widget that has a route to them          
+    │   ├── services            
+    └── test                    # unit test
