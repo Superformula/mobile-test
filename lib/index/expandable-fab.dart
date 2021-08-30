@@ -3,14 +3,17 @@ import 'package:qr_generator/index/expanding-action-button.dart';
 
 class ExpandableFab extends StatefulWidget {
 
- final double distance;
- final List<Widget> children;
- final Function(bool) onTap;
- final bool isExpanded;
- final Stream<bool>? expansionChangeListenable;
+  // second key needed to pass down the tree to the actual button
+  final Key? buttonKey;
+  final double distance;
+  final List<Widget> children;
+  final Function(bool) onTap;
+  final bool isExpanded;
+  final Stream<bool>? expansionChangeListenable;
 
-  const ExpandableFab({
+  ExpandableFab({
     Key? key,
+    this.buttonKey,
     required this.distance,
     required this.children,
     required this.onTap,
@@ -33,7 +36,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
 
     _expansionAnimationController = AnimationController(
       value: widget.isExpanded ? 1.0 : 0.0,
-      duration: const Duration(milliseconds: 250),
+      duration: Duration(milliseconds: 250),
       vsync: this,
     );
     _expandAnimation = CurvedAnimation(
@@ -72,6 +75,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           curve: Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: Duration(milliseconds: 250),
           child: FloatingActionButton(
+            key: widget.buttonKey,
             onPressed: () {
               widget.onTap(true);
               _expansionAnimationController.forward();
@@ -89,7 +93,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       height: 56.0,
       child: Center(
         child: Material(
-          shape: const CircleBorder(),
+          shape: CircleBorder(),
           clipBehavior: Clip.antiAlias,
           elevation: 4.0,
           child: InkWell(
@@ -98,7 +102,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
               _expansionAnimationController.reverse();
             },
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8.0),
               child: Icon(
                 Icons.close,
                 color: Theme.of(context).primaryColor,

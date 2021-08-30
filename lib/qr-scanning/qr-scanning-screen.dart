@@ -16,7 +16,7 @@ class _QRScanningScreenState extends State<QRScanningScreen> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   late QRScanningBloc bloc;
 
-  static const double SCAN_AREA_PADDING = 60;
+  static const double _SCAN_AREA_PADDING = 60;
 
   @override
   void initState() {
@@ -89,10 +89,10 @@ class _QRScanningScreenState extends State<QRScanningScreen> {
               borderWidth: 10,
               cutOutSize: orientation == Orientation.portrait
                   // if portrait mode, scan area is contained to smallest screen dimension with padding
-                  ? MediaQuery.of(context).size.width - SCAN_AREA_PADDING
+                  ? MediaQuery.of(context).size.width - _SCAN_AREA_PADDING
                   // if landscape mode, scan area is contained to smallest screen dimension, accouting
                   // for app bar height, and padding
-                  : (MediaQuery.of(context).size.height - kToolbarHeight) - SCAN_AREA_PADDING),
+                  : (MediaQuery.of(context).size.height - kToolbarHeight) - _SCAN_AREA_PADDING),
           );
         }
       ),

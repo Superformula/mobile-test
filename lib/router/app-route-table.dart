@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_generator/index/index-bloc.dart';
 import 'package:qr_generator/index/index-screen.dart';
+import 'package:qr_generator/permissions/permission-wrapper.dart';
 import 'package:qr_generator/providers/bloc-provider.dart';
 import 'package:qr_generator/qr-generation/qr-generation-bloc.dart';
 import 'package:qr_generator/qr-generation/qr-generation-screen.dart';
@@ -22,7 +23,7 @@ class AppRouteTable {
     Map<String, WidgetBuilder> routes = {
       "/": (context) => BlocProvider(
         bloc: IndexBloc(),
-        child: IndexScreen()
+        child: IndexScreen(permissionWrapper: PermissionWrapper())
       ),
       "/qr-generation": (context) {
         return BlocProvider(

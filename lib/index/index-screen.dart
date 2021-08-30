@@ -3,10 +3,17 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_generator/index/action-button.dart';
 import 'package:qr_generator/index/expandable-fab.dart';
 import 'package:qr_generator/index/index-bloc.dart';
+import 'package:qr_generator/permissions/permission-wrapper.dart';
 import 'package:qr_generator/providers/bloc-provider.dart';
 
 class IndexScreen extends StatefulWidget {
-  IndexScreen({ Key? key }) : super(key: key);
+
+  final PermissionWrapper permissionWrapper;
+
+  IndexScreen({
+    Key? key,
+    required this.permissionWrapper
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _IndexScreenState();
@@ -25,24 +32,33 @@ class _IndexScreenState extends State<IndexScreen> {
   }
 
   Future<void> _showPermissionAlert() async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Camera access needed'),
-        content: Text('Permission to access the camera has been denied. Please allow camera access to scan QR codes'),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  ); 
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          key: Key("permissionAlertDialog"),
+          title: Text('Camera access needed'),
+          content: Text('Permission to access the camera has been denied. Please allow camera access to scan QR codes'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    ); 
+  }
+
+  Future<bool> _requestCameraPermission() async {
+    // request permission to use camera, 
+    // does not show prompt if granted, but returns
+    // valid status
+    PermissionStatus status = await widget.permissionWrapper.requestCameraPermission();
+    return status == PermissionStatus.granted;
   }
 
   @override
@@ -61,23 +77,21 @@ class _IndexScreenState extends State<IndexScreen> {
         initialData: false,
         builder: (context, snapshot) {
           return ExpandableFab(
+            buttonKey: Key("expandingFab"),
             children: [
               ActionButton(
+                key: Key("scanCodeButton"),
                 icon: Icon(Icons.camera_alt_outlined),
                 label: "Scan code",
                 onPressed: () async {
-                  // request permission to use camera, 
-                  // does nothing if permission is granted
-                  await Permission.camera.request();
-                  if(!await Permission.camera.isGranted) {
-                    await _showPermissionAlert();
-                  } else {
-                    bloc.setFabExpansion(false);
-                    Navigator.of(context).pushNamed("/qr-scan");
-                  }
+                  bool isPermissionGranted = await _requestCameraPermission();
+                  isPermissionGranted
+                      ? Navigator.of(context).pushNamed("/qr-scan")
+                      : _showPermissionAlert();
                 },
               ),
               ActionButton(
+                key: Key("generateCodeButton"),
                 icon: Icon(Icons.refresh),
                 label: "Generate code",
                 onPressed: () {
