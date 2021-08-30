@@ -40,12 +40,12 @@ class QrCodePage extends StatelessWidget {
                           ),
                     SizedBox(height: 20),
                     Text(
-                      //Logic to determine what text is shown
-                      provider.isLoading
-                        ? 'Loading'
-                        : provider.countdown == 0
-                            ? 'Timer Expired'
-                            : provider.countdown.toString() + 's')
+                        //Logic to determine what text is shown
+                        provider.isLoading
+                            ? 'Loading'
+                            : provider.countdown == 0
+                                ? 'Timer Expired'
+                                : provider.countdown.toString() + 's')
                   ],
                 );
               });

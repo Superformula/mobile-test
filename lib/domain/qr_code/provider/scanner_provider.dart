@@ -13,7 +13,7 @@ class ScannerProvider extends ChangeNotifier {
   String? result = '';
   String? format = '';
 
-///computes the values of the Barcode data and assign them accordingly
+  ///computes the values of the Barcode data and assign them accordingly
   Future<void> resolveDataScan(Barcode data) {
     format = describeEnum(data.format);
     result = data.code;
@@ -31,8 +31,8 @@ class ScannerProvider extends ChangeNotifier {
   Future<bool> submitQR() async {
     QrValidate validateQR = QrValidate();
     try {
-        validateQR.qrVal = result;
-        await client.validateQR(validateQR);
+      validateQR.qrVal = result;
+      await client.validateQR(validateQR);
       return true;
     } catch (e) {
       return false;

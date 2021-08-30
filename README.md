@@ -35,6 +35,10 @@ Our project consist of a **core**, **domain**, **pages**, **router**, and **serv
 
 **Router** contains the routing for all pages
 
+## Testing
+
+To run all tests in the test folder use this command:
+```flutter test```
 ## Directory structure # 
     .             
     ├── libs                    

@@ -14,7 +14,7 @@ class QRProvider extends ChangeNotifier {
 
   QRProvider() {
     _startLoading();
-  
+
     //gets a seed when the provider is initialized from the view
     client.getSeed().then((value) {
       decodedString = Utils.decodeString(value.seed);

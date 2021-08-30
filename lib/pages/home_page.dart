@@ -32,7 +32,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 //This text is updated on a callback from the previous page to show arguments
                 //passing through a route on pop()
-                updatedText != null ? updatedText!.toUpperCase() : 'SUPERFORMULA TEST',
+                updatedText != null
+                    ? updatedText!.toUpperCase()
+                    : 'SUPERFORMULA TEST',
               ),
             ],
           ),
@@ -72,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   AppRoutes.navigate(context, '/qrscanner',
                           args: 'Scan QR Code')
                       .then((value) {
-                        //This is where the text is recived from the previous route and updated on the page.
+                    //This is where the text is recived from the previous route and updated on the page.
                     setState(() => updatedText = value);
                   });
                 })

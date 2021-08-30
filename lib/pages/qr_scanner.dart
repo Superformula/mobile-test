@@ -34,7 +34,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
     return Scaffold(
         appBar: AppBar(
           leading: BackButton(
-            //This pushes back an argument through the route on back button press
+              //This pushes back an argument through the route on back button press
               onPressed: () => Navigator.pop(context, passToMainScreen)),
           title: Text(
             widget.title ?? '',
