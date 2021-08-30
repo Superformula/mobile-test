@@ -27,12 +27,10 @@ class ScannerProvider extends ChangeNotifier {
   }
 
   Future<bool> submitQR() async {
-    QrValidate? validateQR;
+    QrValidate validateQR = QrValidate();
     try {
-      if (validateQR != null) {
         validateQR.qrVal = result;
         await client.validateQR(validateQR);
-      }
       return true;
     } catch (e) {
       return false;
