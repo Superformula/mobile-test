@@ -30,6 +30,8 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
+                //This text is updated on a callback from the previous page to show arguments
+                //passing through a route on pop()
                 updatedText != null ? updatedText!.toUpperCase() : 'SUPERFORMULA TEST',
               ),
             ],
@@ -55,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 label: 'QR Code',
                 onTap: () {
+                  //Navigator Route
                   AppRoutes.navigate(context, '/qrcode', args: 'QR Code');
                 }),
             SpeedDialChild(
@@ -65,9 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 label: 'QR Scanner',
                 onTap: () {
+                  //Navigator Route
                   AppRoutes.navigate(context, '/qrscanner',
                           args: 'Scan QR Code')
                       .then((value) {
+                        //This is where the text is recived from the previous route and updated on the page.
                     setState(() => updatedText = value);
                   });
                 })

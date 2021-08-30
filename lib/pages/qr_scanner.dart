@@ -34,6 +34,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
     return Scaffold(
         appBar: AppBar(
           leading: BackButton(
+            //This pushes back an argument through the route on back button press
               onPressed: () => Navigator.pop(context, passToMainScreen)),
           title: Text(
             widget.title ?? '',
@@ -78,6 +79,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
                                         ),
                                         SizedBox(width: 10),
                                         Text(
+                                          //Displays the format of the QR Code and the resuling text.
                                           '${provider.format!.toUpperCase()}: ${provider.result!.toUpperCase()}',
                                           style: TextStyle(
                                               color: Colors.white,
@@ -98,6 +100,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
         ));
   }
 
+//This is used to get the built in permission handler for the camera
   void _onPermissionSet(
       BuildContext context, QRViewController ctrl, bool setValue) {
     if (!setValue) {

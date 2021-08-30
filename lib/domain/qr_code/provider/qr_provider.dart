@@ -5,6 +5,7 @@ import 'package:superformula_test/core/service_locator.dart';
 import 'package:superformula_test/core/utilities.dart';
 import 'package:superformula_test/domain/qr_code/repository/qr_code_repo.dart';
 
+///This provider is local to the QR Code Page and should handle all attributes of the  QR Code should they arrise.
 class QRProvider extends ChangeNotifier {
   final RestClient client = ServiceLocator.locator<RestClient>();
   bool isLoading = false;
@@ -13,6 +14,8 @@ class QRProvider extends ChangeNotifier {
 
   QRProvider() {
     _startLoading();
+  
+    //gets a seed when the provider is initialized from the view
     client.getSeed().then((value) {
       decodedString = Utils.decodeString(value.seed);
       _stopLoading();
@@ -35,6 +38,7 @@ class QRProvider extends ChangeNotifier {
   Timer? _timer;
   int countdown = 15;
 
+  //method used to start the timer after the get request is completed
   void startTimer({int countDownValue = 15}) {
     if (_timer != null) {
       _timer?.cancel();
@@ -62,6 +66,7 @@ class QRProvider extends ChangeNotifier {
     refreshUI();
   }
 
+  //returns the duration of the seed as the timer
   int getDuration(DateTime? dateTime) {
     if (dateTime != null) {
       return dateTime.difference(DateTime.now()).inSeconds;

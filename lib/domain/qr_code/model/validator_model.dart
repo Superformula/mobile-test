@@ -1,3 +1,4 @@
+///Model used in the Post request to send scanned value to the endpoint.
 class QrValidate {
   QrValidate({
     this.qrVal,

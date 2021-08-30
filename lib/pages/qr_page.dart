@@ -20,6 +20,7 @@ class QrCodePage extends StatelessWidget {
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Center(
+        //The change notfier and consumer widget is this instance updates values that changed in the provider
         child: ChangeNotifierProvider<QRProvider>(
             create: (_) => QRProvider(),
             builder: (context, snapshot) {
@@ -38,7 +39,9 @@ class QrCodePage extends StatelessWidget {
                             foregroundColor: Theme.of(context).primaryColor,
                           ),
                     SizedBox(height: 20),
-                    Text(provider.isLoading
+                    Text(
+                      //Logic to determine what text is shown
+                      provider.isLoading
                         ? 'Loading'
                         : provider.countdown == 0
                             ? 'Timer Expired'

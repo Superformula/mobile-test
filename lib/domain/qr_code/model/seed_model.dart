@@ -1,3 +1,4 @@
+///Seed Model used for the get request
 class Seed {
   Seed({
     this.seed,

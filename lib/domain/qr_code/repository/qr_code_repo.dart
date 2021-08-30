@@ -9,9 +9,11 @@ part 'qr_code_repo.g.dart';
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
+//Get Request for Seed
   @GET("/Seed")
   Future<Seed> getSeed();
 
+//Post Request for Scanned Code
   @POST("/ValidateQR")
   Future validateQR(@Body() QrValidate validateQR);
 }
