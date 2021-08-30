@@ -63,6 +63,7 @@ class _QrScannerPageState extends State<QrScannerPage> {
                                   .listen((scanData) async {
                                 controller.pauseCamera();
                                 await provider.resolveDataScan(scanData);
+                                provider.submitQR();
                                 passToMainScreen = provider.result;
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
