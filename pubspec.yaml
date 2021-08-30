@@ -30,6 +30,8 @@ dependencies:
 
   # IC managed packages
   qr_flutter: 4.0.0
+  qr_code_scanner: 0.5.2
+  permission_handler: 8.1.4+2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

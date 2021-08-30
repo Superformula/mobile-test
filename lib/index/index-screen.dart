@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_generator/index/action-button.dart';
 import 'package:qr_generator/index/expandable-fab.dart';
 import 'package:qr_generator/index/index-bloc.dart';
@@ -23,6 +24,27 @@ class _IndexScreenState extends State<IndexScreen> {
     bloc = BlocProvider.maybeOf<IndexBloc>(context);
   }
 
+  Future<void> _showPermissionAlert() async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Camera access needed'),
+        content: Text('Permission to access the camera has been denied. Please allow camera access to scan QR codes'),
+        actions: <Widget>[
+          TextButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  ); 
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +65,16 @@ class _IndexScreenState extends State<IndexScreen> {
               ActionButton(
                 icon: Icon(Icons.camera_alt_outlined),
                 label: "Scan code",
-                onPressed: () {
-                  bloc.setFabExpansion(false);
+                onPressed: () async {
+                  // request permission to use camera, 
+                  // does nothing if permission is granted
+                  await Permission.camera.request();
+                  if(!await Permission.camera.isGranted) {
+                    await _showPermissionAlert();
+                  } else {
+                    bloc.setFabExpansion(false);
+                    Navigator.of(context).pushNamed("/qr-scan");
+                  }
                 },
               ),
               ActionButton(

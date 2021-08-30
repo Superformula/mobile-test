@@ -4,6 +4,8 @@ import 'package:qr_generator/index/index-screen.dart';
 import 'package:qr_generator/providers/bloc-provider.dart';
 import 'package:qr_generator/qr-generation/qr-generation-bloc.dart';
 import 'package:qr_generator/qr-generation/qr-generation-screen.dart';
+import 'package:qr_generator/qr-scanning/qr-scanning-bloc.dart';
+import 'package:qr_generator/qr-scanning/qr-scanning-screen.dart';
 import 'package:qr_generator/services/app-backend-client.dart';
 
 class AppRouteTable {
@@ -26,6 +28,12 @@ class AppRouteTable {
         return BlocProvider(
           bloc: QRGenerationBloc(_backendClient),
           child: QRGenerationScreen(),
+        );
+      },
+      "/qr-scan": (context) {
+        return BlocProvider(
+          bloc: QRScanningBloc(_backendClient),
+          child: QRScanningScreen()
         );
       }
     };

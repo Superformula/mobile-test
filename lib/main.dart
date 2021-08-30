@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:qr_generator/providers/bloc-provider.dart';
-import 'package:qr_generator/qr-generation/qr-generation-bloc.dart';
-import 'package:qr_generator/qr-generation/qr-generation-screen.dart';
 import 'package:qr_generator/router/app-route-table.dart';
 import 'package:qr_generator/router/app-router.dart';
 import 'package:qr_generator/services/app-backend-client.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
 
   AppBackendClient backendClient = AppBackendClient.getInstance();
   AppRouteTable routeTable = AppRouteTable(backendClient);
@@ -30,7 +28,7 @@ class QRGeneratorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'QR Generator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

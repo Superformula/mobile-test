@@ -26,7 +26,7 @@ class ActionButton extends StatelessWidget {
               ? Card(
                 elevation: 6,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
+                  padding: EdgeInsets.fromLTRB(6, 4, 6, 4),
                   child: Text(label!),
                 ),
               )

@@ -16,7 +16,9 @@ class AppBackendClient {
   AppBackendClient._() :
       this._client = AppHttpClient(),
       this._appEndpoint = AppEndpoint(
-        host: "localhost:3000",
+        // the url of the api service
+        host: "192.168.1.7:3000",
+        // the resource postfix such as /api/
         resource: ""
       );
 
