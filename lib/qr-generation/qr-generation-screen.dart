@@ -5,7 +5,8 @@ import 'package:qr_generator/providers/bloc-provider.dart';
 import 'package:qr_generator/qr-generation/qr-generation-bloc.dart';
 
 class QRGenerationScreen extends StatefulWidget {
-  const QRGenerationScreen({ Key? key }) : super(key: key);
+  
+  QRGenerationScreen({ Key? key }) : super(key: key);
 
   @override
   _QRGenerationScreenState createState() => _QRGenerationScreenState();
@@ -28,6 +29,7 @@ class _QRGenerationScreenState extends State<QRGenerationScreen> {
         child: Padding(
           padding: EdgeInsets.only(top: 40),
           child: QrImage(
+            key: Key("qrCode"),
             data: qrData,
             size: MediaQuery.of(context).size.height / 4,
           ),
@@ -42,7 +44,10 @@ class _QRGenerationScreenState extends State<QRGenerationScreen> {
         stream: bloc.qrExpirationTimerStream,
         builder: (context, snapshot) {
           if(snapshot.hasData) {
-            return Text("Code expiring in " + snapshot.data.toString() + "s");
+            return Text(
+              "Code expiring in " + snapshot.data.toString() + "s",
+              key: Key("expirationTimer"),
+            );
           } else if(snapshot.hasError) {
             return Text(snapshot.error as String);
           } else {
@@ -66,6 +71,7 @@ class _QRGenerationScreenState extends State<QRGenerationScreen> {
           Padding(
             padding: EdgeInsets.only(top: 20),
             child: ElevatedButton(
+              key: Key("retryButton"),
               child: Text("Try again"),
               onPressed: bloc.subscribeToGeneratedCode,
             ),
