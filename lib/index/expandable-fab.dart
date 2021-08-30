@@ -7,14 +7,16 @@ class ExpandableFab extends StatefulWidget {
  final List<Widget> children;
  final Function(bool) onTap;
  final bool isExpanded;
+ final Stream<bool>? expansionChangeListenable;
 
- const ExpandableFab({
-   Key? key,
-   required this.distance,
-   required this.children,
-   required this.onTap,
-   required this.isExpanded,
- }) : super(key: key);
+  const ExpandableFab({
+    Key? key,
+    required this.distance,
+    required this.children,
+    required this.onTap,
+    required this.isExpanded,
+    this.expansionChangeListenable
+  }) : super(key: key);
 
  @override
  _ExpandableFabState createState() => _ExpandableFabState();
@@ -39,37 +41,46 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       reverseCurve: Curves.easeOutQuad,
       parent: _expansionAnimationController,
     );
+
+    _registerExpansionChangeListener();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: Stack(
-        alignment: Alignment.bottomRight,
-        clipBehavior: Clip.none,
-        children: [
-          _buildTapToCloseFab(),
-          ..._buildExpandingActionButtons(),
-          _buildTapToOpenFab(),
-        ],
+  void _registerExpansionChangeListener() {
+    if(widget.expansionChangeListenable != null) {
+      widget.expansionChangeListenable!.listen((bool isExpanded) { 
+        isExpanded
+            ? _expansionAnimationController.forward()
+            : _expansionAnimationController.reverse();
+      });
+    }
+  }
+
+  Widget _buildTapToOpenFab() {
+    return IgnorePointer(
+      ignoring: widget.isExpanded,
+      child: AnimatedContainer(
+        transformAlignment: Alignment.center,
+        transform: Matrix4.diagonal3Values(
+          widget.isExpanded ? 0.7 : 1.0,
+          widget.isExpanded ? 0.7 : 1.0,
+          1.0,
+        ),
+        duration: Duration(milliseconds: 250),
+        curve: Interval(0.0, 0.5, curve: Curves.easeOut),
+        child: AnimatedOpacity(
+          opacity: widget.isExpanded ? 0.0 : 1.0,
+          curve: Interval(0.25, 1.0, curve: Curves.easeInOut),
+          duration: Duration(milliseconds: 250),
+          child: FloatingActionButton(
+            onPressed: () {
+              widget.onTap(true);
+              _expansionAnimationController.forward();
+            },
+            child: Icon(Icons.create),
+          ),
+        ),
       ),
     );
-  }
-
-  List<Widget> _buildExpandingActionButtons() {
-    final children = <Widget>[];
-    final count = widget.children.length;
-    double steppedDistance = widget.distance / count;
-    for (var i = 0; i < count; i++) {
-      children.add(
-        ExpandingActionButton(
-          maxDistance: steppedDistance+=steppedDistance,
-          progress: _expandAnimation,
-          child: widget.children[i],
-        ),
-      );
-    }
-    return children;
   }
 
   Widget _buildTapToCloseFab() {
@@ -98,31 +109,34 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       ),
     );
   }
-  
-  Widget _buildTapToOpenFab() {
-    return IgnorePointer(
-      ignoring: widget.isExpanded,
-      child: AnimatedContainer(
-        transformAlignment: Alignment.center,
-        transform: Matrix4.diagonal3Values(
-          widget.isExpanded ? 0.7 : 1.0,
-          widget.isExpanded ? 0.7 : 1.0,
-          1.0,
+
+  List<Widget> _buildExpandingActionButtons() {
+    final children = <Widget>[];
+    final count = widget.children.length;
+    double steppedDistance = widget.distance / count;
+    for (var i = 0; i < count; i++) {
+      children.add(
+        ExpandingActionButton(
+          maxDistance: steppedDistance+=steppedDistance,
+          progress: _expandAnimation,
+          child: widget.children[i],
         ),
-        duration: Duration(milliseconds: 250),
-        curve: Interval(0.0, 0.5, curve: Curves.easeOut),
-        child: AnimatedOpacity(
-          opacity: widget.isExpanded ? 0.0 : 1.0,
-          curve: Interval(0.25, 1.0, curve: Curves.easeInOut),
-          duration: Duration(milliseconds: 250),
-          child: FloatingActionButton(
-            onPressed: () {
-              widget.onTap(true);
-              _expansionAnimationController.forward();
-            },
-            child: Icon(Icons.create),
-          ),
-        ),
+      );
+    }
+    return children;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox.expand(
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        clipBehavior: Clip.none,
+        children: [
+          _buildTapToCloseFab(),
+          ..._buildExpandingActionButtons(),
+          _buildTapToOpenFab(),
+        ],
       ),
     );
   }

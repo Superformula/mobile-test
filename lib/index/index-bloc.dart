@@ -4,7 +4,7 @@ import 'package:qr_generator/providers/bloc-provider.dart';
 
 class IndexBloc implements Bloc {
 
-  StreamController<bool> fabExpansionController = StreamController();
+  StreamController<bool> fabExpansionController = StreamController.broadcast();
 
   // inputs 
   Function(bool) get setFabExpansion => fabExpansionController.sink.add;

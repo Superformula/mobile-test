@@ -14,6 +14,7 @@ class IndexScreen extends StatefulWidget {
 class _IndexScreenState extends State<IndexScreen> {
 
   late IndexBloc bloc;
+  static const double _FAB_EXPANSION_HEIGHT = 75;
 
   @override
   void initState() {
@@ -28,19 +29,37 @@ class _IndexScreenState extends State<IndexScreen> {
       appBar: AppBar(
         title: Text("QR Generator"),
       ),
-      body: Container(),
+      body: Container(
+        child: GestureDetector(
+          onTap: () => bloc.setFabExpansion(false),
+        ),
+      ),
       floatingActionButton: StreamBuilder<bool>(
         stream: bloc.fabExpansionStream,
         initialData: false,
         builder: (context, snapshot) {
           return ExpandableFab(
             children: [
-              ActionButton(icon: Icon(Icons.camera_alt_outlined)),
-              ActionButton(icon: Icon(Icons.refresh))
+              ActionButton(
+                icon: Icon(Icons.camera_alt_outlined),
+                label: "Scan code",
+                onPressed: () {
+                  bloc.setFabExpansion(false);
+                },
+              ),
+              ActionButton(
+                icon: Icon(Icons.refresh),
+                label: "Generate code",
+                onPressed: () {
+                  Navigator.of(context).pushNamed("/qr-generation");
+                  bloc.setFabExpansion(false);
+                },
+              )
             ],
-            distance: 75,
+            distance: _FAB_EXPANSION_HEIGHT,
             isExpanded: snapshot.data!,
             onTap: bloc.setFabExpansion,
+            expansionChangeListenable: bloc.fabExpansionStream,
           );
         }
       )

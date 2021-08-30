@@ -6,8 +6,8 @@ class ExpandingActionButton extends StatelessWidget {
   final Animation<double> progress;
   final Widget child;
 
-  static const double RIGHT_EDGE_PADDING = 4.0;
-  static const double NINETY_DEGREES_IN_RADS = Math.pi / 2;
+  static const double _RIGHT_EDGE_PADDING = 4.0;
+  static const double _NINETY_DEGREES_IN_RADS = Math.pi / 2;
 
   ExpandingActionButton({
     Key? key,
@@ -25,7 +25,7 @@ class ExpandingActionButton extends StatelessWidget {
         final offset = Offset.fromDirection(
           // Move expansion buttons vertically 
           // using radian value of 90 degrees
-          NINETY_DEGREES_IN_RADS,
+          _NINETY_DEGREES_IN_RADS,
 
           // Animated translation of expansion buttons 
           // their respective distances from center
@@ -33,18 +33,16 @@ class ExpandingActionButton extends StatelessWidget {
         );
         return Positioned(
         
-          right: RIGHT_EDGE_PADDING + offset.dx,
-          bottom: RIGHT_EDGE_PADDING + offset.dy,
-          child: Transform.rotate(
-            // Rotate child icons as they expand
-            angle: (1.0 - progress.value) * NINETY_DEGREES_IN_RADS,
-            child: child!,
-          ),
+          right: _RIGHT_EDGE_PADDING,
+          bottom: _RIGHT_EDGE_PADDING + offset.dy,
+          child:child!,
         );
       },
       child: FadeTransition(
         opacity: progress,
-        child: child,
+        child: GestureDetector(
+          child: child,
+        )
       ),
     );
   }
