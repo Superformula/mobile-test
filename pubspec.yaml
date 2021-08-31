@@ -29,6 +29,7 @@ dependencies:
   get: ^4.1.4
   device_preview: ^0.7.3
   http: ^0.13.3
+  qr_flutter: ^4.0.0
 
 
 
