@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Superformula Mobile Developer Coding Test
 
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
@@ -30,3 +31,21 @@ Just create a new issue in this repo and we will respond and get back to you qui
 
 ## Review
 The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions. 
+=======
+# superformula_mobile_test
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+>>>>>>> 20c44e5 (feat: 🎸 Initial Commmit)
