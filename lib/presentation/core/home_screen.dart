@@ -20,12 +20,14 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: 'ScanButtonHero',
             onPressed: () => context.router.push(const ScanQrCodeScreenRoute()),
             tooltip: 'Scann Qr Code',
             child: const Icon(Icons.camera_alt),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
+            heroTag: 'DisplayButtonHero',
             onPressed: () =>
                 context.router.push(const DisplayQrCodeScreenRoute()),
             tooltip: 'Display Qr Code',
@@ -33,6 +35,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
+            heroTag: 'HomeButtonHero',
             onPressed: () {},
             tooltip: 'Unused button',
             child: const Icon(Icons.home),
