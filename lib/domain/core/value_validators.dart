@@ -27,3 +27,13 @@ Either<ValueFailure<String>, String> validateStringLenght(
         ValueFailure<String>.invalidLenghtString(failedValue: input));
   }
 }
+
+Either<ValueFailure<DateTime>, String> validateIsoDateTimeFormat(String input) {
+  final value = DateTime.tryParse(input);
+  if (value != null) {
+    return Either.right(input);
+  } else {
+    return Either.left(
+        ValueFailure<DateTime>.invalidIsoFormat(failedValue: input));
+  }
+}
