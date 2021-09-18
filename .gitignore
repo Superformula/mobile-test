@@ -1,5 +1,6 @@
 # Manually Added
 *.gr.dart
+*freezed.dart
 
 # Miscellaneous
 *.class
