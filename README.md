@@ -1,6 +1,6 @@
 # Superformula Mobile Developer Coding Test
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+* Full project and Readme file are found [here](./qr_generator)
 
 ## Requirements
 
