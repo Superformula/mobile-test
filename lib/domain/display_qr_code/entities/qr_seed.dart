@@ -7,7 +7,7 @@ part 'qr_seed.freezed.dart';
 @freezed
 abstract class QrSeed with _$QrSeed {
   const factory QrSeed({
-    required QrSeedData data,
-    required QrSeedExpirationDate expireDate,
+    required QrSeedData seed,
+    required QrSeedExpirationDate expiresAt,
   }) = _QrSeed;
 }

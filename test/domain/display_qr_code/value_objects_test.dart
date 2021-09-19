@@ -55,7 +55,7 @@ void main() {
       // Bigger than allowed
       const testSeeds = [
         'asadasdasdasds', // too short
-        'iksuagdiag2g8o712gdo872ghd12gd8g2y1g2iuydgo1u2dg' // toolong
+        'iksuagdiag2g8o712gdo872ghd12gd8g2y1g2iuydgo1u2dg' // too long
       ];
 
       for (final seed in testSeeds) {
@@ -67,7 +67,8 @@ void main() {
         expect(
             qrSeedData.value,
             Either<ValueFailure<String>, String>.left(
-                ValueFailure.invalidLenghtString(failedValue: seed)));
+                ValueFailure.invalidLenghtString(
+                    failedValue: seed, maxAllowedLenght: 32)));
       }
     });
 

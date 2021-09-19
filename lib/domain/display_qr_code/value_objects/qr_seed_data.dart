@@ -3,7 +3,7 @@ import 'package:superformula_mobile_test/domain/core/failures.dart';
 import 'package:superformula_mobile_test/domain/core/value_object.dart';
 import 'package:superformula_mobile_test/domain/core/value_validators.dart';
 
-const seedValidLenght = 32;
+const int seedValidLenght = 32;
 
 class QrSeedData extends ValueObject<String> {
   @override
