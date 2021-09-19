@@ -1,6 +1,9 @@
 # Manually Added
 *.gr.dart
 *freezed.dart
+*.mocks.dart
+*.g.dart
+*.config.dart
 
 # Miscellaneous
 *.class
