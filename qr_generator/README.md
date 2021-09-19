@@ -34,15 +34,16 @@ In the **Data layer** is stored all of the implementation of repositories declar
     |-- lib   
     |   |-- data  
     |   |   |-- api  
-    |   |   |-- feature  
+    |   |   |-- <feature>
     |   |       |-- repository  
     |   |-- domain  
     |   |   |-- model  
-    |   |   |-- feature 
+    |   |   |-- <feature>
     |   |   |   |-- cubit  
     |   |   |   |-- repository    
     |   |-- presentation  
-    |   |   |-- feature
+    |   |   |-- <feature>
+    |   |   |   |-- widgets // Contains smaller widgets that the screen file uses   
     |   |-- router  // Router definition with auto_route library
     |-- test  // Unit and Widget testing
         |-- data  
@@ -56,6 +57,6 @@ In the **Data layer** is stored all of the implementation of repositories declar
         |-- presentation 
         |   |-- common  // Reusable code for all presentation tests 
         |   |-- feature
-        |   |   |-- mocks  
+        |   |   |-- widgets  
 ```
 

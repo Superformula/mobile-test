@@ -10,8 +10,6 @@ void main() {
 
     setUp(() => widget = makeTestableWidget(child: QRGeneratorScreen()));
 
-    // TODO should implement dependency injection to inject the cubits into
-    // screens so mocking/testing different states is easier.
     testWidgets(
       'should contain expected widgets',
       (WidgetTester tester) async {

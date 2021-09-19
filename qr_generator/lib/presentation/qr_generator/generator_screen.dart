@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/data/api/api.dart';
 import 'package:qr_generator/data/qr_generator/repository/qr_generator_repo_impl.dart';
 import 'package:qr_generator/domain/qr_generator/cubit/generator_cubit.dart';
+import 'package:qr_generator/presentation/qr_generator/widgets/qr_view.dart';
 
 class QRGeneratorScreen extends StatelessWidget {
   const QRGeneratorScreen({Key? key}) : super(key: key);
@@ -30,29 +30,9 @@ class _QRGenerator extends StatelessWidget {
         child: BlocBuilder<GeneratorCubit, GeneratorState>(
           builder: (_, state) {
             if (state is GeneratedQR)
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  QrImage(
-                    data: state.qrData,
-                    version: QrVersions.auto,
-                    size: 200,
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    state.qrData,
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
-                  SizedBox(
-                    height: 32,
-                  ),
-                  Text(
-                    'Expires in ${state.secondsToExpire} second(s)...',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ],
+              return QRView(
+                qrData: state.qrData,
+                secondsToExpire: state.secondsToExpire,
               );
             else if (state is GeneratorError) {
               return Column(
