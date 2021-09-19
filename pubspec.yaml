@@ -28,13 +28,28 @@ dependencies:
   cupertino_icons: ^1.0.2
   # Routing
   auto_route: ^2.3.2
-  # Immutable objects
+  # Immutable objects, equality and others
   freezed_annotation: ^0.14.2
+  
+  # Generate codable/decodable methods
   json_annotation: ^4.0.1
+  
+  # Service locator and  'injection'
   get_it: ^7.2.0
   injectable: ^1.5.0
+
+  # Http Lib
   http: ^0.13.3
+  
+  # Store non private data locally
   shared_preferences: ^2.0.7
+
+  # Qr code generation and scanner related libs
+  qr_flutter: ^4.0.0
+  qr_code_scanner: ^0.5.2
+
+  # State management
+  flutter_bloc: ^7.2.0
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +62,11 @@ dev_dependencies:
   freezed: ^0.14.2
   # Test help and mock
   mockito: ^5.0.15
+
+  # Generate codable/decodable methods
   json_serializable: ^4.1.4
+
+  # Service locator and  'injection'
   injectable_generator: ^1.4.1
 
 # For information on the generic Dart part of this file, see the
