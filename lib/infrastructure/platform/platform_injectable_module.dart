@@ -8,7 +8,7 @@ abstract class PlatformInjectableModule {
   @lazySingleton
   DataConnectionChecker get connectionChecker => DataConnectionChecker();
 
-  @lazySingleton
+  @preResolve
   Future<SharedPreferences> get sharedPreferences =>
       SharedPreferences.getInstance();
 

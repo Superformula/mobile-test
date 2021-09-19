@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:injectable/injectable.dart';
 import 'package:superformula_mobile_test/domain/core/exceptions.dart';
 import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_remote_data_source.dart';
 import 'package:superformula_mobile_test/infrastructure/display_qr_code/qr_seed_dto.dart';
 import 'package:superformula_mobile_test/locator.dart';
 
+@Injectable(as: IQrCodeRemoteDataSource)
 class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
   // TODO: SET CORRECT ENDPOINT
   final httpClient = locator<Client>();
