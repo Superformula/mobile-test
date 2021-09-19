@@ -8,7 +8,8 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   const factory ValueFailure.multilineString({required String failedValue}) =
       MultilineString<T>;
   const factory ValueFailure.invalidLenghtString(
-      {required String failedValue}) = InvalidLenghtString<T>;
+      {required String failedValue,
+      required int maxAllowedLenght}) = InvalidLenghtString<T>;
   const factory ValueFailure.invalidIsoFormat({required String failedValue}) =
       InvalidIsoFormat<T>;
 }

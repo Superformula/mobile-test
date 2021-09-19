@@ -21,8 +21,8 @@ class DisplayQrCodeScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) {
           final bloc = DisplayQrCodeBloc(locator<IQrSeedRepository>())
-            ..add(const DisplayQrCodeEvent.started())
-            ..add(const DisplayQrCodeEvent.requestNewQrCode());
+            // ..add(const DisplayQrCodeEvent.started())
+            ..add(const DisplayQrCodeEvent.requestedNewQrCode());
           return bloc;
         },
         child: BlocConsumer<DisplayQrCodeBloc, DisplayQrCodeState>(
@@ -30,50 +30,44 @@ class DisplayQrCodeScreen extends StatelessWidget {
             // return Container();
           },
           builder: (context, state) {
-            const size = 280.0;
-            if (state.qrSeed == null) {
-              return const SizedBox(
-                width: size,
-                height: size,
-              );
-            }
+            return state.map(
+              initial: (s) => Container(),
+              loadFailure: (s) {
+                return Text(s.qrcodeFailure.toString());
+              },
+              loadInProgress: (s) {
+                return const Center(child: CircularProgressIndicator());
+              },
+              loadSuccess: (s) {
+                const size = 280.0;
 
-            // Force unwrapp because we already checked for nullity
-            if (state.qrSeed != null && state.qrSeed!.seed.isValid()) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    CustomPaint(
-                      size: const Size.square(size),
-                      painter: QrPainter(
-                        data: state.qrSeed!.seed.getOrCrash(),
-                        version: QrVersions.auto,
-                        eyeStyle: const QrEyeStyle(
-                          eyeShape: QrEyeShape.square,
-                          color: Color(0xFF673AB7),
-                        ),
-                        dataModuleStyle: const QrDataModuleStyle(
-                          dataModuleShape: QrDataModuleShape.circle,
-                          color: Color(0xFF673AB7),
-                          // Colors.deepPurple
-                        ),
-                        // size: 320.0,
-                        // embeddedImage: snapshot.data,
-                        embeddedImageStyle: QrEmbeddedImageStyle(
-                          size: const Size.square(60),
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomPaint(
+                        size: const Size.square(size),
+                        painter: QrPainter(
+                          data: s.qrcode.seed.getOrCrash(),
+                          version: QrVersions.auto,
+                          eyeStyle: const QrEyeStyle(
+                            eyeShape: QrEyeShape.square,
+                            color: Color(0xFF673AB7),
+                          ),
+                          dataModuleStyle: const QrDataModuleStyle(
+                            dataModuleShape: QrDataModuleShape.circle,
+                            color: Color(0xFF673AB7),
+                          ),
                         ),
                       ),
-                    ),
-                    QRCodeExpirationDateTimer(
-                      expirationDate: state.qrSeed!.expiresAt,
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            return const SizedBox(width: size, height: size);
+                      QRCodeExpirationDateTimer(
+                        expirationDate: s.qrcode.expiresAt,
+                      )
+                    ],
+                  ),
+                );
+              },
+            );
           },
         ),
       ),

@@ -23,8 +23,8 @@ Either<ValueFailure<String>, String> validateStringLenght(
   if (input.length == lenght) {
     return Either.right(input);
   } else {
-    return Either.left(
-        ValueFailure<String>.invalidLenghtString(failedValue: input));
+    return Either.left(ValueFailure<String>.invalidLenghtString(
+        failedValue: input, maxAllowedLenght: lenght));
   }
 }
 
