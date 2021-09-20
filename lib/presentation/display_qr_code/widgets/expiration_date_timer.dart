@@ -6,6 +6,7 @@ import 'package:superformula_mobile_test/domain/display_qr_code/value_objects/qr
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:superformula_mobile_test/presentation/core/misc/colors.dart';
 
 class QRCodeExpirationDateTimer extends StatefulWidget {
   final QrSeedExpirationDate expirationDate;
@@ -56,9 +57,21 @@ class _QRCodeExpirationDateTimerState extends State<QRCodeExpirationDateTimer> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 8,
+        ),
         Text(
-            'Original ${widget.expirationDate.getOrCrash().toIso8601String()}'),
-        Text('Time left: ${_start.toString()}'),
+          'Expires in...\n ${_start.toString()} sec.',
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+              color: superformulaBackgroundColor,
+              fontWeight: FontWeight.w900,
+              // fontStyle: FontStyle.italic,
+              fontFamily: 'Open Sans',
+              fontSize: 40),
+        ),
       ],
     );
   }

@@ -23,11 +23,11 @@ class QrCodeErrorWidget extends StatelessWidget {
               version: QrVersions.min,
               eyeStyle: const QrEyeStyle(
                 eyeShape: QrEyeShape.square,
-                color: Color(0xFFDFDFDF),
+                color: Color.fromRGBO(80, 80, 80, 1),
               ),
               dataModuleStyle: const QrDataModuleStyle(
                 dataModuleShape: QrDataModuleShape.square,
-                color: Color(0xFFDFDFDF),
+                color: Color.fromRGBO(80, 80, 80, 1),
               ),
             ),
           ),
