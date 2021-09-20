@@ -69,9 +69,20 @@ A caching workflow/structure has been implemented, although the caching directly
 
 ### [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 The Conventional Commits specification is a  convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history. Those rules were followed whenever possible. Bear in mind that the commit purposes should mix up in the initial phase of the project ( as we build everything from scratch)
+
+## Lambda Folder
+
+This folder contains the lambda functions (AWS lambda) used to create the endpoint as requested in the `QR-generator-test.md` description. This was added as a reference on how the `/seed` endpoint was implemented. Bear in mind that thos was a very simplistic implementation, made directly in JS, and deployed directly in `AWS Lamnda` + `AWS Api Gateway`. A full project stack would include:
+
+- Typescript
+- Auto deploy script
+- Webpack configuration
+- More related technologies
+
 ## Roadmap
 
  - Integration tests
  - CI/CD
  - Scaner Bloc Test
+ - Persistend Seeds from server (actually validate them with another endpoint)
 

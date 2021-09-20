@@ -4,6 +4,7 @@
 *.mocks.dart
 *.g.dart
 *.config.dart
+node_modules/
 
 # Miscellaneous
 *.class
