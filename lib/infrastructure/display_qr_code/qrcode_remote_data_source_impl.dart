@@ -12,7 +12,6 @@ class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
 
   static final getSeedUri = Uri.parse(
       'https://luykkvtr61.execute-api.us-east-1.amazonaws.com/development/seed');
-
   @override
   Future<QrSeedDto> getQrCodeSeed() async {
     try {

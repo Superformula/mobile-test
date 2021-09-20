@@ -7,8 +7,6 @@ import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_reposi
 import 'package:superformula_mobile_test/domain/display_qr_code/qr_seed_failure.dart';
 import 'package:superformula_mobile_test/domain/platform/i_network_info.dart';
 
-import '../../locator.dart';
-
 part 'display_qr_code_event.dart';
 part 'display_qr_code_state.dart';
 part 'display_qr_code_bloc.freezed.dart';

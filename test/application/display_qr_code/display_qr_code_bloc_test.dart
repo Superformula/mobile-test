@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:superformula_mobile_test/application/display_qr_code/display_qr_code_bloc.dart';
@@ -49,6 +47,8 @@ void main() {
           const DisplayQrCodeState.loadInProgress(),
           DisplayQrCodeState.loadSuccess(tQRCode)
         ];
+
+        // ignore: unawaited_futures
         expectLater(bloc.stream, emitsInOrder(expected));
 
         // act
@@ -68,6 +68,8 @@ void main() {
           DisplayQrCodeState.loadInProgress(),
           DisplayQrCodeState.loadFailure(tQRCodeFailure)
         ];
+
+        // ignore: unawaited_futures
         expectLater(bloc.stream, emitsInOrder(expected));
 
         // act
@@ -88,6 +90,7 @@ void main() {
           const DisplayQrCodeState.loadInProgress(),
           DisplayQrCodeState.loadSuccess(tQRCode),
         ];
+        // ignore: unawaited_futures
         expectLater(bloc.stream, emitsInOrder(expected));
 
         // act

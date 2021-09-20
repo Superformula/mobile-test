@@ -2,6 +2,7 @@
 /// by opening a socket to a list of specified addresses, each with individual
 /// port and timeout. Defaults are provided for convenience.
 // library data_connection_checker;
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names, avoid_redundant_argument_values, unnecessary_lambdas, omit_local_variable_types, prefer_final_locals, prefer_final_in_for_each, avoid_positional_boolean_parameters, prefer_single_quotes
 
 import 'dart:async';
 import 'dart:io';
@@ -56,7 +57,8 @@ class DataConnectionChecker {
   /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
   /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
   /// | 208.67.220.220 | OpenDNS    | https://use.opendns.com/                        |
-  static final List<AddressCheckOptions> DEFAULT_ADDRESSES = List.unmodifiable(<AddressCheckOptions>[
+  static final List<AddressCheckOptions> DEFAULT_ADDRESSES =
+      List.unmodifiable(<AddressCheckOptions>[
     AddressCheckOptions(
       InternetAddress('1.1.1.1'),
       port: DEFAULT_PORT,
@@ -145,7 +147,8 @@ class DataConnectionChecker {
     for (var addressOptions in addresses) {
       requests.add(isHostReachable(addressOptions));
     }
-    _lastTryResults = List.unmodifiable(await Future.wait<AddressCheckResult>(requests));
+    _lastTryResults =
+        List.unmodifiable(await Future.wait<AddressCheckResult>(requests));
 
     return _lastTryResults.map((result) => result.isSuccess).contains(true);
   }
@@ -156,7 +159,9 @@ class DataConnectionChecker {
   /// [DataConnectionStatus.connected].
   /// [DataConnectionStatus.disconnected] otherwise.
   Future<DataConnectionStatus> get connectionStatus async {
-    return await hasConnection ? DataConnectionStatus.connected : DataConnectionStatus.disconnected;
+    return await hasConnection
+        ? DataConnectionStatus.connected
+        : DataConnectionStatus.disconnected;
   }
 
   /// The interval between periodic checks. Periodic checks are
@@ -199,7 +204,8 @@ class DataConnectionChecker {
   Timer? _timerHandle;
 
   // controller for the exposed 'onStatusChange' Stream
-  final StreamController<DataConnectionStatus> _statusController = StreamController.broadcast();
+  final StreamController<DataConnectionStatus> _statusController =
+      StreamController.broadcast();
 
   /// Subscribe to this stream to receive events whenever the
   /// [DataConnectionStatus] changes. When a listener is attached

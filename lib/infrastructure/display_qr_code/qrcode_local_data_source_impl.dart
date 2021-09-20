@@ -17,6 +17,9 @@ class QrCodeLocalDataSource implements IQrCodeLocalDataSource {
     return;
   }
 
+  /// Gets the cached [QrSeedDto] which was gotten the last time
+  /// the user had an internet connection.
+  /// Throws [CacheException] if no cached data is present.
   @override
   Future<QrSeedDto> getLastQrSeed() async {
     final jsonString =
