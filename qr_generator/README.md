@@ -47,16 +47,16 @@ In the **Data layer** is stored all of the implementation of repositories declar
     |   |-- router  // Router definition with auto_route library
     |-- test  // Unit and Widget testing
         |-- data  
-        |   |-- feature
+        |   |-- <feature>
         |   |   |-- mocks // Contains a mocker class that generates mockito 
 						  // generated files, separated from test files.
         |-- domain  
-        |   |-- feature 
+        |   |-- <feature>
         |   |   |-- cubit  // Unit testing through the bloc_test library
         |   |   |-- mocks  
         |-- presentation 
         |   |-- common  // Reusable code for all presentation tests 
-        |   |-- feature
+        |   |-- <feature>
         |   |   |-- widgets  
 ```
 

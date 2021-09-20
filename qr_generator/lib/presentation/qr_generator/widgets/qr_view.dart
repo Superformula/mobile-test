@@ -32,7 +32,7 @@ class QRView extends StatelessWidget {
           height: 32,
         ),
         Text(
-          'Expires in ${secondsToExpire} second(s)...',
+          'Expires in $secondsToExpire second(s)...',
           style: Theme.of(context).textTheme.bodyText1,
         ),
       ],
