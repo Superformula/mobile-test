@@ -6,6 +6,7 @@ import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_reposi
 import 'package:superformula_mobile_test/domain/platform/i_network_info.dart';
 import 'package:superformula_mobile_test/locator.dart';
 import 'package:superformula_mobile_test/presentation/display_qr_code/widgets/expiration_date_timer.dart';
+import 'package:superformula_mobile_test/presentation/display_qr_code/widgets/qr_code_error_widget.dart';
 
 class DisplayQrCodeScreen extends StatelessWidget {
   const DisplayQrCodeScreen({Key? key}) : super(key: key);
@@ -26,20 +27,33 @@ class DisplayQrCodeScreen extends StatelessWidget {
         },
         child: BlocConsumer<DisplayQrCodeBloc, DisplayQrCodeState>(
           listener: (context, state) {
-            // return Container();
+            state.map(initial: (st) {
+              // empty
+            }, loadInProgress: (st) {
+              // empty
+            }, loadSuccess: (st) {
+              // empty
+            }, loadFailure: (st) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    backgroundColor: Colors.purple,
+                    content: Text(
+                        'There was an error while trying to get the QR code, try Again.')),
+              );
+            });
           },
           builder: (context, state) {
             return state.map(
               initial: (s) => Container(),
               loadFailure: (s) {
-                return Text(s.qrcodeFailure.toString());
+                // return Text(s.qrcodeFailure.toString());
+                return const QrCodeErrorWidget();
               },
               loadInProgress: (s) {
                 return const Center(child: CircularProgressIndicator());
               },
               loadSuccess: (s) {
                 const size = 280.0;
-
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +64,7 @@ class DisplayQrCodeScreen extends StatelessWidget {
                           data: s.qrcode.seed.getOrCrash(),
                           version: QrVersions.auto,
                           eyeStyle: const QrEyeStyle(
-                            eyeShape: QrEyeShape.square,
+                            eyeShape: QrEyeShape.circle,
                             color: Color(0xFF673AB7),
                           ),
                           dataModuleStyle: const QrDataModuleStyle(
