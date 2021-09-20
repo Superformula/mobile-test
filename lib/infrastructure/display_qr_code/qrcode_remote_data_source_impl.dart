@@ -8,23 +8,22 @@ import 'package:superformula_mobile_test/locator.dart';
 
 @Injectable(as: IQrCodeRemoteDataSource)
 class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
-  // TODO: SET CORRECT ENDPOINT
   final httpClient = locator<Client>();
 
   static final getSeedUri = Uri.parse(
-      'https://httpbin.org/anything/{anything}?seed=d43397d129c3de9e4b6c3974c1c16d1f&expires_at=1979-11-12T13:10:42.24Z');
+      'https://luykkvtr61.execute-api.us-east-1.amazonaws.com/development/seed');
 
   @override
   Future<QrSeedDto> getQrCodeSeed() async {
-    final response = await httpClient.get(getSeedUri);
     try {
+      final response = await httpClient.get(getSeedUri);
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       if (response.statusCode == 200) {
-        return QrSeedDto.fromJson(data['args'] as Map<String, dynamic>);
+        return QrSeedDto.fromJson(data);
       } else {
         throw ServerException();
       }
-    } catch (e) {
+    } on FormatException {
       throw ResponseFormatException();
     }
   }
