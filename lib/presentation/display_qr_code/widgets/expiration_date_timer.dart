@@ -70,7 +70,7 @@ class _QRCodeExpirationDateTimerState extends State<QRCodeExpirationDateTimer> {
               fontWeight: FontWeight.w900,
               // fontStyle: FontStyle.italic,
               fontFamily: 'Open Sans',
-              fontSize: 40),
+              fontSize: 20),
         ),
       ],
     );

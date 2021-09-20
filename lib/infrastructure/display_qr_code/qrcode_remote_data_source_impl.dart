@@ -31,6 +31,10 @@ class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
   Future<bool> validateQrCodeData(String data) async {
     await Future<void>.delayed(const Duration(seconds: 2));
     // Stub response, always return a valid response
-    return true;
+    // will match every for every data that matches size
+    if (data.length == 32) {
+      return true;
+    }
+    return false;
   }
 }

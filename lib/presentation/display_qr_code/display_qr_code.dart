@@ -65,15 +65,15 @@ class DisplayQrCodeScreen extends StatelessWidget {
                         painter: QrPainter(
                           data: s.qrcode.seed.getOrCrash(),
                           version: QrVersions.auto,
-                          gapless: true,
+                          // gapless: true,
                           eyeStyle: const QrEyeStyle(
                             eyeShape: QrEyeShape.circle,
                             color:
-                                superformulaPrimaryColor, //Color(0xFF673AB7),
+                                superformulaBackgroundColor, //Color(0xFF673AB7),
                           ),
                           dataModuleStyle: const QrDataModuleStyle(
                             dataModuleShape: QrDataModuleShape.circle,
-                            color: superformulaPrimaryColor,
+                            color: superformulaBackgroundColor,
                           ),
                         ),
                       ),
