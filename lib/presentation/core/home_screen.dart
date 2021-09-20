@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:simple_speed_dial/simple_speed_dial.dart';
 import 'package:superformula_mobile_test/presentation/app_router.gr.dart';
+import 'package:superformula_mobile_test/presentation/core/misc/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,39 +11,55 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: superformulaBackgroundColor,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: const Text('Home Screen'),
       ),
-      body: const Center(
-        child: Text('home screen'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              'assets/superformula-logo.svg',
+              semanticsLabel: 'Superformula Logo',
+              width: 100,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            SvgPicture.asset(
+              'assets/superformula-text.svg',
+              semanticsLabel: 'Superformula',
+              width: 150,
+            ),
+          ],
+        ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            heroTag: 'ScanButtonHero',
+      floatingActionButton: SpeedDial(
+        speedDialChildren: <SpeedDialChild>[
+          SpeedDialChild(
             onPressed: () => context.router.push(const ScanQrCodeScreenRoute()),
-            tooltip: 'Scann Qr Code',
+            label: 'Scan Qr Code',
+            backgroundColor: superformulaSecondaryColor,
+            foregroundColor: superformulaBackgroundColor,
             child: const Icon(Icons.camera_alt),
           ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            heroTag: 'DisplayButtonHero',
+          SpeedDialChild(
             onPressed: () =>
                 context.router.push(const DisplayQrCodeScreenRoute()),
-            tooltip: 'Display Qr Code',
+            label: 'Display Qr Code',
+            backgroundColor: superformulaSecondaryColor,
+            foregroundColor: superformulaBackgroundColor,
             child: const Icon(Icons.qr_code_2_rounded),
           ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            heroTag: 'HomeButtonHero',
-            onPressed: () {},
-            tooltip: 'Unused button',
-            child: const Icon(Icons.home),
-          ),
         ],
+        openBackgroundColor: superformulaSecondaryColor,
+        openForegroundColor: superformulaBackgroundColor,
+        closedForegroundColor: superformulaBackgroundColor,
+        closedBackgroundColor: superformulaSecondaryColor,
+        child: const Icon(Icons.add),
       ),
     );
   }

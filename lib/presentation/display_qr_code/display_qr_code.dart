@@ -5,6 +5,7 @@ import 'package:superformula_mobile_test/application/display_qr_code/display_qr_
 import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_repository.dart';
 import 'package:superformula_mobile_test/domain/platform/i_network_info.dart';
 import 'package:superformula_mobile_test/locator.dart';
+import 'package:superformula_mobile_test/presentation/core/misc/colors.dart';
 import 'package:superformula_mobile_test/presentation/display_qr_code/widgets/expiration_date_timer.dart';
 import 'package:superformula_mobile_test/presentation/display_qr_code/widgets/qr_code_error_widget.dart';
 
@@ -14,6 +15,7 @@ class DisplayQrCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: superformulaBackgroundColor,
       appBar: AppBar(
         title: const Text('Display Qr Code'),
       ),
@@ -36,7 +38,7 @@ class DisplayQrCodeScreen extends StatelessWidget {
             }, loadFailure: (st) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                    backgroundColor: Colors.purple,
+                    backgroundColor: superformulaPrimaryColor,
                     content: Text(
                         'There was an error while trying to get the QR code, try Again.')),
               );
@@ -63,13 +65,15 @@ class DisplayQrCodeScreen extends StatelessWidget {
                         painter: QrPainter(
                           data: s.qrcode.seed.getOrCrash(),
                           version: QrVersions.auto,
+                          gapless: true,
                           eyeStyle: const QrEyeStyle(
                             eyeShape: QrEyeShape.circle,
-                            color: Color(0xFF673AB7),
+                            color:
+                                superformulaPrimaryColor, //Color(0xFF673AB7),
                           ),
                           dataModuleStyle: const QrDataModuleStyle(
                             dataModuleShape: QrDataModuleShape.circle,
-                            color: Color(0xFF673AB7),
+                            color: superformulaPrimaryColor,
                           ),
                         ),
                       ),
