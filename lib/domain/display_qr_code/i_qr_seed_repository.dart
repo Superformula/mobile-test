@@ -4,5 +4,5 @@ import 'package:superformula_mobile_test/domain/display_qr_code/qr_seed_failure.
 
 abstract class IQrSeedRepository {
   Future<Either<QrSeedFailure, QrSeed>> getQrCodeSeed();
-  Future<Either<QrSeedFailure, void>> validateQrCodeData();
+  Future<Either<QrSeedFailure, bool>> validateQrCodeData(String data);
 }

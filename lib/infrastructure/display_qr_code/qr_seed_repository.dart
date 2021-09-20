@@ -18,15 +18,6 @@ class QrSeedRepository implements IQrSeedRepository {
     final localDataSource = locator<IQrCodeLocalDataSource>();
     final networkInfo = locator<INetworkInfo>();
 
-    // TODO: Finish lambda implementation and use data comeing from the server
-
-    // Stub wait and response
-    // await Future<void>.delayed(const Duration(seconds: 3));
-    const stubResponse = {
-      'seed': 'd43397d129c3de9e4b6c3974c1c16d1f',
-      'expires_at': '1979-11-12T13:10:42.24Z'
-    };
-
     if (await networkInfo.isConnected) {
       try {
         final result = await remoteDataSource.getQrCodeSeed();
@@ -48,8 +39,22 @@ class QrSeedRepository implements IQrSeedRepository {
   }
 
   @override
-  Future<Either<QrSeedFailure, void>> validateQrCodeData() {
-    // TODO: implement validateQrCodeData
-    throw UnimplementedError();
+  Future<Either<QrSeedFailure, bool>> validateQrCodeData(String data) async {
+    final remoteDataSource = locator<IQrCodeRemoteDataSource>();
+    final networkInfo = locator<INetworkInfo>();
+
+    if (await networkInfo.isConnected) {
+      try {
+        final result = await remoteDataSource.validateQrCodeData(data);
+        return Either.right(result);
+      } on ServerException {
+        return const Either.left(QrSeedFailure.serverFailure());
+      } on ResponseFormatException {
+        return const Either.left(QrSeedFailure.serverFailure());
+      }
+    } else {
+      // We cant validate without connection
+      return const Either.left(QrSeedFailure.connectivityFailure());
+    }
   }
 }

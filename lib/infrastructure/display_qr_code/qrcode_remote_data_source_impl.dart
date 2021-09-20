@@ -29,8 +29,9 @@ class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
   }
 
   @override
-  Future<void> validateQrCodeData() async {
-    // TODO: implement validateQrCodeData
-    throw UnimplementedError();
+  Future<bool> validateQrCodeData(String data) async {
+    await Future<void>.delayed(const Duration(seconds: 2));
+    // Stub response, always return a valid response
+    return true;
   }
 }

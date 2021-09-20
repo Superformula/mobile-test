@@ -12,16 +12,15 @@ class QrCodeLocalDataSource implements IQrCodeLocalDataSource {
 
   @override
   Future<void> cacheQrSeed(QrSeedDto qrcodeToCache) async {
-    await (await sharedPreferences).setString(
-        IQrCodeLocalDataSource.cachedQRCode,
+    await sharedPreferences.setString(IQrCodeLocalDataSource.cachedQRCode,
         jsonEncode(qrcodeToCache.toJson()));
     return;
   }
 
   @override
   Future<QrSeedDto> getLastQrSeed() async {
-    final jsonString = await (await sharedPreferences)
-        .getString(IQrCodeLocalDataSource.cachedQRCode);
+    final jsonString =
+        sharedPreferences.getString(IQrCodeLocalDataSource.cachedQRCode);
     if (jsonString != null) {
       return QrSeedDto.fromJson(jsonDecode(jsonString) as Map<String, dynamic>);
     } else {

@@ -7,4 +7,5 @@ abstract class QrSeedFailure with _$QrSeedFailure {
   const factory QrSeedFailure.unexpected() = _QrSeedUnexpectedFailure;
   const factory QrSeedFailure.serverFailure() = _QrSeedServerFailure;
   const factory QrSeedFailure.cacheFailure() = _QrSeedFailure;
+  const factory QrSeedFailure.connectivityFailure() = _ConnectivityFailure;
 }

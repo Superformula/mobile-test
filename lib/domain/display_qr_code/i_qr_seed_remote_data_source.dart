@@ -2,5 +2,5 @@ import 'package:superformula_mobile_test/infrastructure/display_qr_code/qr_seed_
 
 abstract class IQrCodeRemoteDataSource {
   Future<QrSeedDto> getQrCodeSeed();
-  Future<void> validateQrCodeData();
+  Future<bool> validateQrCodeData(String data);
 }
