@@ -5,15 +5,12 @@ class ScanQrCodeState with _$ScanQrCodeState {
   const factory ScanQrCodeState({
     required String code,
     required bool isValidating,
-    // required bool lastCodeInvalid,
-    required bool lastCodeValid,
-    required bool showError,
+    required String? message,
   }) = _ScanQrCodeState;
 
   factory ScanQrCodeState.initial() => const ScanQrCodeState(
         code: '',
         isValidating: false,
-        showError: false,
-        lastCodeValid: false,
+        message: null,
       );
 }

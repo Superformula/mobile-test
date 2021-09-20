@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:superformula_mobile_test/application/scan_qr_code/scan_qr_code_bloc.dart';
 import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_repository.dart';
-import 'package:superformula_mobile_test/presentation/core/misc/colors.dart';
 import 'package:superformula_mobile_test/locator.dart';
+import 'package:superformula_mobile_test/presentation/core/misc/colors.dart';
 
 class ScanQrCodeScreen extends StatefulWidget {
   const ScanQrCodeScreen({Key? key}) : super(key: key);
@@ -31,27 +31,29 @@ class _ScanQrCodeScreenState extends State<ScanQrCodeScreen> {
           return bloc;
         },
         child: BlocConsumer<ScanQrCodeBloc, ScanQrCodeState>(
+          listenWhen: (previous, current) =>
+              previous.message != current.message,
           listener: (context, state) async {
-            if (state.lastCodeValid) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Code is valid ${state.code}')),
-              );
+            if (state.message != null) {
+              ScaffoldMessenger.of(context)
+                ..clearSnackBars()
+                ..showSnackBar(
+                  SnackBar(
+                    content: Text(state.message!),
+                  ),
+                );
             }
           },
           builder: (context, state) {
             if (state.isValidating) {
               return Stack(
                 children: <Widget>[
-                  Expanded(flex: 4, child: _buildQrView(context, state)),
+                  _buildQrView(context, state),
                   const Center(child: CircularProgressIndicator()),
                 ],
               );
             }
-            return Stack(
-              children: <Widget>[
-                Expanded(flex: 4, child: _buildQrView(context, state))
-              ],
-            );
+            return _buildQrView(context, state);
           },
         ),
       ),

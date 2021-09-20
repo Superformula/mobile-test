@@ -16,6 +16,7 @@ class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
   Future<QrSeedDto> getQrCodeSeed() async {
     try {
       final response = await httpClient.get(getSeedUri);
+
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       if (response.statusCode == 200) {
         return QrSeedDto.fromJson(data);

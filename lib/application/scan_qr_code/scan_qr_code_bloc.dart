@@ -26,12 +26,16 @@ class ScanQrCodeBloc extends Bloc<ScanQrCodeEvent, ScanQrCodeState> {
       started: (ev) async* {},
       qrCodeScanned: (ev) async* {
         if (!state.isValidating) {
-          yield state.copyWith(isValidating: true);
+          yield state.copyWith(code: '', isValidating: true, message: null);
           final validated = await _qrSeedRepository.validateQrCodeData(ev.code);
 
-          validated.when(left: (left) {
-            add(ScanQrCodeEvent.invalidCodeScanned(ev.code));
-          }, right: (isValid) {
+          yield* validated.when(left: (left) async* {
+            yield state.copyWith(
+              code: '',
+              isValidating: false,
+              message: 'Server error. Please try again.',
+            );
+          }, right: (isValid) async* {
             if (isValid) {
               add(ScanQrCodeEvent.validCodeScanned(ev.code));
             } else {
@@ -45,7 +49,7 @@ class ScanQrCodeBloc extends Bloc<ScanQrCodeEvent, ScanQrCodeState> {
         yield state.copyWith(
           code: ev.code,
           isValidating: false,
-          lastCodeValid: false,
+          message: 'Code is invalid. Please try another code.',
         );
       },
       validCodeScanned: (ev) async* {
@@ -53,7 +57,7 @@ class ScanQrCodeBloc extends Bloc<ScanQrCodeEvent, ScanQrCodeState> {
         // since we probably will want to change route
         yield state.copyWith(
           code: ev.code,
-          lastCodeValid: true,
+          message: 'Code is valid ${ev.code}',
           isValidating: false,
         );
       },
