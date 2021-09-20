@@ -89,6 +89,7 @@ void main() {
   });
 
   group('QrSeedExpirationDate: ', () {
+    // ignore: unused_local_variable
     late DateTime currentDateMock;
 
     setUp(() {

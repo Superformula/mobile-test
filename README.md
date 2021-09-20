@@ -1,6 +1,8 @@
 # Superformula Mobile Test
 
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg)](https://conventionalcommits.org) [![macaco](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white) [![macaco](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)]()[![macaco](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felcesar/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg)](https://conventionalcommits.org) 
+
+[![macaco](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white) [![macaco](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)]() [![macaco](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felcesar/)
 
 ## Getting Started
 
@@ -68,6 +70,8 @@ A caching workflow/structure has been implemented, although the caching directly
 ### [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 The Conventional Commits specification is a  convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history. Those rules where followed whenever possible. Bear in mind that the commit purposes should mix up in the initial phase of the project ( as we build everything from scratch)
 ## Roadmap
+
  - Integration tests
  - CI/CD
  - Scaner Bloc Test
+
