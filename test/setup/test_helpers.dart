@@ -35,26 +35,36 @@ String fixture(String name) => File('test/fixtures/$name').readAsStringSync();
   MockSpec<SharedPreferences>(returnNullOnMissingStub: true),
   MockSpec<Client>(returnNullOnMissingStub: true),
 ])
-IQrSeedRepository getAndRegisterIQrSeedRepository({QrSeedFailure? failure}) {
+IQrSeedRepository getAndRegisterIQrSeedRepository(
+    {QrSeedFailure? failure, String data = '1', bool isValid = true}) {
   _removeRegistrationIfExists<IQrSeedRepository>();
   final service = MockIQrSeedRepository();
   locator.registerSingleton<IQrSeedRepository>(service);
   if (failure != null) {
-    when(service.getQrCodeSeed()).thenAnswer((realInvocation) async => Either.left(failure));
+    when(service.getQrCodeSeed())
+        .thenAnswer((realInvocation) async => Either.left(failure));
+    when(service.validateQrCodeData(data))
+        .thenAnswer((realInvocation) async => Either.left(failure));
   } else {
-    when(service.getQrCodeSeed()).thenAnswer((realInvocation) async => Either.right(QrSeed(
-          seed: QrSeedData('1'),
-          expiresAt: QrSeedExpirationDate.withString('2020-01-01T00:00:00Z'),
-        )));
+    when(service.getQrCodeSeed())
+        .thenAnswer((realInvocation) async => Either.right(QrSeed(
+              seed: QrSeedData('1'),
+              expiresAt:
+                  QrSeedExpirationDate.withString('2020-01-01T00:00:00Z'),
+            )));
+    when(service.validateQrCodeData(data))
+        .thenAnswer((realInvocation) async => Either.right(isValid));
   }
   return service;
 }
 
-IQrCodeRemoteDataSource getAndRegisterQRCodeRemoteDataSource({QrSeedDto? qrcodeDTO}) {
+IQrCodeRemoteDataSource getAndRegisterQRCodeRemoteDataSource(
+    {QrSeedDto? qrcodeDTO}) {
   _removeRegistrationIfExists<IQrCodeRemoteDataSource>();
   final service = MockIQrCodeRemoteDataSource();
   if (qrcodeDTO != null) {
-    when(service.getQrCodeSeed()).thenAnswer((realInvocation) async => qrcodeDTO);
+    when(service.getQrCodeSeed())
+        .thenAnswer((realInvocation) async => qrcodeDTO);
   } else {
     when(service.getQrCodeSeed()).thenThrow(ServerException());
   }
@@ -62,7 +72,8 @@ IQrCodeRemoteDataSource getAndRegisterQRCodeRemoteDataSource({QrSeedDto? qrcodeD
   return service;
 }
 
-IQrCodeLocalDataSource getAndRegisterQRCodeLocalDataSource({QrSeedDto? cached, QrSeedDto? qrcodeToCache}) {
+IQrCodeLocalDataSource getAndRegisterQRCodeLocalDataSource(
+    {QrSeedDto? cached, QrSeedDto? qrcodeToCache}) {
   _removeRegistrationIfExists<IQrCodeLocalDataSource>();
   final service = MockIQrCodeLocalDataSource();
   if (cached != null) {
@@ -82,15 +93,18 @@ INetworkInfo getAndRegisterNetworkInfo({bool isConnected = true}) {
   return service;
 }
 
-DataConnectionChecker getAndRegisterDataConnectionChecker({Future<bool>? hasConnectionFuture}) {
+DataConnectionChecker getAndRegisterDataConnectionChecker(
+    {Future<bool>? hasConnectionFuture}) {
   _removeRegistrationIfExists<DataConnectionChecker>();
   final service = MockDataConnectionChecker();
-  when(service.hasConnection).thenAnswer((realInvocation) => hasConnectionFuture ?? Future.value(true));
+  when(service.hasConnection).thenAnswer(
+      (realInvocation) => hasConnectionFuture ?? Future.value(true));
   locator.registerSingleton<DataConnectionChecker>(service);
   return service;
 }
 
-SharedPreferences getAndRegisterSharedPreferences({bool hasCachedNumberTrivia = true}) {
+SharedPreferences getAndRegisterSharedPreferences(
+    {bool hasCachedNumberTrivia = true}) {
   _removeRegistrationIfExists<SharedPreferences>();
   final service = MockSharedPreferences();
   if (hasCachedNumberTrivia) {
@@ -107,7 +121,8 @@ Client getAndRegisterClient({int statusCode = 200}) {
   _removeRegistrationIfExists<Client>();
   final service = MockClient();
   when(service.get(any)).thenAnswer(
-    (realInvocation) async => Response(fixture('simple_qrseed.json'), statusCode),
+    (realInvocation) async =>
+        Response(fixture('simple_qrseed.json'), statusCode),
   );
   locator.registerSingleton<Client>(service);
   return service;
