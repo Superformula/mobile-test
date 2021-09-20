@@ -44,7 +44,11 @@ class ScanQrCodeBloc extends Bloc<ScanQrCodeEvent, ScanQrCodeState> {
           });
         }
       },
-      cameraLoadFailed: (ev) async* {},
+      cameraLoadFailed: (ev) async* {
+        yield state.copyWith(
+          message: 'Unable to access the device camera.',
+        );
+      },
       invalidCodeScanned: (ev) async* {
         yield state.copyWith(
           code: ev.code,
