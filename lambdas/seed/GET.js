@@ -1,13 +1,8 @@
-// const AWS = require('aws-sdk');
 const Errors = require('./shared/constants/Errors');
 const cryptoRandomString = require('crypto-random-string');
-
 const ResponseHelper =
   require('./shared/helpers/ResponseHelper').ResponseHelper;
-// AWS.config.region = 'us-east-1'; // DEBUG CODE
-// const apiGateway = new AWS.APIGateway({
-//   apigateway: '2015-07-09',
-// });
+
 const ALLOWED_CHARS =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const TOKEN_LENGHT = 32;
