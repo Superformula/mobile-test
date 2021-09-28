@@ -13,10 +13,20 @@ dependencies:
   flutter_bloc: ^7.3.0
   flutter_localizations:
     sdk: flutter
+  freezed: ^0.14.5
+  freezed_annotation: ^0.14.3
+  get_it: 7.2.0
   intl: ^0.17.0
-
+  qr_api:
+    path: packages/qr_api
+  qr_code_scanner: ^0.5.2
+  qr_flutter: ^4.0.0
+  qr_models:
+    path: packages/qr_models
+  
 dev_dependencies:
   bloc_test: ^8.2.0
+  build_runner: ^2.0.0
   flutter_test:
     sdk: flutter
   mocktail: ^0.1.0
