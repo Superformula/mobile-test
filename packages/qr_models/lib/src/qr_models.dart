@@ -16,7 +16,7 @@ class QRSeed {
   /// Represents the value for the QR code.
   final String seed;
 
-  ///
+  /// Represent the expiration time of the seed
   final String expiresAt;
 
   static const _dateFormat = 'yyyy-MM-dd HH:mm:ss';
