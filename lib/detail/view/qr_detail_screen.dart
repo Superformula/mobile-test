@@ -4,6 +4,7 @@ import 'package:mobile_test/app/dependencies.dart';
 import 'package:mobile_test/base/result_state.dart';
 import 'package:mobile_test/detail/cubit/qr_detail_cubit.dart';
 import 'package:mobile_test/widgets/loading_indicator.dart';
+import 'package:mobile_test/widgets/timer_text.dart';
 import 'package:qr_api/qr_api.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_models/qr_models.dart';
@@ -82,6 +83,7 @@ class QrDetailSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final time = DateTime.now().add(const Duration(seconds: 5));
     final theme = Theme.of(context);
     return Center(
       child: Column(
@@ -93,8 +95,12 @@ class QrDetailSuccessPage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            seed.expiresAt,
-            style: theme.textTheme.headline6,
+            'This QR code going to expire in',
+            style: theme.textTheme.subtitle1,
+          ),
+          CountDownTimerText(
+            onTimerFinish: () => context.read<QrDetailCubit>().getQrSeed(),
+            remainingTime: time.second,
           ),
         ],
       ),
