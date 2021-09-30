@@ -19,7 +19,7 @@ class QRSeed {
   /// Represent the expiration time of the seed
   final String expiresAt;
 
-  static const _dateFormat = 'yyyy-MM-dd HH:mm:ss';
+  static const _dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
   /// Returns the expire as [DateTime].
   DateTime get expiresAtDate => DateFormat(_dateFormat).parse(expiresAt);
@@ -35,4 +35,8 @@ class QRSeed {
 extension XQRSeed on QRSeed {
   ///
   bool isExpired() => expiresAtDate.isBefore(DateTime.now());
+
+  ///
+  int differenceInSeconds() =>
+      expiresAtDate.difference(DateTime.now()).inSeconds;
 }

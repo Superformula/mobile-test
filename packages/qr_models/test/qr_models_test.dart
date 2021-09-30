@@ -27,5 +27,13 @@ void main() {
       expect(seedJson['seed'], seed.seed);
       expect(seedJson['expiresAt'], seed.expiresAt);
     });
+
+    test('when isExpired returns true', () {
+      const seed = 'any_seed';
+      const expiresAt = '2001-09-30T16:44:27.196Z';
+      final seedModel = QRSeed(seed, expiresAt);
+
+      expect(seedModel.isExpired(), isTrue);
+    });
   });
 }
