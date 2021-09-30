@@ -1,17 +1,23 @@
+import 'package:dio/dio.dart';
 import 'package:qr_api/src/api/api_result.dart';
 import 'package:qr_models/qr_models.dart';
 
 /// {@template qr_api}
-/// A Very Good Project created by Very Good CLI.
+/// This works as a remote data source for the QrSeed requests
 /// {@endtemplate}
 class QrApi {
-  ///
+  /// Default construvctor with a [Dio] instance
+  QrApi(this._dio);
+
+  final Dio _dio;
+
+  /// This return a [ApiResult] state with the model [QRSeed] as value
   Future<ApiResult<QRSeed>> fetchQrApi() async {
     try {
-      await Future<dynamic>.delayed(const Duration(seconds: 1));
-      final response = QRSeed(
-          'd290ea3f83c4b1538a90ce36e741ef9b', '2021-09-28T02:35:36.334Z');
-      return ApiResult.success(response);
+      final response =
+          await _dio.get<Map<String, dynamic>>('/default/random-qr-seed_seed');
+      final seed = QRSeed.fromJson(response.data!);
+      return ApiResult.success(seed);
     } on Exception catch (e) {
       return ApiResult.failure(e);
     }
