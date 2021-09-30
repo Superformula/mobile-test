@@ -3,8 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mobile_test/home/home_screen.dart';
 import 'package:mobile_test/l10n/l10n.dart';
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+class SuperformulaApp extends StatelessWidget {
+  const SuperformulaApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -96,7 +96,7 @@ class QrDetailSuccessPage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'This QR code going to expire in',
+            "This QR code it's going to expire in",
             style: theme.textTheme.subtitle1,
           ),
           CountDownTimerText(

@@ -16,7 +16,7 @@ void main() {
   };
 
   runZonedGuarded(
-    () => runApp(const App()),
+    () => runApp(const SuperformulaApp()),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
