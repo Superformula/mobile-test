@@ -11,8 +11,6 @@ const INTERNAL_SERVER = {
 };
 
 module.exports = {
-  NOT_FOUND,
   METHOD_UNAVAILABLE,
   INTERNAL_SERVER,
-  EXTERNAL_SERVICE,
 };
