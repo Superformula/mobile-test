@@ -9,12 +9,12 @@ import 'package:superformula_mobile_test/infrastructure/display_qr_code/qr_seed_
 import '../../setup/test_helpers.dart';
 
 void main() {
-  const tSeed = 'd43397d129c3de9e4b6c3974c1c16d1f';
-  const tExpirationDate = '1979-11-12T13:10:42.24Z';
-  const tQrSeedDto = QrSeedDto(seed: tSeed, expiresAt: tExpirationDate);
-  final tQRCode = QrSeed(
-    seed: QrSeedData(tSeed),
-    expiresAt: QrSeedExpirationDate.withString(tExpirationDate),
+  const seed = 'd43397d129c3de9e4b6c3974c1c16d1f';
+  const expirationDate = '1979-11-12T13:10:42.24Z';
+  const qrSeedDto = QrSeedDto(seed: seed, expiresAt: expirationDate);
+  final qrSeed = QrSeed(
+    seed: QrSeedData(seed),
+    expiresAt: QrSeedExpirationDate.withString(expirationDate),
   );
 
   group('QrSeedDto -', () {
@@ -23,14 +23,14 @@ void main() {
         final jsonMap =
             json.decode(fixture('simple_qrseed.json')) as Map<String, dynamic>;
         final result = QrSeedDto.fromJson(jsonMap);
-        expect(result, tQrSeedDto);
+        expect(result, qrSeedDto);
       });
     });
 
     group('toDomain -', () {
       test('When the DTO is valid returns valid domain', () {
-        final result = tQrSeedDto.toDomain();
-        expect(result, tQRCode);
+        final result = qrSeedDto.toDomain();
+        expect(result, qrSeed);
       });
     });
   });

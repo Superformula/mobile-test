@@ -8,21 +8,21 @@ void main() {
   group('ScanQrCodeBloc -', () {
     setUp(registerServices);
     tearDown(unregisterServices);
-    const tSeed = 'd43397d129c3de9e4b6c3974c1c16d1f';
+    const seed = 'd43397d129c3de9e4b6c3974c1c16d1f';
 
     group('validateQrCodeData -', () {
       test('Should validate qr code data', () async {
         // arrange
-        final mockRepository = getAndRegisterIQrSeedRepository(data: tSeed);
+        final mockRepository = getAndRegisterIQrSeedRepository(data: seed);
         getAndRegisterNetworkInfo();
         final bloc = ScanQrCodeBloc(mockRepository);
 
         // act
-        bloc.add(const ScanQrCodeEvent.qrCodeScanned(tSeed));
-        await untilCalled(mockRepository.validateQrCodeData(tSeed));
+        bloc.add(const ScanQrCodeEvent.qrCodeScanned(seed));
+        await untilCalled(mockRepository.validateQrCodeData(seed));
 
         // assert
-        verify(mockRepository.validateQrCodeData(tSeed));
+        verify(mockRepository.validateQrCodeData(seed));
       });
 
       test(
@@ -31,7 +31,7 @@ void main() {
         getAndRegisterNetworkInfo(isConnected: false);
         // arrange
         final bloc = ScanQrCodeBloc(getAndRegisterIQrSeedRepository(
-            failure: const QrSeedFailure.serverFailure(), data: tSeed));
+            failure: const QrSeedFailure.serverFailure(), data: seed));
 
         // assert later
         final expected = [
@@ -46,7 +46,7 @@ void main() {
         expectLater(bloc.stream, emitsInOrder(expected));
 
         // act
-        bloc.add(const ScanQrCodeEvent.qrCodeScanned(tSeed));
+        bloc.add(const ScanQrCodeEvent.qrCodeScanned(seed));
       });
 
       test(
@@ -54,13 +54,13 @@ void main() {
           () async {
         // arrange
         final bloc = ScanQrCodeBloc(
-            getAndRegisterIQrSeedRepository(data: tSeed, isValid: false));
+            getAndRegisterIQrSeedRepository(data: seed, isValid: false));
 
         // assert later
         const expected = [
           ScanQrCodeState(code: '', isValidating: true, message: null),
           ScanQrCodeState(
-              code: tSeed,
+              code: seed,
               isValidating: false,
               message: 'Code is invalid. Please try another code.'),
         ];
@@ -69,29 +69,27 @@ void main() {
         expectLater(bloc.stream, emitsInOrder(expected));
 
         // act
-        bloc.add(const ScanQrCodeEvent.qrCodeScanned(tSeed));
+        bloc.add(const ScanQrCodeEvent.qrCodeScanned(seed));
       });
       test(
           'When data is valid, emits [{...validating: true}, {...isValidating: false}]',
           () async {
         // arrange
         final bloc =
-            ScanQrCodeBloc(getAndRegisterIQrSeedRepository(data: tSeed));
+            ScanQrCodeBloc(getAndRegisterIQrSeedRepository(data: seed));
 
         // assert later
         const expected = [
           ScanQrCodeState(code: '', isValidating: true, message: null),
           ScanQrCodeState(
-              code: tSeed,
-              isValidating: false,
-              message: 'Code is valid $tSeed'),
+              code: seed, isValidating: false, message: 'Code is valid $seed'),
         ];
 
         // ignore: unawaited_futures
         expectLater(bloc.stream, emitsInOrder(expected));
 
         // act
-        bloc.add(const ScanQrCodeEvent.qrCodeScanned(tSeed));
+        bloc.add(const ScanQrCodeEvent.qrCodeScanned(seed));
       });
     });
     group('QrView Camera-', () {

@@ -13,12 +13,12 @@ void main() {
     setUp(registerServices);
     tearDown(unregisterServices);
 
-    const tSeed = '1';
-    const tExpirationDate = '2020-01-01T00:00:00Z';
-    final tQRCode = QrSeed(
-        seed: QrSeedData(tSeed),
-        expiresAt: QrSeedExpirationDate.withString(tExpirationDate));
-    const tQRCodeFailure = QrSeedFailure.serverFailure();
+    const seed = '1';
+    const expirationDate = '2020-01-01T00:00:00Z';
+    final qrCode = QrSeed(
+        seed: QrSeedData(seed),
+        expiresAt: QrSeedExpirationDate.withString(expirationDate));
+    const qrCodeFailure = QrSeedFailure.serverFailure();
 
     group('requestedNewQrCode -', () {
       test('should get data from the repository', () async {
@@ -45,7 +45,7 @@ void main() {
         // assert later
         final expected = [
           const DisplayQrCodeState.loadInProgress(),
-          DisplayQrCodeState.loadSuccess(tQRCode)
+          DisplayQrCodeState.loadSuccess(qrCode)
         ];
 
         // ignore: unawaited_futures
@@ -60,13 +60,13 @@ void main() {
           () async {
         // arrange
         final bloc = DisplayQrCodeBloc(
-            getAndRegisterIQrSeedRepository(failure: tQRCodeFailure),
+            getAndRegisterIQrSeedRepository(failure: qrCodeFailure),
             getAndRegisterNetworkInfo());
 
         // assert later
         const expected = [
           DisplayQrCodeState.loadInProgress(),
-          DisplayQrCodeState.loadFailure(tQRCodeFailure)
+          DisplayQrCodeState.loadFailure(qrCodeFailure)
         ];
 
         // ignore: unawaited_futures
@@ -88,7 +88,7 @@ void main() {
         // assert later
         final expected = [
           const DisplayQrCodeState.loadInProgress(),
-          DisplayQrCodeState.loadSuccess(tQRCode),
+          DisplayQrCodeState.loadSuccess(qrCode),
         ];
         // ignore: unawaited_futures
         expectLater(bloc.stream, emitsInOrder(expected));
