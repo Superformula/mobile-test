@@ -1,29 +1,29 @@
-const Errors = require('./shared/constants/Errors');
-const cryptoRandomString = require('crypto-random-string');
+const Errors = require('./shared/constants/Errors')
+const cryptoRandomString = require('crypto-random-string')
 const ResponseHelper =
-  require('./shared/helpers/ResponseHelper').ResponseHelper;
+  require('./shared/helpers/ResponseHelper').ResponseHelper
 
 const ALLOWED_CHARS =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-const TOKEN_LENGHT = 32;
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+const TOKEN_LENGHT = 32
 
-async function handleGETRequest(inputs) {
+async function handleGETRequest (inputs) {
   try {
     const response = {
       seed: cryptoRandomString({
         length: TOKEN_LENGHT,
-        characters: ALLOWED_CHARS,
+        characters: ALLOWED_CHARS
       }),
-      expires_at: new Date(new Date().getTime() + 1 * 60000).toISOString(),
-    };
+      expires_at: new Date(new Date().getTime() + 1 * 60000).toISOString()
+    }
 
-    return ResponseHelper.createSuccessResponse(response);
+    return ResponseHelper.createSuccessResponse(response)
   } catch (error) {
-    console.log(error);
-    throw new Error(Errors.INTERNAL_SERVER.message);
+    console.log(error)
+    throw new Error(Errors.INTERNAL_SERVER)
   }
 }
 
 module.exports = {
-  handleGETRequest,
-};
+  handleGETRequest
+}

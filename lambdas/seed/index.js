@@ -1,32 +1,22 @@
 const ResponseHelper =
-  require('./shared/helpers/ResponseHelper.js').ResponseHelper;
-const RequestHelper = require('./shared/helpers/RequestHelper').RequestHelper;
-const HTTP_METHODS = require('./shared/constants/HttpMethods');
-const GetHandler = require('./GET');
+  require('./shared/helpers/ResponseHelper.js').ResponseHelper
+const RequestHelper = require('./shared/helpers/RequestHelper').RequestHelper
+const HTTP_METHODS = require('./shared/constants/HttpMethods')
+const Errors = require('./shared/constants/Errors')
+const GetHandler = require('./GET')
 
 const handler = async (event) => {
   try {
-    const inputs = parseInputs(event);
+    const inputs = RequestHelper.parseInputs(event)
     switch (event.httpMethod) {
       case HTTP_METHODS.GET:
-        return await GetHandler.handleGETRequest(inputs);
+        return await GetHandler.handleGETRequest(inputs)
       default:
-        return createResponse(
-          new Error(`Unsupported method "${event.httpMethod}"`)
-        );
+        return ResponseHelper.createErrorResponse(Errors.METHOD_UNAVAILABLE)
     }
   } catch (err) {
-    console.log('ERROR CAPTURED', err);
-    return ResponseHelper.createErrorResponse(err);
+    return ResponseHelper.createErrorResponse(Errors.INTERNAL_SERVER)
   }
-};
-
-function parseInputs(event) {
-  return RequestHelper.parseInputs(event);
 }
 
-function createResponse(err, res) {
-  return ResponseHelper.createResponse(err, res);
-}
-
-exports.handler = handler;
+exports.handler = handler

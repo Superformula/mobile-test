@@ -2,15 +2,15 @@
 
 const METHOD_UNAVAILABLE = {
   statusCode: 400,
-  message: 'Unsupported method',
-};
+  message: 'Unsupported method'
+}
 
 const INTERNAL_SERVER = {
   statusCode: 500,
-  message: 'Internal server error',
-};
+  message: 'Internal server error'
+}
 
 module.exports = {
   METHOD_UNAVAILABLE,
-  INTERNAL_SERVER,
-};
+  INTERNAL_SERVER
+}

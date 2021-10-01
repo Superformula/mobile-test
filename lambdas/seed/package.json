@@ -8,13 +8,6 @@
   },
   "author": "",
   "license": "ISC",
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": true,
-    "arrow-parens": "always"
-  },
   "devDependencies": {
     "standard": "^16.0.3"
   },
