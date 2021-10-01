@@ -2,7 +2,7 @@ import 'package:superformula_mobile_test/infrastructure/display_qr_code/qr_seed_
 
 abstract class IQrCodeLocalDataSource {
   /// The key used to store it locally
-  static const cachedQRCode = 'cachedQRCode';
+  static const cachedQrCode = 'cachedQRCode';
 
   Future<QrSeedDto> getLastQrSeed();
   Future<void> cacheQrSeed(QrSeedDto qrcodeToCache);

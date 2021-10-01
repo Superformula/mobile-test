@@ -14,7 +14,6 @@ class QrCodeErrorWidget extends StatelessWidget {
     return Center(
       child: Stack(
         alignment: AlignmentDirectional.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CustomPaint(
             size: const Size.square(size),

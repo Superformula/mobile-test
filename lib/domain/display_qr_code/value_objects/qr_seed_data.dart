@@ -3,7 +3,7 @@ import 'package:superformula_mobile_test/domain/core/failures.dart';
 import 'package:superformula_mobile_test/domain/core/value_object.dart';
 import 'package:superformula_mobile_test/domain/core/value_validators.dart';
 
-const int seedValidLenght = 32;
+const int seedValidLength = 32;
 
 class QrSeedData extends ValueObject<String> {
   @override
@@ -12,7 +12,7 @@ class QrSeedData extends ValueObject<String> {
   factory QrSeedData(String value) {
     return QrSeedData._(validateStringNotEmpty(value)
         .flatMap((rightValue) => validateSingleLine(value))
-        .flatMap((rightValue) => validateStringLenght(value, seedValidLenght)));
+        .flatMap((rightValue) => validateStringLenght(value, seedValidLength)));
   }
 
   const QrSeedData._(this.value);

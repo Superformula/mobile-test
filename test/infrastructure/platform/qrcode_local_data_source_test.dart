@@ -18,7 +18,8 @@ void main() {
   });
 
   group('getLastQrSeed -', () {
-    final tQRCodeModel = QrSeedDto.fromJson(json.decode(fixture('simple_qrseed.json')) as Map<String, dynamic>);
+    final tQRCodeModel = QrSeedDto.fromJson(
+        json.decode(fixture('simple_qrseed.json')) as Map<String, dynamic>);
     test(
       'should return QrSeedDto from SharedPreferences when there is one in the cache',
       () async {
@@ -29,7 +30,8 @@ void main() {
         final result = await dataSource.getLastQrSeed();
 
         // assert
-        verify(mockSharedPreferences.getString(IQrCodeLocalDataSource.cachedQRCode));
+        verify(mockSharedPreferences
+            .getString(IQrCodeLocalDataSource.cachedQrCode));
         expect(result, equals(tQRCodeModel));
       },
     );
@@ -62,7 +64,8 @@ void main() {
 
       // assert
       final expectedJsonString = json.encode(tNumberTriviaModel.toJson());
-      verify(mockSharedPreferences.setString(IQrCodeLocalDataSource.cachedQRCode, expectedJsonString));
+      verify(mockSharedPreferences.setString(
+          IQrCodeLocalDataSource.cachedQrCode, expectedJsonString));
     });
   });
 }

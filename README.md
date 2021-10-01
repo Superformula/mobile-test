@@ -28,7 +28,7 @@ $flutter run -d [device_name]
 In the root directory run:
 
 ```bash
-$flutter run -d [device_name]
+$flutter test
 ```
 
 ## Directory structure
@@ -83,6 +83,6 @@ This folder contains the lambda functions (AWS lambda) used to create the endpoi
 
  - Integration tests
  - CI/CD
- - Scaner Bloc Test
- - Persistend Seeds from server (actually validate them with another endpoint)
+ - Widget Tests
+ - Persistent Seeds from server (actually validate them with another endpoint)
 

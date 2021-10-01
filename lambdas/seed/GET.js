@@ -15,7 +15,6 @@ async function handleGETRequest(inputs) {
         characters: ALLOWED_CHARS,
       }),
       expires_at: new Date(new Date().getTime() + 1 * 60000).toISOString(),
-      // expire_at: new Date().toISOString(),
     };
 
     return ResponseHelper.createSuccessResponse(response);

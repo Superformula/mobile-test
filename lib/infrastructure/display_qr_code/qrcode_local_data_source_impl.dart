@@ -12,9 +12,8 @@ class QrCodeLocalDataSource implements IQrCodeLocalDataSource {
 
   @override
   Future<void> cacheQrSeed(QrSeedDto qrcodeToCache) async {
-    await sharedPreferences.setString(IQrCodeLocalDataSource.cachedQRCode,
+    await sharedPreferences.setString(IQrCodeLocalDataSource.cachedQrCode,
         jsonEncode(qrcodeToCache.toJson()));
-    return;
   }
 
   /// Gets the cached [QrSeedDto] which was gotten the last time
@@ -23,7 +22,7 @@ class QrCodeLocalDataSource implements IQrCodeLocalDataSource {
   @override
   Future<QrSeedDto> getLastQrSeed() async {
     final jsonString =
-        sharedPreferences.getString(IQrCodeLocalDataSource.cachedQRCode);
+        sharedPreferences.getString(IQrCodeLocalDataSource.cachedQrCode);
     if (jsonString != null) {
       return QrSeedDto.fromJson(jsonDecode(jsonString) as Map<String, dynamic>);
     } else {

@@ -13,8 +13,6 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: superformulaBackgroundColor,
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: const Text('Superformula QR'),
       ),
       body: Center(

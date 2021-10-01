@@ -3,6 +3,7 @@ import 'package:http/http.dart';
 import 'package:injectable/injectable.dart';
 import 'package:superformula_mobile_test/domain/core/exceptions.dart';
 import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_remote_data_source.dart';
+import 'package:superformula_mobile_test/domain/display_qr_code/value_objects/qr_seed_data.dart';
 import 'package:superformula_mobile_test/infrastructure/display_qr_code/qr_seed_dto.dart';
 import 'package:superformula_mobile_test/locator.dart';
 
@@ -33,7 +34,7 @@ class QrCodeRemoteDataSourceImpl implements IQrCodeRemoteDataSource {
     await Future<void>.delayed(const Duration(seconds: 2));
     // Stub response, always return a valid response
     // will match every for every data that matches size
-    if (data.length == 32) {
+    if (data.length == seedValidLength) {
       return true;
     }
     return false;

@@ -15,7 +15,6 @@ class DisplayQrCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: superformulaBackgroundColor,
       appBar: AppBar(
         title: const Text('Display Qr Code'),
       ),
@@ -23,7 +22,6 @@ class DisplayQrCodeScreen extends StatelessWidget {
         create: (context) {
           final bloc = DisplayQrCodeBloc(
               locator<IQrSeedRepository>(), locator<INetworkInfo>())
-            // ..add(const DisplayQrCodeEvent.started())
             ..add(const DisplayQrCodeEvent.requestedNewQrCode());
           return bloc;
         },
@@ -48,28 +46,24 @@ class DisplayQrCodeScreen extends StatelessWidget {
             return state.map(
               initial: (s) => Container(),
               loadFailure: (s) {
-                // return Text(s.qrcodeFailure.toString());
                 return const QrCodeErrorWidget();
               },
               loadInProgress: (s) {
                 return const Center(child: CircularProgressIndicator());
               },
               loadSuccess: (s) {
-                const size = 280.0;
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomPaint(
-                        size: const Size.square(size),
+                        size: const Size.square(280),
                         painter: QrPainter(
                           data: s.qrcode.seed.getOrCrash(),
                           version: QrVersions.auto,
-                          // gapless: true,
                           eyeStyle: const QrEyeStyle(
                             eyeShape: QrEyeShape.circle,
-                            color:
-                                superformulaBackgroundColor, //Color(0xFF673AB7),
+                            color: superformulaBackgroundColor,
                           ),
                           dataModuleStyle: const QrDataModuleStyle(
                             dataModuleShape: QrDataModuleShape.circle,

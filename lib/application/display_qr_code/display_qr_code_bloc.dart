@@ -13,7 +13,7 @@ part 'display_qr_code_bloc.freezed.dart';
 
 class DisplayQrCodeBloc extends Bloc<DisplayQrCodeEvent, DisplayQrCodeState> {
   final IQrSeedRepository _qrSeedRepository;
-  final INetworkInfo _networkInfo; // = locator<INetworkInfo>();
+  final INetworkInfo _networkInfo;
 
   DisplayQrCodeBloc(this._qrSeedRepository, this._networkInfo)
       : super(const DisplayQrCodeState.initial());
@@ -21,7 +21,6 @@ class DisplayQrCodeBloc extends Bloc<DisplayQrCodeEvent, DisplayQrCodeState> {
   @override
   void onChange(Change<DisplayQrCodeState> change) {
     super.onChange(change);
-    // print(change.toString());
   }
 
   @override
@@ -44,10 +43,5 @@ class DisplayQrCodeBloc extends Bloc<DisplayQrCodeEvent, DisplayQrCodeState> {
         }
       },
     );
-  }
-
-  @override
-  Future<void> close() {
-    return super.close();
   }
 }

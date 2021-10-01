@@ -15,7 +15,6 @@ class ScanQrCodeBloc extends Bloc<ScanQrCodeEvent, ScanQrCodeState> {
   @override
   void onChange(Change<ScanQrCodeState> change) {
     super.onChange(change);
-    // print(change.toString());
   }
 
   @override

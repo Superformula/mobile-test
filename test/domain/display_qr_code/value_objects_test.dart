@@ -6,10 +6,6 @@ import 'package:superformula_mobile_test/domain/display_qr_code/value_objects/qr
 
 void main() {
   group('QrSeedData: ', () {
-    setUp(() {
-      // run before all tests
-    });
-
     test('Should be RIGHT if created with a valid string', () {
       // arrange
       const testSeedData = 'd43397d129c3de9e4b6c3974c1c16d1f';
