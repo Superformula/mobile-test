@@ -9,8 +9,6 @@ import 'package:qr_api/qr_api.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_models/qr_models.dart';
 
-final time = DateTime.now().add(const Duration(seconds: 5));
-
 class QrDetailScreen extends StatefulWidget {
   const QrDetailScreen({Key? key}) : super(key: key);
 
@@ -101,7 +99,7 @@ class QrDetailSuccessPage extends StatelessWidget {
           ),
           CountDownTimerText(
             onTimerFinish: () => context.read<QrDetailCubit>().getQrSeed(),
-            remainingTime: time.second,
+            remainingTime: seed.differenceInSeconds(),
           ),
         ],
       ),
