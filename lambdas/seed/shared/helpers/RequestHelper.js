@@ -8,11 +8,11 @@ class RequestHelper {
    * @param {any} event The request event from the APIGateway.
    * @returns {RequestInput}
    */
-  static parseInputs(event) {
+  static parseInputs (event) {
     return {
-      body: JSON.parse(event.body),
-      queryParameters: event.queryStringParameters,
-    };
+      body: event.body,
+      queryParameters: event.queryStringParameters
+    }
   }
 
   /**
@@ -23,13 +23,13 @@ class RequestHelper {
    * @param {string} invokedService The actual service that was invoked.
    * @throws {Error}
    */
-  static checkServiceName(receivedService, invokedService) {
+  static checkServiceName (receivedService, invokedService) {
     if (receivedService !== invokedService) {
       throw new Error(
         `Wrong endpoint invoked for the service : "${receivedService}"`
-      );
+      )
     }
   }
 }
 
-exports.RequestHelper = RequestHelper;
+exports.RequestHelper = RequestHelper
