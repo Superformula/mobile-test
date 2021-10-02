@@ -33,49 +33,56 @@ class DisplayQrCodeScreen extends StatelessWidget {
             }, loadFailure: (st) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
-                    backgroundColor: superformulaPrimaryColor,
-                    content: Text(
-                        'There was an error while trying to get the QR code, try Again.')),
+                  backgroundColor: superformulaPrimaryColor,
+                  content: Text(
+                      'There was an error while trying to get the QR code, try Again.'),
+                ),
               );
             });
           },
           builder: (context, state) {
-            return state.map(
-              initial: (s) => Container(),
-              loadFailure: (s) {
-                return const QrCodeErrorWidget();
-              },
-              loadInProgress: (s) {
-                return const Center(child: CircularProgressIndicator());
-              },
-              loadSuccess: (s) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomPaint(
-                        size: const Size.square(280),
-                        painter: QrPainter(
-                          data: s.qrcode.seed.getOrCrash(),
-                          version: QrVersions.auto,
-                          eyeStyle: const QrEyeStyle(
-                            eyeShape: QrEyeShape.circle,
-                            color: superformulaBackgroundColor,
-                          ),
-                          dataModuleStyle: const QrDataModuleStyle(
-                            dataModuleShape: QrDataModuleShape.circle,
-                            color: superformulaBackgroundColor,
+            return OrientationBuilder(builder: (context, orientation) {
+              return state.map(
+                initial: (s) => Container(),
+                loadFailure: (s) {
+                  return const QrCodeErrorWidget();
+                },
+                loadInProgress: (s) {
+                  return const Center(child: CircularProgressIndicator());
+                },
+                loadSuccess: (s) {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomPaint(
+                          size: orientation == Orientation.portrait
+                              ? Size.square(
+                                  MediaQuery.of(context).size.height * 0.4)
+                              : Size.square(
+                                  MediaQuery.of(context).size.height * 0.6),
+                          painter: QrPainter(
+                            data: s.qrcode.seed.getOrCrash(),
+                            version: QrVersions.auto,
+                            eyeStyle: const QrEyeStyle(
+                              eyeShape: QrEyeShape.circle,
+                              color: superformulaBackgroundColor,
+                            ),
+                            dataModuleStyle: const QrDataModuleStyle(
+                              dataModuleShape: QrDataModuleShape.circle,
+                              color: superformulaBackgroundColor,
+                            ),
                           ),
                         ),
-                      ),
-                      QRCodeExpirationDateTimer(
-                        expirationDate: s.qrcode.expiresAt,
-                      )
-                    ],
-                  ),
-                );
-              },
-            );
+                        QRCodeExpirationDateTimer(
+                          expirationDate: s.qrcode.expiresAt,
+                        )
+                      ],
+                    ),
+                  );
+                },
+              );
+            });
           },
         ),
       ),
