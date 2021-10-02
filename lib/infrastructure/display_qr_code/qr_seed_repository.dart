@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+
 import 'package:superformula_mobile_test/domain/core/either.dart';
 import 'package:superformula_mobile_test/domain/core/exceptions.dart';
 import 'package:superformula_mobile_test/domain/display_qr_code/entities/qr_seed.dart';

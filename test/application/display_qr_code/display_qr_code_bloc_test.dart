@@ -25,7 +25,7 @@ void main() {
         // arrange
         final mockRepository = getAndRegisterIQrSeedRepository();
         final mockNetworkInfo = getAndRegisterNetworkInfo();
-        final bloc = DisplayQrCodeBloc(mockRepository, mockNetworkInfo);
+        final bloc = DisplayQrCodeBloc();
 
         // act
         bloc.add(const DisplayQrCodeEvent.requestedNewQrCode());
@@ -39,8 +39,7 @@ void main() {
           'When data is retrieved successfully, emits [DisplayQrCodeState.loadInProgress, DisplayQrCodeState.loadSuccess]',
           () async {
         // arrange
-        final bloc = DisplayQrCodeBloc(
-            getAndRegisterIQrSeedRepository(), getAndRegisterNetworkInfo());
+        final bloc = DisplayQrCodeBloc();
 
         // assert later
         final expected = [
@@ -58,10 +57,9 @@ void main() {
       test(
           'When data is not retrieved, emits [DisplayQrCodeState.loadInProgress, DisplayQrCodeState.loadFailure]',
           () async {
+        getAndRegisterIQrSeedRepository(failure: qrCodeFailure);
         // arrange
-        final bloc = DisplayQrCodeBloc(
-            getAndRegisterIQrSeedRepository(failure: qrCodeFailure),
-            getAndRegisterNetworkInfo());
+        final bloc = DisplayQrCodeBloc();
 
         // assert later
         const expected = [
@@ -83,7 +81,7 @@ void main() {
         // arrange
         final mockRepository = getAndRegisterIQrSeedRepository();
         final networkInfo = getAndRegisterNetworkInfo();
-        final bloc = DisplayQrCodeBloc(mockRepository, networkInfo);
+        final bloc = DisplayQrCodeBloc();
 
         // assert later
         final expected = [
@@ -107,7 +105,7 @@ void main() {
         // arrange
         final mockRepository = getAndRegisterIQrSeedRepository();
         final networkInfo = getAndRegisterNetworkInfo(isConnected: false);
-        final bloc = DisplayQrCodeBloc(mockRepository, networkInfo);
+        final bloc = DisplayQrCodeBloc();
 
         // act
         bloc.add(const DisplayQrCodeEvent.qrCodeExpired());

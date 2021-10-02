@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
 import 'package:superformula_mobile_test/application/display_qr_code/display_qr_code_bloc.dart';
-import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_repository.dart';
-import 'package:superformula_mobile_test/domain/platform/i_network_info.dart';
-import 'package:superformula_mobile_test/locator.dart';
 import 'package:superformula_mobile_test/presentation/core/misc/colors.dart';
 import 'package:superformula_mobile_test/presentation/display_qr_code/widgets/expiration_date_timer.dart';
 import 'package:superformula_mobile_test/presentation/display_qr_code/widgets/qr_code_error_widget.dart';
@@ -20,8 +18,7 @@ class DisplayQrCodeScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) {
-          final bloc = DisplayQrCodeBloc(
-              locator<IQrSeedRepository>(), locator<INetworkInfo>())
+          final bloc = DisplayQrCodeBloc()
             ..add(const DisplayQrCodeEvent.requestedNewQrCode());
           return bloc;
         },
