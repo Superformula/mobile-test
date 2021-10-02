@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:superformula_mobile_test/application/scan_qr_code/scan_qr_code_bloc.dart';
-import 'package:superformula_mobile_test/domain/display_qr_code/qr_seed_failure.dart';
+import 'package:superformula_mobile_test/infrastructure/display_qr_code/qr_seed_repository.dart';
 import '../../setup/test_helpers.dart';
 
 void main() {
@@ -30,8 +30,9 @@ void main() {
           () async {
         getAndRegisterNetworkInfo(isConnected: false);
         // arrange
-        final bloc = ScanQrCodeBloc(getAndRegisterIQrSeedRepository(
-            failure: const QrSeedFailure.serverFailure(), data: seed));
+
+        // not using the mocked repo here, not needed.
+        final bloc = ScanQrCodeBloc(QrSeedRepository());
 
         // assert later
         final expected = [
@@ -39,7 +40,7 @@ void main() {
           const ScanQrCodeState(
               code: '',
               isValidating: false,
-              message: 'Server error. Please try again.'),
+              message: 'Internet Connection is necessary to validate.'),
         ];
 
         // ignore: unawaited_futures
