@@ -76,11 +76,11 @@ void main() {
     });
 
     group('qrCodeExpired -', () {
-      test('When we are connected to the internet, request a new qrcode',
+      test('Should request a new QR code when current code has expired',
           () async {
         // arrange
         final mockRepository = getAndRegisterIQrSeedRepository();
-        final networkInfo = getAndRegisterNetworkInfo();
+        getAndRegisterNetworkInfo();
         final bloc = DisplayQrCodeBloc();
 
         // assert later
@@ -96,24 +96,7 @@ void main() {
         await untilCalled(mockRepository.getQrCodeSeed());
 
         // assert
-        verify(networkInfo.isConnected);
         verify(mockRepository.getQrCodeSeed());
-      });
-
-      test('When we are not connected to the internet, do not request',
-          () async {
-        // arrange
-        final mockRepository = getAndRegisterIQrSeedRepository();
-        final networkInfo = getAndRegisterNetworkInfo(isConnected: false);
-        final bloc = DisplayQrCodeBloc();
-
-        // act
-        bloc.add(const DisplayQrCodeEvent.qrCodeExpired());
-        await untilCalled(networkInfo.isConnected);
-
-        // assert
-        verify(networkInfo.isConnected);
-        verifyNever(mockRepository.getQrCodeSeed());
       });
     });
   });

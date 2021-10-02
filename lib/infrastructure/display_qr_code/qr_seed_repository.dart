@@ -7,6 +7,7 @@ import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_local_
 import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_remote_data_source.dart';
 import 'package:superformula_mobile_test/domain/display_qr_code/i_qr_seed_repository.dart';
 import 'package:superformula_mobile_test/domain/display_qr_code/qr_seed_failure.dart';
+import 'package:superformula_mobile_test/domain/display_qr_code/value_objects/qr_seed_expiration_date.dart';
 import 'package:superformula_mobile_test/domain/platform/i_network_info.dart';
 
 import '../../locator.dart';
@@ -32,6 +33,13 @@ class QrSeedRepository implements IQrSeedRepository {
     } else {
       try {
         final cached = await _localDataSource.getLastQrSeed();
+
+        // If the cached QrCode has already expired, then connectivity failure
+        final cacheExpireDate = cached.toDomain().expiresAt;
+        if (cacheExpireDate.isValid() &&
+            cacheExpireDate.getOrCrash().compareTo(DateTime.now()) <= 0) {
+          return const Either.left(QrSeedFailure.connectivityFailure());
+        }
         return Either.right(cached.toDomain());
       } on CacheException {
         return const Either.left(QrSeedFailure.cacheFailure());

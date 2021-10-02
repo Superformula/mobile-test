@@ -55,13 +55,15 @@ class _QRCodeExpirationDateTimerState extends State<QRCodeExpirationDateTimer> {
 
   @override
   Widget build(BuildContext context) {
+    final displayText =
+        _start > 0 ? 'Expires in...\n ${_start.toString()} sec.' : '';
     return Column(
       children: [
         const SizedBox(
           height: 8,
         ),
         Text(
-          'Expires in...\n ${_start.toString()} sec.',
+          displayText,
           textAlign: TextAlign.center,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

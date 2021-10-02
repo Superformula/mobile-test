@@ -30,12 +30,21 @@ class DisplayQrCodeScreen extends StatelessWidget {
               // empty
             }, loadSuccess: (st) {
               // empty
-            }, loadFailure: (st) {
+            }, loadFailure: (failure) {
+              final message = failure.qrcodeFailure.when(unexpected: () {
+                return 'An unexpected error occurred, please try again or restart the app.';
+              }, serverFailure: () {
+                return 'Ops, there was an error on our side, please try again.';
+              }, cacheFailure: () {
+                return 'Ops, there was an error on our app side, please try again.';
+              }, connectivityFailure: () {
+                return 'We couldnt reach our server, please make sure the device is connected to the internet.';
+              });
+
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
+                SnackBar(
                   backgroundColor: superformulaPrimaryColor,
-                  content: Text(
-                      'There was an error while trying to get the QR code, try Again.'),
+                  content: Text(message),
                 ),
               );
             });
