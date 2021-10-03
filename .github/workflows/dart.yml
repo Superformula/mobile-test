@@ -1,0 +1,36 @@
+
+
+on:
+  push:
+#     paths:
+#       - 'seed_reader/**'
+    branches: [ master ]
+  pull_request:
+    paths:
+      - 'seed_reader/**'
+    branches: [ master ]
+defaults:
+  run:
+    working-directory: ./seed_reader
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'stable'
+    
+    - run: flutter pub get
+    - run: flutter analyze
+    - run: flutter test test --coverage
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+        file: ./seed_reader/coverage/lcov.info
+    - name: Upload coverage to codecov
+      run: curl -s https://codecov.io/bash
+      shell: bash

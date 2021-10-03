@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/CristianDRM/mobile-test/branch/master/graph/badge.svg?token=0YVA9LUUYI)](https://codecov.io/gh/CristianDRM/mobile-test)
 # Superformula Mobile Developer Coding Test
 
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
