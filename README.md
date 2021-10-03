@@ -2,8 +2,27 @@
 
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg)](https://conventionalcommits.org) 
 
-[![macaco](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white) [![macaco](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)]() [![macaco](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felcesar/)
+[![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white) [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)]() [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/felcesar/)
 
+
+## Table of Contents
+- [Superformula Mobile Test](#superformula-mobile-test)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Building](#building)
+    - [Running](#running)
+    - [Run tests](#run-tests)
+  - [Directory structure](#directory-structure)
+  - [Features/comments](#featurescomments)
+    - [Linter](#linter)
+    - [Bloc (State Management)](#bloc-state-management)
+    - [Freezed package](#freezed-package)
+    - [Not using the `dartz` package](#not-using-the-dartz-package)
+    - [Check internet connection  lib (`data_connection_checker`)](#check-internet-connection--lib-data_connection_checker)
+    - [Caching](#caching)
+    - [Conventional Commits](#conventional-commits)
+  - [Lambda Folder](#lambda-folder)
+  - [Roadmap](#roadmap)
 ## Getting Started
 
 - Flutter version used in development `2.2.3`
@@ -46,11 +65,11 @@ The directory structure was made to reflect the [DDD approach layers](https://re
 For the linting rules we first enable all lint rules through the `all_lint_rules.yaml` file, and then through `analysis_options.yaml` we disable the ones that do not fit the current standard we are aiming for. This approach allows us to include the good practices AND the remaining rules in our coding style.
 
   - It is easy to maintain our list when new rules are added. It is just a matter of copy-pasting the official list onto our all_lint_rules.yaml file.
-  - The selected set of rules were inspired by packages that are well estabilished flutter packages like: [provider](https://github.com/rrousselGit/provider) and [freezed](https://github.com/rrousselGit/freezed)
+  - The selected set of rules were inspired by packages that are well-established flutter packages like [provider](https://github.com/rrousselGit/provider) and [freezed](https://github.com/rrousselGit/freezed)
   - This approach is opinionated and can be changed to adapt to the project needs.
 
 ### Bloc (State Management)
-Bloc is a well-known and estabilished library to handle state management. It allows us to separate the presentation from the business logic improving the application scalability (especially used with a service locator pattern) and testability. The separation of the business logic (*application*) and the *presentation* makes this a very good approach to use with the Domain Driven Development (DDD)
+Bloc is a well-known and established library to handle state management. It allows us to separate the presentation from the business logic improving the application scalability (especially used with a service locator pattern) and testability. The separation of the business logic (*application*) and the *presentation* makes this a very good approach to use with the Domain Driven Development (DDD)
 
 ### Freezed package
 Provide us with helpful code generation that allows us to properly implement immutable objects around the project ( better conforming to the DDD approach). Also, help us with *classes* and *unions*.
@@ -60,7 +79,7 @@ Dartz package is an amazing tool with a lot of classes that allow us to better c
 - Completely opinionated decisions. (avoid using extra libraries whenever possible)
 
 ### Check internet connection  lib (`data_connection_checker`)
-For this challenge, we used the `data_connection_checker` to verify if there is an internet connection. You should not  use the current network status for deciding whether you can reliably make a network connection. With this package, we also verify if we can open sockets to a specified list of addresses.
+For this challenge, we used the `data_connection_checker` to verify if there is an internet connection. You should not use the current network status for deciding whether you can reliably make a network connection. With this package, we also verify if we can open sockets to a specified list of addresses.
 - Modifications were made to make the library **null-safe**.
 - This choice is completely opinionated and can be easily changed to use the connectivity package and some additional modifications.
 
@@ -72,7 +91,7 @@ The Conventional Commits specification is a  convention on top of commit message
 
 ## Lambda Folder
 
-This folder contains the lambda functions (AWS lambda) used to create the endpoint as requested in the `QR-generator-test.md` description. This was added as a reference on how the `/seed` endpoint was implemented. Bear in mind that thos was a very simplistic implementation, made directly in JS, and deployed directly in `AWS Lamnda` + `AWS Api Gateway`. A full project stack would include:
+This folder contains the lambda functions (AWS lambda) used to create the endpoint as requested in the `QR-generator-test.md` description. This was added as a reference to how the `/seed` endpoint was implemented. Bear in mind that this was a very simplistic implementation, made directly in JS, and deployed directly in `AWS Lamnda` + `AWS Api Gateway`. A full project stack would include:
 
 - Typescript
 - Auto deploy script
@@ -84,5 +103,7 @@ This folder contains the lambda functions (AWS lambda) used to create the endpoi
  - Integration tests
  - CI/CD
  - Widget Tests
- - Persistent Seeds from server (actually validate them with another endpoint)
+ - Accessibility Review
+ - I18n
+ - Persistent Seeds from the server (actually validate them with another endpoint)
 
