@@ -5,6 +5,8 @@ void main() {
   testWidgets('render components', (WidgetTester tester) async {
     await tester.pumpWidget(const App());
 
+    await tester.pumpAndSettle();
+
     expect(find.text('hello world'), findsOneWidget);
   });
 }
