@@ -24,7 +24,7 @@ void main() {
       test('should get data from the repository', () async {
         // arrange
         final mockRepository = getAndRegisterIQrSeedRepository();
-        final mockNetworkInfo = getAndRegisterNetworkInfo();
+        getAndRegisterNetworkInfo();
         final bloc = DisplayQrCodeBloc();
 
         // act
