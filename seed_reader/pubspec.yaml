@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  intl: ^0.17.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +23,5 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+flutter_intl:
+  enabled: true
