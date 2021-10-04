@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../../routes/generate_seed/generate_seed_page.dart';
 import '../app_route.dart';
 
 class GenerateSeedRoute implements AppRoute {
@@ -11,11 +11,7 @@ class GenerateSeedRoute implements AppRoute {
   @override
   Route<T> handle<T>(RouteSettings settings) {
     return MaterialPageRoute<T>(
-      builder: (_) {
-        return const Scaffold(
-          body: Text('hello world'),
-        );
-      },
+      builder: (_) => const GenerateSeedPage(),
     );
   }
 }

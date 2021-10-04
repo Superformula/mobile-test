@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seed_reader/routes/home/home_page.dart';
-
+import '../../routes/home/home_page.dart';
 import '../app_route.dart';
 
 class HomeRoute implements AppRoute {

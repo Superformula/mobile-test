@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seed_reader/design_tokens/dimensions.dart';
+import '../../../design_tokens/dimensions.dart';
 import '../../../generated/l10n.dart';
 
 class HomeActionsButton extends StatefulWidget {
