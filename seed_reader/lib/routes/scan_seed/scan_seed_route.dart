@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-
+import '../../generated/l10n.dart';
 import '../app_route.dart';
 
-class ScanSeedRoute implements AppRoute {
-  const ScanSeedRoute();
+class ScanRoute implements AppRoute {
+  const ScanRoute();
 
   @override
-  bool canHandle(String route) => route == '/scan_seed';
+  bool canHandle(String route) => route == '/scan';
 
   @override
   Route<T> handle<T>(RouteSettings settings) {
     return MaterialPageRoute<T>(
-      builder: (_) {
-        return const Scaffold(
-          body: Text('hello world'),
+      builder: (BuildContext context) {
+        return Scaffold(
+          body: Text(S.of(context).scanPageTitle),
         );
       },
     );

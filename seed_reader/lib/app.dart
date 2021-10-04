@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     const Iterable<AppRoute> routes = <AppRoute>[
       GenerateSeedRoute(),
-      ScanSeedRoute(),
+      ScanRoute(),
       HomeRoute(),
     ];
 

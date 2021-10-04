@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:seed_reader/generated/l10n.dart';
 import 'package:seed_reader/routes/scan_seed/scan_seed_route.dart';
 import '../../common/base_testable_widget.dart';
 
-late ScanSeedRoute _route;
+late ScanRoute _route;
 void main() {
   setUp(() {
-    _route = const ScanSeedRoute();
+    _route = const ScanRoute();
   });
   testWidgets('#canHandle', (WidgetTester tester) async {
     expect(_route.canHandle('/foo'), false);
-    expect(_route.canHandle('/scan_seed'), true);
+    expect(_route.canHandle('/scan'), true);
   });
   testWidgets('#handle', (WidgetTester tester) async {
     final GlobalKey<NavigatorState> navigatorKey = GlobalKey();
@@ -29,6 +30,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('hello world'), findsOneWidget);
+    expect(find.text(S.current.scanPageTitle), findsOneWidget);
   });
 }
