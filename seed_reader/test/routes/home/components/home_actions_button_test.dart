@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:seed_reader/generated/l10n.dart';
+import 'package:seed_reader/routes/app_route.dart';
+import 'package:seed_reader/routes/generate_seed/generate_seed_page.dart';
+import 'package:seed_reader/routes/generate_seed/generate_seed_route.dart';
 import 'package:seed_reader/routes/home/home_page.dart';
+import 'package:seed_reader/routes/scan_seed/scan_seed_page.dart';
+import 'package:seed_reader/routes/scan_seed/scan_seed_route.dart';
 import '../../../common/base_testable_widget.dart';
 
 void main() {
@@ -29,22 +34,26 @@ void main() {
     await tester.openActions();
     expectHidesActions(false);
   });
-  testWidgets('when taps in scan then opens the route',
+  testWidgets('when taps in scan action then opens the route',
       (WidgetTester tester) async {
     await tester.pumpComponent();
     await tester.openActions();
 
     await tester.tap(find.text(S.current.homeActionScan));
     await tester.pumpAndSettle();
+
+    expect(find.byType(ScanSeedPage), findsOneWidget);
   });
 
-  testWidgets('when taps in generate then opens the route',
+  testWidgets('when taps in generate action then opens the route',
       (WidgetTester tester) async {
     await tester.pumpComponent();
     await tester.openActions();
 
     await tester.tap(find.text(S.current.homeActionGenerate));
     await tester.pumpAndSettle();
+
+    expect(find.byType(GenerateSeedPage), findsOneWidget);
   });
 }
 
@@ -62,6 +71,10 @@ extension Pump on WidgetTester {
   Future<void> pumpComponent() async {
     await pumpWidget(
       const BaseWidgetTest(
+        routes: <AppRoute>[
+          ScanRoute(),
+          GenerateSeedRoute(),
+        ],
         child: HomePage(),
       ),
     );

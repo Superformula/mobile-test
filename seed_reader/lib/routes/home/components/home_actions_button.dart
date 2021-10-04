@@ -35,13 +35,13 @@ class _HomeActionsButtonState extends State<HomeActionsButton> {
         _HomeActionItem(
           title: S.of(context).homeActionScan,
           icon: Icons.camera_alt_outlined,
-          onPressed: () {},
+          onPressed: () => Navigator.of(context).pushNamed('/scan'),
         ),
         const SizedBox(height: Dimensions.regular),
         _HomeActionItem(
           title: S.of(context).homeActionGenerate,
           icon: Icons.qr_code,
-          onPressed: () {},
+          onPressed: () => Navigator.of(context).pushNamed('/generate_seed'),
         ),
         const SizedBox(height: Dimensions.regular),
       ];
