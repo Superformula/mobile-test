@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:seed_reader/generated/l10n.dart';
+import 'package:seed_reader/routes/scan_seed/scan_seed_page.dart';
 import 'package:seed_reader/routes/scan_seed/scan_seed_route.dart';
 import '../../common/base_testable_widget.dart';
 
@@ -30,6 +30,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text(S.current.scanPageTitle), findsOneWidget);
+    expect(find.byType(ScanSeedPage), findsOneWidget);
   });
 }

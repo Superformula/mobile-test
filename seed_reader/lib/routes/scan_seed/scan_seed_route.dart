@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../generated/l10n.dart';
+import 'package:seed_reader/routes/scan_seed/scan_seed_page.dart';
 import '../app_route.dart';
 
 class ScanRoute implements AppRoute {
@@ -11,11 +11,7 @@ class ScanRoute implements AppRoute {
   @override
   Route<T> handle<T>(RouteSettings settings) {
     return MaterialPageRoute<T>(
-      builder: (BuildContext context) {
-        return Scaffold(
-          body: Text(S.of(context).scanPageTitle),
-        );
-      },
+      builder: (BuildContext context) => const ScanSeedPage(),
     );
   }
 }
