@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seed_reader/design_tokens/dimensions.dart';
 import '../../../generated/l10n.dart';
 
 class HomeActionsButton extends StatefulWidget {
@@ -36,13 +37,13 @@ class _HomeActionsButtonState extends State<HomeActionsButton> {
           icon: Icons.camera_alt_outlined,
           onPressed: () {},
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: Dimensions.regular),
         _HomeActionItem(
           title: S.of(context).homeActionGenerate,
           icon: Icons.qr_code,
           onPressed: () {},
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: Dimensions.regular),
       ];
 }
 
@@ -66,7 +67,7 @@ class _HomeActionItem extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Text(title),
-            const SizedBox(width: 4),
+            const SizedBox(width: Dimensions.xSmall),
             Icon(icon, color: Colors.white),
           ],
         ),
