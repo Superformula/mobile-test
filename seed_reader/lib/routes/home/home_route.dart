@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seed_reader/routes/home/home_page.dart';
 
 import '../app_route.dart';
 
@@ -11,9 +12,7 @@ class HomeRoute implements AppRoute {
   @override
   Route<T> handle<T>(RouteSettings settings) {
     return MaterialPageRoute<T>(
-      builder: (_) => const Scaffold(
-        body: Text('hello world'),
-      ),
+      builder: (_) => const HomePage(),
     );
   }
 }

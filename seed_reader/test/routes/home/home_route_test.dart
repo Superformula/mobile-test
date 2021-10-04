@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:seed_reader/routes/home/home_page.dart';
 import 'package:seed_reader/routes/home/home_route.dart';
 import '../../common/base_testable_widget.dart';
 
@@ -29,6 +30,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('hello world'), findsOneWidget);
+    expect(find.byType(HomePage), findsOneWidget);
   });
 }
