@@ -1,3 +1,8 @@
 {
-    "unknownRouteMessage" : "Something get wrong"
+    "unknownRouteMessage" : "Something get wrong",
+    "homePageTitle": "Home",
+    "homeActionScan": "Scan",
+    "homeActionGenerate": "QRCode",
+    "scanPageTitle": "Scan",
+    "generateSeedPageTitle": "QRCode"
 }

@@ -59,6 +59,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Home`
+  String get homePageTitle {
+    return Intl.message(
+      'Home',
+      name: 'homePageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan`
+  String get homeActionScan {
+    return Intl.message(
+      'Scan',
+      name: 'homeActionScan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QRCode`
+  String get homeActionGenerate {
+    return Intl.message(
+      'QRCode',
+      name: 'homeActionGenerate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan`
+  String get scanPageTitle {
+    return Intl.message(
+      'Scan',
+      name: 'scanPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `QRCode`
+  String get generateSeedPageTitle {
+    return Intl.message(
+      'QRCode',
+      name: 'generateSeedPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
