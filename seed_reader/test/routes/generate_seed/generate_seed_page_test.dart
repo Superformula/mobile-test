@@ -19,6 +19,11 @@ import 'generate_seed_page_test.mocks.dart';
 late MockSeedInteractor _seedInteractor;
 @GenerateMocks(<Type>[SeedInteractor])
 void main() {
+  final TestWidgetsFlutterBinding binding =
+      TestWidgetsFlutterBinding.ensureInitialized()
+          as TestWidgetsFlutterBinding;
+  binding.window.physicalSizeTestValue = const Size(300, 400);
+  binding.window.devicePixelRatioTestValue = 1.0;
   setUp(() {
     _seedInteractor = MockSeedInteractor();
   });
