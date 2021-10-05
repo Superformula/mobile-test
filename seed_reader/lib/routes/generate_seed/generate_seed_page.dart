@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -126,14 +125,21 @@ class _SuccessStateView extends StatelessWidget {
               },
             ),
             const SizedBox(height: Dimensions.regular),
-            CountDownTimer(
-              key: UniqueKey(),
-              duration: seed.expiration.difference(
-                DateTime.now(),
-              ),
-              onFinish: () {
-                bloc.refreshSeed();
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(S.of(context).generateSeedExpiresLabel),
+                const SizedBox(width: Dimensions.xSmall),
+                CountDownTimer(
+                  key: UniqueKey(),
+                  duration: seed.expiration.difference(
+                    DateTime.now(),
+                  ),
+                  onFinish: () {
+                    bloc.refreshSeed();
+                  },
+                ),
+              ],
             ),
           ],
         ),

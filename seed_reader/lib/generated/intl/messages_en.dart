@@ -22,17 +22,19 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "generateSeedErrorMessage":
-            MessageLookupByLibrary.simpleMessage("Something get wrong!"),
+            MessageLookupByLibrary.simpleMessage("Something wrong happened"),
         "generateSeedErrorTryAgain":
             MessageLookupByLibrary.simpleMessage("Trying in"),
+        "generateSeedExpiresLabel":
+            MessageLookupByLibrary.simpleMessage("expires in"),
         "generateSeedLoadingLabel":
-            MessageLookupByLibrary.simpleMessage("loading..."),
+            MessageLookupByLibrary.simpleMessage("Generating seed..."),
         "generateSeedPageTitle": MessageLookupByLibrary.simpleMessage("QRCode"),
         "homeActionGenerate": MessageLookupByLibrary.simpleMessage("QRCode"),
         "homeActionScan": MessageLookupByLibrary.simpleMessage("Scan"),
         "homePageTitle": MessageLookupByLibrary.simpleMessage("Home"),
         "scanPageTitle": MessageLookupByLibrary.simpleMessage("Scan"),
         "unknownRouteMessage":
-            MessageLookupByLibrary.simpleMessage("Something get wrong")
+            MessageLookupByLibrary.simpleMessage("Something wrong happened")
       };
 }

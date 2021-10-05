@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Something get wrong`
+  /// `Something wrong happened`
   String get unknownRouteMessage {
     return Intl.message(
-      'Something get wrong',
+      'Something wrong happened',
       name: 'unknownRouteMessage',
       desc: '',
       args: [],
@@ -110,20 +110,30 @@ class S {
     );
   }
 
-  /// `loading...`
+  /// `Generating seed...`
   String get generateSeedLoadingLabel {
     return Intl.message(
-      'loading...',
+      'Generating seed...',
       name: 'generateSeedLoadingLabel',
       desc: '',
       args: [],
     );
   }
 
-  /// `Something get wrong!`
+  /// `expires in`
+  String get generateSeedExpiresLabel {
+    return Intl.message(
+      'expires in',
+      name: 'generateSeedExpiresLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something wrong happened`
   String get generateSeedErrorMessage {
     return Intl.message(
-      'Something get wrong!',
+      'Something wrong happened',
       name: 'generateSeedErrorMessage',
       desc: '',
       args: [],

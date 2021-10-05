@@ -1,11 +1,12 @@
 {
-    "unknownRouteMessage" : "Something get wrong",
+    "unknownRouteMessage" : "Something wrong happened",
     "homePageTitle": "Home",
     "homeActionScan": "Scan",
     "homeActionGenerate": "QRCode",
     "scanPageTitle": "Scan",
     "generateSeedPageTitle": "QRCode",
-    "generateSeedLoadingLabel": "loading...",
-    "generateSeedErrorMessage": "Something get wrong!",
+    "generateSeedLoadingLabel": "Generating seed...",
+    "generateSeedExpiresLabel": "expires in",
+    "generateSeedErrorMessage": "Something wrong happened",
     "generateSeedErrorTryAgain": "Trying in"
 }

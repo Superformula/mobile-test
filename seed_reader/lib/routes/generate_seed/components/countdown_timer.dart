@@ -36,8 +36,17 @@ class _CountDownTimerState extends State<CountDownTimer>
   }
 
   String get _time {
-    final Duration duration = _timerController.duration ?? Duration.zero;
-    return (duration * _timerController.value).toString().split('.').first;
+    final Duration totalDuration = _timerController.duration ?? Duration.zero;
+    final Duration currentDuration = totalDuration * _timerController.value;
+
+    return <String>[
+      if (currentDuration.inHours > 0)
+        '${currentDuration.inHours}'.padLeft(2, '0'),
+      if (currentDuration.inMinutes > 0)
+        '${currentDuration.inMinutes % 60}'.padLeft(2, '0'),
+      if (currentDuration.inSeconds >= 0)
+        '${currentDuration.inSeconds % 60}s'.padLeft(3, '0')
+    ].join(':');
   }
 
   @override
