@@ -7,10 +7,11 @@ import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:seed_reader/components/countdown_timer.dart';
 import 'package:seed_reader/generated/l10n.dart';
 import 'package:seed_reader/interactors/seed_interactor.dart';
 import 'package:seed_reader/models/seed.dart';
-import 'package:seed_reader/routes/generate_seed/components/countdown_timer.dart';
+
 import 'package:seed_reader/routes/generate_seed/generate_seed_page.dart';
 import 'package:seed_reader/routes/generate_seed/generate_seed_page_bloc.dart';
 import '../../common/base_testable_widget.dart';

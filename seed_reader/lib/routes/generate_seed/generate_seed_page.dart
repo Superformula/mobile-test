@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import '../../../generated/l10n.dart';
+import '../../components/countdown_timer.dart';
 import '../../design_tokens/dimensions.dart';
 import '../../models/seed.dart';
-import '../../routes/generate_seed/components/countdown_timer.dart';
 import '../../routes/generate_seed/generate_seed_page_bloc.dart';
 
 class GenerateSeedPage extends StatelessWidget {

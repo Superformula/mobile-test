@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:seed_reader/routes/generate_seed/components/countdown_timer.dart';
+import 'package:seed_reader/components/countdown_timer.dart';
 import '../../../common/base_testable_widget.dart';
 
 late _OnFinishMock _onFinishMock;

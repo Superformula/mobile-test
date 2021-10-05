@@ -4,11 +4,11 @@ class CountDownTimer extends StatefulWidget {
   const CountDownTimer({
     Key? key,
     required this.duration,
-    required this.onFinish,
+    this.onFinish,
   }) : super(key: key);
 
   final Duration duration;
-  final VoidCallback onFinish;
+  final VoidCallback? onFinish;
 
   @override
   _CountDownTimerState createState() => _CountDownTimerState();
@@ -27,7 +27,9 @@ class _CountDownTimerState extends State<CountDownTimer>
     );
     _timerController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.dismissed) {
-        widget.onFinish();
+        if (widget.onFinish != null) {
+          widget.onFinish!();
+        }
       }
     });
 
