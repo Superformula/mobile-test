@@ -43,6 +43,7 @@ analyzer:
       # Ignore protoc generated files
     - "dev/conductor/lib/proto/*"
     - lib/generated/**.dart
+    - test/**mocks.dart
 
 linter:
   rules:
