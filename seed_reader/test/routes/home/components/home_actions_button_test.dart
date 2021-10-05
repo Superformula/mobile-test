@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:seed_reader/generated/l10n.dart';
+import 'package:seed_reader/interactors/seed_interactor.dart';
+import 'package:seed_reader/models/seed.dart';
 import 'package:seed_reader/routes/app_route.dart';
 import 'package:seed_reader/routes/generate_seed/generate_seed_page.dart';
 import 'package:seed_reader/routes/generate_seed/generate_seed_route.dart';
@@ -8,8 +13,23 @@ import 'package:seed_reader/routes/home/home_page.dart';
 import 'package:seed_reader/routes/scan_seed/scan_seed_page.dart';
 import 'package:seed_reader/routes/scan_seed/scan_seed_route.dart';
 import '../../../common/base_testable_widget.dart';
+import 'home_actions_button_test.mocks.dart';
 
+@GenerateMocks(<Type>[SeedInteractor])
 void main() {
+  setUp(() async {
+    final MockSeedInteractor seedInteractor = MockSeedInteractor();
+    when(seedInteractor.fetchSeed()).thenAnswer(
+      (_) => Future<Seed>.value(
+        Seed(
+          expiration: DateTime.now().add(const Duration(seconds: 2)),
+          value: 'foobar',
+        ),
+      ),
+    );
+    await GetIt.I.reset();
+    GetIt.I.registerSingleton<SeedInteractor>(seedInteractor);
+  });
   testWidgets('when taps in generate then should toggle actions visibility',
       (WidgetTester tester) async {
     void expectHidesActions(bool hides) {
@@ -40,7 +60,8 @@ void main() {
     await tester.openActions();
 
     await tester.tap(find.text(S.current.homeActionScan));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump();
 
     expect(find.byType(ScanSeedPage), findsOneWidget);
   });
@@ -51,7 +72,8 @@ void main() {
     await tester.openActions();
 
     await tester.tap(find.text(S.current.homeActionGenerate));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump();
 
     expect(find.byType(GenerateSeedPage), findsOneWidget);
   });
