@@ -20,6 +20,22 @@ void main() {
 
     verify(mock.onFinish()).called(1);
   });
+  testWidgets('when the duration is negative then default to zero',
+      (WidgetTester tester) async {
+    final _OnFinishMock mock = _OnFinishMock();
+    await tester.pumpWidget(
+      BaseWidgetTest(
+        child: CountDownTimer(
+          duration: const Duration(seconds: -1),
+          onFinish: mock.onFinish,
+        ),
+      ),
+    );
+
+    await tester.pump();
+
+    verify(mock.onFinish()).called(1);
+  });
 }
 
 class _OnFinishMock extends Mock {

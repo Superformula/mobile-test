@@ -22,7 +22,8 @@ class _CountDownTimerState extends State<CountDownTimer>
   void initState() {
     _timerController = AnimationController(
       vsync: this,
-      duration: widget.duration,
+      duration:
+          widget.duration < Duration.zero ? Duration.zero : widget.duration,
     );
     _timerController.addStatusListener((AnimationStatus status) {
       if (status == AnimationStatus.dismissed) {
