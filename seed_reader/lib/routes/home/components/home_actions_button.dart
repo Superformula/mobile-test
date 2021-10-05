@@ -67,8 +67,15 @@ class _HomeActionItem extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Text(title),
-            const SizedBox(width: Dimensions.xSmall),
-            Icon(icon, color: Colors.white),
+            const SizedBox(width: Dimensions.small),
+            Container(
+              padding: const EdgeInsets.all(Dimensions.small),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Icon(icon, color: Colors.white),
+            ),
           ],
         ),
       ),
