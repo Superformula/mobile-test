@@ -109,6 +109,36 @@ class S {
       args: [],
     );
   }
+
+  /// `loading...`
+  String get generateSeedLoadingLabel {
+    return Intl.message(
+      'loading...',
+      name: 'generateSeedLoadingLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something get wrong!`
+  String get generateSeedErrorMessage {
+    return Intl.message(
+      'Something get wrong!',
+      name: 'generateSeedErrorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trying in`
+  String get generateSeedErrorTryAgain {
+    return Intl.message(
+      'Trying in',
+      name: 'generateSeedErrorTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

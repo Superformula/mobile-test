@@ -4,5 +4,8 @@
     "homeActionScan": "Scan",
     "homeActionGenerate": "QRCode",
     "scanPageTitle": "Scan",
-    "generateSeedPageTitle": "QRCode"
+    "generateSeedPageTitle": "QRCode",
+    "generateSeedLoadingLabel": "loading...",
+    "generateSeedErrorMessage": "Something get wrong!",
+    "generateSeedErrorTryAgain": "Trying in"
 }
