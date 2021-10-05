@@ -8,5 +8,7 @@
     "generateSeedLoadingLabel": "Generating seed...",
     "generateSeedExpiresLabel": "expires in",
     "generateSeedErrorMessage": "Something wrong happened",
-    "generateSeedErrorTryAgain": "Trying in"
+    "generateSeedErrorTryAgain": "Trying in",
+    "scanSeedInvalid": "Invalid QRCode",
+    "scanSeedExpiresLabel": "expires in"
 }

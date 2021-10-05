@@ -34,6 +34,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeActionScan": MessageLookupByLibrary.simpleMessage("Scan"),
         "homePageTitle": MessageLookupByLibrary.simpleMessage("Home"),
         "scanPageTitle": MessageLookupByLibrary.simpleMessage("Scan"),
+        "scanSeedExpiresLabel":
+            MessageLookupByLibrary.simpleMessage("expires in"),
+        "scanSeedInvalid":
+            MessageLookupByLibrary.simpleMessage("Invalid QRCode"),
         "unknownRouteMessage":
             MessageLookupByLibrary.simpleMessage("Something wrong happened")
       };

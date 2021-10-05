@@ -149,6 +149,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalid QRCode`
+  String get scanSeedInvalid {
+    return Intl.message(
+      'Invalid QRCode',
+      name: 'scanSeedInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `expires in`
+  String get scanSeedExpiresLabel {
+    return Intl.message(
+      'expires in',
+      name: 'scanSeedExpiresLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
