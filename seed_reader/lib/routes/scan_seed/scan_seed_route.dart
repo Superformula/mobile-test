@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seed_reader/routes/scan_seed/scan_seed_page.dart';
+import '../../routes/scan_seed/scan_seed_page.dart';
 import '../app_route.dart';
 
 class ScanRoute implements AppRoute {
