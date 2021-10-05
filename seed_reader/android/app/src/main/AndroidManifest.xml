@@ -1,5 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.seed_reader">
+    <uses-permission android:name="android.permission.CAMERA" />
+
+<application>
+  <meta-data
+    android:name="flutterEmbedding"
+    android:value="2" />
+</application>
    <application
         android:label="seed_reader"
         android:icon="@mipmap/ic_launcher">
