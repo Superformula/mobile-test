@@ -2,29 +2,27 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:seed_reader/components/countdown_timer.dart';
 import 'package:seed_reader/generated/l10n.dart';
-import 'package:seed_reader/interactors/seed_interactor.dart';
 import 'package:seed_reader/models/seed.dart';
 
 import 'package:seed_reader/routes/generate_seed/generate_seed_page.dart';
 import 'package:seed_reader/routes/generate_seed/generate_seed_page_bloc.dart';
 import '../../common/base_testable_widget.dart';
-import 'generate_seed_page_test.mocks.dart';
+import '../../mocks/mock_generator.mocks.dart';
 
 late MockSeedInteractor _seedInteractor;
-@GenerateMocks(<Type>[SeedInteractor])
 void main() {
   final TestWidgetsFlutterBinding binding =
       TestWidgetsFlutterBinding.ensureInitialized()
           as TestWidgetsFlutterBinding;
   binding.window.physicalSizeTestValue = const Size(300, 400);
   binding.window.devicePixelRatioTestValue = 1.0;
+
   setUp(() {
     _seedInteractor = MockSeedInteractor();
   });

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:seed_reader/generated/l10n.dart';
 import 'package:seed_reader/interactors/seed_interactor.dart';
@@ -13,9 +12,8 @@ import 'package:seed_reader/routes/home/home_page.dart';
 import 'package:seed_reader/routes/scan_seed/scan_seed_page.dart';
 import 'package:seed_reader/routes/scan_seed/scan_seed_route.dart';
 import '../../../common/base_testable_widget.dart';
-import 'home_actions_button_test.mocks.dart';
+import '../../../mocks/mock_generator.mocks.dart';
 
-@GenerateMocks(<Type>[SeedInteractor])
 void main() {
   setUp(() async {
     final MockSeedInteractor seedInteractor = MockSeedInteractor();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -11,11 +10,11 @@ import 'package:seed_reader/routes/generate_seed/generate_seed_page.dart';
 import 'package:seed_reader/routes/generate_seed/generate_seed_page_bloc.dart';
 import 'package:seed_reader/routes/generate_seed/generate_seed_route.dart';
 import '../../common/base_testable_widget.dart';
-import 'generate_seed_route_test.mocks.dart';
+import '../../mocks/mock_generator.mocks.dart';
 
 late MockSeedInteractor _seedInteractor;
 late GenerateSeedRoute _route;
-@GenerateMocks(<Type>[SeedInteractor])
+
 void main() {
   setUp(() async {
     _seedInteractor = MockSeedInteractor();
@@ -27,6 +26,7 @@ void main() {
         ),
       ),
     );
+
     await GetIt.I.reset();
     GetIt.I.registerSingleton<SeedInteractor>(_seedInteractor);
     _route = const GenerateSeedRoute();
