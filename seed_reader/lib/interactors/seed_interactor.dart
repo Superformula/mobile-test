@@ -1,24 +1,44 @@
-import '../models/seed.dart';
+import '../../interactors/gateways/seed_api_gateway.dart';
+import '../../interactors/gateways/seed_local_gateway.dart';
 
-int count = 0;
+import '../errors.dart';
+import '../models/seed.dart';
+import 'gateways/connectivity.dart';
 
 class SeedInteractor {
-  const SeedInteractor();
+  const SeedInteractor({
+    required SeedLocalGateway seedLocalGateway,
+    required SeedApiGateway seedApiGateway,
+    required CanFetchType canFetch,
+  })  : _seedLocalGateway = seedLocalGateway,
+        _seedApiGateway = seedApiGateway,
+        _canFetch = canFetch;
+
+  final CanFetchType _canFetch;
+  final SeedLocalGateway _seedLocalGateway;
+  final SeedApiGateway _seedApiGateway;
+
   Future<Seed> fetchSeed() async {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    if (count > 2) {
-      return Future<Seed>.value(
-        Seed(
-          value: 'foobar',
-          expiration: DateTime.now().add(
-            const Duration(seconds: 2),
-          ),
-        ),
-      );
+    final Seed? currentSeed = await _seedLocalGateway.fetchSeed();
+    if (currentSeed != null) {
+      return currentSeed;
     }
-    count++;
-    return Future<Seed>.error('');
+    return _checkConnectivity()
+        .then((_) => _seedApiGateway.fetchSeed())
+        .then((Seed seed) {
+      _seedLocalGateway.saveSeed(seed);
+      return seed;
+    });
   }
+
+  Future<bool> _checkConnectivity() => _canFetch().then(
+        (bool canFetch) {
+          if (!canFetch) {
+            throw NotConnectedToFetchError();
+          }
+          return canFetch;
+        },
+      );
 
   bool isValid(Seed seed) =>
       seed.expiration.difference(DateTime.now()).inSeconds > 0;
