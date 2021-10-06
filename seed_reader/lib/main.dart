@@ -8,19 +8,14 @@ import '../../interactors/gateways/seed_local_gateway.dart';
 import '../interactors/seed_interactor.dart';
 
 import 'app.dart';
+import 'interactors/gateways/connectivity.dart';
 
 void main() {
-  final Connectivity connectivity = Connectivity();
-
   GetIt.I.registerSingleton<SeedInteractor>(
     SeedInteractor(
       seedLocalGateway: const SeedLocalGateway(),
       seedApiGateway: const SeedApiGateway(),
-      canFetch: () => connectivity.checkConnectivity().then(
-        (ConnectivityResult result) {
-          return result == ConnectivityResult.wifi;
-        },
-      ),
+      canFetch: () => canConnectToApi(Connectivity()),
     ),
   );
 

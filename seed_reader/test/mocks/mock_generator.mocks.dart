@@ -4,6 +4,7 @@
 
 import 'dart:async' as _i4;
 
+import 'package:connectivity/connectivity.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:seed_reader/interactors/gateways/seed_api_gateway.dart' as _i6;
 import 'package:seed_reader/interactors/gateways/seed_local_gateway.dart'
@@ -95,6 +96,29 @@ class MockMethodMocks extends _i1.Mock implements _i7.MethodMocks {
   _i4.Future<bool> futureBoolCallback() =>
       (super.noSuchMethod(Invocation.method(#futureBoolCallback, []),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [Connectivity].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockConnectivity extends _i1.Mock implements _i8.Connectivity {
+  MockConnectivity() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Stream<_i8.ConnectivityResult> get onConnectivityChanged =>
+      (super.noSuchMethod(Invocation.getter(#onConnectivityChanged),
+              returnValue: Stream<_i8.ConnectivityResult>.empty())
+          as _i4.Stream<_i8.ConnectivityResult>);
+  @override
+  _i4.Future<_i8.ConnectivityResult> checkConnectivity() => (super.noSuchMethod(
+          Invocation.method(#checkConnectivity, []),
+          returnValue:
+              Future<_i8.ConnectivityResult>.value(_i8.ConnectivityResult.wifi))
+      as _i4.Future<_i8.ConnectivityResult>);
   @override
   String toString() => super.toString();
 }

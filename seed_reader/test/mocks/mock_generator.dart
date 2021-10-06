@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:mockito/annotations.dart';
 import 'package:seed_reader/interactors/gateways/seed_api_gateway.dart';
 import 'package:seed_reader/interactors/gateways/seed_local_gateway.dart';
@@ -8,6 +9,7 @@ import 'package:seed_reader/interactors/seed_interactor.dart';
   SeedLocalGateway,
   SeedApiGateway,
   MethodMocks,
+  Connectivity,
 ])
 void main() {}
 
