@@ -15,6 +15,6 @@ app.get('/api/seed', (req, res) => {
 
     res.send({
         "seed": uuidv4(),
-        "expires_at": JSON.stringify(expirationDate)
+        "expires_at": expirationDate.toISOString()
     });
 });
