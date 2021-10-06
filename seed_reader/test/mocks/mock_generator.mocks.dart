@@ -5,8 +5,13 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:seed_reader/interactors/gateways/seed_api_gateway.dart' as _i6;
+import 'package:seed_reader/interactors/gateways/seed_local_gateway.dart'
+    as _i5;
 import 'package:seed_reader/interactors/seed_interactor.dart' as _i3;
 import 'package:seed_reader/models/seed.dart' as _i2;
+
+import 'mock_generator.dart' as _i7;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -36,6 +41,60 @@ class MockSeedInteractor extends _i1.Mock implements _i3.SeedInteractor {
   bool isValid(_i2.Seed? seed) => (super
           .noSuchMethod(Invocation.method(#isValid, [seed]), returnValue: false)
       as bool);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [SeedLocalGateway].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSeedLocalGateway extends _i1.Mock implements _i5.SeedLocalGateway {
+  MockSeedLocalGateway() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Seed?> fetchSeed() =>
+      (super.noSuchMethod(Invocation.method(#fetchSeed, []),
+          returnValue: Future<_i2.Seed?>.value()) as _i4.Future<_i2.Seed?>);
+  @override
+  _i4.Future<void> saveSeed(_i2.Seed? seed) =>
+      (super.noSuchMethod(Invocation.method(#saveSeed, [seed]),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [SeedApiGateway].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSeedApiGateway extends _i1.Mock implements _i6.SeedApiGateway {
+  MockSeedApiGateway() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Seed> fetchSeed() =>
+      (super.noSuchMethod(Invocation.method(#fetchSeed, []),
+              returnValue: Future<_i2.Seed>.value(_FakeSeed_0()))
+          as _i4.Future<_i2.Seed>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [MethodMocks].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockMethodMocks extends _i1.Mock implements _i7.MethodMocks {
+  MockMethodMocks() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<bool> futureBoolCallback() =>
+      (super.noSuchMethod(Invocation.method(#futureBoolCallback, []),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   String toString() => super.toString();
 }
