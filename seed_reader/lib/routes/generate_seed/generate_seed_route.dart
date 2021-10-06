@@ -24,6 +24,8 @@ class GenerateSeedRoute implements AppRoute {
         providers: <SingleChildWidget>[
           Provider<GenerateSeedPageBloc>(
             create: (_) => bloc,
+            dispose: (_, GenerateSeedPageBloc disposable) =>
+                disposable.dispose(),
           ),
         ],
         child: const GenerateSeedPage(),

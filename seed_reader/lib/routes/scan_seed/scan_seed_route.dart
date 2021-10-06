@@ -21,6 +21,7 @@ class ScanRoute implements AppRoute {
             create: (_) => ScanSeedPageBloc(
               seedInteractor: GetIt.I(),
             ),
+            dispose: (_, ScanSeedPageBloc disposable) => disposable.dispose(),
           ),
         ],
         child: const ScanSeedPage(),
