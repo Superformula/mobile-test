@@ -19,4 +19,7 @@ class SeedInteractor {
     count++;
     return Future<Seed>.error('');
   }
+
+  bool isValid(Seed seed) =>
+      seed.expiration.difference(DateTime.now()).inSeconds > 0;
 }
