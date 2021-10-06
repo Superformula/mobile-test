@@ -113,10 +113,12 @@ class _SuccessStateView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            const SizedBox(height: Dimensions.regular),
             LayoutBuilder(
               builder: (_, BoxConstraints constraints) {
                 return SizedBox(
                   width: constraints.maxWidth * 0.7,
+                  height: constraints.maxWidth * 0.7,
                   child: QrImage(
                     padding: EdgeInsets.zero,
                     data: json.encode(seed),

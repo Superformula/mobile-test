@@ -15,6 +15,56 @@ class ScanSeedPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(S.of(context).scanPageTitle),
       ),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(height: Dimensions.regular),
+            _cameraView(),
+            const SizedBox(height: Dimensions.regular),
+            _validationLabel(),
+          ],
+        ),
+      ),
     );
   }
+
+  Widget _cameraView() => SizedBox(
+        height: 200,
+        child: LayoutBuilder(
+          builder: (_, BoxConstraints constraints) {
+            return SizedBox(
+              width: constraints.maxWidth * 0.7,
+              height: constraints.maxWidth * 0.7,
+              child: Consumer<ScanSeedPageBloc>(
+                builder: (_, ScanSeedPageBloc bloc, __) => ScanView(
+                  onCapture: bloc.validateSeed,
+                ),
+              ),
+            );
+          },
+        ),
+      );
+
+  Widget _validationLabel() => Consumer<ScanSeedPageBloc>(
+        builder: (BuildContext context, ScanSeedPageBloc bloc, __) {
+          return StreamBuilder<bool>(
+            stream: bloc.observeSeedValidation(),
+            builder: (_, AsyncSnapshot<bool> snapshot) {
+              if (snapshot.data != null) {
+                return snapshot.data!
+                    ? const Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                      )
+                    : Icon(
+                        Icons.error,
+                        color: Theme.of(context).errorColor,
+                      );
+              }
+              return const SizedBox();
+            },
+          );
+        },
+      );
 }
