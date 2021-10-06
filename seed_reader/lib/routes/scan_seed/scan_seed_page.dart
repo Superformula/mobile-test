@@ -20,7 +20,7 @@ class ScanSeedPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const SizedBox(height: Dimensions.regular),
-            _cameraView(),
+            const _CameraView(),
             const SizedBox(height: Dimensions.regular),
             _validationLabel(),
           ],
@@ -28,23 +28,6 @@ class ScanSeedPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _cameraView() => SizedBox(
-        height: 200,
-        child: LayoutBuilder(
-          builder: (_, BoxConstraints constraints) {
-            return SizedBox(
-              width: constraints.maxWidth * 0.7,
-              height: constraints.maxWidth * 0.7,
-              child: Consumer<ScanSeedPageBloc>(
-                builder: (_, ScanSeedPageBloc bloc, __) => ScanView(
-                  onCapture: bloc.validateSeed,
-                ),
-              ),
-            );
-          },
-        ),
-      );
 
   Widget _validationLabel() => Consumer<ScanSeedPageBloc>(
         builder: (BuildContext context, ScanSeedPageBloc bloc, __) {
@@ -67,4 +50,45 @@ class ScanSeedPage extends StatelessWidget {
           );
         },
       );
+}
+
+class _CameraView extends StatefulWidget {
+  const _CameraView({Key? key}) : super(key: key);
+
+  @override
+  State<_CameraView> createState() => _CameraViewState();
+}
+
+class _CameraViewState extends State<_CameraView> {
+  late ScanController _scanController;
+
+  @override
+  void initState() {
+    _scanController = ScanController();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      child: LayoutBuilder(
+        builder: (_, BoxConstraints constraints) {
+          return SizedBox(
+            width: constraints.maxWidth * 0.7,
+            height: constraints.maxWidth * 0.7,
+            child: Consumer<ScanSeedPageBloc>(
+              builder: (_, ScanSeedPageBloc bloc, __) => ScanView(
+                controller: _scanController,
+                onCapture: (String data) {
+                  bloc.validateSeed(data);
+                  _scanController.resume();
+                },
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

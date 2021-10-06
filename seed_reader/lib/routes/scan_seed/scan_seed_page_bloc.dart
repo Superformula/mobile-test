@@ -17,8 +17,14 @@ class ScanSeedPageBloc implements Disposable {
   Stream<bool> observeSeedValidation() => _seedValidationSubject;
 
   void validateSeed(String data) {
-    final Seed seed = Seed.fromJson(json.decode(data) as Map<String, dynamic>);
-    _seedValidationSubject.add(_seedInteractor.isValid(seed));
+    try {
+      final Seed seed = Seed.fromJson(
+        json.decode(data) as Map<String, dynamic>,
+      );
+      _seedValidationSubject.add(_seedInteractor.isValid(seed));
+    } catch (_) {
+      _seedValidationSubject.add(false);
+    }
   }
 
   @override
