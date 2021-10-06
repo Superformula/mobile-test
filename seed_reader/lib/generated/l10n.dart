@@ -140,6 +140,16 @@ class S {
     );
   }
 
+  /// `You must be online to renew your seed`
+  String get generateSeedErrorNotConnected {
+    return Intl.message(
+      'You must be online to renew your seed',
+      name: 'generateSeedErrorNotConnected',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Trying in`
   String get generateSeedErrorTryAgain {
     return Intl.message(

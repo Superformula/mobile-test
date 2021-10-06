@@ -23,6 +23,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "generateSeedErrorMessage":
             MessageLookupByLibrary.simpleMessage("Something wrong happened"),
+        "generateSeedErrorNotConnected": MessageLookupByLibrary.simpleMessage(
+            "You must be online to renew your seed"),
         "generateSeedErrorTryAgain":
             MessageLookupByLibrary.simpleMessage("Trying in"),
         "generateSeedExpiresLabel":

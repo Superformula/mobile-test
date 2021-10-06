@@ -6,6 +6,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../../generated/l10n.dart';
 import '../../components/countdown_timer.dart';
 import '../../design_tokens/dimensions.dart';
+import '../../errors.dart';
 import '../../models/seed.dart';
 import '../../routes/generate_seed/generate_seed_page_bloc.dart';
 
@@ -27,7 +28,10 @@ class GenerateSeedPage extends StatelessWidget {
                 return _SuccessStateView(seed: snapshot.data!, bloc: bloc);
               }
               if (snapshot.hasError) {
-                return _ErrorStateView(bloc: bloc);
+                return _ErrorStateView(
+                  bloc: bloc,
+                  error: snapshot.error,
+                );
               }
               return const _LoadingStateView();
             },
@@ -42,9 +46,11 @@ class _ErrorStateView extends StatelessWidget {
   const _ErrorStateView({
     Key? key,
     required this.bloc,
+    required this.error,
   }) : super(key: key);
 
   final GenerateSeedPageBloc bloc;
+  final dynamic error;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +59,9 @@ class _ErrorStateView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            S.of(context).generateSeedErrorMessage,
+            error is NotConnectedToFetchError
+                ? S.of(context).generateSeedErrorNotConnected
+                : S.of(context).generateSeedErrorMessage,
             style: Theme.of(context).textTheme.bodyText1,
           ),
           const SizedBox(height: Dimensions.regular),

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:seed_reader/components/countdown_timer.dart';
+import 'package:seed_reader/errors.dart';
 import 'package:seed_reader/generated/l10n.dart';
 import 'package:seed_reader/models/seed.dart';
 
@@ -46,6 +47,22 @@ void main() {
       await tester.pumpPage();
 
       expect(find.text(S.current.generateSeedErrorMessage), findsOneWidget);
+      expect(find.text(S.current.generateSeedErrorTryAgain), findsOneWidget);
+      expect(find.byType(CountDownTimer), findsOneWidget);
+    },
+  );
+  testWidgets(
+    'when is not connected then renders error state',
+    (WidgetTester tester) async {
+      when(_seedInteractor.fetchSeed()).thenAnswer(
+        (_) => Future<Seed>.error(NotConnectedToFetchError()),
+      );
+      await tester.pumpPage();
+
+      expect(
+        find.text(S.current.generateSeedErrorNotConnected),
+        findsOneWidget,
+      );
       expect(find.text(S.current.generateSeedErrorTryAgain), findsOneWidget);
       expect(find.byType(CountDownTimer), findsOneWidget);
     },

@@ -8,6 +8,7 @@
     "generateSeedLoadingLabel": "Generating seed...",
     "generateSeedExpiresLabel": "expires in",
     "generateSeedErrorMessage": "Something wrong happened",
+    "generateSeedErrorNotConnected": "You must be online to renew your seed",
     "generateSeedErrorTryAgain": "Trying in",
     "scanSeedInvalid": "Invalid QRCode",
     "scanSeedExpiresLabel": "expires in"
