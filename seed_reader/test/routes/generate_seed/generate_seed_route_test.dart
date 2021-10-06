@@ -44,7 +44,7 @@ void main() {
         providers: <SingleChildWidget>[
           Provider<GenerateSeedPageBloc>(
             create: (_) => GenerateSeedPageBloc(
-              seedInteractor: const SeedInteractor(),
+              seedInteractor: _seedInteractor,
             ),
           ),
           StreamProvider<Seed?>(
