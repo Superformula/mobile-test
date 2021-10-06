@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../interactors/gateways/seed_api_gateway.dart';
@@ -17,7 +18,7 @@ void main() {
       seedLocalGateway: SeedLocalGateway(
         prefs: () => SharedPreferences.getInstance(),
       ),
-      seedApiGateway: const SeedApiGateway(),
+      seedApiGateway: SeedApiGateway(client: http.Client()),
       canFetch: () => canConnectToApi(Connectivity()),
     ),
   );

@@ -6,19 +6,21 @@ class Seed {
     required this.value,
     required this.expiration,
   });
-  factory Seed.fromJson(Map<String, dynamic> json) => Seed(
-        value: json['value'] as String,
-        expiration: DateTime.parse(
-          json['expiration'] as String,
-        ),
-      );
+  factory Seed.fromJson(Map<String, dynamic> json) {
+    return Seed(
+      value: json['seed'] as String,
+      expiration: DateTime.parse(
+        json['expires_at'] as String,
+      ),
+    );
+  }
 
   final String value;
   final DateTime expiration;
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'value': value,
-        'expiration': expiration.toIso8601String(),
+        'seed': value,
+        'expires_at': expiration.toIso8601String(),
       };
 
   @override
