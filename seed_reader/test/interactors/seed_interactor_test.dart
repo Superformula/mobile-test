@@ -25,7 +25,7 @@ void main() {
     test('when has a valid seed stored then return it', () async {
       final Seed seed = Seed(
         value: 'foo',
-        expiration: DateTime.now(),
+        expiration: DateTime.now().add(const Duration(seconds: 3)),
       );
       when(_seedLocalGateway.fetchSeed()).thenAnswer(
         (_) => Future<Seed>.value(seed),

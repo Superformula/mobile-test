@@ -20,7 +20,7 @@ class SeedInteractor {
 
   Future<Seed> fetchSeed() async {
     final Seed? currentSeed = await _seedLocalGateway.fetchSeed();
-    if (currentSeed != null) {
+    if (currentSeed != null && isValid(currentSeed)) {
       return currentSeed;
     }
     return _checkConnectivity()

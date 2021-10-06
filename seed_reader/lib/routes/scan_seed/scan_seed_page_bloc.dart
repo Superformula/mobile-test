@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:rxdart/subjects.dart';
-import 'package:seed_reader/routes/disposable.dart';
 
 import '../../interactors/seed_interactor.dart';
 import '../../models/seed.dart';
+import '../../routes/disposable.dart';
 
 class ScanSeedPageBloc implements Disposable {
   ScanSeedPageBloc({

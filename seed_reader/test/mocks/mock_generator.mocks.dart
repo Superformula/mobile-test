@@ -11,6 +11,7 @@ import 'package:seed_reader/interactors/gateways/seed_local_gateway.dart'
     as _i5;
 import 'package:seed_reader/interactors/seed_interactor.dart' as _i3;
 import 'package:seed_reader/models/seed.dart' as _i2;
+import 'package:shared_preferences/shared_preferences.dart' as _i9;
 
 import 'mock_generator.dart' as _i7;
 
@@ -119,6 +120,80 @@ class MockConnectivity extends _i1.Mock implements _i8.Connectivity {
           returnValue:
               Future<_i8.ConnectivityResult>.value(_i8.ConnectivityResult.wifi))
       as _i4.Future<_i8.ConnectivityResult>);
+  @override
+  String toString() => super.toString();
+}
+
+/// A class which mocks [SharedPreferences].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSharedPreferences extends _i1.Mock implements _i9.SharedPreferences {
+  MockSharedPreferences() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  Set<String> getKeys() => (super.noSuchMethod(Invocation.method(#getKeys, []),
+      returnValue: <String>{}) as Set<String>);
+  @override
+  Object? get(String? key) =>
+      (super.noSuchMethod(Invocation.method(#get, [key])) as Object?);
+  @override
+  bool? getBool(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getBool, [key])) as bool?);
+  @override
+  int? getInt(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getInt, [key])) as int?);
+  @override
+  double? getDouble(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getDouble, [key])) as double?);
+  @override
+  String? getString(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getString, [key])) as String?);
+  @override
+  bool containsKey(String? key) =>
+      (super.noSuchMethod(Invocation.method(#containsKey, [key]),
+          returnValue: false) as bool);
+  @override
+  List<String>? getStringList(String? key) =>
+      (super.noSuchMethod(Invocation.method(#getStringList, [key]))
+          as List<String>?);
+  @override
+  _i4.Future<bool> setBool(String? key, bool? value) =>
+      (super.noSuchMethod(Invocation.method(#setBool, [key, value]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> setInt(String? key, int? value) =>
+      (super.noSuchMethod(Invocation.method(#setInt, [key, value]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> setDouble(String? key, double? value) =>
+      (super.noSuchMethod(Invocation.method(#setDouble, [key, value]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> setString(String? key, String? value) =>
+      (super.noSuchMethod(Invocation.method(#setString, [key, value]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> setStringList(String? key, List<String>? value) =>
+      (super.noSuchMethod(Invocation.method(#setStringList, [key, value]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> remove(String? key) =>
+      (super.noSuchMethod(Invocation.method(#remove, [key]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> commit() =>
+      (super.noSuchMethod(Invocation.method(#commit, []),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<bool> clear() => (super.noSuchMethod(Invocation.method(#clear, []),
+      returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  _i4.Future<void> reload() =>
+      (super.noSuchMethod(Invocation.method(#reload, []),
+          returnValue: Future<void>.value(),
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
   @override
   String toString() => super.toString();
 }
