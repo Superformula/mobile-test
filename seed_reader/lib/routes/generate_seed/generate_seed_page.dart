@@ -52,12 +52,18 @@ class _ErrorStateView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(S.of(context).generateSeedErrorMessage),
+          Text(
+            S.of(context).generateSeedErrorMessage,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
           const SizedBox(height: Dimensions.regular),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(S.of(context).generateSeedErrorTryAgain),
+              Text(
+                S.of(context).generateSeedErrorTryAgain,
+                style: Theme.of(context).textTheme.caption,
+              ),
               const SizedBox(width: Dimensions.xSmall),
               CountDownTimer(
                 key: UniqueKey(),
@@ -89,7 +95,10 @@ class _LoadingStateView extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
           const SizedBox(height: Dimensions.regular),
-          Text(S.of(context).generateSeedLoadingLabel),
+          Text(
+            S.of(context).generateSeedLoadingLabel,
+            style: Theme.of(context).textTheme.caption,
+          ),
         ],
       ),
     );
@@ -130,7 +139,10 @@ class _SuccessStateView extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(S.of(context).generateSeedExpiresLabel),
+                Text(
+                  S.of(context).generateSeedExpiresLabel,
+                  style: Theme.of(context).textTheme.caption,
+                ),
                 const SizedBox(width: Dimensions.xSmall),
                 CountDownTimer(
                   key: UniqueKey(),

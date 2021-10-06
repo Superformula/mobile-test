@@ -17,7 +17,10 @@ class _RouteNotFound implements AppRoute {
         builder: (BuildContext context) => Scaffold(
           backgroundColor: Colors.white,
           body: Center(
-            child: Text(S.of(context).unknownRouteMessage),
+            child: Text(
+              S.of(context).unknownRouteMessage,
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
           ),
         ),
       );

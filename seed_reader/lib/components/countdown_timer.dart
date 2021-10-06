@@ -55,7 +55,10 @@ class _CountDownTimerState extends State<CountDownTimer>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _timerController,
-      builder: (_, __) => Text(_time),
+      builder: (_, __) => Text(
+        _time,
+        style: Theme.of(context).textTheme.caption,
+      ),
     );
   }
 

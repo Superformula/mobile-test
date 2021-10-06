@@ -66,7 +66,7 @@ class _HomeActionItem extends StatelessWidget {
       child: IntrinsicWidth(
         child: Row(
           children: <Widget>[
-            Text(title),
+            Text(title, style: Theme.of(context).textTheme.button),
             const SizedBox(width: Dimensions.small),
             Container(
               padding: const EdgeInsets.all(Dimensions.small),
