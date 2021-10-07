@@ -27,7 +27,7 @@ void main() {
       build: () {
         when(repository.generateQRCode()).thenAnswer(
           (_) async => Right(
-            QRCode(
+            QrCode(
               "hello",
               DateTime.now().add(
                 const Duration(seconds: 30),
@@ -38,7 +38,7 @@ void main() {
         return cubit;
       },
       act: (GeneratorCubit cubit) => cubit.generateQR(),
-      expect: () => [isA<GeneratedQR>()],
+      expect: () => [isA<GeneratorLoading>(), isA<GeneratedQR>()],
     );
 
     blocTest<GeneratorCubit, GeneratorState>(
@@ -52,7 +52,7 @@ void main() {
         return cubit;
       },
       act: (GeneratorCubit cubit) => cubit.generateQR(),
-      expect: () => [isA<GeneratorError>()],
+      expect: () => [isA<GeneratorLoading>(), isA<GeneratorError>()],
     );
 
     tearDown(() {

@@ -5,7 +5,7 @@ abstract class GeneratorState extends Equatable {
   List<Object?> get props => [];
 }
 
-class GeneratorInitial extends GeneratorState {}
+class GeneratorLoading extends GeneratorState {}
 
 class GeneratedQR extends GeneratorState {
   GeneratedQR({
@@ -21,7 +21,9 @@ class GeneratedQR extends GeneratorState {
 }
 
 class GeneratorError extends GeneratorState {
-  GeneratorError({required this.errorMessage});
+  GeneratorError({
+    required this.errorMessage,
+  });
 
   final String errorMessage;
 

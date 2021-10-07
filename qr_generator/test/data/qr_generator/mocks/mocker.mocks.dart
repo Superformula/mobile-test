@@ -4,9 +4,11 @@
 
 import 'dart:async' as _i4;
 
-import 'package:http/http.dart' as _i2;
+import 'package:dartz/dartz.dart' as _i2;
+import 'package:http/http.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:qr_generator/data/api/api.dart' as _i3;
+import 'package:qr_generator/domain/model/failure.dart' as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -16,21 +18,22 @@ import 'package:qr_generator/data/api/api.dart' as _i3;
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: unnecessary_parenthesis
 
-class _FakeResponse_0 extends _i1.Fake implements _i2.Response {}
+class _FakeEither_0<L, R> extends _i1.Fake implements _i2.Either<L, R> {}
 
-/// A class which mocks [QRApi].
+/// A class which mocks [QrApi].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockQRApi extends _i1.Mock implements _i3.QRApi {
-  MockQRApi() {
+class MockQrApi extends _i1.Mock implements _i3.QrApi {
+  MockQrApi() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Response> generateQR() =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Response>> generateQR() =>
       (super.noSuchMethod(Invocation.method(#generateQR, []),
-              returnValue: Future<_i2.Response>.value(_FakeResponse_0()))
-          as _i4.Future<_i2.Response>);
+              returnValue: Future<_i2.Either<_i5.Failure, _i6.Response>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.Response>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Response>>);
   @override
   String toString() => super.toString();
 }

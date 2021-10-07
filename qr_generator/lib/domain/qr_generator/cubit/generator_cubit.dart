@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:qr_generator/data/utils/network_checker.dart';
 import 'package:qr_generator/domain/model/failure.dart';
 import 'package:qr_generator/domain/model/qr_code.dart';
 import 'package:qr_generator/domain/qr_generator/repository/qr_generator_repo.dart';
@@ -10,9 +11,9 @@ import 'package:qr_generator/domain/qr_generator/repository/qr_generator_repo.da
 part 'generator_state.dart';
 
 class GeneratorCubit extends Cubit<GeneratorState> {
-  GeneratorCubit(this.repository) : super(GeneratorInitial());
+  GeneratorCubit(this._repository) : super(GeneratorLoading());
 
-  final QRGeneratorRepository repository;
+  final QRGeneratorRepository _repository;
   late AppLifecycleState _lifecycleState;
 
   void setLifeCycleEvent(AppLifecycleState lifecycleState) {
@@ -20,22 +21,29 @@ class GeneratorCubit extends Cubit<GeneratorState> {
   }
 
   void generateQR() async {
-    if (_lifecycleState == AppLifecycleState.resumed) {
-      if (state is GeneratorError) {
-        emit(GeneratorInitial());
-      }
-      Either<Failure, QRCode> result = await repository.generateQRCode();
+    bool isConnected = await isConnectedToNetwork();
 
-      result.fold(
-        (Failure failure) => emit(
-          GeneratorError(errorMessage: failure.errorMessage),
-        ),
-        (QRCode qrCode) {
-          int secondsToExpire =
-              qrCode.expirationDate.difference(DateTime.now()).inSeconds;
-          _emitQRandExpiration(qrCode.data, secondsToExpire);
-        },
-      );
+    if (_lifecycleState == AppLifecycleState.resumed) {
+      emit(GeneratorLoading());
+
+      if (!isConnected) {
+        emit(
+          GeneratorError(errorMessage: 'No network available.'),
+        );
+      } else {
+        Either<Failure, QrCode> result = await _repository.generateQRCode();
+
+        result.fold(
+          (Failure failure) => emit(
+            GeneratorError(errorMessage: failure.errorMessage),
+          ),
+          (QrCode qrCode) {
+            int secondsToExpire =
+                qrCode.expirationDate.difference(DateTime.now()).inSeconds;
+            _emitQRandExpiration(qrCode.data, secondsToExpire);
+          },
+        );
+      }
     }
   }
 
@@ -45,9 +53,14 @@ class GeneratorCubit extends Cubit<GeneratorState> {
       await Future.delayed(Duration(seconds: 1));
       if (secondsToExpire > 1) {
         _emitQRandExpiration(data, secondsToExpire - 1);
-      } else {
+      } else if (secondsToExpire == 1) {
         emit(GeneratedQR(qrData: data, secondsToExpire: 0));
         generateQR();
+      } else {
+        // Shouldn't get to this, ever.
+        emit(
+          GeneratorError(errorMessage: 'Something went wrong, try again later'),
+        );
       }
     }
   }

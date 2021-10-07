@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           SpeedDialChild(
             child: Icon(
               Icons.qr_code_rounded,
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             label: 'QR Code',
             onTap: () {
@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
           SpeedDialChild(
               child: Icon(
                 Icons.qr_code_scanner_rounded,
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               label: 'Scan QR',
               onTap: () {

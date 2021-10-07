@@ -1,7 +1,7 @@
 import 'package:mockito/annotations.dart';
 import 'package:qr_generator/data/api/api.dart';
 
-@GenerateMocks([QRApi])
+@GenerateMocks([QrApi])
 void main() {}
 
 Map<String, String> mockQRValidResponse = {

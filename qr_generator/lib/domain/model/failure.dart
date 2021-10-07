@@ -1,5 +1,5 @@
 class Failure {
-  Failure(this.errorMessage);
+  const Failure(this.errorMessage);
 
   final String errorMessage;
 }

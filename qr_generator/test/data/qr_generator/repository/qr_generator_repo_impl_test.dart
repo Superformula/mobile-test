@@ -16,11 +16,11 @@ main() {
   group(
     '$QRGeneratorRepositoryImpl tests',
     () {
-      late QRApi api;
+      late QrApi api;
       late QRGeneratorRepository repository;
 
       setUp(() {
-        api = MockQRApi();
+        api = MockQrApi();
         repository = QRGeneratorRepositoryImpl(api);
       });
 
@@ -29,16 +29,18 @@ main() {
         () async {
           // arrange
           when(api.generateQR()).thenAnswer(
-            (_) => Future<http.Response>.value(
-              http.Response(
-                jsonEncode(mockQRValidResponse),
-                200,
+            (_) => Future<Either<Failure, http.Response>>.value(
+              Right(
+                http.Response(
+                  jsonEncode(mockQRValidResponse),
+                  200,
+                ),
               ),
             ),
           );
 
           // act
-          final Either<Failure, QRCode> result =
+          final Either<Failure, QrCode> result =
               await repository.generateQRCode();
 
           // assert
@@ -51,16 +53,39 @@ main() {
         () async {
           // arrange
           when(api.generateQR()).thenAnswer(
-            (_) => Future<http.Response>.value(
-              http.Response(
-                '',
-                400,
+            (_) => Future<Either<Failure, http.Response>>.value(
+              Right(
+                http.Response(
+                  '',
+                  400,
+                ),
               ),
             ),
           );
 
           // act
-          final Either<Failure, QRCode> result =
+          final Either<Failure, QrCode> result =
+              await repository.generateQRCode();
+
+          // assert
+          expect(result, isA<Left>());
+        },
+      );
+
+      test(
+        'should return a Failure instance when api call throws an Exception',
+        () async {
+          // arrange
+          when(api.generateQR()).thenAnswer(
+            (_) => Future<Either<Failure, http.Response>>.value(
+              Left(
+                Failure('Error from ClientException'),
+              ),
+            ),
+          );
+
+          // act
+          final Either<Failure, QrCode> result =
               await repository.generateQRCode();
 
           // assert

@@ -10,24 +10,31 @@ import 'package:qr_generator/domain/qr_generator/repository/qr_generator_repo.da
 class QRGeneratorRepositoryImpl implements QRGeneratorRepository {
   QRGeneratorRepositoryImpl(this.api);
 
-  final QRApi api;
+  final QrApi api;
 
   @override
-  Future<Either<Failure, QRCode>> generateQRCode() async {
-    http.Response response = await api.generateQR();
+  Future<Either<Failure, QrCode>> generateQRCode() async {
+    Either<Failure, http.Response> response = await api.generateQR();
 
-    if (response.statusCode == 200) {
-      Map<String, dynamic> jsonResponse =
-          jsonDecode(response.body) as Map<String, dynamic>;
-      QRCode qr = QRCode(
-        jsonResponse['seed'],
-        DateTime.parse(
-          jsonResponse['expiresAt'],
-        ),
-      );
-      return Right(qr);
-    } else {
-      return Left(Failure('QR generator API error: ${response.statusCode}'));
-    }
+    return response.fold(
+      (Failure failure) => Left(failure),
+      (http.Response response) {
+        if (response.statusCode == 200) {
+          Map<String, dynamic> jsonResponse =
+              jsonDecode(response.body) as Map<String, dynamic>;
+          QrCode qr = QrCode(
+            jsonResponse['seed'],
+            DateTime.parse(
+              jsonResponse['expiresAt'],
+            ),
+          );
+          return Right(qr);
+        } else {
+          return Left(
+            Failure('QR generator API error: ${response.statusCode}'),
+          );
+        }
+      },
+    );
   }
 }

@@ -31,11 +31,11 @@ class MockQRGeneratorRepository extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.QRCode>> generateQRCode() =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.QrCode>> generateQRCode() =>
       (super.noSuchMethod(Invocation.method(#generateQRCode, []),
-              returnValue: Future<_i2.Either<_i5.Failure, _i6.QRCode>>.value(
-                  _FakeEither_0<_i5.Failure, _i6.QRCode>()))
-          as _i4.Future<_i2.Either<_i5.Failure, _i6.QRCode>>);
+              returnValue: Future<_i2.Either<_i5.Failure, _i6.QrCode>>.value(
+                  _FakeEither_0<_i5.Failure, _i6.QrCode>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.QrCode>>);
   @override
   String toString() => super.toString();
 }

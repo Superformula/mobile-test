@@ -31,7 +31,7 @@ class _QRScanner extends StatelessWidget {
               child: QRView(
                 key: qrKey,
                 overlay: QrScannerOverlayShape(
-                  borderColor: Theme.of(context).accentColor,
+                  borderColor: Theme.of(context).colorScheme.secondary,
                   borderWidth: 8,
                   borderRadius: 10,
                 ),

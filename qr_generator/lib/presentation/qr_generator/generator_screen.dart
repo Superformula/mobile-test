@@ -82,7 +82,7 @@ class _QRGenerator extends StatelessWidget {
               );
             } else
               return Text(
-                state is GeneratorError ? state.errorMessage : 'Loading...',
+                'Loading...',
                 style: Theme.of(context).textTheme.bodyText1,
               );
           },
