@@ -51,9 +51,9 @@ class _ExpandableFabState extends State<ExpandableFab>
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         ...widget.items.map(
-          (e) => _ExpandingActionButton(
+          (item) => _ExpandingActionButton(
             progress: _expandAnimation,
-            child: e,
+            child: item,
           ),
         ),
         FloatingActionButton(
