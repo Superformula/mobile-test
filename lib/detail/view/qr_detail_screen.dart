@@ -15,7 +15,7 @@ class QrDetailScreen extends StatefulWidget {
   static Widget init() {
     final repository = getIt.get<SeedRepository>();
     return BlocProvider(
-      create: (_) => QrDetailCubit(repository),
+      create: (_) => QrDetailCubit(repository)..getQrSeed(),
       child: const QrDetailScreen(),
     );
   }
@@ -25,12 +25,6 @@ class QrDetailScreen extends StatefulWidget {
 }
 
 class _QrDetailScreenState extends State<QrDetailScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<QrDetailCubit>().getQrSeed();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
