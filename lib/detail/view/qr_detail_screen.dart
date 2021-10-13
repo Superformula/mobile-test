@@ -59,12 +59,19 @@ class ErrorPage extends StatelessWidget {
   final String message;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.error, color: Colors.red),
-        Text(message),
-      ],
+    final theme = Theme.of(context);
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error, color: Colors.red),
+          const SizedBox(height: 24),
+          Text(
+            message,
+            style: theme.textTheme.headline5,
+          ),
+        ],
+      ),
     );
   }
 }
