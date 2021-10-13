@@ -19,12 +19,12 @@ class _CountDownTimerTextState extends State<CountDownTimerText>
   late final AnimationController _controller;
   late final Duration _duration;
 
-  String get timerDisplayString {
+  String get _timerDisplayString {
     final duration = _controller.duration! * _controller.value;
-    return formatTime(duration.inSeconds);
+    return _formatTime(duration.inSeconds);
   }
 
-  String formatTime(int seconds) {
+  String _formatTime(int seconds) {
     final hours = (seconds / 3600).truncate();
     seconds = (seconds % 3600).truncate();
     final minutes = (seconds / 60).truncate();
@@ -93,10 +93,15 @@ class _CountDownTimerTextState extends State<CountDownTimerText>
       child: AnimatedBuilder(
         animation: _controller,
         builder: (_, __) => Text(
-          timerDisplayString,
+          _timerDisplayString,
+          key: const Key('time_text'),
           style: theme.textTheme.headline6,
         ),
       ),
     );
   }
 }
+
+@visibleForTesting
+String formatTime(int seconds) =>
+    _CountDownTimerTextState()._formatTime(seconds);

@@ -56,6 +56,7 @@ class _ExpandableFabState extends State<ExpandableFab>
           ),
         ),
         FloatingActionButton(
+          key: const Key('menu_action_button'),
           onPressed: _toggle,
           child: AnimatedIcon(
             icon: AnimatedIcons.menu_close,
