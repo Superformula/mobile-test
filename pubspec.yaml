@@ -12,8 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^7.3.0
-  flutter_localizations:
-    sdk: flutter
   freezed: ^0.14.5
   freezed_annotation: ^0.14.3
   get_it: 7.2.0
