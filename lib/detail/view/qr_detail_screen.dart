@@ -34,7 +34,7 @@ class _QrDetailScreenState extends State<QrDetailScreen> {
       body: BlocConsumer<QrDetailCubit, ResultState<QRSeed>>(
         builder: (context, state) {
           return state.when(
-            initial: () => Container(),
+            initial: () => const SizedBox.shrink(),
             loading: () => const LoadingIndicator(),
             data: (data) => QrDetailSuccessPage(seed: data),
             error: (e) => ErrorPage(message: e),
