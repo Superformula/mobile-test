@@ -17,7 +17,7 @@ class CountDownTimerText extends StatefulWidget {
 class _CountDownTimerTextState extends State<CountDownTimerText>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Duration duration;
+  late final Duration _duration;
 
   String get timerDisplayString {
     final duration = _controller.duration! * _controller.value;
@@ -43,10 +43,10 @@ class _CountDownTimerTextState extends State<CountDownTimerText>
   @override
   void initState() {
     super.initState();
-    duration = Duration(seconds: widget.remainingTime);
+    _duration = Duration(seconds: widget.remainingTime);
     _controller = AnimationController(
       vsync: this,
-      duration: duration,
+      duration: _duration,
     );
     _controller
       ..reverse(from: widget.remainingTime.toDouble())
@@ -63,11 +63,11 @@ class _CountDownTimerTextState extends State<CountDownTimerText>
     super.didUpdateWidget(oldWidget);
     if (widget.remainingTime != oldWidget.remainingTime) {
       setState(() {
-        duration = Duration(seconds: widget.remainingTime);
+        _duration = Duration(seconds: widget.remainingTime);
         _controller.dispose();
         _controller = AnimationController(
           vsync: this,
-          duration: duration,
+          duration: _duration,
         );
         _controller
           ..reverse(from: widget.remainingTime.toDouble())
