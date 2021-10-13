@@ -41,14 +41,13 @@ class _QrDetailScreenState extends State<QrDetailScreen> {
           );
         },
         listener: (context, state) {
-          if (state is Error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Something goes wrong :('),
-              ),
-            );
-          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Something goes wrong :('),
+            ),
+          );
         },
+        listenWhen: (_, current) => current is Error,
       ),
     );
   }
