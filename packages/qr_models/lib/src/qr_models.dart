@@ -19,10 +19,8 @@ class QRSeed {
   /// Represent the expiration time of the seed
   final String expiresAt;
 
-  static const _dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-
   /// Returns the expire as [DateTime].
-  DateTime get expiresAtDate => DateFormat(_dateFormat).parse(expiresAt);
+  DateTime get expiresAtDate => DateFormat(dateFormat).parse(expiresAt);
 
   /// This returns a [QRSeed] object from json value
   factory QRSeed.fromJson(Map<String, dynamic> json) => _$QRSeedFromJson(json);
@@ -31,12 +29,16 @@ class QRSeed {
   Map<String, dynamic> toJson() => _$QRSeedToJson(this);
 }
 
-///
+/// Date format given from the server
+const dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+
+/// Some useful extension for [QRSeed]
 extension XQRSeed on QRSeed {
-  ///
+  /// Determinte if a seed is expired or not.
   bool isExpired() => expiresAtDate.isBefore(DateTime.now());
 
-  ///
+  /// Returns the difference in seconds between the expire date of a [QRSeed]
+  /// with the actual time.
   int differenceInSeconds() =>
       expiresAtDate.difference(DateTime.now()).inSeconds;
 }
