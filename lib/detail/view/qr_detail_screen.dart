@@ -35,7 +35,7 @@ class _QrDetailScreenState extends State<QrDetailScreen> {
         builder: (context, state) {
           return state.when(
             initial: () => const SizedBox.shrink(),
-            loading: () => const LoadingIndicator(),
+            loading: () => const CenteredCircularProgressIndicator(),
             data: (data) => QrDetailSuccessPage(seed: data),
             error: (e) => ErrorPage(message: e),
           );
