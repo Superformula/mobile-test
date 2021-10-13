@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mobile_test/base/result_state.dart';
@@ -23,6 +26,24 @@ void main() {
         QrDetailCubit(repository).state,
         equals(const Initial<QRSeed>()),
       );
+    });
+
+    test('when a SocketException is thrown get custom error message', () {
+      const exception = SocketException('error');
+      final message = QrDetailCubit(repository).getErrorMessage(exception);
+      expect(message, 'Internet error');
+    });
+
+    test('when a HttpException is thrown get custom error message', () {
+      const exception = HttpException('error');
+      final message = QrDetailCubit(repository).getErrorMessage(exception);
+      expect(message, 'Server error');
+    });
+
+    test('when a no mapped Exception is thrown get custom error message', () {
+      final exception = TimeoutException('error');
+      final message = QrDetailCubit(repository).getErrorMessage(exception);
+      expect(message, 'Unknown error');
     });
 
     blocTest<QrDetailCubit, ResultState<QRSeed>>(
@@ -54,7 +75,7 @@ void main() {
       },
       expect: () => <ResultState<QRSeed>>[
         const ResultState.loading(),
-        ResultState.error(exception.toString()),
+        const ResultState.error('Unknown error'),
       ],
       verify: (_) {
         verify(() => repository.fetchSeed()).called(1);

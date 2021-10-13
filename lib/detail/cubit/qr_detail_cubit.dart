@@ -27,6 +27,9 @@ class QrDetailCubit extends Cubit<ResultState<QRSeed>> {
     /// message for each one.
     if (e is SocketException) {
       return 'Internet error';
+    }
+    if (e is HttpException) {
+      return 'Server error';
     } else {
       return 'Unknown error';
     }
