@@ -20,7 +20,7 @@ class _ExpandableFabState extends State<ExpandableFab>
   void initState() {
     _open = false;
     _controller = AnimationController(
-      value: _open ? 1.0 : 0.0,
+      value: 0,
       duration: const Duration(milliseconds: 250),
       vsync: this,
     );
@@ -34,14 +34,13 @@ class _ExpandableFabState extends State<ExpandableFab>
   }
 
   void _toggle() {
-    setState(() {
-      _open = !_open;
-      if (_open) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
+    _open = !_open;
+    if (_open) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
+    setState(() {});
   }
 
   @override
