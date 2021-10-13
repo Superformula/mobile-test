@@ -5,7 +5,7 @@ import 'package:mobile_test/home/home_screen.dart';
 void main() {
   group('SuperformulaMobileTest', () {
     testWidgets('renders HomeScreen', (tester) async {
-      await tester.pumpWidget(const SuperformulaApp());
+      await tester.pumpWidget(SuperformulaApp());
       expect(find.byType(HomeScreen), findsOneWidget);
     });
   });

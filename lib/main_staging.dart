@@ -10,13 +10,13 @@ import 'package:mobile_test/app/dependencies.dart';
 
 void main() {
   Bloc.observer = AppBlocObserver();
-  setupDependencies();
+  setupStageDependencies();
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
   runZonedGuarded(
-    () => runApp(const SuperformulaApp()),
+    () => runApp(SuperformulaApp()),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
   );
 }
