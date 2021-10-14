@@ -23,32 +23,35 @@ void main() {
 
     test('initial state is Initial', () {
       expect(
-        QrDetailCubit(repository).state,
+        QrDetailCubit(repository: repository).state,
         equals(const Initial<QRSeed>()),
       );
     });
 
     test('when a SocketException is thrown get custom error message', () {
       const exception = SocketException('error');
-      final message = QrDetailCubit(repository).getErrorMessage(exception);
+      final message =
+          QrDetailCubit(repository: repository).getErrorMessage(exception);
       expect(message, 'Internet error');
     });
 
     test('when a HttpException is thrown get custom error message', () {
       const exception = HttpException('error');
-      final message = QrDetailCubit(repository).getErrorMessage(exception);
+      final message =
+          QrDetailCubit(repository: repository).getErrorMessage(exception);
       expect(message, 'Server error');
     });
 
     test('when a no mapped Exception is thrown get custom error message', () {
       final exception = TimeoutException('error');
-      final message = QrDetailCubit(repository).getErrorMessage(exception);
+      final message =
+          QrDetailCubit(repository: repository).getErrorMessage(exception);
       expect(message, 'Unknown error');
     });
 
     blocTest<QrDetailCubit, ResultState<QRSeed>>(
       'emits [ResultState.data] when getQrSeed is successful.',
-      build: () => QrDetailCubit(repository),
+      build: () => QrDetailCubit(repository: repository),
       act: (bloc) {
         when(() => repository.fetchSeed()).thenAnswer(
           (_) async => ApiResult.success(qrSeed),
@@ -66,7 +69,7 @@ void main() {
 
     blocTest<QrDetailCubit, ResultState<QRSeed>>(
       'emits [ResultState.error] when getQrSeed is failure.',
-      build: () => QrDetailCubit(repository),
+      build: () => QrDetailCubit(repository: repository),
       act: (bloc) {
         when(() => repository.fetchSeed()).thenAnswer(
           (_) async => ApiResult.failure(exception),
