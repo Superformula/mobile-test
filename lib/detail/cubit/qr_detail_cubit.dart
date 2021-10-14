@@ -4,12 +4,15 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mobile_test/base/result_state.dart';
 import 'package:qr_api/qr_api.dart';
 import 'package:qr_models/qr_models.dart';
 
 class QrDetailCubit extends Cubit<ResultState<QRSeed>> {
-  QrDetailCubit(this._repository) : super(const Initial());
+  QrDetailCubit({SeedRepository? repository})
+      : _repository = repository ?? GetIt.instance.get<SeedRepository>(),
+        super(const Initial());
 
   final SeedRepository _repository;
 

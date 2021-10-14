@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_test/app/dependencies.dart';
 import 'package:mobile_test/base/result_state.dart';
 import 'package:mobile_test/detail/cubit/qr_detail_cubit.dart';
 import 'package:mobile_test/widgets/loading_indicator.dart';
 import 'package:mobile_test/widgets/timer_text.dart';
-import 'package:qr_api/qr_api.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_models/qr_models.dart';
 
@@ -13,9 +11,8 @@ class QrDetailScreen extends StatefulWidget {
   const QrDetailScreen({Key? key}) : super(key: key);
 
   static Widget init() {
-    final repository = getIt.get<SeedRepository>();
     return BlocProvider(
-      create: (_) => QrDetailCubit(repository)..getQrSeed(),
+      create: (_) => QrDetailCubit()..getQrSeed(),
       child: const QrDetailScreen(),
     );
   }
