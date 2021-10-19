@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:massula_test/models/remote/qr_code_seed.dart';
@@ -25,8 +28,27 @@ class QrCodeCubit extends Cubit<QrCodeState> {
 
       emit(QrCodeLoaded(qrCodeSeed: qrCodeSeed));
     } catch (e) {
-      print('Error: $e');
-      emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));
+      if (e is TimeoutException) {
+        emit(
+          QrCodeLoaded(
+            qrCodeSeed: QRCodeSeed(
+              seed: getRandomString(10),
+              expiresAt: DateTime.now().add(Duration(seconds: 15))
+            )
+          )
+        );
+      } else {
+        print('Error: $e');
+        emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));
+      }
     }
   }
+
+  final _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  Random _rnd = Random();
+
+  String getRandomString(int length) => 
+    String.fromCharCodes(
+      Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)))
+    );
 }
