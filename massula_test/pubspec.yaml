@@ -12,10 +12,20 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
+  flutter_bloc: ^7.3.1
+  bloc_test: ^8.3.0
+  equatable: ^2.0.3
+  flutter_speed_dial: ^4.4.0+2
+  http_interceptor: ^1.0.2
+  http: ^0.13.4
+  qr_flutter: ^4.0.0
+  flutter_barcode_scanner: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito: ^5.0.16
+  build_runner: ^2.1.4
 
 flutter:
   uses-material-design: true
