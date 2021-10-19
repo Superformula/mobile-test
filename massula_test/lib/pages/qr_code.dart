@@ -4,9 +4,9 @@ import 'package:massula_test/cubit/qr_code/cubit/qr_code_cubit.dart';
 import 'package:massula_test/models/remote/qr_code_seed.dart';
 import 'package:massula_test/resources/string_constant.dart';
 import 'package:massula_test/services/http/qr_code_web_client.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-
-import 'widgets/seconds_count_down.dart';
+import 'widgets/center_circular_progress_indicator.dart';
+import 'widgets/center_error_message.dart';
+import 'widgets/qr_code_display.dart';
 
 class QRCodeContainer extends StatelessWidget {
   const QRCodeContainer({ Key? key }) : super(key: key);
@@ -35,57 +35,23 @@ class _QRCodePage extends StatelessWidget {
       body: BlocBuilder<QrCodeCubit, QrCodeState>(
         builder: (context, state) {
           if(state is QrCodeLoaded) {
-            return _buildLoadedBody(context, state);
+            return QRCodeDisplay(
+              content: state.qrCodeSeed.seed!,
+              durationInSeconds: _getSecondsFromExpiresAt(state.qrCodeSeed),
+              onEnd: () => context.read<QrCodeCubit>().getQRCode()
+            );
           } else if(state is QrCodeError) {
-            return _buildErrorBody(context, state);
+            return CenterErrorMessage(
+              message: state.message,
+              action: () => context.read<QrCodeCubit>().getQRCode()
+            );
           } else {
-            return _buildLoadingBody();
+            return CenterCircularProgressIndicator();
           }
         },
       ),
     );
   }
-
-  Center _buildLoadingBody() => Center(child: CircularProgressIndicator());
-
-  Column _buildErrorBody(BuildContext context, QrCodeError state) => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Icon(
-          Icons.error,
-          color: Theme.of(context).errorColor,
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-        child: Text(state.message),
-      ),
-      OutlinedButton(
-        onPressed: () => context.read<QrCodeCubit>().getQRCode(),
-        child: Text(StringConstant.GENERIC_RETRY)
-      )
-    ],
-  );
-
-  Column _buildLoadedBody(BuildContext context, QrCodeLoaded state) => Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: QrImage(
-          data: state.qrCodeSeed.seed!,
-          version: QrVersions.auto,
-          size: 400.0,
-        ),
-      ),
-      SecondsCountDown(
-        seconds: _getSecondsFromExpiresAt(state.qrCodeSeed),
-        onEnd: () => context.read<QrCodeCubit>().getQRCode()
-      )
-    ]
-  );
 
   int _getSecondsFromExpiresAt(QRCodeSeed qrCodeSeed) {
     if (qrCodeSeed.expiresAt != null) {
