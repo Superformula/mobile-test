@@ -11,21 +11,17 @@ class SeedLocalGateway {
   }) : _prefs = prefs;
   final Future<SharedPreferences> Function() _prefs;
 
-  Future<Seed?> fetchSeed() => _prefs()
-          .then((SharedPreferences prefs) => prefs.getString(_storageKey))
-          .then(
-        (String? seed) {
-          if (seed != null) {
-            return Seed.fromJson(json.decode(seed) as Map<String, dynamic>);
-          }
-          return null;
-        },
-      );
+  Future<Seed?> fetchSeed() async {
+    final SharedPreferences preferences = await _prefs();
+    final String? seed = preferences.getString(_storageKey);
+    if (seed != null) {
+      return Seed.fromJson(json.decode(seed) as Map<String, dynamic>);
+    }
+    return null;
+  }
 
-  Future<void> saveSeed(Seed seed) => _prefs().then(
-        (SharedPreferences prefs) => prefs.setString(
-          _storageKey,
-          json.encode(seed),
-        ),
-      );
+  Future<void> saveSeed(Seed seed) async {
+    final SharedPreferences preferences = await _prefs();
+    preferences.setString(_storageKey, json.encode(seed));
+  }
 }

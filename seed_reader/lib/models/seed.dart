@@ -15,13 +15,13 @@ class Seed {
     );
   }
 
-  final String value;
-  final DateTime expiration;
-
   Map<String, dynamic> toJson() => <String, dynamic>{
         'seed': value,
         'expires_at': expiration.toIso8601String(),
       };
+
+  final String value;
+  final DateTime expiration;
 
   @override
   bool operator ==(Object other) =>

@@ -25,15 +25,15 @@ class GenerateSeedPage extends StatelessWidget {
             stream: bloc.observeSeed(),
             builder: (_, AsyncSnapshot<Seed?> snapshot) {
               if (snapshot.hasData) {
-                return _SuccessStateView(seed: snapshot.data!, bloc: bloc);
+                return _SuccessView(seed: snapshot.data!, bloc: bloc);
               }
               if (snapshot.hasError) {
-                return _ErrorStateView(
+                return _ErrorView(
                   bloc: bloc,
                   error: snapshot.error,
                 );
               }
-              return const _LoadingStateView();
+              return const _LoadingView();
             },
           );
         },
@@ -42,8 +42,8 @@ class GenerateSeedPage extends StatelessWidget {
   }
 }
 
-class _ErrorStateView extends StatelessWidget {
-  const _ErrorStateView({
+class _ErrorView extends StatelessWidget {
+  const _ErrorView({
     Key? key,
     required this.bloc,
     required this.error,
@@ -88,8 +88,8 @@ class _ErrorStateView extends StatelessWidget {
   }
 }
 
-class _LoadingStateView extends StatelessWidget {
-  const _LoadingStateView({Key? key}) : super(key: key);
+class _LoadingView extends StatelessWidget {
+  const _LoadingView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,8 +113,8 @@ class _LoadingStateView extends StatelessWidget {
   }
 }
 
-class _SuccessStateView extends StatelessWidget {
-  const _SuccessStateView({
+class _SuccessView extends StatelessWidget {
+  const _SuccessView({
     Key? key,
     required this.seed,
     required this.bloc,
