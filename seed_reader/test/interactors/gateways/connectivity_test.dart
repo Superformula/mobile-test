@@ -26,7 +26,7 @@ void main() {
 
       expect(canConnectToApi(connectivity), completion(false));
     });
-    test('when connectivity returns mobile then emits false', () {
+    test('when connectivity returns mobile then emits true', () {
       final MockConnectivity connectivity = MockConnectivity();
       when(connectivity.checkConnectivity()).thenAnswer(
         (_) => Future<ConnectivityResult>.value(
@@ -34,7 +34,7 @@ void main() {
         ),
       );
 
-      expect(canConnectToApi(connectivity), completion(false));
+      expect(canConnectToApi(connectivity), completion(true));
     });
   });
 }
