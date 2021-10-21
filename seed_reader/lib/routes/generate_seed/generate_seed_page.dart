@@ -98,8 +98,8 @@ class _LoadingView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const SizedBox(
-            height: 32,
-            width: 32,
+            height: Dimensions.large,
+            width: Dimensions.large,
             child: CircularProgressIndicator(),
           ),
           const SizedBox(height: Dimensions.regular),
