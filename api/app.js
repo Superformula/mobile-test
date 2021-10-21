@@ -7,7 +7,7 @@ const {
 app.use(express.json());
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log('Listenning on port ${port}'));
+app.listen(port, () => console.log(`Listenning on port ${port}`));
 
 app.get('/api/seed', (req, res) => {
     var expirationDate = new Date();
