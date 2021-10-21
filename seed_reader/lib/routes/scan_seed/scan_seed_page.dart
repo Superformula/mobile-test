@@ -40,9 +40,16 @@ class ScanSeedPage extends StatelessWidget {
                         Icons.check_circle,
                         color: Colors.green,
                       )
-                    : Icon(
-                        Icons.error,
-                        color: Theme.of(context).errorColor,
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.error,
+                            color: Theme.of(context).errorColor,
+                          ),
+                          const SizedBox(width: Dimensions.xSmall),
+                          Text(S.of(context).scanSeedInvalid),
+                        ],
                       );
               }
               return const SizedBox();

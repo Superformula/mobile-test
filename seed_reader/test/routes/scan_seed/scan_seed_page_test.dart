@@ -53,6 +53,7 @@ void main() {
     await tester.pumpPage();
 
     expect(find.byIcon(Icons.error), findsOneWidget);
+    expect(find.text(S.current.scanSeedInvalid), findsOneWidget);
   });
 }
 
