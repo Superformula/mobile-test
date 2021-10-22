@@ -59,9 +59,7 @@ class _ErrorView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            error is NotConnectedToFetchError
-                ? S.of(context).generateSeedErrorNotConnected
-                : S.of(context).generateSeedErrorMessage,
+            _errorText(context),
             style: Theme.of(context).textTheme.bodyText1,
           ),
           const SizedBox(height: Dimensions.regular),
@@ -85,6 +83,16 @@ class _ErrorView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _errorText(BuildContext context) {
+    if (error is NotConnectedToFetchError) {
+      return S.of(context).generateSeedErrorNotConnected;
+    }
+    if (error is TypeError) {
+      return S.of(context).generateSeedTypeError;
+    }
+    return S.of(context).generateSeedErrorMessage;
   }
 }
 

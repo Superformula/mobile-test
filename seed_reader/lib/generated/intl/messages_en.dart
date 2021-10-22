@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "generateSeedLoadingLabel":
             MessageLookupByLibrary.simpleMessage("Generating seed..."),
         "generateSeedPageTitle": MessageLookupByLibrary.simpleMessage("QRCode"),
+        "generateSeedTypeError":
+            MessageLookupByLibrary.simpleMessage("Something wrong happened"),
         "homeActionGenerate": MessageLookupByLibrary.simpleMessage("QRCode"),
         "homeActionScan": MessageLookupByLibrary.simpleMessage("Scan"),
         "homePageTitle": MessageLookupByLibrary.simpleMessage("Home"),

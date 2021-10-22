@@ -52,6 +52,19 @@ void main() {
     },
   );
   testWidgets(
+    'when fetch seed with wrong payload renders error state',
+    (WidgetTester tester) async {
+      when(_seedInteractor.fetchSeed()).thenAnswer(
+        (_) => Future<Seed>.error(TypeError()),
+      );
+      await tester.pumpPage();
+
+      expect(find.text(S.current.generateSeedTypeError), findsOneWidget);
+      expect(find.text(S.current.generateSeedErrorTryAgain), findsOneWidget);
+      expect(find.byType(CountDownTimer), findsOneWidget);
+    },
+  );
+  testWidgets(
     'when is not connected then renders error state',
     (WidgetTester tester) async {
       when(_seedInteractor.fetchSeed()).thenAnswer(

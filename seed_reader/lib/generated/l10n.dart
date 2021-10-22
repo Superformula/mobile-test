@@ -150,6 +150,16 @@ class S {
     );
   }
 
+  /// `Something wrong happened`
+  String get generateSeedTypeError {
+    return Intl.message(
+      'Something wrong happened',
+      name: 'generateSeedTypeError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Trying in`
   String get generateSeedErrorTryAgain {
     return Intl.message(
