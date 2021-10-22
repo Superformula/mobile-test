@@ -79,17 +79,12 @@ void main() {
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
     // Success state
-    completer.complete(
-      Seed(
-        value: 'value',
-        expiration: DateTime.now(),
-      ),
-    );
+    completer.complete(Seed(value: 'value', expiration: DateTime.now()));
     await tester.pump();
 
     expect(find.byType(CountDownTimer), findsOneWidget);
     expect(find.byType(QrImage), findsOneWidget);
-    verify(_seedInteractor.fetchSeed()).called(2);
+    verify(_seedInteractor.fetchSeed()).called(1);
   });
 }
 
