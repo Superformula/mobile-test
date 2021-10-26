@@ -3,6 +3,9 @@ part of 'qr_code_cubit.dart';
 @immutable
 abstract class QrCodeState extends Equatable {
   const QrCodeState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class QrCodeInitial extends QrCodeState {
