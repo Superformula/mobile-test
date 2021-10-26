@@ -11,25 +11,27 @@ class CenterErrorMessage extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Icon(
-          Icons.error,
-          color: Theme.of(context).errorColor,
+  Widget build(BuildContext context) => Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Icon(
+            Icons.error,
+            color: Theme.of(context).errorColor,
+          ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(left: 32.0, right: 32.0),
-        child: Text(message),
-      ),
-      OutlinedButton(
-        onPressed: () => action(),
-        child: Text(StringConstant.GENERIC_RETRY)
-      )
-    ],
+        Padding(
+          padding: const EdgeInsets.only(left: 32.0, right: 32.0),
+          child: Text(message),
+        ),
+        OutlinedButton(
+          onPressed: () => action(),
+          child: Text(StringConstant.GENERIC_RETRY)
+        )
+      ],
+    ),
   );
 }
