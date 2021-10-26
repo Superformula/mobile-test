@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:massula_test/resources/string_constant.dart';
 
 class SecondsCountDown extends StatefulWidget {
-  final Function onEnd;
+  final VoidCallback onEnd;
   final int seconds;
 
   const SecondsCountDown({
