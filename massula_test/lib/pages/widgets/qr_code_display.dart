@@ -16,20 +16,28 @@ class QRCodeDisplay extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: QrImage(
-          data: content,
-          version: QrVersions.auto,
-          size: 400.0,
+  Widget build(BuildContext context) => Center(
+    child: Flex(
+      direction: Axis.vertical,
+      children: [
+        Flexible(
+          flex: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: QrImage(
+              data: content,
+              version: QrVersions.auto,
+            ),
+          ),
         ),
-      ),
-      SecondsCountDown(
-        seconds: durationInSeconds,
-        onEnd: () => onEnd()
-      )
-    ]
+        Flexible(
+          flex: 1,
+          child: SecondsCountDown(
+            seconds: durationInSeconds,
+            onEnd: () => onEnd()
+          ),
+        ),
+      ],
+    )
   );
 }
