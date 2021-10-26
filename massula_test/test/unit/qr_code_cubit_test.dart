@@ -28,12 +28,6 @@ void main() {
     build: ()  {
       final QRCodeWebClientMock qrCodeWebClientMock = QRCodeWebClientMock();
       final cubit = QrCodeCubit(qrCodeWebClient: qrCodeWebClientMock);
-
-      when(qrCodeWebClientMock.getQRCode()).thenAnswer(
-        (_) async => throw Exception()
-      );
-
-      cubit.getQRCode();
       return cubit;
     },
     expect: () => [isA<QrCodeError>()],
