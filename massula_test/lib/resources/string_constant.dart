@@ -4,7 +4,8 @@ class StringConstant {
 
   // Generic
   static const String APP_NAME = 'Matheus Massula Superformula Test';
-  static const String GENERIC_RETRIEVE_ERRO_MESSAGE = 'It was not possible to retrieve what you request. Please, try again!';
+  static const String GENERIC_RETRIEVE_ERROR_MESSAGE = 'It was not possible to retrieve what you request. Please, try again!';
+  static const String GENERIC_MISSING_CONNECTION_ERROR_MESSAGE = 'Looks like you are without an internet connection! Check it and try again!';
   static const String GENERIC_CANCEL = 'Cancel';
   static const String GENERIC_RETRY = 'Retry';
 

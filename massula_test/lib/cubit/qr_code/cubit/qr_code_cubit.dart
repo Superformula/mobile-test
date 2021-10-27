@@ -24,28 +24,20 @@ class QrCodeCubit extends Cubit<QrCodeState> {
 
       final QrCodeSeed? qrCodeSeed = await qrCodeWebClient.getQRCode();
       if (qrCodeSeed == null || qrCodeSeed.seed == null) {
-        emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));
+        emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERROR_MESSAGE));
       } else {
         emit(QrCodeLoaded(qrCodeSeed: qrCodeSeed));
       }
-    } catch (e) {
-      if (e is TimeoutException) {
-        emit(
-          QrCodeLoaded(
-            qrCodeSeed: QrCodeSeed(
-              seed: getRandomString(10),
-              expiresAt: DateTime.now().add(Duration(seconds: 15))
-            )
-          )
-        );
-      } else {
-        print('Error: $e');
-        emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));
-      }
+    } on TimeoutException catch (e) {
+      print('Error: $e');
+      emit(QrCodeError(message: StringConstant.GENERIC_MISSING_CONNECTION_ERROR_MESSAGE));
+    } catch(e) {
+      print('Error: $e');
+      emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERROR_MESSAGE));
     }
   }
 
-  // Generate random string: https://stackoverflow.com/questions/61919395/how-to-generate-random-string-in-dart
+  // Generate random string: https://stackoverflow.com/a/61929967/10507546
   String getRandomString(int length) => String.fromCharCodes(
     Iterable.generate(length, (_) => StringConstant.CHARS.codeUnitAt(
       _random.nextInt(StringConstant.CHARS.length)
