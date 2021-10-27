@@ -31,15 +31,14 @@ The project structure was splited by [folder-by-type](https://softwareengineerin
 
 ## How to run it
 
-    1. Download the source code
-    2. Open the downlaoded code on VS Code
-    3. Make sure you have the flutter extension installed in your VS Code
-    4. Press on keyboad `cmd + shift + p` (this should open the command palette)
-    5. Search for `Flutter: Get Packages` and click on it
-    6. Press on keyboard 'ctrl + ,' (this should open a search files bar)
-    7. Type `main` on search bar
-    8. Open an iOS or Android Emulator
-    9. Press on keyboard `ctrl + f5` to run the app
+    1. Open your terminal
+    2. Enter the folder you desire to clone the project: `cd your_folder_path`. Ex: `cd Desktop/test``
+    3. Clone the project: `git clone https://github.com/MatheusMassula/mobile-test.git`
+    4. Enter the project folder: `cd mobile-test/massula_test`
+    5. Start your emulator: `flutter emulators --launch your_emulator_name`
+        - to see your emulators list just type: `flutter emulators`, the first column refers to the emulator's name
+    6. Run the project: `flutter run`
+    7. Have fun \o/
 
 ## Notes
 
