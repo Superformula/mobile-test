@@ -12,6 +12,7 @@ part 'qr_code_state.dart';
 
 class QrCodeCubit extends Cubit<QrCodeState> {
   final QRCodeWebClient qrCodeWebClient;
+  final Random _random = Random();
 
   QrCodeCubit({required this.qrCodeWebClient}) : super(QrCodeInitial()) {
     getQRCode();
@@ -44,11 +45,10 @@ class QrCodeCubit extends Cubit<QrCodeState> {
     }
   }
 
-  final _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-  Random _rnd = Random();
-
-  String getRandomString(int length) => 
-    String.fromCharCodes(
-      Iterable.generate(length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)))
-    );
+  // Generate random string: https://stackoverflow.com/questions/61919395/how-to-generate-random-string-in-dart
+  String getRandomString(int length) => String.fromCharCodes(
+    Iterable.generate(length, (_) => StringConstant.CHARS.codeUnitAt(
+      _random.nextInt(StringConstant.CHARS.length)
+    ))
+  );
 }

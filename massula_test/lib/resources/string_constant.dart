@@ -1,4 +1,7 @@
 class StringConstant {
+  // Util
+  static const CHARS = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+
   // Generic
   static const String APP_NAME = 'Matheus Massula Superformula Test';
   static const String GENERIC_RETRIEVE_ERRO_MESSAGE = 'It was not possible to retrieve what you request. Please, try again!';
