@@ -11,16 +11,16 @@ import '../mocks/client_mock.dart';
 void main() {
   test('Should retrieve successfully QR Code Seed', () async {
     final ClientMock clientMock = ClientMock();
-    final QRCodeWebClient qrCodeWebClient = QRCodeWebClient(clientMock);
+    final QrCodeWebClient qrCodeWebClient = QrCodeWebClient(clientMock);
 
     final result = qrCodeWebClient.getQRCode();
 
-    expect(result, isA<Future<QRCodeSeed?>>());
+    expect(result, isA<Future<QrCodeSeed?>>());
   });
 
   test('Should not retrieve QR Code Seed', () async {
     final ClientErrorMock clientMock = ClientErrorMock();
-    final QRCodeWebClient qrCodeWebClientMock = QRCodeWebClient(clientMock);
+    final QrCodeWebClient qrCodeWebClientMock = QrCodeWebClient(clientMock);
 
     final result = qrCodeWebClientMock.getQRCode();
 

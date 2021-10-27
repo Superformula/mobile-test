@@ -3,12 +3,12 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 import 'seconds_count_down.dart';
 
-class QRCodeDisplay extends StatelessWidget {
+class QrCodeDisplay extends StatelessWidget {
   final String content;
   final int durationInSeconds;
   final Function onEnd;
 
-  const QRCodeDisplay({
+  const QrCodeDisplay({
     Key? key,
     required this.content,
     required this.durationInSeconds,

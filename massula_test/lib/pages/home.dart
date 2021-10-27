@@ -26,7 +26,7 @@ class Home extends StatelessWidget {
             key: goToQRCodePageButtonKey,
             child: Icon(Icons.qr_code_2_rounded),
             label: StringConstant.QR_CODE_LABEL,
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => QRCodeContainer()))
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => QrCodeContainer()))
           ),
           SpeedDialChild(
             child: Icon(Icons.qr_code_scanner_rounded),

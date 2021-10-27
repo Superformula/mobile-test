@@ -12,8 +12,8 @@ class QRCodeInterceptor implements InterceptorContract {
   @override
   Future<ResponseData> interceptResponse({required ResponseData data}) async {
     print('Response statusCode: ${data.statusCode}');
-      print('Response headers: ${data.headers}');
-      print('Response body: ${data.body}');
-      return data;
+    print('Response headers: ${data.headers}');
+    print('Response body: ${data.body}');
+    return data;
   }
 }

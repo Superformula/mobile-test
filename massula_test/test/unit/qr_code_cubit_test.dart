@@ -14,7 +14,7 @@ void main() {
       final QRCodeWebClientMock qrCodeWebClientMock = QRCodeWebClientMock();
 
       when(qrCodeWebClientMock.getQRCode()).thenAnswer(
-        (_) async => QRCodeSeed(seed: 'random data', expiresAt: DateTime.now())
+        (_) async => QrCodeSeed(seed: 'random data', expiresAt: DateTime.now())
       );
 
       final cubit = QrCodeCubit(qrCodeWebClient: qrCodeWebClientMock);

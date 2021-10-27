@@ -12,12 +12,12 @@ final Client interceptorClient = InterceptedClient.build(
 );
 final String url = 'https://8mpaf1q1g5.execute-api.us-west-1.amazonaws.com/';
 
-class QRCodeWebClient {
+class QrCodeWebClient {
   final Client client;
 
-  QRCodeWebClient(this.client);
+  QrCodeWebClient(this.client);
   
-  Future<QRCodeSeed?>? getQRCode() async {
+  Future<QrCodeSeed?>? getQRCode() async {
     final headers = {'x-api-key': 'VVTUTAdalB55yRKQzsM7u6RTowrcUUhJLA82hoN6'};
 
     final Response response = await client.get(
@@ -25,6 +25,6 @@ class QRCodeWebClient {
       headers: headers
     );
 
-    return QRCodeSeed.fromJson(jsonDecode(response.body));
+    return QrCodeSeed.fromJson(jsonDecode(response.body));
   }
 }

@@ -22,7 +22,7 @@ void main() {
     await tapOnQRCodeButton(tester);
     await tester.pumpAndSettle();
 
-    final qrCodePage = find.byType(QRCodeContainer);
+    final qrCodePage = find.byType(QrCodeContainer);
     expect(qrCodePage, findsOneWidget);
   });
 }

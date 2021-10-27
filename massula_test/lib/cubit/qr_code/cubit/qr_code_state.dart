@@ -23,7 +23,7 @@ class QrCodeLoading extends QrCodeState {
 }
 
 class QrCodeLoaded extends QrCodeState {
-  final QRCodeSeed qrCodeSeed;
+  final QrCodeSeed qrCodeSeed;
 
   const QrCodeLoaded({required this.qrCodeSeed});
 

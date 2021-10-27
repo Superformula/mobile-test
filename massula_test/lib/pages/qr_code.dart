@@ -8,22 +8,22 @@ import 'widgets/center_circular_progress_indicator.dart';
 import 'widgets/center_error_message.dart';
 import 'widgets/qr_code_display.dart';
 
-class QRCodeContainer extends StatelessWidget {
-  const QRCodeContainer({ Key? key }) : super(key: key);
+class QrCodeContainer extends StatelessWidget {
+  const QrCodeContainer({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final qrCodeWebClient = RepositoryProvider.of<QRCodeWebClient>(context);
+    final qrCodeWebClient = RepositoryProvider.of<QrCodeWebClient>(context);
 
     return BlocProvider(
       create: (BuildContext context) => QrCodeCubit(qrCodeWebClient: qrCodeWebClient),
-      child: _QRCodePage(),
+      child: _QrCodePage(),
     );
   }
 }
 
-class _QRCodePage extends StatelessWidget {
-  const _QRCodePage({ Key? key }) : super(key: key);
+class _QrCodePage extends StatelessWidget {
+  const _QrCodePage({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class _QRCodePage extends StatelessWidget {
       body: BlocBuilder<QrCodeCubit, QrCodeState>(
         builder: (context, state) {
           if(state is QrCodeLoaded) {
-            return QRCodeDisplay(
+            return QrCodeDisplay(
               content: state.qrCodeSeed.seed!,
               durationInSeconds: _getSecondsFromExpiresAt(state.qrCodeSeed),
               onEnd: () => context.read<QrCodeCubit>().getQRCode()
@@ -53,7 +53,7 @@ class _QRCodePage extends StatelessWidget {
     );
   }
 
-  int _getSecondsFromExpiresAt(QRCodeSeed qrCodeSeed) {
+  int _getSecondsFromExpiresAt(QrCodeSeed qrCodeSeed) {
     if (qrCodeSeed.expiresAt != null) {
       return qrCodeSeed.expiresAt!.difference(DateTime.now()).inSeconds;
     }

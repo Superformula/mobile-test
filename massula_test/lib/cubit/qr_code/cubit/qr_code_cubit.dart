@@ -11,7 +11,7 @@ import 'package:meta/meta.dart';
 part 'qr_code_state.dart';
 
 class QrCodeCubit extends Cubit<QrCodeState> {
-  final QRCodeWebClient qrCodeWebClient;
+  final QrCodeWebClient qrCodeWebClient;
   final Random _random = Random();
 
   QrCodeCubit({required this.qrCodeWebClient}) : super(QrCodeInitial()) {
@@ -22,7 +22,7 @@ class QrCodeCubit extends Cubit<QrCodeState> {
     try {
       emit(QrCodeLoading());
 
-      final QRCodeSeed? qrCodeSeed = await qrCodeWebClient.getQRCode();
+      final QrCodeSeed? qrCodeSeed = await qrCodeWebClient.getQRCode();
       if (qrCodeSeed == null || qrCodeSeed.seed == null) {
         emit(QrCodeError(message: StringConstant.GENERIC_RETRIEVE_ERRO_MESSAGE));
       } else {
@@ -32,7 +32,7 @@ class QrCodeCubit extends Cubit<QrCodeState> {
       if (e is TimeoutException) {
         emit(
           QrCodeLoaded(
-            qrCodeSeed: QRCodeSeed(
+            qrCodeSeed: QrCodeSeed(
               seed: getRandomString(10),
               expiresAt: DateTime.now().add(Duration(seconds: 15))
             )
