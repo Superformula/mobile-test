@@ -9,6 +9,7 @@ import '../providers/superformula_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:ntp/ntp.dart';
 
 class QRCCodeScreen extends StatefulWidget {
 
@@ -35,22 +36,26 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
     provider.getSeed(context: context);
 
     //Timer to update time
-    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) async{
+
+      //Get NTP time
+      DateTime startDate = DateTime.now().toUtc();
+      int offset = await NTP.getNtpOffset(localTime: startDate);
+      DateTime actualDate = startDate.add(Duration(milliseconds: offset));
+
+      //Update the QR Code every minute
+      if (actualDate.second==0) {
+        provider.getSeed(context: context);
+      }
+
+      //Update the timer text
       if (mounted) {
-        setState(() {
+        setState((){
           //Update the time
-          time = 59 - DateTime
-              .now()
-              .toUtc()
-              .second;
+          time = 59 - actualDate.second;
 
           //Update the text
           timeInString = (time).toString();
-
-          //Update the QR Code every minute
-          if (time == 0) {
-            provider.getSeed(context: context);
-          }
         });
       }
     });
