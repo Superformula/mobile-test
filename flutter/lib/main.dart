@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:superformula_scanner/screens/home_screen.dart';
 import 'package:superformula_scanner/screens/qr_code_screen.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const HomeScreen()
+          home: const HomeScreen(),
+          builder: EasyLoading.init(),
       ),
     );
   }
