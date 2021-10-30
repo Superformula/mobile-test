@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 //Seed generator function
-const generateSeed = s => s.split('').reduce((a,b) => (((a << 5) - a) + b.charCodeAt(0))|0, 0);
+const generateSeed = s => s.split('').reduce((a,b) => (((a << 5) - a) + b.charCodeAt(0))|0, 0).toString();
 
 //Routes
 //Get Seed
@@ -32,6 +32,8 @@ app.all("/api/verify-seed",(req,res)=>{
     if(req.body.seed!==null){
 
         //Compare the input seed to the actual seed
+        console.log(req.body.seed);
+        console.log(generateSeed(key));
         if(req.body.seed === generateSeed(key)){
             return res.status(200).send({
                 "status": "valid",
