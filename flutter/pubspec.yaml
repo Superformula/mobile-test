@@ -27,6 +27,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   top_snackbar_flutter: ^1.0.1
   flutter_easyloading: ^3.0.3
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:
