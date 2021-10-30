@@ -23,9 +23,24 @@ app.get("/api/seed",(req,res)=>{
 
 //Verify Seed
 app.all("/api/verify-seed",(req,res)=>{
-    return res.status(200).send({
-        "seed": "",
-    });
+
+    if(req.body.seed!=null){
+        if(req.body.seed == generateSeed(key)){
+            return res.status(200).send({
+                "status": "valid",
+            });
+        }
+        else{
+            return res.status(409).send({
+                "status": "invalid",
+            });
+        }
+    }
+    else{
+        return res.status(500).send({
+            "error": "Please input a seed value"
+        });
+    }
 });
 
 //Export the app
