@@ -6,13 +6,13 @@ const app = express();
 //Seed generator function
 const generateSeed = s => s.split('').reduce((a,b) => (((a << 5) - a) + b.charCodeAt(0))|0, 0);
 
-//Key generator
-var datetime = new Date();
-var key = datetime.getUTCHours().toString() + datetime.getUTCMinutes().toString();
-
 //Routes
 //Get Seed
 app.get("/api/seed",(req,res)=>{
+
+    //Key generator
+    var datetime = new Date();
+    var key = datetime.getUTCHours().toString() + datetime.getUTCMinutes().toString();
 
     //Generate a seed based on the current time
     return res.status(200).send({
@@ -24,7 +24,14 @@ app.get("/api/seed",(req,res)=>{
 //Verify Seed
 app.all("/api/verify-seed",(req,res)=>{
 
+    //Key generator
+    var datetime = new Date();
+    var key = datetime.getUTCHours().toString() + datetime.getUTCMinutes().toString();
+
+    //Null value handling
     if(req.body.seed!==null){
+
+        //Compare the input seed to the actual seed
         if(req.body.seed === generateSeed(key)){
             return res.status(200).send({
                 "status": "valid",
