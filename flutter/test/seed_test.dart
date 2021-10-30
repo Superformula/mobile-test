@@ -1,14 +1,30 @@
-// Import the test package and Counter class
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
+
 import 'package:test/test.dart';
 import 'package:superformula_scanner/providers/superformula_provider.dart';
 
 void main() {
-  test('Seed Verification Fail', () {
-    final provider = SuperFormulaProvider();
 
-    provider.verifySeedTest(seed: '0');
+  group('Seed Verification', () {
 
-    expect(provider.isSeedValidTest,false);
+    test('Seed Verification Fail', () async{
+      final provider = SuperFormulaProvider();
+
+      //Generate a random number as seed
+      Random random = Random();
+      int randomNumber = random.nextInt(100);
+      await provider.verifySeedTest(seed: randomNumber.toString());
+
+      expect(provider.isSeedValidTest,false);
+    });
+
+
+    test('Seed Verification Success', () async{
+      final provider = SuperFormulaProvider();
+
+      await provider.getSeedTest().then((value) => provider.verifySeedTest(seed: value));
+
+      expect(provider.isSeedValidTest,true);
+    });
   });
 }

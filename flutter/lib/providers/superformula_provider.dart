@@ -144,7 +144,14 @@ class SuperFormulaProvider with ChangeNotifier{
     }
   }
 
+  void storeSeedOffline(String seed) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(values.SEED_KEY, seed);
+  }
+
+  //Test Functions
   bool isSeedValidTest = false;
+
   Future verifySeedTest({required String seed}) async{
 
     final body = json.encode({
@@ -168,17 +175,17 @@ class SuperFormulaProvider with ChangeNotifier{
         String _status = decodedResponse["status"].toString();
 
         if(_status == "valid") {
-          return true;
+          isSeedValidTest = true;
         } else {
-          return false;
+          isSeedValidTest = false;
         }
       }
       else {
         if(decodedResponse['message']!=null) {
-          return false;
+          isSeedValidTest = false;
         }
         else{
-          return false;
+          isSeedValidTest = false;
         }
       }
     }
@@ -192,8 +199,22 @@ class SuperFormulaProvider with ChangeNotifier{
     }
   }
 
-  void storeSeedOffline(String seed) async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(values.SEED_KEY, seed);
+  Future<String> getSeedTest() async {
+    var response = await dio.request(
+      "/seed",
+      options: Options(method: 'GET'),
+    );
+
+
+    if (response.statusCode == 200) {
+      var decodedResponse = json.decode(response.toString()) as Map<
+          String,
+          dynamic>;
+
+      return(decodedResponse["seed"]);
+    }
+    else{
+      return "";
+    }
   }
 }
