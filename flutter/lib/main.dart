@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:superformula_scanner/providers/superformula_provider.dart';
 import 'package:superformula_scanner/screens/home_screen.dart';
 import 'package:superformula_scanner/screens/qr_code_screen.dart';
 import 'package:superformula_scanner/screens/scanner_screen.dart';
@@ -17,7 +19,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(414, 896),
-      builder: ()=>MaterialApp(
+      builder: ()=> MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(value: SuperFormulaProvider()),
+        ],
+        child: MaterialApp(
           title: 'Superformula Scanner',
           routes: {
             HomeScreen.routeName: (ctx) => const HomeScreen(),
@@ -29,7 +35,8 @@ class MyApp extends StatelessWidget {
           ),
           home: const HomeScreen(),
           builder: EasyLoading.init(),
-      ),
+        ),
+      )
     );
   }
 }
