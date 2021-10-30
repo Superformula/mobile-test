@@ -39,12 +39,12 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
     timer = Timer.periodic(const Duration(seconds: 1), (Timer t) async{
 
       //Get NTP time
-      DateTime startDate = DateTime.now().toUtc();
-      int offset = await NTP.getNtpOffset(localTime: startDate);
-      DateTime actualDate = startDate.add(Duration(milliseconds: offset));
+      DateTime mySystemTime = DateTime.now().toUtc();
+      int offset = await NTP.getNtpOffset(localTime: mySystemTime);
+      DateTime actualTime = mySystemTime.add(Duration(milliseconds: offset));
 
       //Update the QR Code every minute
-      if (actualDate.second==0) {
+      if (actualTime.second==0) {
         provider.getSeed(context: context);
       }
 
@@ -52,7 +52,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
       if (mounted) {
         setState((){
           //Update the time
-          time = 59 - actualDate.second;
+          time = 59 - actualTime.second;
 
           //Update the text
           timeInString = (time).toString();
