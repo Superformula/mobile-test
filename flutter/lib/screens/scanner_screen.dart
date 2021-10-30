@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:superformula_scanner/screens/home_screen.dart';
-import 'package:superformula_scanner/screens/qr_code_screen.dart';
-import 'package:superformula_scanner/widgets/action_button.dart';
-import 'package:superformula_scanner/widgets/expandable_fab.dart';
 
 class ScannerScreen extends StatefulWidget {
 
