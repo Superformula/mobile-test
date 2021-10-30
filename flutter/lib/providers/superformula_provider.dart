@@ -144,6 +144,54 @@ class SuperFormulaProvider with ChangeNotifier{
     }
   }
 
+  bool isSeedValidTest = false;
+  Future verifySeedTest({required String seed}) async{
+
+    final body = json.encode({
+      "seed" : seed,
+    });
+
+
+    try {
+      var response = await dio.request(
+        "/verify-seed",
+        data: body,
+        options: Options(method: 'POST'),
+      );
+
+      var decodedResponse = json.decode(response.toString()) as Map<
+          String,
+          dynamic>;
+
+      if (response.statusCode == 200) {
+
+        String _status = decodedResponse["status"].toString();
+
+        if(_status == "valid") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      else {
+        if(decodedResponse['message']!=null) {
+          return false;
+        }
+        else{
+          return false;
+        }
+      }
+    }
+    on DioError catch(e){
+      if(e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout){
+        return false;
+      }
+      else {
+        return false;
+      }
+    }
+  }
+
   void storeSeedOffline(String seed) async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(values.SEED_KEY, seed);
