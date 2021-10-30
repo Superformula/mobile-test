@@ -1,4 +1,6 @@
 //Flutter Packages
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +9,10 @@ import 'dart:io';
 
 //Third party packages
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'package:superformula_scanner/providers/superformula_provider.dart';
+
+import 'offline_screen.dart';
 
 class ScannerScreen extends StatefulWidget {
 
@@ -25,6 +30,28 @@ class _ScannerScreenState extends State<ScannerScreen> {
   late QRViewController controller;
 
   String _scannedSeed = "";
+
+  StreamSubscription? subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
+      ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
+    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+      if(!connected){
+        Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
+      }
+    });
+  }
+
+  //Dispose the Scanner controller
+  @override
+  void dispose() {
+    subscription?.cancel();
+    controller.dispose();
+    super.dispose();
+  }
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -80,12 +107,5 @@ class _ScannerScreenState extends State<ScannerScreen> {
             seed: _scannedSeed, context: context);
       }
     });
-  }
-
-  //Dispose the Scanner controller
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 }

@@ -1,5 +1,6 @@
 //Flutter packages
 import 'package:flutter/material.dart';
+import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'dart:async';
 
 //My Packages
@@ -10,6 +11,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:ntp/ntp.dart';
+
+import 'offline_screen.dart';
 
 class QRCCodeScreen extends StatefulWidget {
 
@@ -26,9 +29,21 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
   int time = 0;
   String timeInString = "";
 
+  //Offline handler
+  StreamSubscription? subscription;
+
   @override
   void initState() {
     super.initState();
+
+    //Offline stream
+    SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
+      ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
+    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+      if(!connected){
+        Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
+      }
+    });
 
     //Call the seed API
     var provider = Provider.of<SuperFormulaProvider>(context, listen: false);
@@ -59,6 +74,13 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
         });
       }
     });
+  }
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+    timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -108,12 +130,5 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
         ),
       ),
     );
-  }
-
-  //Dispose the Timer
-  @override
-  void dispose() {
-    timer.cancel();
-    super.dispose();
   }
 }

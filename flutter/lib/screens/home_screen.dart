@@ -1,5 +1,9 @@
 //Flutter Packages
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:simple_connection_checker/simple_connection_checker.dart';
+import 'package:superformula_scanner/screens/offline_screen.dart';
 import 'package:superformula_scanner/screens/qr_code_screen.dart';
 import 'package:superformula_scanner/screens/scanner_screen.dart';
 
@@ -20,6 +24,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  //Offline handler
+  StreamSubscription? subscription;
+
+  @override
+  void initState() {
+    super.initState();
+    SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
+      ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
+    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+      if(!connected){
+        Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

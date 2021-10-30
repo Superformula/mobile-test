@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'package:superformula_scanner/values.dart' as values;
 
 class OfflineScreen extends StatefulWidget {
@@ -20,11 +21,28 @@ class _OfflineScreenState extends State<OfflineScreen> {
 
   String _seed = "";
 
+  //Offline handler
+  StreamSubscription? subscription;
 
   @override
   void initState() {
     super.initState();
+
+    SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
+      ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
+    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+      if(!connected){
+        Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
+      }
+    });
+
     getOfflineSeed();
+  }
+
+  @override
+  void dispose() {
+    subscription?.cancel();
+    super.dispose();
   }
 
   void getOfflineSeed() async{
@@ -35,7 +53,9 @@ class _OfflineScreenState extends State<OfflineScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      appBar: AppBar(
+        title: const Text("Offline"),
+      ),
       body: Center(
         child:  Visibility(
           visible: _seed.isNotEmpty,
