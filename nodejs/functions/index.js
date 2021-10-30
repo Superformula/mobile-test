@@ -24,8 +24,8 @@ app.get("/api/seed",(req,res)=>{
 //Verify Seed
 app.all("/api/verify-seed",(req,res)=>{
 
-    if(req.body.seed!=null){
-        if(req.body.seed == generateSeed(key)){
+    if(req.body.seed!==null){
+        if(req.body.seed === generateSeed(key)){
             return res.status(200).send({
                 "status": "valid",
             });
