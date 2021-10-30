@@ -38,7 +38,7 @@ app.all("/api/verify-seed",(req,res)=>{
             });
         }
         else{
-            return res.status(409).send({
+            return res.status(200).send({
                 "status": "invalid",
             });
         }
