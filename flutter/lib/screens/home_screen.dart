@@ -1,6 +1,12 @@
+//Flutter Packages
 import 'package:flutter/material.dart';
-import 'package:superformula_scanner/widgets/action_button.dart';
-import 'package:superformula_scanner/widgets/expandable_fab.dart';
+
+//My Packages
+import '../widgets/action_button.dart';
+import '../widgets/expandable_fab.dart';
+
+//Third party packages
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("Home"),
       ),
       floatingActionButton: ExpandableFab(
-        distance: 112.0,
+        distance: ScreenUtil().setHeight(90),
         children: [
           ActionButton(
             onPressed: () => (){},
