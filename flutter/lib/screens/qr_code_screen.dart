@@ -23,7 +23,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
   late Timer timer;
   int time = 0;
-  String timeInString = "X";
+  String timeInString = "";
 
   @override
   void initState() {
@@ -49,10 +49,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
           //Update the QR Code every minute
           if (time == 0) {
-            //Minor delay to avoid a bug of getting the same previous seed
-            Future.delayed(const Duration( seconds: 1),(){
-              provider.getSeed(context: context);
-            });
+            provider.getSeed(context: context);
           }
         });
       }
@@ -79,16 +76,19 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              QrImage(
-                data: _seed,
-                version: QrVersions.auto,
-                size: ScreenUtil().setHeight(300),
+              Visibility(
+                visible: _seed.isNotEmpty,
+                child: QrImage(
+                  data: _seed,
+                  version: QrVersions.auto,
+                  size: ScreenUtil().setHeight(300),
+                ),
               ),
               SizedBox(
                 height: ScreenUtil().setHeight(48),
               ),
               Visibility(
-                visible: timeInString!="X",
+                visible: timeInString.isNotEmpty,
                 child: Text(
                   timeInString+"s",
                   style: TextStyle(
