@@ -35,7 +35,7 @@ class SuperFormulaProvider with ChangeNotifier{
     receiveTimeout: 8000,
   ));
 
-  Future getSeed({required BuildContext context}) async{
+  Future getSeed({required bool firstTime,required BuildContext context}) async{
 
     print("Getting seed");
 
@@ -62,7 +62,9 @@ class SuperFormulaProvider with ChangeNotifier{
 
         _seed = decodedResponse["seed"].toString();
         notifyListeners();
-        showSuccess(context, "QR Code Updated");
+        if(!firstTime) {
+          showSuccess(context, "QR Code Updated");
+        }
       }
       else {
         showError(context, "Failed getting seed");

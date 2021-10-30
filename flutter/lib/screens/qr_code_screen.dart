@@ -33,7 +33,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
     //Call the seed API
     var provider = Provider.of<SuperFormulaProvider>(context, listen: false);
 
-    provider.getSeed(context: context);
+    provider.getSeed(firstTime: true,context: context);
 
     //Timer to update time
     timer = Timer.periodic(const Duration(seconds: 1), (Timer t) async{
@@ -45,7 +45,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
       //Update the QR Code every minute
       if (actualTime.second==0) {
-        if(mounted) provider.getSeed(context: context);
+        if(mounted) provider.getSeed(firstTime: false,context: context);
       }
 
       //Update the timer text
@@ -82,7 +82,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Visibility(
-                visible: _seed.isNotEmpty,
+                visible: _seed.isNotEmpty && timeInString.isNotEmpty,
                 child: QrImage(
                   data: _seed,
                   version: QrVersions.auto,
@@ -93,7 +93,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
                 height: ScreenUtil().setHeight(48),
               ),
               Visibility(
-                visible: timeInString.isNotEmpty,
+                visible: _seed.isNotEmpty && timeInString.isNotEmpty,
                 child: Text(
                   timeInString+"s",
                   style: TextStyle(
