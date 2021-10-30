@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
+import 'package:superformula_scanner/screens/home_screen.dart';
 import 'package:superformula_scanner/values.dart' as values;
 
 class OfflineScreen extends StatefulWidget {
@@ -31,8 +32,8 @@ class _OfflineScreenState extends State<OfflineScreen> {
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
     subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
-      if(!connected){
-        Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
+      if(connected){
+        Navigator.of(context).pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
       }
     });
 
