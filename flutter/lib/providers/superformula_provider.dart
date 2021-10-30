@@ -4,6 +4,7 @@ import 'dart:convert';
 
 //Third party packages
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //My Packages
 import '../values.dart' as values;
@@ -62,6 +63,9 @@ class SuperFormulaProvider with ChangeNotifier{
 
         _seed = decodedResponse["seed"].toString();
         notifyListeners();
+
+        storeSeedOffline(_seed);
+
         if(!firstTime) {
           showSuccess(context, "QR Code Updated");
         }
@@ -138,5 +142,10 @@ class SuperFormulaProvider with ChangeNotifier{
         showError(context, e.message);
       }
     }
+  }
+
+  void storeSeedOffline(String seed) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(values.SEED_KEY, seed);
   }
 }

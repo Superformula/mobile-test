@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:superformula_scanner/providers/superformula_provider.dart';
 import 'package:superformula_scanner/screens/home_screen.dart';
+import 'package:superformula_scanner/screens/offline_screen.dart';
 import 'package:superformula_scanner/screens/qr_code_screen.dart';
 import 'package:superformula_scanner/screens/scanner_screen.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
             HomeScreen.routeName: (ctx) => const HomeScreen(),
             QRCCodeScreen.routeName: (ctx) => const QRCCodeScreen(),
             ScannerScreen.routeName: (ctx) => const ScannerScreen(),
+            OfflineScreen.routeName: (ctx) => const OfflineScreen(),
           },
           theme: ThemeData(
             primarySwatch: Colors.blue,
