@@ -45,7 +45,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
       //Update the QR Code every minute
       if (actualTime.second==0) {
-        provider.getSeed(context: context);
+        if(mounted) provider.getSeed(context: context);
       }
 
       //Update the timer text
@@ -108,5 +108,12 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
         ),
       ),
     );
+  }
+
+  //Dispose the Timer
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 }
