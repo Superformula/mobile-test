@@ -2,7 +2,7 @@
     package="com.nihalismail.superformula_scanner">
    <application
         android:label="Scanner"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
