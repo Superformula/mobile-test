@@ -1,6 +1,7 @@
 //Flutter Packages
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 @immutable
 class ExpandingActionButton extends StatelessWidget {const ExpandingActionButton({

@@ -1,23 +1,21 @@
 //Flutter Packages
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:simple_connection_checker/simple_connection_checker.dart';
-import 'package:superformula_scanner/screens/offline_screen.dart';
-import 'package:superformula_scanner/screens/qr_code_screen.dart';
-import 'package:superformula_scanner/screens/scanner_screen.dart';
-
-//My Packages
-import '../widgets/action_button.dart';
-import '../widgets/expandable_fab.dart';
-
 //Third party packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
+import 'package:simple_connection_checker/simple_connection_checker.dart';
+//My Packages
+import '../screens/offline_screen.dart';
+import '../screens/qr_code_screen.dart';
+import '../screens/scanner_screen.dart';
+import '../widgets/google_fab/action_button.dart';
+import '../widgets/google_fab/expandable_fab.dart';
 
 class HomeScreen extends StatefulWidget {
 
   static const routeName = "/home_screen";
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -26,16 +24,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  //Offline handler
-  StreamSubscription? subscription;
+  //Object declarations
+
+  //Offline stream handler
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
     super.initState();
+
+    //Simple connection checker object init
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
-    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+    _subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
       if(!connected){
+        //Launch offline screen when the device is offline
         Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
       }
     });
@@ -43,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    subscription?.cancel();
+    _subscription?.cancel();
     super.dispose();
   }
 

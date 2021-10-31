@@ -1,6 +1,5 @@
 //Flutter Packages
 import 'package:flutter/material.dart';
-
 //Third party packages
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';

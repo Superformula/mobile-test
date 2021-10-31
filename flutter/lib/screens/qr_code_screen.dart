@@ -1,17 +1,14 @@
 //Flutter packages
-import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'dart:async';
-
-//My Packages
-import '../providers/superformula_provider.dart';
-
+import 'package:flutter/material.dart';
 //Third party packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
+import 'package:simple_connection_checker/simple_connection_checker.dart';
+//My Packages
+import '../providers/superformula_provider.dart';
 import 'offline_screen.dart';
 
 class QRCCodeScreen extends StatefulWidget {
@@ -25,12 +22,14 @@ class QRCCodeScreen extends StatefulWidget {
 
 class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
-  late Timer timer;
-  int time = 0;
-  String timeInString = "";
+  //Object declarations
+
+  late Timer _timer;
+  int _time = 0;
+  String _timeInString = "";
 
   //Offline handler
-  StreamSubscription? subscription;
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
@@ -39,8 +38,9 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
     //Offline stream
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
-    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+    _subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
       if(!connected){
+        //Launch offline screen when the device is offline
         Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
       }
     });
@@ -51,12 +51,12 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
     provider.getSeed(firstTime: true,context: context);
 
     //Timer to update time
-    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) async{
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer t) async{
 
       //Get NTP time
       DateTime mySystemTime = DateTime.now().toUtc();
 
-      //Update the QR Code every minute
+      //Update the Seed[QR Code] every minute
       if (mySystemTime.second==0) {
         if(mounted) provider.getSeed(firstTime: false,context: context);
       }
@@ -64,11 +64,11 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
       //Update the timer text
       if (mounted) {
         setState((){
-          //Update the time
-          time = 59 - mySystemTime.second;
+          //Update the time,Show time in decreasing order
+          _time = 59 - mySystemTime.second;
 
           //Update the text
-          timeInString = (time).toString();
+          _timeInString = (_time).toString();
         });
       }
     });
@@ -76,15 +76,16 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
   @override
   void dispose() {
-    subscription?.cancel();
-    timer.cancel();
+    _subscription?.cancel();
+    _timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
 
-    //Provider data
+    //Objects
+
     var _provider = Provider.of<SuperFormulaProvider>(context);
     String _seed = _provider.seed;
 
@@ -107,7 +108,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Visibility(
-                visible: _seed.isNotEmpty && timeInString.isNotEmpty,
+                visible: _seed.isNotEmpty && _timeInString.isNotEmpty,
                 child: QrImage(
                   data: _seed,
                   version: QrVersions.auto,
@@ -118,13 +119,13 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
                 height: ScreenUtil().setHeight(48),
               ),
               Visibility(
-                visible: _seed.isNotEmpty && timeInString.isNotEmpty,
+                visible: _seed.isNotEmpty && _timeInString.isNotEmpty,
                 child: Text(
-                  timeInString+"s",
+                  _timeInString+"s",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: time>9?Colors.black87:Colors.red
+                    color: _time>9?Colors.black87:Colors.red
                   ),
                 ),
               )

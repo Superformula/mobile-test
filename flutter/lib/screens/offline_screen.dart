@@ -1,13 +1,15 @@
+//Flutter packages
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+//Third party packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
-import 'package:superformula_scanner/screens/home_screen.dart';
-import 'package:superformula_scanner/values.dart' as values;
+//My Packages
+import '../screens/home_screen.dart';
+import '../values.dart' as values;
 
 class OfflineScreen extends StatefulWidget {
 
@@ -21,29 +23,34 @@ class OfflineScreen extends StatefulWidget {
 
 class _OfflineScreenState extends State<OfflineScreen> {
 
+  //Object declarations
+
   String _seed = "";
 
   //Offline handler
-  StreamSubscription? subscription;
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
     super.initState();
 
+    //Simple connection checker object init
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
-    subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+    _subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
       if(connected){
+        //Launch offline screen when the device is offline
         Navigator.of(context).pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
       }
     });
 
+    //Retrieve seed from shared preferences
     getOfflineSeed();
   }
 
   @override
   void dispose() {
-    subscription?.cancel();
+    _subscription?.cancel();
     super.dispose();
   }
 

@@ -1,14 +1,12 @@
 //Flutter packages
-import 'package:flutter/material.dart';
 import 'dart:convert';
-
 //Third party packages
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 //My Packages
-import '../values.dart' as values;
 import '../utils.dart';
+import '../values.dart' as values;
 
 enum DOWNLOAD_STATE{
   DOWNLOADING,
@@ -38,11 +36,12 @@ class SuperFormulaProvider with ChangeNotifier{
 
   Future getSeed({required bool firstTime,required BuildContext context}) async{
 
-    print("Getting seed");
-
+    //Change state to downloading
     qrCodeDownloadingState = DOWNLOAD_STATE.DOWNLOADING;
 
     try {
+
+      //Execute the network call
       var response = await dio.request(
         "/seed",
         options: Options(method: 'GET'),
@@ -51,30 +50,34 @@ class SuperFormulaProvider with ChangeNotifier{
       //Hide the loader
       qrCodeDownloadingState = DOWNLOAD_STATE.DOWNLOADED;
 
-      print("RESPONSE:" + response.toString());
-
+      //Handle Success
       if (response.statusCode == 200) {
 
-
+        //Decode the JSON
         var decodedResponse = json.decode(response.toString()) as Map<
             String,
             dynamic>;
 
+        //Get the seed value
         _seed = decodedResponse["seed"].toString();
         notifyListeners();
 
+        //Store seed value in shared preferences cache
         storeSeedOffline(_seed);
 
+        //Show the toast only when the seed is refreshed and not the first time
         if(!firstTime) {
           showSuccess(context, "QR Code Updated");
         }
       }
       else {
+        //Error handling
         qrCodeDownloadingState = DOWNLOAD_STATE.ERROR;
         showError(context, "Failed getting seed");
       }
     }
     on DioError catch(e){
+      //Handle Dio Errors
       qrCodeDownloadingState = DOWNLOAD_STATE.ERROR;
       hideLoader();
       if(e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout){
@@ -88,17 +91,17 @@ class SuperFormulaProvider with ChangeNotifier{
 
   Future verifySeed({required String seed,required BuildContext context,required Function showValidDialog,required Function showInvalidDialog}) async{
 
-    print("Verify seed");
-
     //Show the loader
     showLoader();
 
+    //Input JSON parameter
     final body = json.encode({
       "seed" : seed,
     });
 
-
     try {
+
+      //Execute the network call
       var response = await dio.request(
         "/verify-seed",
         data: body,
@@ -108,23 +111,26 @@ class SuperFormulaProvider with ChangeNotifier{
       //Hide the loader
       hideLoader();
 
-      print("RESPONSE:" + response.toString());
-
+      //Decode the JSON
       var decodedResponse = json.decode(response.toString()) as Map<
           String,
           dynamic>;
 
       if (response.statusCode == 200) {
 
+        //Handle success
         String _status = decodedResponse["status"].toString();
 
         if(_status == "valid") {
+          //Handle valid seed
           showValidDialog();
         } else {
+          //Handle invalid seed
           showInvalidDialog();
         }
       }
       else {
+        //Error handling
         if(decodedResponse['message']!=null) {
           showError(context, decodedResponse['message']);
         }
@@ -134,12 +140,12 @@ class SuperFormulaProvider with ChangeNotifier{
       }
     }
     on DioError catch(e){
+      //Handle Dio Errors
       hideLoader();
       if(e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout){
         showError(context, "Internal server error");
       }
       else {
-        print(e.message);
         showError(context, e.message);
       }
     }
