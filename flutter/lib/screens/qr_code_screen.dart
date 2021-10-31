@@ -29,16 +29,16 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
   String _timeInString = "";
 
   //Offline handler
-  StreamSubscription? _subscription;
+  StreamSubscription? _offlineStreamSubscription;
 
   @override
   void initState() {
     super.initState();
 
-    //Offline stream
+    //Simple connection checker object init
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
-    _subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+    _offlineStreamSubscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
       if(!connected){
         //Launch offline screen when the device is offline
         Navigator.of(context).pushNamedAndRemoveUntil(OfflineScreen.routeName, (route) => false);
@@ -76,7 +76,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    _offlineStreamSubscription?.cancel();
     _timer.cancel();
     super.dispose();
   }

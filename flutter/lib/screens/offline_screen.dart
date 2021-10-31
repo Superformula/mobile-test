@@ -28,7 +28,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
   String _seed = "";
 
   //Offline handler
-  StreamSubscription? _subscription;
+  StreamSubscription? _offlineStreamSubscription;
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
     //Simple connection checker object init
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
-    _subscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
+    _offlineStreamSubscription = _simpleConnectionChecker.onConnectionChange.listen((connected) {
       if(connected){
         //Launch offline screen when the device is offline
         Navigator.of(context).pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
@@ -50,7 +50,7 @@ class _OfflineScreenState extends State<OfflineScreen> {
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    _offlineStreamSubscription?.cancel();
     super.dispose();
   }
 

@@ -32,15 +32,15 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   String _scannedSeed = "";
 
-  StreamSubscription? _subscription;
+  StreamSubscription? _offlineStreamSubscription;
 
   @override
   void initState() {
     super.initState();
-    //Offline stream
+    //Simple connection checker object init
     SimpleConnectionChecker _simpleConnectionChecker = SimpleConnectionChecker()
       ..setLookUpAddress('pub.dev'); //Optional method to pass the lookup string
-    _subscription =
+    _offlineStreamSubscription =
         _simpleConnectionChecker.onConnectionChange.listen((connected) {
           if (!connected) {
             //Launch offline screen when the device is offline
@@ -53,7 +53,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   //Dispose the Scanner controller
   @override
   void dispose() {
-    _subscription?.cancel();
+    _offlineStreamSubscription?.cancel();
     _controller.dispose();
     super.dispose();
   }
