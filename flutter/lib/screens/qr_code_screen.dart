@@ -1,5 +1,6 @@
 //Flutter packages
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'dart:async';
 
@@ -90,6 +91,8 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
     var _provider = Provider.of<SuperFormulaProvider>(context);
     String _seed = _provider.seed;
 
+    DOWNLOAD_STATE _downloadState = _provider.qrCodeDownloadingState;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("QR Code"),
@@ -97,7 +100,10 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: Padding(
+        child: _downloadState==DOWNLOAD_STATE.DOWNLOADING?
+           Center(
+             child: Lottie.asset('assets/animations/circle.json',width: ScreenUtil().setHeight(600),height: ScreenUtil().setHeight(600)),
+           ) :Padding(
           padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(80)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,

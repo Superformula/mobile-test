@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
@@ -58,14 +59,11 @@ class _OfflineScreenState extends State<OfflineScreen> {
         title: const Text("Offline"),
       ),
       body: Center(
-        child:  Visibility(
-          visible: _seed.isNotEmpty,
-          child: QrImage(
-            data: _seed,
-            version: QrVersions.auto,
-            size: ScreenUtil().setHeight(300),
-          ),
-        ),
+        child:  _seed.isNotEmpty?QrImage(
+          data: _seed,
+          version: QrVersions.auto,
+          size: ScreenUtil().setHeight(300),
+        ):Lottie.asset('assets/animations/no_internet.json',width: ScreenUtil().setHeight(600),height: ScreenUtil().setHeight(600)),
       ),
     );
   }

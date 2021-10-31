@@ -2,6 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'package:superformula_scanner/screens/offline_screen.dart';
 import 'package:superformula_scanner/screens/qr_code_screen.dart';
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-
+      body: Lottie.asset('assets/animations/home.json',width: ScreenUtil().setHeight(600),height: ScreenUtil().setHeight(600)),
     );
   }
 }

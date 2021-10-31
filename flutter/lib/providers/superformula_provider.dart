@@ -40,8 +40,7 @@ class SuperFormulaProvider with ChangeNotifier{
 
     print("Getting seed");
 
-    //Show the loader
-    showLoader();
+    qrCodeDownloadingState = DOWNLOAD_STATE.DOWNLOADING;
 
     try {
       var response = await dio.request(
@@ -50,7 +49,7 @@ class SuperFormulaProvider with ChangeNotifier{
       );
 
       //Hide the loader
-      hideLoader();
+      qrCodeDownloadingState = DOWNLOAD_STATE.DOWNLOADED;
 
       print("RESPONSE:" + response.toString());
 
@@ -71,10 +70,12 @@ class SuperFormulaProvider with ChangeNotifier{
         }
       }
       else {
+        qrCodeDownloadingState = DOWNLOAD_STATE.ERROR;
         showError(context, "Failed getting seed");
       }
     }
     on DioError catch(e){
+      qrCodeDownloadingState = DOWNLOAD_STATE.ERROR;
       hideLoader();
       if(e.type == DioErrorType.connectTimeout || e.type == DioErrorType.receiveTimeout || e.type == DioErrorType.sendTimeout){
         showError(context, "Internal server error");

@@ -33,6 +33,7 @@ dependencies:
   qr_code_scanner: ^0.5.2
   shared_preferences: ^2.0.8
   simple_connection_checker: ^0.2.1
+  lottie: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -48,3 +49,5 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/animations/
