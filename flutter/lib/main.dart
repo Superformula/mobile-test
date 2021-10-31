@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const QRCCodeScreen(),
+          home: const HomeScreen(),
           builder: EasyLoading.init(),
         ),
       )
