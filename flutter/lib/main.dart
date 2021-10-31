@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(value: SuperFormulaProvider()),
         ],
         child: MaterialApp(
-          title: 'Superformula Scanner',
+          title: 'Scanner',
           routes: {
             HomeScreen.routeName: (ctx) => const HomeScreen(),
             QRCCodeScreen.routeName: (ctx) => const QRCCodeScreen(),
