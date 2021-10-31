@@ -11,7 +11,6 @@ import '../providers/superformula_provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:ntp/ntp.dart';
 
 import 'offline_screen.dart';
 
@@ -56,11 +55,9 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
 
       //Get NTP time
       DateTime mySystemTime = DateTime.now().toUtc();
-      int offset = await NTP.getNtpOffset(localTime: mySystemTime);
-      DateTime actualTime = mySystemTime.add(Duration(milliseconds: offset));
 
       //Update the QR Code every minute
-      if (actualTime.second==0) {
+      if (mySystemTime.second==0) {
         if(mounted) provider.getSeed(firstTime: false,context: context);
       }
 
@@ -68,7 +65,7 @@ class _QRCCodeScreenState extends State<QRCCodeScreen> {
       if (mounted) {
         setState((){
           //Update the time
-          time = 59 - actualTime.second;
+          time = 59 - mySystemTime.second;
 
           //Update the text
           timeInString = (time).toString();
