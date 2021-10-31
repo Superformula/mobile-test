@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
 
@@ -65,6 +66,66 @@ class _ScannerScreenState extends State<ScannerScreen> {
     }
   }
 
+  void _showSuccessDialog(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return GestureDetector(
+          onTap: ()=>Navigator.of(context).pop(),
+          child: Dialog(
+            child: Container(
+              width: ScreenUtil().setWidth(400),
+              height: ScreenUtil().setHeight(400),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(ScreenUtil().setHeight(30)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/animations/success.json',repeat: false,width: ScreenUtil().setHeight(300),height: ScreenUtil().setHeight(300)),
+                  SizedBox(height: ScreenUtil().setHeight(24),),
+                  const Text("Seed is valid",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w600,fontSize: 24),)
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    ).then((value) => _scannedSeed = "");
+  }
+
+  void _showErrorDialog(){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return GestureDetector(
+          onTap: ()=>Navigator.of(context).pop(),
+          child: Dialog(
+            child: Container(
+              width: ScreenUtil().setWidth(400),
+              height: ScreenUtil().setHeight(400),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(ScreenUtil().setHeight(30)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Lottie.asset('assets/animations/error.json',repeat: false,width: ScreenUtil().setHeight(300),height: ScreenUtil().setHeight(300)),
+                  SizedBox(height: ScreenUtil().setHeight(24),),
+                  const Text("Invalid seed",style: TextStyle(color: Colors.black87,fontWeight: FontWeight.w600,fontSize: 24),)
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    ).then((value) => _scannedSeed = "");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +165,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
         _scannedSeed = scanData.code;
         //Verify the seed
         Provider.of<SuperFormulaProvider>(context, listen: false).verifySeed(
-            seed: _scannedSeed, context: context);
+            seed: _scannedSeed,
+            context: context,
+            showValidDialog: _showSuccessDialog,
+            showInvalidDialog: _showErrorDialog,
+        );
       }
     });
   }

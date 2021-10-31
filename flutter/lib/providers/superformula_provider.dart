@@ -86,7 +86,7 @@ class SuperFormulaProvider with ChangeNotifier{
     }
   }
 
-  Future verifySeed({required String seed,required BuildContext context}) async{
+  Future verifySeed({required String seed,required BuildContext context,required Function showValidDialog,required Function showInvalidDialog}) async{
 
     print("Verify seed");
 
@@ -119,9 +119,9 @@ class SuperFormulaProvider with ChangeNotifier{
         String _status = decodedResponse["status"].toString();
 
         if(_status == "valid") {
-          showSuccess(context, "Seed is valid");
+          showValidDialog();
         } else {
-          showError(context, "Seed is invalid");
+          showInvalidDialog();
         }
       }
       else {
