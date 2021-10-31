@@ -23,7 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.3
   flutter_screenutil: ^5.0.0+2
   top_snackbar_flutter: ^1.0.1
   flutter_easyloading: ^3.0.3
@@ -33,7 +32,6 @@ dependencies:
   ntp: ^2.0.0
   qr_code_scanner: ^0.5.2
   shared_preferences: ^2.0.8
-  flutter_offline: ^2.0.0
   simple_connection_checker: ^0.2.1
 
 dev_dependencies:
