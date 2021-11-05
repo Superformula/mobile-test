@@ -70,6 +70,7 @@ class _ScanPageState extends State<ScanPage> {
     }
     if (!mounted) return;
     setState(() {
+      // setting the value to the state
       _scanBarcode = scannedResult == "-1" ? "" : scannedResult;
     });
   }

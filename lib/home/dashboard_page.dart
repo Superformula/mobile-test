@@ -69,6 +69,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return InkWell(
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
+        // Using Material Page Route 
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => nextPage));
       },
