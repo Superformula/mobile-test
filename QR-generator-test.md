@@ -64,7 +64,7 @@ components:
 - Cross platform
   - Use Flutter
 - Android
-  - Use Kotlin
+  - Use Kotlinn 
 - iOS
   - Use Swift
 
