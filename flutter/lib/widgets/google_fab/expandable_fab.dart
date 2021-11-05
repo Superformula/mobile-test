@@ -69,9 +69,9 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
         alignment: Alignment.bottomRight,
         clipBehavior: Clip.none,
         children: [
-          _buildTapToCloseFab(),
+          _TapToExpandFAB(toggle: _toggle),
           ..._buildExpandingActionButtons(),
-          _buildTapToOpenFab(),
+          _TapToOpenFAB(open: _open, toggle: _toggle)
         ],
       ),
     );
@@ -93,8 +93,16 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
     }
     return children;
   }
+}
 
-  Widget _buildTapToCloseFab() {
+class _TapToExpandFAB extends StatelessWidget {
+
+  const _TapToExpandFAB({Key? key, required this.toggle,}) : super(key: key);
+
+  final Function()? toggle;
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       width: 56.0,
       height: 56.0,
@@ -104,7 +112,7 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
           clipBehavior: Clip.antiAlias,
           elevation: 4.0,
           child: InkWell(
-            onTap: _toggle,
+            onTap: toggle,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Icon(
@@ -117,25 +125,34 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
       ),
     );
   }
+}
 
-  Widget _buildTapToOpenFab() {
+class _TapToOpenFAB extends StatelessWidget {
+
+  const _TapToOpenFAB({Key? key, required this.open ,required this.toggle,}) : super(key: key);
+
+  final Function()? toggle;
+  final bool open;
+
+  @override
+  Widget build(BuildContext context) {
     return IgnorePointer(
-      ignoring: _open,
+      ignoring: open,
       child: AnimatedContainer(
         transformAlignment: Alignment.center,
         transform: Matrix4.diagonal3Values(
-          _open ? 0.7 : 1.0,
-          _open ? 0.7 : 1.0,
+          open ? 0.7 : 1.0,
+          open ? 0.7 : 1.0,
           1.0,
         ),
         duration: const Duration(milliseconds: 250),
         curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
         child: AnimatedOpacity(
-          opacity: _open ? 0.0 : 1.0,
+          opacity: open ? 0.0 : 1.0,
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
-            onPressed: _toggle,
+            onPressed: toggle,
             child: const Icon(Icons.add),
           ),
         ),
@@ -143,3 +160,4 @@ class _ExpandableFabState extends State<ExpandableFab> with SingleTickerProvider
     );
   }
 }
+
