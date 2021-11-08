@@ -1,0 +1,50 @@
+de/mintware/barcode_scan/BuildConfig.java
+ de.mintware.barcode_scan.BuildConfig
+de/mintware/barcode_scan/AndroidConfigurationOuterClass.java
+ de.mintware.barcode_scan.AndroidConfigurationOuterClass
+ de.mintware.barcode_scan.AndroidConfigurationOuterClass$1
+ de.mintware.barcode_scan.AndroidConfigurationOuterClass$AndroidConfiguration
+ de.mintware.barcode_scan.AndroidConfigurationOuterClass$AndroidConfiguration$Builder
+ de.mintware.barcode_scan.AndroidConfigurationOuterClass$AndroidConfigurationOrBuilder
+de/mintware/barcode_scan/BarcodeFormatOuterClass.java
+ de.mintware.barcode_scan.BarcodeFormatOuterClass
+ de.mintware.barcode_scan.BarcodeFormatOuterClass$BarcodeFormat
+ de.mintware.barcode_scan.BarcodeFormatOuterClass$BarcodeFormat$1
+ de.mintware.barcode_scan.BarcodeFormatOuterClass$BarcodeFormat$BarcodeFormatVerifier
+de/mintware/barcode_scan/ConfigurationOuterClass.java
+ de.mintware.barcode_scan.ConfigurationOuterClass
+ de.mintware.barcode_scan.ConfigurationOuterClass$1
+ de.mintware.barcode_scan.ConfigurationOuterClass$Configuration
+ de.mintware.barcode_scan.ConfigurationOuterClass$Configuration$1
+ de.mintware.barcode_scan.ConfigurationOuterClass$Configuration$Builder
+ de.mintware.barcode_scan.ConfigurationOuterClass$Configuration$StringsDefaultEntryHolder
+ de.mintware.barcode_scan.ConfigurationOuterClass$ConfigurationOrBuilder
+de/mintware/barcode_scan/ScanResultOuterClass.java
+ de.mintware.barcode_scan.ScanResultOuterClass
+ de.mintware.barcode_scan.ScanResultOuterClass$1
+ de.mintware.barcode_scan.ScanResultOuterClass$ResultType
+ de.mintware.barcode_scan.ScanResultOuterClass$ResultType$1
+ de.mintware.barcode_scan.ScanResultOuterClass$ResultType$ResultTypeVerifier
+ de.mintware.barcode_scan.ScanResultOuterClass$ScanResult
+ de.mintware.barcode_scan.ScanResultOuterClass$ScanResult$Builder
+ de.mintware.barcode_scan.ScanResultOuterClass$ScanResultOrBuilder
+de/mintware/barcode_scan/Protos.java
+ de.mintware.barcode_scan.Protos
+ de.mintware.barcode_scan.Protos$1
+ de.mintware.barcode_scan.Protos$AndroidConfiguration
+ de.mintware.barcode_scan.Protos$AndroidConfiguration$Builder
+ de.mintware.barcode_scan.Protos$AndroidConfigurationOrBuilder
+ de.mintware.barcode_scan.Protos$BarcodeFormat
+ de.mintware.barcode_scan.Protos$BarcodeFormat$1
+ de.mintware.barcode_scan.Protos$BarcodeFormat$BarcodeFormatVerifier
+ de.mintware.barcode_scan.Protos$Configuration
+ de.mintware.barcode_scan.Protos$Configuration$1
+ de.mintware.barcode_scan.Protos$Configuration$Builder
+ de.mintware.barcode_scan.Protos$Configuration$StringsDefaultEntryHolder
+ de.mintware.barcode_scan.Protos$ConfigurationOrBuilder
+ de.mintware.barcode_scan.Protos$ResultType
+ de.mintware.barcode_scan.Protos$ResultType$1
+ de.mintware.barcode_scan.Protos$ResultType$ResultTypeVerifier
+ de.mintware.barcode_scan.Protos$ScanResult
+ de.mintware.barcode_scan.Protos$ScanResult$Builder
+ de.mintware.barcode_scan.Protos$ScanResultOrBuilder
