@@ -55,13 +55,11 @@ class _ErrorViewState extends State<ErrorView> {
                   height: 10,
                 ),
                 Text('Try again', style: _textTheme.caption),
-                const SizedBox(
-                  height: 35,
-                ),
                 Visibility(
                     visible: widget.error != null,
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15.0, vertical: 40),
                       child: Text(
                         widget.error ?? '',
                         textAlign: TextAlign.center,
