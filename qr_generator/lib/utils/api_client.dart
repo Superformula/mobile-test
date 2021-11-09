@@ -12,7 +12,7 @@ class ApiClient {
     BaseOptions options = BaseOptions(
       connectTimeout: 5000,
       receiveTimeout: 5000,
-      baseUrl: 'http://localhost:3030/', //192.168.86.30
+      baseUrl: 'http://192.168.86.45:3030/', //192.168.86.30
     );
     dio = Dio(options);
   }

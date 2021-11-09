@@ -16,16 +16,9 @@ class ScanView extends StatefulWidget {
 
 class _ScanViewState extends State<ScanView> {
   ThemeData _theme;
-  ScanViewBloc _scanViewBloc;
   Barcode result;
   QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
-  @override
-  void initState() {
-    super.initState();
-    _scanViewBloc = BlocProvider.of<ScanViewBloc>(context);
-  }
 
   @override
   void reassemble() {
@@ -53,42 +46,40 @@ class _ScanViewState extends State<ScanView> {
       ),
       body: SafeArea(
         child: BlocListener<ScanViewBloc, ScanViewStateBloc>(
-            bloc: _scanViewBloc,
             listener: (context, state) {
-              if (state.scanStatus == ScanStatus.loaded) {
-                _showBottomSheet(
-                    context,
-                    ListTile(
-                      leading: CircleAvatar(
-                          backgroundColor:
-                              state.seedValidated ? Colors.green : Colors.red,
-                          child: Icon(
-                            state.seedValidated ? Icons.check : Icons.close,
-                            color: Colors.white,
-                          )),
-                      title: Text(state.seedValidated ? 'Valid' : 'Invalid'),
-                      subtitle: Text(state.seedData),
-                    ));
-              }
-            },
-            child: BlocBuilder<ScanViewBloc, ScanViewStateBloc>(
-              builder: (context, state) {
-                if (state.scanStatus == ScanStatus.loaded) {
-                  return BlocProvider.value(
-                    value: _scanViewBloc,
-                    child: buildQrView(context),
-                  );
-                }
-                if (state.scanStatus == ScanStatus.failure) {
-                  return ErrorView(
-                    error: state.errorMessage,
-                  );
-                }
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            )),
+          if (state.scanStatus == ScanStatus.loaded) {
+            _showBottomSheet(
+                context,
+                ListTile(
+                  leading: CircleAvatar(
+                      backgroundColor:
+                          state.seedValidated ? Colors.green : Colors.red,
+                      child: Icon(
+                        state.seedValidated ? Icons.check : Icons.close,
+                        color: Colors.white,
+                      )),
+                  title: Text(state.seedValidated ? 'Valid' : 'Invalid'),
+                  subtitle: Text(state.seedData),
+                ));
+          }
+        }, child: BlocBuilder<ScanViewBloc, ScanViewStateBloc>(
+          builder: (context, state) {
+            if (state.scanStatus == ScanStatus.loaded) {
+              return BlocProvider.value(
+                value: BlocProvider.of<ScanViewBloc>(context),
+                child: buildQrView(context),
+              );
+            }
+            if (state.scanStatus == ScanStatus.failure) {
+              return ErrorView(
+                error: state.errorMessage,
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        )),
       ),
     );
   }
@@ -130,7 +121,7 @@ class _ScanViewState extends State<ScanView> {
       },
     ).then((_) async {
       await controller.resumeCamera();
-      _scanViewBloc.add(RestartScanData());
+      BlocProvider.of<ScanViewBloc>(context).add(RestartScanData());
     });
   }
 
