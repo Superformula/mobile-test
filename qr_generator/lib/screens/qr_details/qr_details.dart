@@ -32,7 +32,7 @@ class _QrDetailsState extends State<QrDetails> {
 
   @override
   void dispose() {
-    _connectivitySubscription.cancel();
+    _connectivitySubscription?.cancel();
     super.dispose();
   }
 
