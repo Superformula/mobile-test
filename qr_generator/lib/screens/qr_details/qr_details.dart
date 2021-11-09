@@ -1,17 +1,17 @@
 import 'dart:async';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_countdown_timer/index.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/screens/qr_details/bloc/qr_details_bloc.dart';
+import 'package:qr_generator/screens/qr_details/widgets/counte_widget.dart';
 import 'package:qr_generator/screens/qr_details/widgets/offline_chip.dart';
+import 'package:qr_generator/screens/qr_details/widgets/qr_image.dart';
 import 'package:qr_generator/screens/widgets/error_view.dart';
 import 'package:qr_generator/screens/widgets/offline_view.dart';
 
 class QrDetails extends StatefulWidget {
-  QrDetails({Key? key}) : super(key: key);
+  const QrDetails({Key? key}) : super(key: key);
 
   @override
   _QrDetailsState createState() => _QrDetailsState();
@@ -49,7 +49,7 @@ class _QrDetailsState extends State<QrDetails> {
         title: const Text('Qr Details'),
         actions: [
           IconButton(
-              onPressed: () => _qrDetailsBloc.add(RefreshSeed()),
+              onPressed: () => context.read<QrDetailsBloc>().add(RefreshSeed()),
               icon: const Icon(Icons.refresh))
         ],
       ),
@@ -67,9 +67,9 @@ class _QrDetailsState extends State<QrDetails> {
             if (state.offline && state.seedData == null) {
               return const OfflineView();
             }
-            return Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Center(
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -77,29 +77,13 @@ class _QrDetailsState extends State<QrDetails> {
                     OfflineChip(
                       offline: state.offline,
                     ),
-                    Card(
-                      child: QrImage(
-                        data: state.seedData.id,
-                        version: QrVersions.auto,
-                        size: MediaQuery.of(context).size.width / 1.2,
-                        gapless: false,
-                      ),
-                    ),
+                    QrImageWidget(seedData: state.seedData.id),
                     const SizedBox(
                       height: 10,
                     ),
-                    Visibility(
-                      child: CountdownTimer(
-                        textStyle: _theme.textTheme.headline4,
-                        endTime:
-                            state.seedData.expiresAt.millisecondsSinceEpoch,
-                        onEnd: () => _qrDetailsBloc.add(RefreshSeed()),
-                      ),
-                      replacement: Text(
-                        'Expired',
-                        style: _theme.textTheme.headline4
-                            ?.copyWith(color: Colors.red),
-                      ),
+                    CounterWidget(
+                      theme: _theme,
+                      dateTime: state.seedData.expiresAt,
                     ),
                   ],
                 ),
