@@ -1,4 +1,0 @@
-#Sun Oct 31 19:09:30 EDT 2021
-base.0=/Users/pawandeep/Documents/flutterwork/superformula/mobile-test/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
