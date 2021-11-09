@@ -15,11 +15,6 @@ class OfflineView extends StatefulWidget {
 class _OfflineViewState extends State<OfflineView>
     with TickerProviderStateMixin {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
