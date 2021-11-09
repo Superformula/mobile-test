@@ -12,11 +12,6 @@ class EmptyView extends StatefulWidget {
 
 class _EmptyViewState extends State<EmptyView> with TickerProviderStateMixin {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
@@ -34,14 +29,16 @@ class _EmptyViewState extends State<EmptyView> with TickerProviderStateMixin {
               width: 200,
               height: 200,
             ),
-            Text(
-              'No records to display',
-              style:
-                  Theme.of(context).textTheme.headline6.copyWith(fontSize: 20),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 30,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 30),
+              child: Text(
+                'No records to display',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
             ),
           ],
         ),
