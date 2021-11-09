@@ -4,15 +4,15 @@ import 'package:qr_generator/utils/api_client.dart';
 
 class SeedRepository {
   final ApiClient netUtil;
-  SeedRepository({required this.netUtil});
+  const SeedRepository({required this.netUtil});
 
-  //Get new seed data
+  /// Get new seed data
   Future<SeedModel> getSeedData() async {
     dynamic response = await netUtil.getDio('seed');
     return SeedModel.fromJson(response.data['data']);
   }
 
-  //Validating string data from qr code
+  /// Validating string data from qr code
   Future<bool> validateSeedData(String seedData) async {
     await Future.delayed(const Duration(seconds: 2));
     Random r = Random();
