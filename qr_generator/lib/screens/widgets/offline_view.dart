@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class OfflineView extends StatefulWidget {
-  final VoidCallback onReloadTap;
-  final String title;
-  final Color background;
-  const OfflineView({Key key, this.onReloadTap, this.title, this.background})
-      : super(key: key);
+
+  const OfflineView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _OfflineViewState createState() => _OfflineViewState();
@@ -17,8 +16,7 @@ class _OfflineViewState extends State<OfflineView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          widget.background ?? Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +34,7 @@ class _OfflineViewState extends State<OfflineView>
             Text(
               "You're offline",
               style:
-                  Theme.of(context).textTheme.headline6.copyWith(fontSize: 20),
+                  Theme.of(context).textTheme.headline6!.copyWith(fontSize: 20),
               textAlign: TextAlign.center,
             ),
           ],

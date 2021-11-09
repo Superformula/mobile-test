@@ -10,17 +10,17 @@ import 'package:qr_generator/screens/widgets/error_view.dart';
 import 'package:qr_generator/screens/widgets/offline_view.dart';
 
 class QrDetails extends StatefulWidget {
-  QrDetails({Key key}) : super(key: key);
+  QrDetails({Key? key}) : super(key: key);
 
   @override
   _QrDetailsState createState() => _QrDetailsState();
 }
 
 class _QrDetailsState extends State<QrDetails> {
-  ThemeData _theme;
-  QrDetailsBloc _qrDetailsBloc;
+  late ThemeData _theme;
+  late QrDetailsBloc _qrDetailsBloc;
   final Connectivity _connectivity = Connectivity();
-  StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _QrDetailsState extends State<QrDetails> {
 
   @override
   void dispose() {
-    _connectivitySubscription?.cancel();
+    _connectivitySubscription.cancel();
     super.dispose();
   }
 
@@ -99,7 +99,7 @@ class _QrDetailsState extends State<QrDetails> {
                             replacement: Text(
                               'Expired',
                               style: _theme.textTheme.headline4
-                                  .copyWith(color: Colors.red),
+                                  ?.copyWith(color: Colors.red),
                             ),
                           ),
                         ],

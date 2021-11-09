@@ -1,30 +1,20 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
+part 'seed_model.g.dart';
+
+@JsonSerializable()
+@immutable
 class SeedModel {
-  SeedModel({
-    this.id,
-    this.expiresAt,
+  const SeedModel({
+    required this.id,
+    required this.expiresAt,
   });
 
   final String id;
   final DateTime expiresAt;
 
-  SeedModel copyWith({
-    String id,
-    DateTime expiresAt,
-  }) =>
-      SeedModel(
-        id: id ?? this.id,
-        expiresAt: expiresAt ?? this.expiresAt,
-      );
+  factory SeedModel.fromJson(Map<String, dynamic> data) =>
+      _$SeedModelFromJson(data);
 
-  factory SeedModel.fromJson(Map<String, dynamic> json) => SeedModel(
-        id: json["id"] == null ? null : json["id"],
-        expiresAt: json["expires_at"] == null
-            ? null
-            : DateTime.parse(json["expires_at"]).toLocal(),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "expires_at": expiresAt == null ? null : expiresAt.toIso8601String(),
-      };
+  Map<String, dynamic> toJson() => _$SeedModelToJson(this);
 }

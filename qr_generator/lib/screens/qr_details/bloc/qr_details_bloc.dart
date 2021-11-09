@@ -52,7 +52,6 @@ class QrDetailsBloc extends Bloc<QrDetailsEvent, QrDetailsState> {
                     await manageData(false, oldSeed: currentState.seedData),
                 status: !currentState.status,
                 offline: false);
-                
           } else if (!currentState.offline &&
               event.result == ConnectivityResult.none) {
             //Offline state
@@ -69,14 +68,19 @@ class QrDetailsBloc extends Bloc<QrDetailsEvent, QrDetailsState> {
   Future<QrDetailsLoaded> manageConnectivityData() async {
     if (await checkConnectivity()) {
       //Loading data using local storage
-      return QrDetailsLoaded(await manageData(false), true, offline: false);
+      return QrDetailsLoaded(
+        seedData: await manageData(false),
+        status: true,
+        offline: false,
+      );
     } else {
-      //Loading data using network call 
-      return QrDetailsLoaded(await manageData(true), true, offline: true);
+      //Loading data using network call
+      return QrDetailsLoaded(
+          seedData: await manageData(true), status: true, offline: true);
     }
   }
 
-  Future<SeedModel> manageData(bool offline, {SeedModel oldSeed}) async {
+  Future<SeedModel> manageData(bool offline, {SeedModel? oldSeed}) async {
     if (offline) {
       //Offline state
       // Getting last seed stored

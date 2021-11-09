@@ -8,9 +8,8 @@ import 'package:qr_generator/repositories/seed_repository.dart';
 class MockRepository extends Mock implements SeedRepository {}
 
 void main() {
-
-   Dio dio;
-   DioAdapter dioAdapter;
+  late Dio dio;
+  late DioAdapter dioAdapter;
 
   setUp(() {
     dio = Dio();
@@ -39,19 +38,17 @@ void main() {
     });
   });
 
-
-
   group('Seed', () {
     test('should parse JSON correctly', () {
       final json = {
         'id': 'e6d15d1f-c558-441b-9a35-6c774261ec14',
-        'expires_at': '2021-11-03T23:17:35.229Z'
+        'expiresAt': '2021-11-03T23:17:35.229Z'
       };
 
       final seed = SeedModel.fromJson(json);
 
       expect(seed.id, json['id']);
-      expect(seed.expiresAt, DateTime.parse(json['expires_at']).toLocal());
+      expect(seed.expiresAt, DateTime.parse(json['expiresAt'] as String));
     });
   });
 }

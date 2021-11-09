@@ -5,7 +5,7 @@ class SuperformulaStorage {
   final SqlitePersistence _repository;
 
   static Future<SuperformulaStorage> createFrom(
-      {Future<SqlitePersistence> future}) async {
+      {required Future<SqlitePersistence> future}) async {
     final repository = await future;
     final ret = SuperformulaStorage(repository);
     return ret;
@@ -26,7 +26,7 @@ class SuperformulaStorage {
 
 //Getting seed list by query
   Future<List<SeedModel>> seedList(String query) async {
-    final objects = query?.isNotEmpty == true
+    final objects = query.isNotEmpty == true
         ? await _repository.findObjects(query)
         : await _repository.getUniqueObjects();
     return objects.map((map) => SeedModel.fromJson(map)).toList();

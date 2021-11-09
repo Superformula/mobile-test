@@ -6,15 +6,17 @@ abstract class QrDetailsState extends Equatable {
   @override
   List<Object> get props => [];
 }
-//Initial State 
+
+//Initial State
 class QrDetailsInitial extends QrDetailsState {}
-//Loading state 
+
+//Loading state
 class QrDetailsLoading extends QrDetailsState {
   @override
   List<Object> get props => [];
 }
 
-//Error state 
+//Error state
 class QrDetailsError extends QrDetailsState {
   final String error;
   const QrDetailsError(this.error);
@@ -28,12 +30,13 @@ class QrDetailsLoaded extends QrDetailsState {
   final SeedModel seedData;
   final bool status;
   final bool offline;
-  const QrDetailsLoaded(this.seedData, this.status, {this.offline});
+  const QrDetailsLoaded(
+      {required this.seedData, this.status = true, this.offline = false});
 
-  QrDetailsLoaded copyWith({SeedModel seedData, bool status, bool offline}) {
+  QrDetailsLoaded copyWith({SeedModel? seedData, bool? status, bool? offline}) {
     return QrDetailsLoaded(
-      seedData ?? this.seedData,
-      status ?? this.status,
+      seedData: seedData ?? this.seedData,
+      status: status ?? this.status,
       offline: offline ?? this.offline,
     );
   }

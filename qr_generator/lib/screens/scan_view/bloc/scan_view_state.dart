@@ -8,12 +8,13 @@ class ScanViewStateBloc extends Equatable {
   final ScanStatus scanStatus;
   final String errorMessage;
 
-  const ScanViewStateBloc(
-      {this.seedData,
-      this.seedValidated,
-      this.status,
-      this.errorMessage,
-      @required this.scanStatus});
+  const ScanViewStateBloc({
+    required this.scanStatus,
+    this.seedData = '',
+    this.seedValidated = false,
+    this.status = true,
+    this.errorMessage = 'Error',
+  });
   @override
   List<Object> get props =>
       [seedData, seedValidated, status, scanStatus, errorMessage];

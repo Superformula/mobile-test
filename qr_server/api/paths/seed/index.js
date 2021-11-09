@@ -10,7 +10,7 @@ module.exports = function () {
     res.status(200).json({
       data: {
         id: uuidv4(),
-        expires_at: helpers.dateWhithMinutes(1),
+        expiresAt: helpers.dateWhithMinutes(1),
       },
     });
   }

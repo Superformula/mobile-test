@@ -15,7 +15,7 @@ class ScanViewBloc extends Bloc<ScanViewEvent, ScanViewStateBloc> {
     SeedRepository seedRepository,
   )   : assert(seedRepository != null),
         _seedRepository = seedRepository,
-        super(ScanViewStateBloc(scanStatus: ScanStatus.loaded));
+        super(ScanViewStateBloc(scanStatus: ScanStatus.initial));
 
   @override
   Stream<ScanViewStateBloc> mapEventToState(ScanViewEvent event) async* {
@@ -40,7 +40,7 @@ class ScanViewBloc extends Bloc<ScanViewEvent, ScanViewStateBloc> {
     if (event is RestartScanData) {
       try {
         yield ScanViewStateBloc(
-            status: !state.status ?? true, scanStatus: ScanStatus.loaded);
+            status: !state.status, scanStatus: ScanStatus.initial);
       } catch (e) {
         //Returning error
         yield ScanViewStateBloc(

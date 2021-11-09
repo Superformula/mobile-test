@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class HomeView extends StatefulWidget {
-  HomeView({Key key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
 
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -13,7 +13,6 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {

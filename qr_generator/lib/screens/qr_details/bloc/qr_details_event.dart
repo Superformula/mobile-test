@@ -19,7 +19,7 @@ class RefreshSeed extends QrDetailsEvent {
   List<Object> get props => [];
 }
 
-//Cheking the current network status
+//Checking the current network status
 class CheckConnectivity extends QrDetailsEvent {
   final ConnectivityResult result;
   const CheckConnectivity(this.result);

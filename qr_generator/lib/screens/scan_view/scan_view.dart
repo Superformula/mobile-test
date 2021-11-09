@@ -8,16 +8,16 @@ import 'package:flutter/foundation.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class ScanView extends StatefulWidget {
-  ScanView({Key key}) : super(key: key);
+  ScanView({Key? key}) : super(key: key);
 
   @override
   _ScanViewState createState() => _ScanViewState();
 }
 
 class _ScanViewState extends State<ScanView> {
-  ThemeData _theme;
-  Barcode result;
-  QRViewController controller;
+  late ThemeData _theme;
+  late Barcode result;
+  late QRViewController controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   @override
@@ -37,10 +37,10 @@ class _ScanViewState extends State<ScanView> {
         title: const Text('Scan View'),
         actions: [
           IconButton(
-              onPressed: () async => await controller?.pauseCamera(),
+              onPressed: () async => await controller.pauseCamera(),
               icon: const Icon(Icons.pause)),
           IconButton(
-              onPressed: () async => await controller?.resumeCamera(),
+              onPressed: () async => await controller.resumeCamera(),
               icon: const Icon(Icons.play_arrow))
         ],
       ),
@@ -64,7 +64,8 @@ class _ScanViewState extends State<ScanView> {
           }
         }, child: BlocBuilder<ScanViewBloc, ScanViewStateBloc>(
           builder: (context, state) {
-            if (state.scanStatus == ScanStatus.loaded) {
+            if (state.scanStatus == ScanStatus.loaded ||
+                state.scanStatus == ScanStatus.initial) {
               return BlocProvider.value(
                 value: BlocProvider.of<ScanViewBloc>(context),
                 child: buildQrView(context),
@@ -147,7 +148,7 @@ class _ScanViewState extends State<ScanView> {
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.dispose();
     super.dispose();
   }
 }

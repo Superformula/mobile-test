@@ -25,7 +25,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final SuperformulaStorage storage;
-  const MyApp({Key key, this.storage}) : super(key: key);
+  const MyApp({Key? key, required this.storage}) : super(key: key);
 
   // This widget is the root of your application.
   @override

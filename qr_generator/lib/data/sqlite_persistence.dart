@@ -19,7 +19,7 @@ class SqlitePersistence {
         return db.execute(
           '''CREATE TABLE $seedTableName(
             id TEXT PRIMARY KEY,
-            expires_at STRING
+            expiresAt STRING
           )''',
         );
       },

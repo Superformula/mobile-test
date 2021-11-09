@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiClient {
-  Dio dio;
+  late Dio dio;
   ApiClient() {
     setupDio();
   }
@@ -18,7 +18,7 @@ class ApiClient {
   }
 
 //Dynamic get
-  Future<dynamic> getDio(String url, {Map<String, dynamic> parameters}) async {
+  Future<dynamic> getDio(String url, {Map<String, dynamic>? parameters}) async {
     dynamic response = await dio.get(
       url,
       queryParameters: parameters,

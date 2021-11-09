@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class EmptyView extends StatefulWidget {
-  final String title;
-  final Color background;
-  const EmptyView({Key key, this.title, this.background}) : super(key: key);
+  const EmptyView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _EmptyViewState createState() => _EmptyViewState();
@@ -14,8 +14,7 @@ class _EmptyViewState extends State<EmptyView> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          widget.background ?? Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +35,7 @@ class _EmptyViewState extends State<EmptyView> with TickerProviderStateMixin {
                 style: Theme.of(context)
                     .textTheme
                     .headline6
-                    .copyWith(fontSize: 20),
+                    ?.copyWith(fontSize: 20),
                 textAlign: TextAlign.center,
               ),
             ),

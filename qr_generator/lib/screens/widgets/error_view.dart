@@ -2,17 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class ErrorView extends StatefulWidget {
-  final VoidCallback onReloadTap;
-  final VoidCallback onCloseTap;
   final bool appBar;
   final dynamic error;
-  const ErrorView(
-      {Key key,
-      this.onReloadTap,
-      this.onCloseTap,
-      this.appBar = true,
-      this.error})
-      : super(key: key);
+  const ErrorView({Key? key, this.appBar = true, this.error}) : super(key: key);
 
   @override
   _ErrorViewState createState() => _ErrorViewState();
@@ -27,8 +19,7 @@ class _ErrorViewState extends State<ErrorView> {
             ? AppBar(
                 leading: IconButton(
                   icon: const Icon(Icons.close, color: Colors.black),
-                  onPressed: () =>
-                      widget.onCloseTap ?? Navigator.of(context).pop(),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
                 backgroundColor: Colors.transparent,
                 elevation: 0.0,
@@ -63,19 +54,10 @@ class _ErrorViewState extends State<ErrorView> {
                       child: Text(
                         widget.error ?? '',
                         textAlign: TextAlign.center,
-                        style: _textTheme.bodyText2.copyWith(color: Colors.red),
+                        style:
+                            _textTheme.bodyText2?.copyWith(color: Colors.red),
                       ),
                     )),
-                Visibility(
-                  visible: widget.onReloadTap != null,
-                  child: FloatingActionButton.extended(
-                    label: Text(
-                      'RELOAD',
-                      style: _textTheme.button,
-                    ),
-                    onPressed: () => widget.onReloadTap(),
-                  ),
-                )
               ],
             ),
           ),
