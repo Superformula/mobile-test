@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_countdown_timer/index.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/screens/qr_details/bloc/qr_details_bloc.dart';
+import 'package:qr_generator/screens/qr_details/widgets/offline_chip.dart';
 import 'package:qr_generator/screens/widgets/error_view.dart';
 import 'package:qr_generator/screens/widgets/offline_view.dart';
 
@@ -73,7 +74,9 @@ class _QrDetailsState extends State<QrDetails> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    offlineChip(state.offline),
+                    OfflineChip(
+                      offline: state.offline,
+                    ),
                     Card(
                       child: QrImage(
                         data: state.seedData.id,
@@ -86,7 +89,6 @@ class _QrDetailsState extends State<QrDetails> {
                       height: 10,
                     ),
                     Visibility(
-                      //visible: state.,
                       child: CountdownTimer(
                         textStyle: _theme.textTheme.headline4,
                         endTime:
@@ -109,26 +111,6 @@ class _QrDetailsState extends State<QrDetails> {
           );
         },
       )),
-    );
-  }
-
-  Widget offlineChip(bool offline) {
-    return Visibility(
-      visible: offline,
-      child: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Chip(
-          backgroundColor: Colors.white,
-          avatar: Icon(
-            Icons.offline_pin,
-            color: Colors.purple,
-          ),
-          label: Text(
-            'Offline',
-            style: TextStyle(color: Colors.purple),
-          ),
-        ),
-      ),
     );
   }
 }
