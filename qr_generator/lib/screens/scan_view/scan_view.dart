@@ -45,8 +45,8 @@ class _ScanViewState extends State<ScanView> {
         ],
       ),
       body: SafeArea(
-        child: BlocListener<ScanViewBloc, ScanViewStateBloc>(
-            listener: (context, state) {
+          child: BlocConsumer<ScanViewBloc, ScanViewStateBloc>(
+        listener: (context, state) {
           if (state.scanStatus == ScanStatus.loaded) {
             _showBottomSheet(
                 context,
@@ -62,26 +62,22 @@ class _ScanViewState extends State<ScanView> {
                   subtitle: Text(state.seedData),
                 ));
           }
-        }, child: BlocBuilder<ScanViewBloc, ScanViewStateBloc>(
-          builder: (context, state) {
-            if (state.scanStatus == ScanStatus.loaded ||
-                state.scanStatus == ScanStatus.initial) {
-              return BlocProvider.value(
-                value: BlocProvider.of<ScanViewBloc>(context),
-                child: buildQrView(context),
-              );
-            }
-            if (state.scanStatus == ScanStatus.failure) {
-              return ErrorView(
-                error: state.errorMessage,
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
+        },
+        builder: (context, state) {
+          if (state.scanStatus == ScanStatus.loaded ||
+              state.scanStatus == ScanStatus.initial) {
+            return buildQrView(context);
+          }
+          if (state.scanStatus == ScanStatus.failure) {
+            return ErrorView(
+              error: state.errorMessage,
             );
-          },
-        )),
-      ),
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      )),
     );
   }
 
@@ -122,7 +118,7 @@ class _ScanViewState extends State<ScanView> {
       },
     ).then((_) async {
       await controller.resumeCamera();
-      BlocProvider.of<ScanViewBloc>(context).add(RestartScanData());
+      context.read<ScanViewBloc>().add(RestartScanData());
     });
   }
 
@@ -132,7 +128,7 @@ class _ScanViewState extends State<ScanView> {
     });
     controller.scannedDataStream.listen((scanData) async {
       await controller.pauseCamera();
-      BlocProvider.of<ScanViewBloc>(context).add(ValidateSeed(scanData));
+      context.read<ScanViewBloc>().add(ValidateSeed(scanData));
     });
   }
 
@@ -141,7 +137,7 @@ class _ScanViewState extends State<ScanView> {
     if (!await Permission.camera.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No Permission')),
+        const SnackBar(content: Text('No Permission')),
       );
     }
   }
