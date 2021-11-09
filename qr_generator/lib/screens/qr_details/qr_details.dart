@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/screens/qr_details/bloc/qr_details_bloc.dart';
-import 'package:qr_generator/screens/qr_details/widgets/counte_widget.dart';
+import 'package:qr_generator/screens/qr_details/widgets/counter_widget.dart';
 import 'package:qr_generator/screens/qr_details/widgets/offline_chip.dart';
 import 'package:qr_generator/screens/qr_details/widgets/qr_image.dart';
 import 'package:qr_generator/screens/widgets/error_view.dart';
