@@ -20,14 +20,13 @@ class _QrDetailsState extends State<QrDetails> {
   late ThemeData _theme;
   late QrDetailsBloc _qrDetailsBloc;
   final Connectivity _connectivity = Connectivity();
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  late final StreamSubscription<ConnectivityResult> _connectivitySubscription =
+      _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
 
   @override
   void initState() {
     super.initState();
     _qrDetailsBloc = BlocProvider.of<QrDetailsBloc>(context);
-    _connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   @override
