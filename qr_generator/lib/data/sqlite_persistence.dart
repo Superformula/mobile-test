@@ -57,9 +57,11 @@ class SqlitePersistence {
       batch.insert(seedTableName, item,
           conflictAlgorithm: ConflictAlgorithm.replace);
     }
+
     /// Commit
     await batch.commit(noResult: true);
   }
+
 // Deleting a record
   Future<void> removeObject(String key) async {
     await db.delete(

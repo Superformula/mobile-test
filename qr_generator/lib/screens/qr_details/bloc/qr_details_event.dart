@@ -5,6 +5,7 @@ abstract class QrDetailsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 //Initial event
 class FetchSeed extends QrDetailsEvent {
   const FetchSeed();

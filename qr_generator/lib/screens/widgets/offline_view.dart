@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class OfflineView extends StatefulWidget {
-
   const OfflineView({
     Key? key,
   }) : super(key: key);

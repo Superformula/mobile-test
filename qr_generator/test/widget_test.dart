@@ -5,7 +5,6 @@ import 'package:qr_generator/screens/home_view/home_view.dart';
 
 void main() {
   testWidgets('Home screen test', (WidgetTester tester) async {
- 
     await tester.pumpWidget(
       MediaQuery(
         data: const MediaQueryData(),
