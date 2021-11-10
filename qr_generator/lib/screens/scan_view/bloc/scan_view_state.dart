@@ -1,6 +1,6 @@
 part of 'scan_view_bloc.dart';
 
-//Main state
+///Main state
 class ScanViewStateBloc extends Equatable {
   final String seedData;
   final bool seedValidated;

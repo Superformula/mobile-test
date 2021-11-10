@@ -13,6 +13,8 @@ class SeedModel {
   final String id;
   final DateTime expiresAt;
 
+  factory SeedModel.emptyData() => SeedModel(expiresAt: DateTime.now(), id: '');
+
   factory SeedModel.fromJson(Map<String, dynamic> data) =>
       _$SeedModelFromJson(data);
 

@@ -46,8 +46,9 @@ class MyApp extends StatelessWidget {
             '/home': (context) => HomeView(),
             // When navigating to the "/qr_view" route, build the QrView widget.
             '/qr_view': (context) => BlocProvider(
-                  create: (BuildContext context) =>
-                      QrDetailsBloc(_seedRepository, storage)..add(FetchSeed()),
+                  create: (BuildContext context) => QrDetailsBloc(
+                      seedRepository: _seedRepository, storage: storage)
+                    ..add(FetchSeed()),
                   child: QrDetails(),
                 ),
             // When navigating to the "/scan_view" route, build the Scan view widget.

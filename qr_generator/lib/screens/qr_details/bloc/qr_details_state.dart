@@ -1,5 +1,8 @@
 part of 'qr_details_bloc.dart';
 
+enum QrDetailStatus { initial, loaded, failure, loading }
+
+
 abstract class QrDetailsState extends Equatable {
   const QrDetailsState();
 

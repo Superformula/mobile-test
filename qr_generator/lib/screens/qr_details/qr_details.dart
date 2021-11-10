@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 import 'package:qr_generator/screens/qr_details/bloc/qr_details_bloc.dart';
 import 'package:qr_generator/screens/qr_details/widgets/counter_widget.dart';
 import 'package:qr_generator/screens/qr_details/widgets/offline_chip.dart';
@@ -64,7 +63,7 @@ class _QrDetailsState extends State<QrDetails> {
             );
           }
           if (state is QrDetailsLoaded) {
-            if (state.offline && state.seedData == null) {
+            if (state.offline && state.seedData.id.isEmpty) {
               return const OfflineView();
             }
             return Center(

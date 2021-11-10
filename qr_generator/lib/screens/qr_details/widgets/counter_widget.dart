@@ -15,16 +15,10 @@ class CounterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      child: CountdownTimer(
-        textStyle: _theme.textTheme.headline4,
-        endTime: _expiresAt.millisecondsSinceEpoch,
-        onEnd: () => context.read<QrDetailsBloc>().add(RefreshSeed()),
-      ),
-      replacement: Text(
-        'Expired',
-        style: _theme.textTheme.headline4?.copyWith(color: Colors.red),
-      ),
+    return CountdownTimer(
+      textStyle: _theme.textTheme.headline4,
+      endTime: _expiresAt.millisecondsSinceEpoch,
+      onEnd: () => context.read<QrDetailsBloc>().add(RefreshSeed()),
     );
   }
 }
