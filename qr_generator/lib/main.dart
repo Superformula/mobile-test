@@ -13,7 +13,8 @@ import 'package:qr_generator/utils/theme/principal_light_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-// Initializing local storage
+
+  /// Initializing local storage
   SuperformulaStorage storage = await SuperformulaStorage.createFrom(
     future: SqlitePersistence.create(),
   );
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
             // When navigating to the "/scan_view" route, build the Scan view widget.
             '/scan_view': (context) => BlocProvider(
                   create: (BuildContext context) =>
-                      ScanViewBloc(_seedRepository),
+                      ScanViewBloc(seedRepository: _seedRepository),
                   child: ScanView(),
                 ),
           },
