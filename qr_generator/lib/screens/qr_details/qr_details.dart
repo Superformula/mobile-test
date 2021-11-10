@@ -37,7 +37,7 @@ class _QrDetailsState extends State<QrDetails> {
     super.dispose();
   }
 
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+  _updateConnectionStatus(ConnectivityResult result) {
     _qrDetailsBloc.add(CheckConnectivity(result));
   }
 
