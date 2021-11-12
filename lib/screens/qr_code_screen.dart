@@ -46,7 +46,7 @@ class _QrCodeState extends State<QrCodeScreen> {
 
   @override
   void dispose() {
-    timer.cancel();
+    timer?.cancel();
     super.dispose();
   }
 
