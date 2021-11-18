@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_test/model/timer_provider.dart';
 import 'view/home_page.dart';
 
 void main() async {
 //Load environment file from root of project file
   await dotenv.load(fileName: ".env");
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => TimerProvider(countDown: 0), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
