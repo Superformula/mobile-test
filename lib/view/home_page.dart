@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:qr_code_test/controller/services/connectivity.dart';
-import 'package:qr_code_test/view/components/button_child.dart';
-import 'package:qr_code_test/view/components/fab_popout_button.dart';
-import 'package:qr_code_test/view/qr_code_view.dart';
-import 'package:qr_code_test/view/scan_view.dart';
+import 'package:qr_test/controller/services/connectivity.dart';
+import 'package:qr_test/view/components/button_child.dart';
+import 'package:qr_test/view/components/fab_popout_button.dart';
+import 'package:qr_test/view/qr_code_view.dart';
+import 'package:qr_test/view/scan_view.dart';
 
 import 'package:simple_speed_dial/simple_speed_dial.dart';
 
