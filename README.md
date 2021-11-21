@@ -1,32 +1,31 @@
-# Superformula Mobile Developer Coding Test
+# superformula_qr_code
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+A Superformula coding challenge.
 
-## Requirements
+---
 
-There is only one test here currently, please review and get back to us.
+### Running the server
 
-## What We Care About
+First we need to start the server by running `node .` in the terminal. This will create the local api server to generate the random seeds for our QR codes.
 
-Use any libraries that you would normally use if this were a real production App. Please note: we're interested in your code & the way you solve the problem, not how well you can use a particular library or feature.
+After that we can run the application, which will immediately take us to the Home screen.
 
-_We're interested in your method and how you approach the problem just as much as we're interested in the end result._
+### Home Screen
 
-Here's what you should strive for:
+On the Home screen we can tap on the floating action button to open up a menu consisting of our Scan and Qr Code screen.
 
-- Good use of structure, security, and performance best practices.
-- Solid testing approach.
-- Extensible code.
+Tapping on either will navigate, with a slight animation, to that screen.
 
-## Q&A
+### Scan Screen 
 
-> Where should I send back the result when I'm done?
+The Scan screen will ask for our permission to use the camera.
 
-Fork this repo and send us a pull request when you think you are done. There is no deadline for this task unless otherwise noted to you directly.
+After accepting it will display an overlay in the center of the screen that will allow us to scan a Qr Code.
 
-> What if I have a question?
+Upon scanning a code, the text at the bottom will display the data retrieved from the code.
 
-Just create a new issue in this repo and we will respond and get back to you quickly.
+### QR Code Screen
 
-## Review
-The coding challenge is a take-home test upon which we'll be conducting a thorough code review once complete. The review will consist of meeting some more of our mobile engineers and giving a review of the solution you have designed. Please be prepared to share your screen and run/demo the application to the group. During this process, the engineers will be asking questions. 
+The QR Code Screen displays a QR Code generated from the call to the api. Underneath the QR Code is a timer that is counting down from 15. 
+
+Once the timer is up, the QR code vanishes and is replaced by "Time's up!" and a refresh button underneath it, to get a new QR code.

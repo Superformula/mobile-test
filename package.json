@@ -1,0 +1,27 @@
+{
+  "name": "superformula_qr_code",
+  "version": "1.0.0",
+  "description": "A new Flutter project.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthieuNadeau96/superformula_qr_code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatthieuNadeau96/superformula_qr_code/issues"
+  },
+  "homepage": "https://github.com/MatthieuNadeau96/superformula_qr_code#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
