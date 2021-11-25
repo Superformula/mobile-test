@@ -1,5 +1,7 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_test/controller/services/connectivity.dart';
+
+import 'package:qr_test/controller/services/network_info.dart';
 import 'package:qr_test/view/components/button_child.dart';
 import 'package:qr_test/view/components/fab_popout_button.dart';
 import 'package:qr_test/view/qr_code_view.dart';
@@ -33,7 +35,8 @@ class _HomePageState extends State<HomePage> {
           text: "QR Code",
           icon: const Icon(Icons.qr_code),
           pressed: () async {
-            bool isConnected = await connected();
+            bool isConnected =
+                await NetworkInfoImpl(Connectivity()).isConnected;
             Navigator.push(
                 context,
                 (MaterialPageRoute(
