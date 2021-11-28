@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qr_generator_app/app/routes.dart';
-import 'package:qr_generator_app/feature/display_qr/display_qr_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
