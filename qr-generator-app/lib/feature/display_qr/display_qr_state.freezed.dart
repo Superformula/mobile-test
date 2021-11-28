@@ -25,7 +25,7 @@ class _$DisplayQrStateTearOff {
     return const Loading();
   }
 
-  Success success(String seed) {
+  Success success(Seed seed) {
     return Success(
       seed,
     );
@@ -47,7 +47,7 @@ mixin _$DisplayQrState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String seed) success,
+    required TResult Function(Seed seed) success,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ mixin _$DisplayQrState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +63,7 @@ mixin _$DisplayQrState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -152,7 +152,7 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String seed) success,
+    required TResult Function(Seed seed) success,
     required TResult Function(String? message) error,
   }) {
     return initial();
@@ -163,7 +163,7 @@ class _$Initial implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
   }) {
     return initial?.call();
@@ -174,7 +174,7 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -266,7 +266,7 @@ class _$Loading implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String seed) success,
+    required TResult Function(Seed seed) success,
     required TResult Function(String? message) error,
   }) {
     return loading();
@@ -277,7 +277,7 @@ class _$Loading implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
   }) {
     return loading?.call();
@@ -288,7 +288,7 @@ class _$Loading implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -344,7 +344,7 @@ abstract class Loading implements DisplayQrState {
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call({String seed});
+  $Res call({Seed seed});
 }
 
 /// @nodoc
@@ -364,7 +364,7 @@ class _$SuccessCopyWithImpl<$Res> extends _$DisplayQrStateCopyWithImpl<$Res>
       seed == freezed
           ? _value.seed
           : seed // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Seed,
     ));
   }
 }
@@ -375,7 +375,7 @@ class _$Success implements Success {
   const _$Success(this.seed);
 
   @override
-  final String seed;
+  final Seed seed;
 
   @override
   String toString() {
@@ -403,7 +403,7 @@ class _$Success implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String seed) success,
+    required TResult Function(Seed seed) success,
     required TResult Function(String? message) error,
   }) {
     return success(seed);
@@ -414,7 +414,7 @@ class _$Success implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
   }) {
     return success?.call(seed);
@@ -425,7 +425,7 @@ class _$Success implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -474,9 +474,9 @@ class _$Success implements Success {
 }
 
 abstract class Success implements DisplayQrState {
-  const factory Success(String seed) = _$Success;
+  const factory Success(Seed seed) = _$Success;
 
-  String get seed;
+  Seed get seed;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
 }
@@ -544,7 +544,7 @@ class _$Error implements Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String seed) success,
+    required TResult Function(Seed seed) success,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -555,7 +555,7 @@ class _$Error implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
   }) {
     return error?.call(message);
@@ -566,7 +566,7 @@ class _$Error implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String seed)? success,
+    TResult Function(Seed seed)? success,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {

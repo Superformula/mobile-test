@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:qr_generator_app/feature/display_qr/display_qr_state_notifier.dart';
+import 'package:qr_generator_app/model/seed.dart';
 
 class DisplayQrPage extends StatelessWidget {
   const DisplayQrPage({Key? key}) : super(key: key);
@@ -15,9 +16,26 @@ class DisplayQrPage extends StatelessWidget {
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
           return Center(
             child: ref.watch(displayQrStateNotifierProvider).when(
-                  initial: () => _buildDisplayQrButton(() {}),
-                  loading: () => const Text("loading"),
-                  success: (String seed) => const Text("success"),
+                  initial: () => _buildDisplayQrButton(() => ref
+                      .read(displayQrStateNotifierProvider.notifier)
+                      .getSeed()),
+                  loading: () => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox.square(
+                        dimension: 24.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: _buildDisplayQrButton(null),
+                      ),
+                      const SizedBox.square(
+                        dimension: 24.0,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ],
+                  ),
+                  success: (Seed seed) => Text(seed.seed),
                   error: (String? error) => const Text("error"),
                 ),
           );
