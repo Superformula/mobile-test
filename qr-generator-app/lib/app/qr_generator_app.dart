@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qr_generator_app/feature/home/home_page.dart';
+import 'package:qr_generator_app/app/routes.dart';
 
 class QrGeneratorApp extends StatelessWidget {
   const QrGeneratorApp({Key? key}) : super(key: key);
@@ -9,9 +9,10 @@ class QrGeneratorApp extends StatelessWidget {
     return MaterialApp(
       title: "Flutter Demo",
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: const HomePage(),
+      initialRoute: AppRoutes.home,
+      routes: routes,
     );
   }
 }

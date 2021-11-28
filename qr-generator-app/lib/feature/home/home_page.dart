@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:qr_generator_app/app/routes.dart';
+import 'package:qr_generator_app/feature/display_qr/display_qr_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,8 +11,17 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("QR Generator App"),
       ),
-      body: const Center(
-        child: Text("home"),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("home"),
+            ElevatedButton.icon(
+                onPressed: () => Navigator.of(context).pushNamed(AppRoutes.displayQr),
+                icon: const Icon(Icons.qr_code),
+                label: const Text("display qr"))
+          ],
+        ),
       ),
     );
   }
