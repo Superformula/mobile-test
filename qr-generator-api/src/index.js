@@ -7,7 +7,7 @@ const port = 3000;
 
 app.get("/seed", (request, response) => {
     const seed = uuid();
-    const expiresAt = DateTime.now().plus({seconds: 30}).toUTC();
+    const expiresAt = DateTime.now().plus({seconds: 10}).toUTC();
     response.json({seed, expires_at: expiresAt});
 });
 

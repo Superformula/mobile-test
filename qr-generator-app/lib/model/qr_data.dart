@@ -1,15 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'seed.g.dart';
+part 'qr_data.g.dart';
 
 @JsonSerializable(createToJson: false)
-class Seed {
+class QrData {
   final String seed;
   @JsonKey(name: "expires_at")
   final DateTime expiresAt;
 
-  Seed(this.seed, this.expiresAt);
+  QrData(this.seed, this.expiresAt);
 
-  factory Seed.fromJson(final Map<String, dynamic> json) =>
-      _$SeedFromJson(json);
+  factory QrData.fromJson(final Map<String, dynamic> json) =>
+      _$QrDataFromJson(json);
 }
