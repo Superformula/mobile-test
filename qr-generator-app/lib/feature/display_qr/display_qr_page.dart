@@ -36,7 +36,17 @@ class DisplayQrPage extends StatelessWidget {
                     ],
                   ),
                   success: (Seed seed) => Text(seed.seed),
-                  error: (String? error) => const Text("error"),
+                  error: (String? error) => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("an error occurred, press to retry."),
+                      IconButton(
+                          onPressed: () => ref
+                              .read(displayQrStateNotifierProvider.notifier)
+                              .getSeed(),
+                          icon: const Icon(Icons.restart_alt_rounded))
+                    ],
+                  ),
                 ),
           );
         },
