@@ -18,7 +18,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton.icon(
                 onPressed: () => Navigator.of(context).pushNamed(AppRoutes.displayQr),
                 icon: const Icon(Icons.qr_code),
-                label: const Text("display qr"))
+                label: const Text("display qr"),),
+            ElevatedButton.icon(
+                onPressed: () => Navigator.of(context).pushNamed(AppRoutes.scanQr),
+                icon: const Icon(Icons.qr_code),
+                label: const Text("scan qr"),)
+
           ],
         ),
       ),
