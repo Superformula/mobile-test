@@ -91,6 +91,12 @@ class _QrDataWidgetState extends State<QrDataWidget> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    timer.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     int secondsRemaining =
         widget.qrData.expiresAt.difference(DateTime.now()).inSeconds;
