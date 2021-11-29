@@ -120,6 +120,4 @@ class _QrDataWidgetState extends State<QrDataWidget> {
       ),
     );
   }
-
-  _calculateDifference() => widget.qrData.expiresAt.difference(DateTime.now());
 }
