@@ -12,6 +12,7 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
     with SingleTickerProviderStateMixin {
   late final AnimationController controller;
   late final Animation<double> animation;
+  bool openedMenu = false;
 
   @override
   void initState() {
@@ -36,6 +37,10 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
     } else {
       controller.reverse();
     }
+
+    setState(() {
+      openedMenu = !openedMenu;
+    });
   }
 
   @override
@@ -46,7 +51,7 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
       children: [
         Positioned(
           bottom: 4,
-          right: 56,
+          right: 44,
           child: AnimatedBuilder(
             animation: animation,
             child: Row(
@@ -54,9 +59,11 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: const [
-                VerticalDivider(
-                  thickness: 2,
-                  indent: 4,
+                Flexible(
+                  child: VerticalDivider(
+                    thickness: 2,
+                    indent: 4,
+                  ),
                 ),
                 Expanded(
                   flex: 2,
@@ -78,10 +85,14 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
         Positioned(
           bottom: 0,
           right: 0,
-          child: FloatingActionButton(
-            onPressed: onPressFAB,
-            child: const Icon(
-              Icons.menu_open_rounded,
+          child: AnimatedRotation(
+            duration: const Duration(milliseconds: 500),
+            turns: openedMenu ? 0.5 : 1,
+            child: FloatingActionButton(
+              onPressed: onPressFAB,
+              child: const Icon(
+                Icons.menu_open_rounded,
+              ),
             ),
           ),
         ),
