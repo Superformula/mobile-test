@@ -23,6 +23,11 @@ class AppTheme {
         color: Colors.white,
         fontWeight: FontWeight.bold,
       ),
+      titleLarge: TextStyle(
+        fontSize: 24,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
     ),
   );
 }
