@@ -58,8 +58,8 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: const [
-                Flexible(
+              children: [
+                const Flexible(
                   child: VerticalDivider(
                     thickness: 2,
                     indent: 4,
@@ -67,11 +67,19 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
                 ),
                 Expanded(
                   flex: 2,
-                  child: _ExtendedMenuItemFAB(Icons.qr_code_scanner_outlined),
+                  child: _ExtendedMenuItemFAB(
+                    icon: Icons.qr_code_scanner_outlined,
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(AppRoutesName.scan),
+                  ),
                 ),
                 Expanded(
                   flex: 2,
-                  child: _ExtendedMenuItemFAB(Icons.qr_code_2_outlined),
+                  child: _ExtendedMenuItemFAB(
+                    icon: Icons.qr_code_2_outlined,
+                    onPressed: () =>
+                        Navigator.of(context).pushNamed(AppRoutesName.qrcode),
+                  ),
                 ),
               ],
             ),
@@ -102,16 +110,15 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
 }
 
 class _ExtendedMenuItemFAB extends StatelessWidget {
-  const _ExtendedMenuItemFAB(this.icon);
+  const _ExtendedMenuItemFAB({required this.icon, required this.onPressed});
 
   final IconData icon;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        Navigator.of(context).pushNamed(AppRoutesName.qrcode);
-      },
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
       ),
