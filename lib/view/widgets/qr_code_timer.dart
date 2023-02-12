@@ -42,11 +42,15 @@ class QrCodeTimerWidgetState extends State<QrCodeTimerWidget> {
 
     expiresAtTimer = Timer(dateDifference, () {
       countdownTimer.cancel();
-      qrCodeSeedCubit.getSeed();
+      if (!qrCodeSeedCubit.isClosed) {
+        qrCodeSeedCubit.getSeed();
+      }
     });
 
     countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      countdownNotifier.value = dateDifference.inSeconds - timer.tick;
+      if (mounted) {
+        countdownNotifier.value = dateDifference.inSeconds - timer.tick;
+      }
     });
   }
 
