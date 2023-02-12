@@ -36,24 +36,31 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: SizedBox(
-                width: context.screenWidth * 0.8,
-                height: context.screenWidth * 0.8,
-                child: RepaintBoundary(
-                  child: MobileScanner(
-                    controller: mobileScannerController,
-                    onDetect: (information) {
-                      if (information.barcodes.first.displayValue?.isNotEmpty ??
-                          false) {
-                        AppSnackBar(information.barcodes.first.displayValue!)
-                            .show(context);
-                      }
-                    },
+            Stack(
+              children: [
+                SizedBox(
+                  width: context.screenWidth * 0.8,
+                  height: context.screenWidth * 0.8,
+                  child: RepaintBoundary(
+                    child: MobileScanner(
+                      controller: mobileScannerController,
+                      onDetect: (information) {
+                        if (information
+                                .barcodes.first.displayValue?.isNotEmpty ??
+                            false) {
+                          AppSnackBar(information.barcodes.first.displayValue!)
+                              .show(context);
+                        }
+                      },
+                    ),
                   ),
                 ),
-              ),
+                SizedBox(
+                  width: context.screenWidth * 0.8,
+                  height: context.screenWidth * 0.8,
+                  child: CustomPaint(painter: ScannerOverlayPainter()),
+                ),
+              ],
             ),
             const SizedBox(height: 24),
             Text(
@@ -65,4 +72,60 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
       ),
     );
   }
+}
+
+class ScannerOverlayPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppColors.primary
+      ..strokeWidth = 4
+      ..strokeJoin = StrokeJoin.round
+      ..strokeCap = StrokeCap.round;
+
+    const borderSize = 20.0;
+
+    // Top Left
+    canvas.drawLine(Offset.zero, const Offset(borderSize, 0), paint);
+    canvas.drawLine(Offset.zero, const Offset(0, borderSize), paint);
+
+    // Bottom Left
+    canvas.drawLine(
+      Offset(0, size.height),
+      Offset(borderSize, size.height),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(0, size.height),
+      Offset(0, size.height - borderSize),
+      paint,
+    );
+
+    // Top Right
+    canvas.drawLine(
+      Offset(size.width, 0),
+      Offset(size.width, borderSize),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(size.width, 0),
+      Offset(size.width - borderSize, 0),
+      paint,
+    );
+
+    // Bottom Right
+    canvas.drawLine(
+      Offset(size.width, size.height),
+      Offset(size.width - borderSize, size.height),
+      paint,
+    );
+    canvas.drawLine(
+      Offset(size.width, size.height),
+      Offset(size.width, size.height - borderSize),
+      paint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
