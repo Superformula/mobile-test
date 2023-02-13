@@ -7,6 +7,7 @@ For a simple app like that I probably would prefer just using a MVC or MVVM arch
 - To run the application, execute `flutter pub get && flutter run`
 - To run the application in release mode, execute `flutter pub get && flutter run --release`
 - To build the application in release mode, execute `flutter build apk --release`
+- You can find the APK link at: https://drive.google.com/file/d/1kY4IjPXy5y1cydSPypen6V-2DsLAT5Lr/view?usp=share_link
 
 ## Features I built
 - Home Page
