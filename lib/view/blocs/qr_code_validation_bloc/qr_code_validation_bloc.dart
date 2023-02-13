@@ -6,7 +6,7 @@ part 'qr_code_validation_state.dart';
 class QRCodeValidationCubit extends Cubit<QRCodeValidationState> {
   QRCodeValidationCubit(
     this.qrCodeValidationUseCase,
-  ) : super(QRCodeValidationIdleState());
+  ) : super(const QRCodeValidationIdleState());
 
   final QRCodeValidationUseCase qrCodeValidationUseCase;
 

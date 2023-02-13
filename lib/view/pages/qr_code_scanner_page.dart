@@ -41,8 +41,8 @@ class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
 
   @override
   void dispose() {
-    super.dispose();
     mobileScannerController.dispose();
+    super.dispose();
   }
 
   @override

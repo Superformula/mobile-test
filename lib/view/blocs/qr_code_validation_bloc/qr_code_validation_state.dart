@@ -4,7 +4,9 @@ abstract class QRCodeValidationState {
   const QRCodeValidationState();
 }
 
-class QRCodeValidationIdleState extends QRCodeValidationState {}
+class QRCodeValidationIdleState extends QRCodeValidationState {
+  const QRCodeValidationIdleState();
+}
 
 class QRCodeValidationLoadingState extends QRCodeValidationState {
   final String data;

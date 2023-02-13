@@ -80,7 +80,7 @@ class QRCodeViewState extends State<QRCodeView> {
                 return QRCodeHeader(state.viewModel.seed);
               }
 
-              return const SliverToBoxAdapter(child: SizedBox.shrink());
+              return const SizedBox.shrink().toSliver;
             },
           ),
           BlocBuilder<QRCodeCubit, QRCodeState>(

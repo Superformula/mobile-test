@@ -7,7 +7,7 @@ import 'package:superformula_test/view/models/qr_code_view_model.dart';
 part 'qr_code_state.dart';
 
 class QRCodeCubit extends Cubit<QRCodeState> {
-  QRCodeCubit(this.useCase) : super(QRCodeIdleState());
+  QRCodeCubit(this.useCase) : super(const QRCodeIdleState());
 
   final QRCodeGetSeedUseCase useCase;
 

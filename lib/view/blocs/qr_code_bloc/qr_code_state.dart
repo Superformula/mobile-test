@@ -5,6 +5,7 @@ abstract class QRCodeState extends Equatable {
 }
 
 class QRCodeIdleState extends QRCodeState {
+  const QRCodeIdleState();
   @override
   List<Object?> get props => [];
 }

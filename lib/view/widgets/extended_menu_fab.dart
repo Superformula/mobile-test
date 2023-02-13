@@ -27,8 +27,8 @@ class _ExtendedMenuFABState extends State<ExtendedMenuFAB>
 
   @override
   void dispose() {
-    super.dispose();
     controller.dispose();
+    super.dispose();
   }
 
   void onPressFAB() {

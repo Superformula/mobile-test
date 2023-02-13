@@ -27,9 +27,8 @@ class QRCodeHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => 0;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
-  }
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }
 
 class QRCodeHeader extends SliverPersistentHeader {
