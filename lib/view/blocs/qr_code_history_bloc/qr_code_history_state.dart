@@ -1,20 +1,20 @@
 part of 'qr_code_history_bloc.dart';
 
-class QrCodeHistoryState extends Equatable {
-  final List<QrCodeSeedViewModel> qrCodeList;
+class QRCodeHistoryState extends Equatable {
+  final List<QRCodeViewModel> qrCodeList;
 
-  const QrCodeHistoryState({
+  const QRCodeHistoryState({
     required this.qrCodeList,
   });
 
-  factory QrCodeHistoryState.initial() => const QrCodeHistoryState(
+  factory QRCodeHistoryState.initial() => const QRCodeHistoryState(
         qrCodeList: [],
       );
 
-  QrCodeHistoryState copyWith({
-    List<QrCodeSeedViewModel>? qrCodeList,
+  QRCodeHistoryState copyWith({
+    List<QRCodeViewModel>? qrCodeList,
   }) {
-    return QrCodeHistoryState(
+    return QRCodeHistoryState(
       qrCodeList: qrCodeList ?? this.qrCodeList,
     );
   }

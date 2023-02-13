@@ -1,6 +1,6 @@
 # Documentation
-Below you can find all the information about the application. In this challenge I tried to create some complex features just to show my experience and the things I can do, such as using Slivers, Animations and Canvas.
-Also, for a simple app like that I probably would prefer just using a MVC or MVVM architecture, but to show my experience I used Clean Architecture.
+Below you can find all the information about the application.
+For a simple app like that I probably would prefer just using a MVC or MVVM architecture, but to show my experience I used Clean Architecture.
 
 ## Compiling
 - This app what built with the Flutter version 3.7.3.
@@ -16,7 +16,7 @@ Also, for a simple app like that I probably would prefer just using a MVC or MVV
 
 # API
 - I built a simple API using NestJS to handle the `/seed` endpoint. This API can be found in: https://github.com/HudsonJunior/superformula_test_server
-- I deployed this API using Heroku.
+- I deployed this API using Heroku. The domain is : https://superformulaserver.herokuapp.com/seed
 
 ## Clean Architecture
 - Some concepts of the Clean Architecture pattern defined by the Uncle Bob in his book were used in this project.
@@ -77,9 +77,9 @@ The application showed a good performance. I tried to follow some of the best pr
 ## Tests
 - I wrote unit tests for the data and domain layer.
 - I wrote widget tests for the view layer, only for the HomePage to demonstrate how widget tests works.
-- I wrote BLoC tests. Only for the QrCodeHistoryBloc and QrCodeSeedBloc to demonstrate how bloc tests works.
+- I wrote BLoC tests. Only for the QRCodeHistoryBloc and QRCodeBloc to demonstrate how bloc tests works.
 - I wrote integration tests only for the HomePage to demonstrate how we can do integrations tests in Flutter.
-
+- I did 16 tests in total. There are a few more cases that are good to test, but due to my side work and responsability, for this challenge I focused only in the important tests.
 - To run the unit and widgets tests, run `flutter test test/`
 - To run the integration tests, run `flutter test integration_test/`
 
@@ -91,10 +91,3 @@ The application showed a good performance. I tried to follow some of the best pr
 - equatable: useful to compare classes
 - mobile_scanner & qr_flutter: QR Code page and scanner
 - equatable & mockatail: Useful for testing
-
-## Some complex features I could use:
-- Isolates
-- Platform Channels
-- Flavors
-
-I didn't find any specific case to use the features above in this challenge.

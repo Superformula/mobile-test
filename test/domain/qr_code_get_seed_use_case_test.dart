@@ -2,32 +2,32 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:superformula_test/core/resources/result.dart';
 import 'package:superformula_test/data/errors/failure.dart';
-import 'package:superformula_test/domain/entities/qr_code_seed_entity.dart';
-import 'package:superformula_test/domain/repositories/qr_code_seed_repository.dart';
+import 'package:superformula_test/domain/entities/qr_code_entity.dart';
+import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
 import 'package:superformula_test/domain/use_cases/qr_code_get_seed_use_case.dart';
 
-class QrCodeSeedRepositoryMock extends Mock implements QrCodeSeedRepository {}
+class QRCodeRepositoryMock extends Mock implements QRCodeRepository {}
 
 void main() {
-  late final QrCodeSeedRepository qrCodeSeedRepository;
-  late final QrCodeGetSeedUseCase qrCodeGetSeedUseCase;
+  late final QRCodeRepository qrCodeRepository;
+  late final QRCodeGetSeedUseCase qrCodeGetSeedUseCase;
 
   setUpAll(
     () {
-      qrCodeSeedRepository = QrCodeSeedRepositoryMock();
-      qrCodeGetSeedUseCase = QrCodeGetSeedUseCaseImpl(qrCodeSeedRepository);
+      qrCodeRepository = QRCodeRepositoryMock();
+      qrCodeGetSeedUseCase = QRCodeGetSeedUseCaseImpl(qrCodeRepository);
     },
   );
 
   test(
-    'WHEN repository returns successfully should return Result.success(QrCodeSeedEntity)',
+    'WHEN repository returns successfully should return Result.success(QRCodeEntity)',
     () async {
-      final qrCodeEntity = QrCodeSeedEntity(
+      final qrCodeEntity = QRCodeEntity(
         seed: 'Testing',
         expiresAt: DateTime.now(),
       );
 
-      when(() => qrCodeSeedRepository.getSeed()).thenAnswer(
+      when(() => qrCodeRepository.getSeed()).thenAnswer(
         (_) async => Result.success(qrCodeEntity),
       );
 
@@ -43,7 +43,7 @@ void main() {
     () async {
       final failure = RepositoryFailure('');
 
-      when(() => qrCodeSeedRepository.getSeed()).thenAnswer(
+      when(() => qrCodeRepository.getSeed()).thenAnswer(
         (_) async => Result.failure(failure),
       );
 

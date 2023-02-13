@@ -12,7 +12,7 @@ class AppRoutesName {
 class AppRoutes {
   static final routes = <String, WidgetBuilder>{
     AppRoutesName.home: (context) => const HomePage(),
-    AppRoutesName.qrcode: (context) => const QrCodePage(),
+    AppRoutesName.qrcode: (context) => const QRCodePage(),
     AppRoutesName.scan: (context) => const QRCodeScannerPage(),
   };
 }

@@ -3,45 +3,45 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:superformula_test/core/resources/extensions.dart';
 import 'package:superformula_test/core/resources/injector.dart';
 import 'package:superformula_test/domain/use_cases/qr_code_get_seed_use_case.dart';
+import 'package:superformula_test/view/blocs/qr_code_bloc/qr_code_bloc.dart';
 import 'package:superformula_test/view/blocs/qr_code_history_bloc/qr_code_history_bloc.dart';
-import 'package:superformula_test/view/blocs/qr_code_seed_bloc/qr_code_seed_bloc.dart';
 import 'package:superformula_test/view/widgets/app_loading_widget.dart';
 import 'package:superformula_test/view/widgets/qr_code_error_message.dart';
 import 'package:superformula_test/view/widgets/qr_code_header.dart';
 import 'package:superformula_test/view/widgets/qr_code_history.dart';
 import 'package:superformula_test/view/widgets/qr_code_timer.dart';
 
-class QrCodePage extends StatelessWidget {
-  const QrCodePage({super.key});
+class QRCodePage extends StatelessWidget {
+  const QRCodePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<QrCodeSeedCubit>(
-      create: (context) => QrCodeSeedCubit(
-        AppInjector.instance.get<QrCodeGetSeedUseCase>(),
+    return BlocProvider<QRCodeCubit>(
+      create: (context) => QRCodeCubit(
+        AppInjector.instance.get<QRCodeGetSeedUseCase>(),
       ),
-      child: const QrCodeView(),
+      child: const QRCodeView(),
     );
   }
 }
 
 @visibleForTesting
-class QrCodeView extends StatefulWidget {
-  const QrCodeView({super.key});
+class QRCodeView extends StatefulWidget {
+  const QRCodeView({super.key});
 
   @override
-  State<QrCodeView> createState() => QrCodeViewState();
+  State<QRCodeView> createState() => QRCodeViewState();
 }
 
-class QrCodeViewState extends State<QrCodeView> {
-  late final QrCodeSeedCubit qrCodeSeedCubit;
-  late final QrCodeHistoryCubit qrCodeHistoryCubit;
+class QRCodeViewState extends State<QRCodeView> {
+  late final QRCodeCubit qrCodeCubit;
+  late final QRCodeHistoryCubit qrCodeHistoryCubit;
 
   @override
   void initState() {
     super.initState();
-    qrCodeSeedCubit = context.read<QrCodeSeedCubit>()..getSeed();
-    qrCodeHistoryCubit = context.read<QrCodeHistoryCubit>();
+    qrCodeCubit = context.read<QRCodeCubit>()..getSeed();
+    qrCodeHistoryCubit = context.read<QRCodeHistoryCubit>();
   }
 
   @override
@@ -54,40 +54,40 @@ class QrCodeViewState extends State<QrCodeView> {
             snap: true,
             title: Text('QR Code'),
           ),
-          BlocConsumer<QrCodeSeedCubit, QrCodeSeedState>(
+          BlocConsumer<QRCodeCubit, QRCodeState>(
             listener: (context, state) {
-              if (state is QrCodeSeedSuccessState) {
+              if (state is QRCodeSuccessState) {
                 qrCodeHistoryCubit.updateHistory(state.viewModel);
               }
             },
-            bloc: qrCodeSeedCubit,
-            buildWhen: (previous, current) => current is! QrCodeSeedIdleState,
+            bloc: qrCodeCubit,
+            buildWhen: (previous, current) => current is! QRCodeIdleState,
             builder: (context, state) {
-              if (state is QrCodeSeedLoadingState) {
+              if (state is QRCodeLoadingState) {
                 return const AppLoadingWidget(
                   isFullScreen: true,
                 ).toSliver;
               }
 
-              if (state is QrCodeSeedFailedState) {
-                return QrCodeErrorMessage(
+              if (state is QRCodeFailedState) {
+                return QRCodeErrorMessage(
                   message: state.message,
-                  onRefresh: qrCodeSeedCubit.getSeed,
+                  onRefresh: qrCodeCubit.getSeed,
                 ).toSliver;
               }
 
-              if (state is QrCodeSeedSuccessState) {
-                return QrCodeHeader(state.viewModel.seed);
+              if (state is QRCodeSuccessState) {
+                return QRCodeHeader(state.viewModel.seed);
               }
 
               return const SliverToBoxAdapter(child: SizedBox.shrink());
             },
           ),
-          BlocBuilder<QrCodeSeedCubit, QrCodeSeedState>(
-            bloc: qrCodeSeedCubit,
-            buildWhen: (previous, current) => current is QrCodeSeedSuccessState,
+          BlocBuilder<QRCodeCubit, QRCodeState>(
+            bloc: qrCodeCubit,
+            buildWhen: (previous, current) => current is QRCodeSuccessState,
             builder: (context, state) {
-              if (state is! QrCodeSeedSuccessState) {
+              if (state is! QRCodeSuccessState) {
                 return const SizedBox.shrink().toSliver;
               }
 
@@ -97,13 +97,13 @@ class QrCodeViewState extends State<QrCodeView> {
 
               return SliverPadding(
                 padding: const EdgeInsets.all(8),
-                sliver: QrCodeTimerWidget(
+                sliver: QRCodeTimerWidget(
                   state.viewModel.expiresAt!,
                 ).toSliver,
               );
             },
           ),
-          BlocBuilder<QrCodeHistoryCubit, QrCodeHistoryState>(
+          BlocBuilder<QRCodeHistoryCubit, QRCodeHistoryState>(
             builder: (context, state) {
               if (state.qrCodeList.isEmpty || state.qrCodeList.length == 1) {
                 return const SizedBox.shrink().toSliver;
@@ -115,13 +115,13 @@ class QrCodeViewState extends State<QrCodeView> {
               ).toSliver;
             },
           ),
-          BlocBuilder<QrCodeHistoryCubit, QrCodeHistoryState>(
+          BlocBuilder<QRCodeHistoryCubit, QRCodeHistoryState>(
             builder: (context, state) {
               if (state.qrCodeList.isEmpty || state.qrCodeList.length == 1) {
                 return const SizedBox.shrink().toSliver;
               }
 
-              return QrCodeHistory(qrCodeList: state.qrCodeList);
+              return QRCodeHistory(qrCodeList: state.qrCodeList);
             },
           )
         ],

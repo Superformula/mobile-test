@@ -17,8 +17,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<QrCodeHistoryCubit>(
-      create: (context) => QrCodeHistoryCubit(),
+    return BlocProvider<QRCodeHistoryCubit>(
+      create: (context) => QRCodeHistoryCubit(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: AppTheme.themeData,

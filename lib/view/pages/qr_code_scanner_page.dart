@@ -13,7 +13,7 @@ class QRCodeScannerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QrCodeValidationCubit(AppInjector.instance.get()),
+      create: (context) => QRCodeValidationCubit(AppInjector.instance.get()),
       child: const _QRCodeScannerView(),
     );
   }
@@ -28,7 +28,7 @@ class _QRCodeScannerView extends StatefulWidget {
 
 class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
   late final MobileScannerController mobileScannerController;
-  late final QrCodeValidationCubit qrCodeValidationCubit;
+  late final QRCodeValidationCubit qrCodeValidationCubit;
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
     mobileScannerController = MobileScannerController(
       formats: [BarcodeFormat.qrCode],
     );
-    qrCodeValidationCubit = context.read<QrCodeValidationCubit>();
+    qrCodeValidationCubit = context.read<QRCodeValidationCubit>();
   }
 
   @override
@@ -49,9 +49,9 @@ class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Scan')),
-      body: BlocListener<QrCodeValidationCubit, QrCodeValidationState>(
+      body: BlocListener<QRCodeValidationCubit, QRCodeValidationState>(
         listener: (context, state) {
-          if (state is QrCodeValidationLoadingState) {
+          if (state is QRCodeValidationLoadingState) {
             showBottomSheet(
               context: context,
               builder: (context) => QRCodeScannerBottomSheet(data: state.data),
@@ -81,7 +81,7 @@ class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
                                   .barcodes.first.displayValue?.isNotEmpty ??
                               false) {
                             if (qrCodeValidationCubit.state
-                                is! QrCodeValidationLoadingState) {
+                                is! QRCodeValidationLoadingState) {
                               qrCodeValidationCubit.validateQRCode(
                                 information.barcodes.last.displayValue!,
                               );

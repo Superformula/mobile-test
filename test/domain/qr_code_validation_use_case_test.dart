@@ -1,27 +1,26 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:superformula_test/core/resources/result.dart';
-import 'package:superformula_test/data/errors/failure.dart';
-import 'package:superformula_test/domain/repositories/qr_code_seed_repository.dart';
+import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
 import 'package:superformula_test/domain/use_cases/qr_code_validation_use_case.dart';
 
-class QrCodeSeedRepositoryMock extends Mock implements QrCodeSeedRepository {}
+class QRCodeRepositoryMock extends Mock implements QRCodeRepository {}
 
 void main() {
-  late final QrCodeSeedRepository qrCodeSeedRepository;
-  late final QrCodeValidationUseCase qrCodeGetSeedUseCase;
+  late final QRCodeRepository qrCodeRepository;
+  late final QRCodeValidationUseCase qrCodeGetSeedUseCase;
 
   setUpAll(
     () {
-      qrCodeSeedRepository = QrCodeSeedRepositoryMock();
-      qrCodeGetSeedUseCase = QrCodeValidationUseCaseImpl(qrCodeSeedRepository);
+      qrCodeRepository = QRCodeRepositoryMock();
+      qrCodeGetSeedUseCase = QRCodeValidationUseCaseImpl(qrCodeRepository);
     },
   );
 
   test(
     'WHEN repository returns successfully should return Result.success(true)',
     () async {
-      when(() => qrCodeSeedRepository.validateQRCode()).thenAnswer(
+      when(() => qrCodeRepository.validateQRCode()).thenAnswer(
         (_) async => Result.success(false),
       );
 
@@ -35,7 +34,7 @@ void main() {
   test(
     'WHEN repository returns successfully should return Result.success(true)',
     () async {
-      when(() => qrCodeSeedRepository.validateQRCode()).thenAnswer(
+      when(() => qrCodeRepository.validateQRCode()).thenAnswer(
         (_) async => Result.success(true),
       );
 

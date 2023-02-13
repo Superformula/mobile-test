@@ -1,14 +1,14 @@
 import 'package:superformula_test/core/resources/result.dart';
-import 'package:superformula_test/domain/repositories/qr_code_seed_repository.dart';
+import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
 
-abstract class QrCodeValidationUseCase {
+abstract class QRCodeValidationUseCase {
   Future<Result<bool>> call();
 }
 
-class QrCodeValidationUseCaseImpl implements QrCodeValidationUseCase {
-  final QrCodeSeedRepository repository;
+class QRCodeValidationUseCaseImpl implements QRCodeValidationUseCase {
+  final QRCodeRepository repository;
 
-  QrCodeValidationUseCaseImpl(this.repository);
+  QRCodeValidationUseCaseImpl(this.repository);
 
   @override
   Future<Result<bool>> call() => repository.validateQRCode();

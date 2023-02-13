@@ -1,29 +1,29 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:superformula_test/view/blocs/qr_code_history_bloc/qr_code_history_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
-import 'package:superformula_test/view/models/qr_code_seed_view_model.dart';
+import 'package:superformula_test/view/models/qr_code_view_model.dart';
 
 void main() {
-  late final QrCodeHistoryCubit qrCodeHistoryCubit;
+  late final QRCodeHistoryCubit qrCodeHistoryCubit;
 
   setUp(
     () {
-      qrCodeHistoryCubit = QrCodeHistoryCubit();
+      qrCodeHistoryCubit = QRCodeHistoryCubit();
     },
   );
 
   group(
     'updateHistory [METHOD]',
     () {
-      const model = QrCodeSeedViewModel(seed: '');
-      blocTest<QrCodeHistoryCubit, QrCodeHistoryState>(
+      const model = QRCodeViewModel(seed: '');
+      blocTest<QRCodeHistoryCubit, QRCodeHistoryState>(
         'should update the current list with the new model',
         build: () => qrCodeHistoryCubit,
         act: (bloc) {
           bloc.updateHistory(model);
         },
         expect: () => [
-          const QrCodeHistoryState(qrCodeList: [model])
+          const QRCodeHistoryState(qrCodeList: [model])
         ],
       );
     },

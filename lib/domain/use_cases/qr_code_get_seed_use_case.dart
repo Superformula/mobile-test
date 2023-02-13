@@ -1,17 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:superformula_test/core/resources/result.dart';
-import 'package:superformula_test/domain/entities/qr_code_seed_entity.dart';
-import 'package:superformula_test/domain/repositories/qr_code_seed_repository.dart';
+import 'package:superformula_test/domain/entities/qr_code_entity.dart';
+import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
 
-abstract class QrCodeGetSeedUseCase {
-  Future<Result<QrCodeSeedEntity>> call();
+abstract class QRCodeGetSeedUseCase {
+  Future<Result<QRCodeEntity>> call();
 }
 
-class QrCodeGetSeedUseCaseImpl implements QrCodeGetSeedUseCase {
-  final QrCodeSeedRepository repository;
+class QRCodeGetSeedUseCaseImpl implements QRCodeGetSeedUseCase {
+  final QRCodeRepository repository;
 
-  QrCodeGetSeedUseCaseImpl(this.repository);
+  QRCodeGetSeedUseCaseImpl(this.repository);
 
   @override
-  Future<Result<QrCodeSeedEntity>> call() => repository.getSeed();
+  Future<Result<QRCodeEntity>> call() => repository.getSeed();
 }

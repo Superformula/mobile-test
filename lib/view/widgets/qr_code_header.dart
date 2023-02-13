@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class QrCodeHeaderDelegate extends SliverPersistentHeaderDelegate {
+class QRCodeHeaderDelegate extends SliverPersistentHeaderDelegate {
   final String data;
 
-  QrCodeHeaderDelegate(this.data);
+  QRCodeHeaderDelegate(this.data);
 
   @override
   Widget build(
@@ -32,13 +32,13 @@ class QrCodeHeaderDelegate extends SliverPersistentHeaderDelegate {
   }
 }
 
-class QrCodeHeader extends SliverPersistentHeader {
+class QRCodeHeader extends SliverPersistentHeader {
   final String data;
 
-  QrCodeHeader(
+  QRCodeHeader(
     this.data, {
     super.key,
   }) : super(
-          delegate: QrCodeHeaderDelegate(data),
+          delegate: QRCodeHeaderDelegate(data),
         );
 }

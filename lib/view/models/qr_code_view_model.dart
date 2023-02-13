@@ -1,10 +1,11 @@
+
 import 'package:equatable/equatable.dart';
 
-class QrCodeSeedViewModel extends Equatable {
+class QRCodeViewModel extends Equatable {
   final String seed;
   final DateTime? expiresAt;
 
-  const QrCodeSeedViewModel({
+  const QRCodeViewModel({
     required this.seed,
     this.expiresAt,
   });

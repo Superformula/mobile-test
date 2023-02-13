@@ -1,24 +1,24 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:superformula_test/core/resources/result.dart';
-import 'package:superformula_test/data/data_sources/qr_code_seed_data_source.dart';
+import 'package:superformula_test/data/data_sources/qr_code_data_source.dart';
 import 'package:superformula_test/data/errors/exception.dart';
 import 'package:superformula_test/data/errors/failure.dart';
-import 'package:superformula_test/data/model/qr_code_seed_model.dart';
-import 'package:superformula_test/data/repositories/qr_code_seed_repository.dart';
-import 'package:superformula_test/domain/entities/qr_code_seed_entity.dart';
-import 'package:superformula_test/domain/repositories/qr_code_seed_repository.dart';
+import 'package:superformula_test/data/model/qr_code_model.dart';
+import 'package:superformula_test/data/repositories/qr_code_repository.dart';
+import 'package:superformula_test/domain/entities/qr_code_entity.dart';
+import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
 
-class QrCodeSeedDataSourceMock extends Mock implements QrCodeSeedDataSource {}
+class QRCodeDataSourceMock extends Mock implements QRCodeDataSource {}
 
 void main() {
-  late final QrCodeSeedDataSource qrCodeSeedDataSource;
-  late final QrCodeSeedRepository qrCodeSeedRepository;
+  late final QRCodeDataSource qrCodeDataSource;
+  late final QRCodeRepository qrCodeRepository;
 
   setUpAll(
     () {
-      qrCodeSeedDataSource = QrCodeSeedDataSourceMock();
-      qrCodeSeedRepository = QrCodeSeedRepositoryImpl(qrCodeSeedDataSource);
+      qrCodeDataSource = QRCodeDataSourceMock();
+      qrCodeRepository = QRCodeRepositoryImpl(qrCodeDataSource);
     },
   );
 
@@ -26,21 +26,21 @@ void main() {
     'getSeed [METHOD]',
     () {
       test(
-        'WHEN the data source returns successfully SHOULD return [Result.success(QrCodeSeedEntity)]',
+        'WHEN the data source returns successfully SHOULD return [Result.success(QRCodeEntity)]',
         () async {
-          final dataSourceResponse = QrCodeSeedModel(
+          final dataSourceResponse = QRCodeModel(
             seed: 'Testing',
             expiresAt: DateTime.now(),
           );
-          final repositoryResponse = QrCodeSeedEntity(
+          final repositoryResponse = QRCodeEntity(
             seed: dataSourceResponse.seed,
             expiresAt: dataSourceResponse.expiresAt,
           );
 
-          when(() => qrCodeSeedDataSource.getSeed())
+          when(() => qrCodeDataSource.getSeed())
               .thenAnswer((_) async => dataSourceResponse);
 
-          final result = await qrCodeSeedRepository.getSeed();
+          final result = await qrCodeRepository.getSeed();
 
           expect(result, isA<SuccessResult>());
           expect(result.asSuccess.data, equals(repositoryResponse));
@@ -50,10 +50,10 @@ void main() {
       test(
         'WHEN the data source returns failure SHOULD return [Result.failure(RepositoryFailure)]',
         () async {
-          when(() => qrCodeSeedDataSource.getSeed())
+          when(() => qrCodeDataSource.getSeed())
               .thenThrow(DataSourceException(error: '', message: ''));
 
-          final result = await qrCodeSeedRepository.getSeed();
+          final result = await qrCodeRepository.getSeed();
 
           expect(result, isA<FailureResult>());
           expect(result.asFailure.failure, isA<RepositoryFailure>());
@@ -68,10 +68,10 @@ void main() {
       test(
         'WHEN the data source returns successfully SHOULD return [Result.success(false)]',
         () async {
-          when(() => qrCodeSeedDataSource.validateQRCode())
+          when(() => qrCodeDataSource.validateQRCode())
               .thenAnswer((_) async => false);
 
-          final result = await qrCodeSeedRepository.validateQRCode();
+          final result = await qrCodeRepository.validateQRCode();
 
           expect(result, isA<SuccessResult>());
           expect(result.asSuccess.data, isFalse);
@@ -81,10 +81,10 @@ void main() {
       test(
         'WHEN the data source returns successfully SHOULD return [Result.success(true)]',
         () async {
-          when(() => qrCodeSeedDataSource.validateQRCode())
+          when(() => qrCodeDataSource.validateQRCode())
               .thenAnswer((_) async => true);
 
-          final result = await qrCodeSeedRepository.validateQRCode();
+          final result = await qrCodeRepository.validateQRCode();
 
           expect(result, isA<SuccessResult>());
           expect(result.asSuccess.data, isTrue);

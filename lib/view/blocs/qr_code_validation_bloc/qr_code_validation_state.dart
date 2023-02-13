@@ -1,20 +1,20 @@
 part of 'qr_code_validation_bloc.dart';
 
-abstract class QrCodeValidationState {
-  const QrCodeValidationState();
+abstract class QRCodeValidationState {
+  const QRCodeValidationState();
 }
 
-class QrCodeValidationIdleState extends QrCodeValidationState {}
+class QRCodeValidationIdleState extends QRCodeValidationState {}
 
-class QrCodeValidationLoadingState extends QrCodeValidationState {
+class QRCodeValidationLoadingState extends QRCodeValidationState {
   final String data;
 
-  const QrCodeValidationLoadingState(this.data);
+  const QRCodeValidationLoadingState(this.data);
 }
 
-class QrCodeValidationSuccessState extends QrCodeValidationState {
+class QRCodeValidationSuccessState extends QRCodeValidationState {
   final bool isValid;
   final String data;
 
-  const QrCodeValidationSuccessState(this.isValid, {required this.data});
+  const QRCodeValidationSuccessState(this.isValid, {required this.data});
 }

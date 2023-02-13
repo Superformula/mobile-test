@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:superformula_test/core/resources/extensions.dart';
-import 'package:superformula_test/view/models/qr_code_seed_view_model.dart';
+import 'package:superformula_test/view/models/qr_code_view_model.dart';
 
-class QrCodeHistory extends StatelessWidget {
-  const QrCodeHistory({super.key, required this.qrCodeList});
+class QRCodeHistory extends StatelessWidget {
+  const QRCodeHistory({super.key, required this.qrCodeList});
 
-  final List<QrCodeSeedViewModel> qrCodeList;
+  final List<QRCodeViewModel> qrCodeList;
 
   @override
   Widget build(BuildContext context) {

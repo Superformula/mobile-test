@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:superformula_test/core/resources/extensions.dart';
 import 'package:superformula_test/core/theme/app_colors.dart';
 
-class QrCodeErrorMessage extends StatelessWidget {
+class QRCodeErrorMessage extends StatelessWidget {
   final String message;
   final VoidCallback onRefresh;
 
-  const QrCodeErrorMessage({
+  const QRCodeErrorMessage({
     super.key,
     required this.message,
     required this.onRefresh,

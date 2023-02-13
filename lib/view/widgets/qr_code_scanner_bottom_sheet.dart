@@ -12,7 +12,7 @@ class QRCodeScannerBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QrCodeValidationCubit, QrCodeValidationState>(
+    return BlocBuilder<QRCodeValidationCubit, QRCodeValidationState>(
       builder: (context, state) {
         return SizedBox(
           width: context.screenWidth,
@@ -24,9 +24,9 @@ class QRCodeScannerBottomSheet extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                if (state is QrCodeValidationLoadingState)
+                if (state is QRCodeValidationLoadingState)
                   const AppLoadingWidget(),
-                if (state is QrCodeValidationSuccessState) ...[
+                if (state is QRCodeValidationSuccessState) ...[
                   if (!state.isValid)
                     Text(
                       'It was not possible to validate the QR Code.',

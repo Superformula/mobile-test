@@ -2,33 +2,33 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:superformula_test/core/resources/extensions.dart';
-import 'package:superformula_test/view/blocs/qr_code_seed_bloc/qr_code_seed_bloc.dart';
+import 'package:superformula_test/view/blocs/qr_code_bloc/qr_code_bloc.dart';
 
-class QrCodeTimerWidget extends StatefulWidget {
-  const QrCodeTimerWidget(this.expiresAt, {super.key});
+class QRCodeTimerWidget extends StatefulWidget {
+  const QRCodeTimerWidget(this.expiresAt, {super.key});
 
   final DateTime expiresAt;
 
   @override
-  State<QrCodeTimerWidget> createState() => QrCodeTimerWidgetState();
+  State<QRCodeTimerWidget> createState() => QRCodeTimerWidgetState();
 }
 
-class QrCodeTimerWidgetState extends State<QrCodeTimerWidget> {
+class QRCodeTimerWidgetState extends State<QRCodeTimerWidget> {
   late Timer countdownTimer;
   late Timer expiresAtTimer;
   late ValueNotifier<int> countdownNotifier;
-  late final QrCodeSeedCubit qrCodeSeedCubit;
+  late final QRCodeCubit qrCodeCubit;
 
   @override
   void initState() {
     super.initState();
 
-    qrCodeSeedCubit = context.read<QrCodeSeedCubit>();
+    qrCodeCubit = context.read<QRCodeCubit>();
     _initializeTimers();
   }
 
   @override
-  void didUpdateWidget(covariant QrCodeTimerWidget oldWidget) {
+  void didUpdateWidget(covariant QRCodeTimerWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.expiresAt != oldWidget.expiresAt) {
       _initializeTimers();
@@ -41,8 +41,8 @@ class QrCodeTimerWidgetState extends State<QrCodeTimerWidget> {
 
     expiresAtTimer = Timer(dateDifference, () {
       countdownTimer.cancel();
-      if (!qrCodeSeedCubit.isClosed) {
-        qrCodeSeedCubit.getSeed();
+      if (!qrCodeCubit.isClosed) {
+        qrCodeCubit.getSeed();
       }
     });
 

@@ -3,20 +3,20 @@ import 'package:superformula_test/domain/use_cases/qr_code_validation_use_case.d
 
 part 'qr_code_validation_state.dart';
 
-class QrCodeValidationCubit extends Cubit<QrCodeValidationState> {
-  QrCodeValidationCubit(
+class QRCodeValidationCubit extends Cubit<QRCodeValidationState> {
+  QRCodeValidationCubit(
     this.qrCodeValidationUseCase,
-  ) : super(QrCodeValidationIdleState());
+  ) : super(QRCodeValidationIdleState());
 
-  final QrCodeValidationUseCase qrCodeValidationUseCase;
+  final QRCodeValidationUseCase qrCodeValidationUseCase;
 
   void validateQRCode(String data) async {
-    emit(QrCodeValidationLoadingState(data));
+    emit(QRCodeValidationLoadingState(data));
 
     final result = await qrCodeValidationUseCase();
 
     if (result.isSuccess) {
-      emit(QrCodeValidationSuccessState(result.asSuccess.data, data: data));
+      emit(QRCodeValidationSuccessState(result.asSuccess.data, data: data));
     }
   }
 }
