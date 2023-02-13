@@ -24,12 +24,8 @@ class QrCodeSeedRepositoryImpl implements QrCodeSeedRepository {
 
   @override
   Future<Result<bool>> validateQRCode() async {
-    try {
-      final model = await dataSource.validateQRCode();
+    final isValid = await dataSource.validateQRCode();
 
-      return Result.success(model);
-    } on DataSourceException catch (e) {
-      return Result.failure(RepositoryFailure(e.message));
-    }
+    return Result.success(isValid);
   }
 }

@@ -17,12 +17,6 @@ class QrCodeValidationCubit extends Cubit<QrCodeValidationState> {
 
     if (result.isSuccess) {
       emit(QrCodeValidationSuccessState(result.asSuccess.data, data: data));
-    } else {
-      emit(
-        const QrCodeValidationFailedState(
-          'It was not possible to validate the QR Code',
-        ),
-      );
     }
   }
 }

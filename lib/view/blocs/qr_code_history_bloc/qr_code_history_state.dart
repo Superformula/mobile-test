@@ -1,13 +1,13 @@
 part of 'qr_code_history_bloc.dart';
 
-class QrCodeHistoryState {
-  List<QrCodeSeedViewModel> qrCodeList;
+class QrCodeHistoryState extends Equatable {
+  final List<QrCodeSeedViewModel> qrCodeList;
 
-  QrCodeHistoryState({
+  const QrCodeHistoryState({
     required this.qrCodeList,
   });
 
-  factory QrCodeHistoryState.initial() => QrCodeHistoryState(
+  factory QrCodeHistoryState.initial() => const QrCodeHistoryState(
         qrCodeList: [],
       );
 
@@ -18,4 +18,7 @@ class QrCodeHistoryState {
       qrCodeList: qrCodeList ?? this.qrCodeList,
     );
   }
+
+  @override
+  List<Object?> get props => qrCodeList;
 }

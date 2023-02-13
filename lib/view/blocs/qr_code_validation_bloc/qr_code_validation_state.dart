@@ -18,9 +18,3 @@ class QrCodeValidationSuccessState extends QrCodeValidationState {
 
   const QrCodeValidationSuccessState(this.isValid, {required this.data});
 }
-
-class QrCodeValidationFailedState extends QrCodeValidationState {
-  final String message;
-
-  const QrCodeValidationFailedState(this.message);
-}

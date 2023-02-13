@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:superformula_test/view/models/qr_code_seed_view_model.dart';
 
@@ -7,6 +8,7 @@ class QrCodeHistoryCubit extends Cubit<QrCodeHistoryState> {
   QrCodeHistoryCubit() : super(QrCodeHistoryState.initial());
 
   void updateHistory(QrCodeSeedViewModel newModel) {
-    emit(state.copyWith(qrCodeList: state.qrCodeList..add(newModel)));
+    final newList = List<QrCodeSeedViewModel>.from(state.qrCodeList);
+    emit(state.copyWith(qrCodeList: newList..add(newModel)));
   }
 }
