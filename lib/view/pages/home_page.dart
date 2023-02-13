@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:superformula_test/core/resources/extensions.dart';
 import 'package:superformula_test/view/widgets/extended_menu_fab.dart';
