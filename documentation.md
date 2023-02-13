@@ -1,9 +1,8 @@
 # Documentation
 Below you can find all the information about the application.
-For a simple app like that I probably would prefer just using a MVC or MVVM architecture, but to show my experience I used Clean Architecture.
 
 ## Compiling
-- This app what built with the Flutter version 3.7.3.
+- This app was built with the Flutter version 3.7.3.
 - To run the application, execute `flutter pub get && flutter run`
 - To run the application in release mode, execute `flutter pub get && flutter run --release`
 - To build the application in release mode, execute `flutter build apk --release`
