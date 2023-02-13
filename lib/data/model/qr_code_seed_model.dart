@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 
-class QrCodeSeedModel {
+class QrCodeSeedModel extends Equatable {
   final String seed;
   final DateTime? expiresAt;
 
-  QrCodeSeedModel({
+  const QrCodeSeedModel({
     required this.seed,
     required this.expiresAt,
   });
@@ -14,4 +15,7 @@ class QrCodeSeedModel {
       expiresAt: DateTime.tryParse(json['expires_at']),
     );
   }
+
+  @override
+  List<Object?> get props => [seed, expiresAt];
 }
