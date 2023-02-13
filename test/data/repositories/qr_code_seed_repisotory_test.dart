@@ -61,4 +61,35 @@ void main() {
       );
     },
   );
+
+  group(
+    'validateQRCode [METHOD]',
+    () {
+      test(
+        'WHEN the data source returns successfully SHOULD return [Result.success(false)]',
+        () async {
+          when(() => qrCodeSeedDataSource.validateQRCode())
+              .thenAnswer((_) async => false);
+
+          final result = await qrCodeSeedRepository.validateQRCode();
+
+          expect(result, isA<SuccessResult>());
+          expect(result.asSuccess.data, isFalse);
+        },
+      );
+
+      test(
+        'WHEN the data source returns successfully SHOULD return [Result.success(true)]',
+        () async {
+          when(() => qrCodeSeedDataSource.validateQRCode())
+              .thenAnswer((_) async => true);
+
+          final result = await qrCodeSeedRepository.validateQRCode();
+
+          expect(result, isA<SuccessResult>());
+          expect(result.asSuccess.data, isTrue);
+        },
+      );
+    },
+  );
 }
