@@ -20,17 +20,20 @@ class QrCodePage extends StatelessWidget {
       create: (context) => QrCodeSeedCubit(
         AppInjector.instance.get<QrCodeGetSeedUseCase>(),
       ),
-      child: _QrCodeView(),
+      child: const QrCodeView(),
     );
   }
 }
 
-class _QrCodeView extends StatefulWidget {
+@visibleForTesting
+class QrCodeView extends StatefulWidget {
+  const QrCodeView({super.key});
+
   @override
-  State<_QrCodeView> createState() => _QrCodeViewState();
+  State<QrCodeView> createState() => QrCodeViewState();
 }
 
-class _QrCodeViewState extends State<_QrCodeView> {
+class QrCodeViewState extends State<QrCodeView> {
   late final QrCodeSeedCubit qrCodeSeedCubit;
   late final QrCodeHistoryCubit qrCodeHistoryCubit;
 

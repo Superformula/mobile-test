@@ -26,49 +26,51 @@ class QRCodeScannerBottomSheet extends StatelessWidget {
               children: [
                 if (state is QrCodeValidationLoadingState)
                   const AppLoadingWidget(),
-                if (state is QrCodeValidationFailedState)
-                  Text(
-                    state.message,
-                    style: context.textTheme.titleLarge!
-                        .copyWith(color: AppColors.primary),
-                  ),
                 if (state is QrCodeValidationSuccessState) ...[
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                    child: Text(
-                      'QR Code validated successfully!',
-                      textAlign: TextAlign.center,
+                  if (!state.isValid)
+                    Text(
+                      'It was not possible to validate the QR Code.',
                       style: context.textTheme.titleLarge!
-                          .copyWith(color: Colors.black),
+                          .copyWith(color: AppColors.primary),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  Flexible(
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Here is the data: ',
-                        style: context.textTheme.bodyLarge!
-                            .copyWith(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text: data,
-                            style: context.textTheme.bodyLarge!.copyWith(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ],
+                  if (state.isValid) ...[
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
                       ),
                     ),
-                  ),
+                    Flexible(
+                      child: Text(
+                        'QR Code validated successfully!',
+                        textAlign: TextAlign.center,
+                        style: context.textTheme.titleLarge!
+                            .copyWith(color: Colors.black),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Flexible(
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'Here is the data: ',
+                          style: context.textTheme.bodyLarge!
+                              .copyWith(color: Colors.black),
+                          children: [
+                            TextSpan(
+                              text: data,
+                              style: context.textTheme.bodyLarge!.copyWith(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ]
                 ],
               ],
             ),
