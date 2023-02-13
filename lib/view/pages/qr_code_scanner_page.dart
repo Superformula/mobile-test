@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:superformula_test/core/resources/extensions.dart';
+import 'package:superformula_test/core/resources/injector.dart';
 import 'package:superformula_test/core/theme/app_colors.dart';
-import 'package:superformula_test/view/widgets/snackbar.dart';
+import 'package:superformula_test/view/blocs/qr_code_validation_bloc/qr_code_validation_bloc.dart';
+import 'package:superformula_test/view/widgets/qr_code_scanner_bottom_sheet.dart';
 
-class QRCodeScannerPage extends StatefulWidget {
+class QRCodeScannerPage extends StatelessWidget {
   const QRCodeScannerPage({super.key});
 
   @override
-  State<QRCodeScannerPage> createState() => _QRCodeScannerPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => QrCodeValidationCubit(AppInjector.instance.get()),
+      child: const _QRCodeScannerView(),
+    );
+  }
 }
 
-class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
+class _QRCodeScannerView extends StatefulWidget {
+  const _QRCodeScannerView();
+
+  @override
+  State<_QRCodeScannerView> createState() => _QRCodeScannerViewState();
+}
+
+class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
   late final MobileScannerController mobileScannerController;
+  late final QrCodeValidationCubit qrCodeValidationCubit;
 
   @override
   void initState() {
@@ -20,6 +36,7 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
     mobileScannerController = MobileScannerController(
       formats: [BarcodeFormat.qrCode],
     );
+    qrCodeValidationCubit = context.read<QrCodeValidationCubit>();
   }
 
   @override
@@ -32,42 +49,62 @@ class _QRCodeScannerPageState extends State<QRCodeScannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Scan')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                SizedBox(
-                  width: context.screenWidth * 0.8,
-                  height: context.screenWidth * 0.8,
-                  child: RepaintBoundary(
-                    child: MobileScanner(
-                      controller: mobileScannerController,
-                      onDetect: (information) {
-                        if (information
-                                .barcodes.first.displayValue?.isNotEmpty ??
-                            false) {
-                          AppSnackBar(information.barcodes.first.displayValue!)
-                              .show(context);
-                        }
-                      },
+      body: BlocListener<QrCodeValidationCubit, QrCodeValidationState>(
+        listener: (context, state) {
+          if (state is QrCodeValidationLoadingState) {
+            showBottomSheet(
+              context: context,
+              builder: (context) => QRCodeScannerBottomSheet(data: state.data),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12),
+                  topRight: Radius.circular(12),
+                ),
+              ),
+            );
+          }
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  SizedBox(
+                    width: context.screenWidth * 0.8,
+                    height: context.screenWidth * 0.8,
+                    child: RepaintBoundary(
+                      child: MobileScanner(
+                        controller: mobileScannerController,
+                        onDetect: (information) {
+                          if (information
+                                  .barcodes.first.displayValue?.isNotEmpty ??
+                              false) {
+                            if (qrCodeValidationCubit.state
+                                is! QrCodeValidationLoadingState) {
+                              qrCodeValidationCubit.validateQRCode(
+                                information.barcodes.last.displayValue!,
+                              );
+                            }
+                          }
+                        },
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: context.screenWidth * 0.8,
-                  height: context.screenWidth * 0.8,
-                  child: CustomPaint(painter: ScannerOverlayPainter()),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Text(
-              'QR Code Scanner',
-              style: context.textTheme.titleLarge,
-            ),
-          ],
+                  SizedBox(
+                    width: context.screenWidth * 0.8,
+                    height: context.screenWidth * 0.8,
+                    child: CustomPaint(painter: ScannerOverlayPainter()),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Text(
+                'QR Code Scanner',
+                style: context.textTheme.titleLarge,
+              ),
+            ],
+          ),
         ),
       ),
     );

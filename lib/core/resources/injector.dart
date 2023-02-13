@@ -5,6 +5,7 @@ import 'package:superformula_test/data/repositories/qr_code_seed_repository.dart
 import 'package:superformula_test/data/resources/api.dart';
 import 'package:superformula_test/domain/repositories/qr_code_seed_repository.dart';
 import 'package:superformula_test/domain/use_cases/qr_code_get_seed_use_case.dart';
+import 'package:superformula_test/domain/use_cases/qr_code_validation_use_case.dart';
 
 typedef FactoryFunc<T> = T Function();
 typedef LazySingletonFunc<T> = T Function();
@@ -51,6 +52,11 @@ class InitializeInjector {
     );
     _appInjector.registerFactory<QrCodeGetSeedUseCase>(
       () => QrCodeGetSeedUseCaseImpl(
+        _appInjector.get<QrCodeSeedRepository>(),
+      ),
+    );
+    _appInjector.registerFactory<QrCodeValidationUseCase>(
+      () => QrCodeValidationUseCaseImpl(
         _appInjector.get<QrCodeSeedRepository>(),
       ),
     );
