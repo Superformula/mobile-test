@@ -1,10 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:superformula_test/core/resources/result.dart';
 import 'package:superformula_test/data/data_sources/qr_code_local_data_source.dart';
 import 'package:superformula_test/data/data_sources/qr_code_remote_data_source.dart';
 import 'package:superformula_test/data/errors/exception.dart';
-import 'package:superformula_test/data/errors/failure.dart';
 import 'package:superformula_test/data/model/qr_code_model.dart';
 import 'package:superformula_test/data/repositories/qr_code_repository.dart';
 import 'package:superformula_test/domain/entities/qr_code_entity.dart';
@@ -35,7 +35,7 @@ void main() {
     'getSeed [METHOD]',
     () {
       test(
-        'WHEN the data source returns successfully SHOULD return [Result.success(QRCodeEntity)]',
+        'WHEN the remote data source returns successfully SHOULD return [Result.success(QRCodeEntity)]',
         () async {
           final dataSourceResponse = QRCodeModel(
             seed: 'Testing',
@@ -57,15 +57,27 @@ void main() {
       );
 
       test(
-        'WHEN the data source returns failure SHOULD return [Result.failure(RepositoryFailure)]',
+        'WHEN the remote data source fails SHOULD return [Result.success(QRCodeModel)] from the local data source',
         () async {
+          final localEntity = QRCodeModel(
+            seed: 'Testing',
+            expiresAt: DateTime.now().add(const Duration(minutes: 1)),
+          );
+          final repositoryResponse = QRCodeEntity(
+            seed: localEntity.seed,
+            expiresAt: localEntity.expiresAt,
+          );
+
           when(() => qrCodeRemoteDataSource.getSeed())
               .thenThrow(DataSourceException(error: '', message: ''));
 
+          when(() => qrCodeLocalDataSource.getSeed())
+              .thenAnswer((_) => SynchronousFuture(localEntity));
+
           final result = await qrCodeRepository.getSeed();
 
-          expect(result, isA<FailureResult>());
-          expect(result.asFailure.failure, isA<RepositoryFailure>());
+          expect(result, isA<SuccessResult>());
+          expect(result.asSuccess.data, equals(repositoryResponse));
         },
       );
     },

@@ -19,7 +19,7 @@ Below you can find all the information about the application.
 - I deployed this API using Heroku. The domain is : https://superformulaserver.herokuapp.com/seed
 
 ## Clean Architecture
-- Some concepts of the Clean Architecture pattern defined by the Uncle Bob in his book were used in this project.
+- Some concepts of Clean Architecture were used in this project.
     - Splitting the application in three layers:
         - data: In this layer we have the data sources and repositories. Api calls, local storage access, phone features (câmera, location, etc) are at this layer.
         - domain: In this layer we must have all the business logic for the application. The entities that represents our business and also the use cases. This layer does not know about the data and view layer, it's an isolated layer.
