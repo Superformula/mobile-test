@@ -5,15 +5,15 @@ import 'package:superformula_test/data/errors/exception.dart';
 import 'package:superformula_test/data/model/qr_code_model.dart';
 import 'package:superformula_test/data/resources/api.dart';
 
-abstract class QRCodeDataSource {
+abstract class QRCodeRemoteDataSource {
   Future<QRCodeModel> getSeed();
   Future<bool> validateQRCode();
 }
 
-class QRCodeDataSourceImpl implements QRCodeDataSource {
+class QRCodeRemoteDataSourceImpl implements QRCodeRemoteDataSource {
   final AppApi<Response> api;
 
-  QRCodeDataSourceImpl(this.api);
+  QRCodeRemoteDataSourceImpl(this.api);
 
   @override
   Future<QRCodeModel> getSeed() async {
@@ -31,6 +31,7 @@ class QRCodeDataSourceImpl implements QRCodeDataSource {
 
   @override
   Future<bool> validateQRCode() async {
+    // This should be an API call. That is why this method is in the remote data source.
     await Future.delayed(const Duration(seconds: 2));
     return Random().nextBool();
   }

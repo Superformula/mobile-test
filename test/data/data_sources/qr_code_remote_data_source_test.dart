@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:superformula_test/data/data_sources/qr_code_data_source.dart';
+import 'package:superformula_test/data/data_sources/qr_code_remote_data_source.dart';
 import 'package:superformula_test/data/errors/exception.dart';
 import 'package:superformula_test/data/model/qr_code_model.dart';
 import 'package:superformula_test/data/resources/api.dart';
@@ -11,11 +11,11 @@ class AppApiMock<Response> extends Mock implements AppApi<Response> {}
 
 void main() {
   late final AppApi<Response> appApiMock;
-  late final QRCodeDataSource qrCodeDataSource;
+  late final QRCodeRemoteDataSource qrCodeDataSource;
 
   setUpAll(() {
     appApiMock = AppApiMock();
-    qrCodeDataSource = QRCodeDataSourceImpl(appApiMock);
+    qrCodeDataSource = QRCodeRemoteDataSourceImpl(appApiMock);
   });
 
   group(

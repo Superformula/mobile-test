@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:superformula_test/data/data_sources/qr_code_data_source.dart';
+import 'package:superformula_test/data/data_sources/qr_code_local_data_source.dart';
+import 'package:superformula_test/data/data_sources/qr_code_remote_data_source.dart';
 import 'package:superformula_test/data/repositories/qr_code_repository.dart';
 import 'package:superformula_test/data/resources/api.dart';
 import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
@@ -40,14 +41,20 @@ class InitializeInjector {
   void inject() {
     _appInjector.registerLazySingleton<AppApi<Response>>(() => AppApiImpl());
 
-    _appInjector.registerFactory<QRCodeDataSource>(
-      () => QRCodeDataSourceImpl(
+    _appInjector.registerFactory<QRCodeRemoteDataSource>(
+      () => QRCodeRemoteDataSourceImpl(
         _appInjector.get<AppApi<Response>>(),
       ),
     );
+
+    _appInjector.registerFactory<QRCodeLocalDataSource>(
+      () => QRCodeLocalDataSourceImpl(),
+    );
+
     _appInjector.registerFactory<QRCodeRepository>(
       () => QRCodeRepositoryImpl(
-        _appInjector.get<QRCodeDataSource>(),
+        remoteDataSource: _appInjector.get<QRCodeRemoteDataSource>(),
+        localDataSource: _appInjector.get<QRCodeLocalDataSource>(),
       ),
     );
     _appInjector.registerFactory<QRCodeGetSeedUseCase>(

@@ -1,7 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:superformula_test/core/resources/result.dart';
-import 'package:superformula_test/data/data_sources/qr_code_data_source.dart';
+import 'package:superformula_test/data/data_sources/qr_code_local_data_source.dart';
+import 'package:superformula_test/data/data_sources/qr_code_remote_data_source.dart';
 import 'package:superformula_test/data/errors/exception.dart';
 import 'package:superformula_test/data/errors/failure.dart';
 import 'package:superformula_test/data/model/qr_code_model.dart';
@@ -9,16 +10,24 @@ import 'package:superformula_test/data/repositories/qr_code_repository.dart';
 import 'package:superformula_test/domain/entities/qr_code_entity.dart';
 import 'package:superformula_test/domain/repositories/qr_code_repository.dart';
 
-class QRCodeDataSourceMock extends Mock implements QRCodeDataSource {}
+class QRCodeRemoteDataSourceMock extends Mock
+    implements QRCodeRemoteDataSource {}
+
+class QRCodeLocalDataSourceMock extends Mock implements QRCodeLocalDataSource {}
 
 void main() {
-  late final QRCodeDataSource qrCodeDataSource;
+  late final QRCodeRemoteDataSource qrCodeRemoteDataSource;
+  late final QRCodeLocalDataSource qrCodeLocalDataSource;
   late final QRCodeRepository qrCodeRepository;
 
   setUpAll(
     () {
-      qrCodeDataSource = QRCodeDataSourceMock();
-      qrCodeRepository = QRCodeRepositoryImpl(qrCodeDataSource);
+      qrCodeRemoteDataSource = QRCodeRemoteDataSourceMock();
+      qrCodeLocalDataSource = QRCodeLocalDataSourceMock();
+      qrCodeRepository = QRCodeRepositoryImpl(
+        remoteDataSource: qrCodeRemoteDataSource,
+        localDataSource: qrCodeLocalDataSource,
+      );
     },
   );
 
@@ -37,7 +46,7 @@ void main() {
             expiresAt: dataSourceResponse.expiresAt,
           );
 
-          when(() => qrCodeDataSource.getSeed())
+          when(() => qrCodeRemoteDataSource.getSeed())
               .thenAnswer((_) async => dataSourceResponse);
 
           final result = await qrCodeRepository.getSeed();
@@ -50,7 +59,7 @@ void main() {
       test(
         'WHEN the data source returns failure SHOULD return [Result.failure(RepositoryFailure)]',
         () async {
-          when(() => qrCodeDataSource.getSeed())
+          when(() => qrCodeRemoteDataSource.getSeed())
               .thenThrow(DataSourceException(error: '', message: ''));
 
           final result = await qrCodeRepository.getSeed();
@@ -68,7 +77,7 @@ void main() {
       test(
         'WHEN the data source returns successfully SHOULD return [Result.success(false)]',
         () async {
-          when(() => qrCodeDataSource.validateQRCode())
+          when(() => qrCodeRemoteDataSource.validateQRCode())
               .thenAnswer((_) async => false);
 
           final result = await qrCodeRepository.validateQRCode();
@@ -81,7 +90,7 @@ void main() {
       test(
         'WHEN the data source returns successfully SHOULD return [Result.success(true)]',
         () async {
-          when(() => qrCodeDataSource.validateQRCode())
+          when(() => qrCodeRemoteDataSource.validateQRCode())
               .thenAnswer((_) async => true);
 
           final result = await qrCodeRepository.validateQRCode();

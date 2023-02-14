@@ -11,9 +11,7 @@ extension SizeExtension on BuildContext {
 }
 
 extension SliverExtension on Widget {
-  Widget get toSliver => SliverToBoxAdapter(
-        child: this,
-      );
+  Widget get toSliver => SliverToBoxAdapter(child: this);
 }
 
 extension DateFormatExtension on DateTime {
