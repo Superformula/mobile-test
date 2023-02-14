@@ -28,7 +28,6 @@ Below you can find all the information about the application.
         - Single Responsability: I followed this principle to keep all my class and functions with just one responsability. This helps to split the concern and improve the readability of the project.
         - Interface Segregation: A great principle that tells us to separate all interfaces that are not related. This way you create specific class for each case you need.
         - Dependency Inversion: You should depend on abstractions and not implementations.
-Find below a visual diagram about the architecture in general
     
 ## Design Patterns
 I used some common design patterns to build this application:
