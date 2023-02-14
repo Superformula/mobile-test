@@ -28,6 +28,7 @@ Below you can find all the information about the application.
         - Single Responsability: I followed this principle to keep all my class and functions with just one responsability. This helps to split the concern and improve the readability of the project.
         - Interface Segregation: A great principle that tells us to separate all interfaces that are not related. This way you create specific class for each case you need.
         - Dependency Inversion: You should depend on abstractions and not implementations.
+Find below a visual diagram about the architecture in general
     
 ## Design Patterns
 I used some common design patterns to build this application:
@@ -46,13 +47,13 @@ I tried to create some simple animations in the application to improve the UI. I
 - Explicit Animations I used: AnimatedBuilder with Tween.
 
 ## Canvas
-I drew the QR Code scanner overlay with Canvas.
+I drew the QR Code scanner overlay with CustomPainter and Canvas.
 
 ## Theming
 Flutter allows you to create a theme for you app easily. In this challege, I tried to follow some patterns to create the theme of the application.
 
 ## Navigation
-Flutter provides to us two types of navigation: Navigator (Imperative) or Router (Declarative).
+Flutter provides two types of navigation: Navigator (Imperative) or Router (Declarative).
 For this simple app I used the Navigator system using named routes.
 
 ## Best practices
@@ -64,7 +65,7 @@ There are a lot of best practices to follow when developing a mobile application
 - Keeping function parameter count to a minimum.
 
 ## Slivers
-I created the QR Code page with CustomScrollView taking advantage of all the power of Slivers.
+I created the QR Code page with CustomScrollView taking advantage of the power of Slivers.
 In normal cases I wouldn't use Slivers for simple cases like that, probably I'd prefer just a ListView. For this challenge I used Slivers just to show how we can build fancy scrolling with them.
 
 ## Performance
@@ -72,7 +73,7 @@ The application showed a good performance. I tried to follow some of the best pr
 - Splitting pages into small widgets to avoid re-rendering.
 - Using RepaintBoundary to avoid Skia re-painting places where is not needeed.
 - Using Slivers than common scroll views.
-- The normal Flutter app already has a good performance. Thit is because the way the framework works in the deep. Combining the power of the Skia engine that Flutter use to write to the GPU and also how the three trees in Flutter are working together (Widget, Element and RenderObject), the framework itself knows how to re-use elements to improve the performance.
+- The normal Flutter app already has a good performance. Thit is because the way the framework works in the deep. Combining the power of the Skia engine that Flutter uses to write to the GPU and also how the three trees in Flutter are working together (Widget, Element and RenderObject), the framework itself knows how to re-use elements to improve the performance.
 
 ## Tests
 - I wrote unit tests for the data and domain layer.
