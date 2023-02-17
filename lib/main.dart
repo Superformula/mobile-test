@@ -21,7 +21,7 @@ class App extends StatelessWidget {
       create: (context) => QRCodeHistoryCubit(),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: AppTheme.themeData,
+        theme: themeData,
         home: const HomePage(),
         debugShowCheckedModeBanner: false,
         routes: AppRoutes.routes,
