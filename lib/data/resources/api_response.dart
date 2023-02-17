@@ -1,7 +1,7 @@
 class ApiResponse<T> {
   final T response;
 
-  ApiResponse({
+  const ApiResponse({
     required this.response,
   });
 }

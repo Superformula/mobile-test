@@ -11,8 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double _imageScale = 0;
-  double _textXOffset = -3;
+  double imageScale = 0;
+  double textXOffset = -3;
 
   @override
   void initState() {
@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage> {
   void setAnimationTimer() {
     Timer(const Duration(milliseconds: 100), () {
       setState(() {
-        _imageScale = 1;
-        _textXOffset = 0;
+        imageScale = 1;
+        textXOffset = 0;
       });
     });
   }
@@ -40,11 +40,11 @@ class _HomePageState extends State<HomePage> {
             AnimatedScale(
               duration: const Duration(seconds: 2),
               curve: Curves.bounceOut,
-              scale: _imageScale,
+              scale: imageScale,
               child: Image.asset('assets/superformula.jpeg'),
             ),
             AnimatedSlide(
-              offset: Offset(_textXOffset, 0),
+              offset: Offset(textXOffset, 0),
               duration: const Duration(seconds: 2),
               curve: Curves.easeOut,
               child: Text(

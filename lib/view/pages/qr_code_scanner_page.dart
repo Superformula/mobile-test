@@ -94,7 +94,7 @@ class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
                   SizedBox(
                     width: context.screenWidth * 0.8,
                     height: context.screenWidth * 0.8,
-                    child: CustomPaint(painter: ScannerOverlayPainter()),
+                    child: const CustomPaint(painter: ScannerOverlayPainter()),
                   ),
                 ],
               ),
@@ -112,6 +112,8 @@ class _QRCodeScannerViewState extends State<_QRCodeScannerView> {
 }
 
 class ScannerOverlayPainter extends CustomPainter {
+  const ScannerOverlayPainter();
+
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()

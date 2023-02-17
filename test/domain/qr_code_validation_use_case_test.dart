@@ -21,7 +21,7 @@ void main() {
     'WHEN repository returns successfully should return Result.success(true)',
     () async {
       when(() => qrCodeRepository.validateQRCode()).thenAnswer(
-        (_) async => Result.success(false),
+        (_) async => const Result.success(false),
       );
 
       final result = await qrCodeGetSeedUseCase();
@@ -35,7 +35,7 @@ void main() {
     'WHEN repository returns successfully should return Result.success(true)',
     () async {
       when(() => qrCodeRepository.validateQRCode()).thenAnswer(
-        (_) async => Result.success(true),
+        (_) async => const Result.success(true),
       );
 
       final result = await qrCodeGetSeedUseCase();

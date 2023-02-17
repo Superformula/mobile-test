@@ -10,7 +10,7 @@ class QRCodeRepositoryImpl implements QRCodeRepository {
   final QRCodeRemoteDataSource remoteDataSource;
   final QRCodeLocalDataSource localDataSource;
 
-  QRCodeRepositoryImpl({
+  const QRCodeRepositoryImpl({
     required this.remoteDataSource,
     required this.localDataSource,
   });

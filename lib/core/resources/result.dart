@@ -1,9 +1,9 @@
 import 'package:superformula_test/core/resources/failure.dart';
 
 abstract class Result<T> {
-  factory Result.failure(Failure f) => FailureResult(f);
+  const factory Result.failure(Failure f) = FailureResult;
 
-  factory Result.success(T data) => SuccessResult(data);
+  const factory Result.success(T data) = SuccessResult;
 
   bool get isSuccess;
   bool get isFailure;
@@ -15,7 +15,7 @@ abstract class Result<T> {
 class SuccessResult<T> implements Result<T> {
   final T data;
 
-  SuccessResult(this.data);
+  const SuccessResult(this.data);
 
   @override
   bool get isFailure => false;
@@ -34,7 +34,7 @@ class SuccessResult<T> implements Result<T> {
 class FailureResult<T> implements Result<T> {
   final Failure failure;
 
-  FailureResult(this.failure);
+  const FailureResult(this.failure);
 
   @override
   bool get isFailure => true;

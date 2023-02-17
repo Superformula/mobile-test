@@ -41,10 +41,10 @@ void main() {
   test(
     'WHEN repository returns failure should return Result.failure(Failure)',
     () async {
-      final failure = RepositoryFailure('');
+      const failure = RepositoryFailure('');
 
       when(() => qrCodeRepository.getSeed()).thenAnswer(
-        (_) async => Result.failure(failure),
+        (_) async => const Result.failure(failure),
       );
 
       final result = await qrCodeGetSeedUseCase();

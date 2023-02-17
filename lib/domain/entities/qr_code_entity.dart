@@ -2,16 +2,20 @@ class QRCodeEntity {
   final String seed;
   final DateTime? expiresAt;
 
-  QRCodeEntity({
+  const QRCodeEntity({
     required this.seed,
     this.expiresAt,
   });
 
   @override
-  bool operator ==(covariant QRCodeEntity other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other.seed == seed && other.expiresAt == expiresAt;
+    if (other is QRCodeEntity) {
+      return other.seed == seed && other.expiresAt == expiresAt;
+    }
+
+    return false;
   }
 
   @override

@@ -6,6 +6,8 @@ import 'package:superformula_test/data/model/qr_code_model.dart';
 import 'package:superformula_test/data/resources/api.dart';
 
 abstract class QRCodeRemoteDataSource {
+  const QRCodeRemoteDataSource();
+
   Future<QRCodeModel> getSeed();
   Future<bool> validateQRCode();
 }
@@ -13,7 +15,7 @@ abstract class QRCodeRemoteDataSource {
 class QRCodeRemoteDataSourceImpl implements QRCodeRemoteDataSource {
   final AppApi<Response> api;
 
-  QRCodeRemoteDataSourceImpl(this.api);
+  const QRCodeRemoteDataSourceImpl(this.api);
 
   @override
   Future<QRCodeModel> getSeed() async {

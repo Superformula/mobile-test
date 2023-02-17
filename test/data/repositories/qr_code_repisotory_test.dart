@@ -69,7 +69,7 @@ void main() {
           );
 
           when(() => qrCodeRemoteDataSource.getSeed())
-              .thenThrow(DataSourceException(error: '', message: ''));
+              .thenThrow(const DataSourceException(error: '', message: ''));
 
           when(() => qrCodeLocalDataSource.getSeed())
               .thenAnswer((_) => SynchronousFuture(localEntity));

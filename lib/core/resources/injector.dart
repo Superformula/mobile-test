@@ -48,7 +48,7 @@ class InitializeInjector {
     );
 
     _appInjector.registerFactory<QRCodeLocalDataSource>(
-      () => QRCodeLocalDataSourceImpl(),
+      () => const QRCodeLocalDataSourceImpl(),
     );
 
     _appInjector.registerFactory<QRCodeRepository>(

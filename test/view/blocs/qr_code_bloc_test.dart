@@ -27,7 +27,7 @@ void main() {
   group(
     'getSeed [METHOD]',
     () {
-      final entity = QRCodeEntity(seed: '');
+      const entity = QRCodeEntity(seed: '');
       final viewModel = QRCodeViewModel(seed: entity.seed);
 
       blocTest<QRCodeCubit, QRCodeState>(
@@ -35,7 +35,7 @@ void main() {
         build: () => qrCodeCubit,
         setUp: () {
           when(() => qrCodeGetSeedUseCase()).thenAnswer(
-            (_) async => Result.success(entity),
+            (_) async => const Result.success(entity),
           );
         },
         act: (bloc) {
@@ -52,7 +52,7 @@ void main() {
         build: () => qrCodeCubit,
         setUp: () {
           when(() => qrCodeGetSeedUseCase()).thenAnswer(
-            (_) async => Result.failure(RepositoryFailure('')),
+            (_) async => const Result.failure(RepositoryFailure('')),
           );
         },
         act: (bloc) {

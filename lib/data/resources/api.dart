@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:superformula_test/data/resources/api_response.dart';
 
 abstract class AppApi<T> {
+  const AppApi();
+
   Future<ApiResponse<T>> get(String path);
 }
 
