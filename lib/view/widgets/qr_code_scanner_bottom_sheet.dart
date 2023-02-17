@@ -12,14 +12,14 @@ class QRCodeScannerBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<QRCodeValidationCubit, QRCodeValidationState>(
-      builder: (context, state) {
-        return SizedBox(
-          width: context.screenWidth,
-          height: context.screenHeight * 0.5,
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
+    return SizedBox(
+      width: context.screenWidth,
+      height: context.screenHeight * 0.5,
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: BlocBuilder<QRCodeValidationCubit, QRCodeValidationState>(
+          builder: (context, state) {
+            return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
@@ -73,10 +73,10 @@ class QRCodeScannerBottomSheet extends StatelessWidget {
                   ]
                 ],
               ],
-            ),
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }
