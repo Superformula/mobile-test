@@ -1,21 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:qr_code/bootstrap.dart';
+import 'package:qr_generator_api/qr_generator_api.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'QR Code',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Container(
-        color: Colors.amber,
-      ),
-    );
-  }
+Future<void> main() async {
+  final qrCodeApi = QrGeneratorApi();
+  boostrap(qrCodeApi: qrCodeApi);
 }
