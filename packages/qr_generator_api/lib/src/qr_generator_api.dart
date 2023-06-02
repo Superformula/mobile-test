@@ -23,12 +23,14 @@ class QrGeneratorApi {
     final seedResponse = await _httpClient.get(seedRequest);
 
     if (seedResponse.statusCode != 200) {
-      throw SeedRequestFailure();
+      throw SeedRequestQrGeneratorException();
     }
 
     final jsonObject = jsonDecode(seedResponse.body) as Map<String, dynamic>;
 
-    if (!jsonObject.containsKey('seed')) throw SeedNotFoundFailure();
+    if (!jsonObject.containsKey('seed')) {
+      throw SeedQrGeneratorNotFoundException();
+    }
 
     final seedQrCode = QrCodeRM.fromJson(jsonObject);
     return seedQrCode;

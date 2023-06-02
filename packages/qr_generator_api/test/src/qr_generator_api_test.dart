@@ -56,7 +56,7 @@ void main() {
 
         expect(
           () async => qrGeneratorApi.getSeed(),
-          throwsA(isA<SeedNotFoundFailure>()),
+          throwsA(isA<SeedQrGeneratorNotFoundException>()),
         );
       });
 
@@ -67,7 +67,7 @@ void main() {
 
         expect(
           () async => qrGeneratorApi.getSeed(),
-          throwsA(isA<SeedRequestFailure>()),
+          throwsA(isA<SeedRequestQrGeneratorException>()),
         );
       });
 
