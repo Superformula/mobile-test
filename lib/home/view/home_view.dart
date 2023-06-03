@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
         title: Text(AppLocalizations.of(context).home),
       ),
       body: const Center(),
-      floatingActionButton: const FlowActionButton(),
+      floatingActionButton: const MutipleActionButton(),
     );
   }
 }

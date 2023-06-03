@@ -2,5 +2,13 @@
   "home": "Home",
   "@home": {
     "description": "The home title"
+  },
+  "scan": "Scan",
+  "@scan": {
+    "description": "The scan title"
+  },
+  "qrCode": "QRCode",
+  "@qrCode": {
+    "description": "The qr code title"
   }
 }

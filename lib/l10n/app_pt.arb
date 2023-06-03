@@ -1,3 +1,5 @@
 {
-    "home": "Home"
+    "home": "Home",
+    "scan": "Escanear",
+    "qrCode": "QRCode"
 }
