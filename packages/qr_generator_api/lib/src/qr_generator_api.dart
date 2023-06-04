@@ -13,13 +13,13 @@ class QrGeneratorApi {
     http.Client? httpClient,
   }) : _httpClient = httpClient ?? http.Client();
 
-  static const _baseUrlQrGenerator = '-';
+  static const _baseUrlQrGenerator = 'superformula-eegnmdthqa-ue.a.run.app';
 
   final http.Client _httpClient;
 
   /// Fetches [QrCodeRM] object.
   Future<QrCodeRM> getSeed() async {
-    final seedRequest = Uri.https(_baseUrlQrGenerator, 'seed');
+    final seedRequest = Uri.https(_baseUrlQrGenerator, '/seed');
     final seedResponse = await _httpClient.get(seedRequest);
 
     if (seedResponse.statusCode != 200) {
