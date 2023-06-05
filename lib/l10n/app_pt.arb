@@ -1,5 +1,6 @@
 {
     "home": "Home",
     "scan": "Escanear",
-    "qrCode": "QRCode"
+    "qrCode": "QRCode",
+    "failedFetchQrCode": "Falha ao carregar o Qr Code"
 }

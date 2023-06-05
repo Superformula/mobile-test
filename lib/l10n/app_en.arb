@@ -10,5 +10,9 @@
   "qrCode": "QRCode",
   "@qrCode": {
     "description": "The qr code title"
+  },
+  "failedFetchQrCode": "Failed to load Qr Code",
+  "@failedFetchQrCode": {
+    "description": "Failed to load Qr Code description"
   }
 }
