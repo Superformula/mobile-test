@@ -10,8 +10,6 @@ class QrCodeRM {
   });
 
   final String seed;
-
-  @JsonKey(name: 'expires_at')
   final DateTime? expiresAt;
 
   static const fromJson = _$QrCodeRMFromJson;

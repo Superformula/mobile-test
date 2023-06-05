@@ -13,6 +13,7 @@ class QrCodeRepository {
 
   final QrGeneratorApi remoteApi;
 
+  /// Provide a [QrCode].
   Future<QrCode> getSeed() async {
     try {
       final apiQrCode = await remoteApi.getSeed();
@@ -23,5 +24,19 @@ class QrCodeRepository {
     } on SeedRequestQrGeneratorException catch (_) {
       throw SeedRequestException();
     }
+  }
+
+  /// Provides a [Stream] of ticks.
+  ///
+  /// Given a [DateTime] it will calculate the ticks remaining.
+  Stream<int> seedCountDown({
+    required DateTime expireDate,
+  }) {
+    final dateNow = DateTime.now();
+    final diffDate = expireDate.difference(dateNow);
+    final ticks = diffDate.inSeconds;
+
+    return Stream.periodic(const Duration(seconds: 1), (x) => ticks - x - 1)
+        .take(ticks);
   }
 }
