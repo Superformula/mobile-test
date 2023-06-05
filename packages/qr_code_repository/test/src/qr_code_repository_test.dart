@@ -48,5 +48,17 @@ void main() {
         );
       });
     });
+
+    group('seedCountDown', () {
+      test('emits 3 ticks', () {
+        final actual = qrCodeRepository.seedCountDown(
+          expireDate: DateTime.now().add(Duration(seconds: 4)),
+        );
+        expectLater(
+          actual,
+          emitsInOrder(<int>[2, 1, 0]),
+        );
+      });
+    });
   });
 }
