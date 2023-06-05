@@ -10,15 +10,15 @@ import 'package:qr_generator_api/qr_generator_api.dart';
 class QrCodeRepository {
   /// {@macro qr_code_repository}
   const QrCodeRepository({
-    required this.remoteApi,
-  });
+    required QrGeneratorApi remoteApi,
+  }) : _remoteApi = remoteApi;
 
-  final QrGeneratorApi remoteApi;
+  final QrGeneratorApi _remoteApi;
 
   /// Provide a [QrCode].
   Future<QrCode> getSeed() async {
     try {
-      final apiQrCode = await remoteApi.getSeed();
+      final apiQrCode = await _remoteApi.getSeed();
       final domainQrCode = apiQrCode.toDomainModel();
       return domainQrCode;
     } on SeedQrGeneratorNotFoundException catch (_) {

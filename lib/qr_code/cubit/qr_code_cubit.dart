@@ -10,12 +10,13 @@ part 'qr_code_state.dart';
 
 class QrCodeCubit extends Cubit<QrCodeState> {
   QrCodeCubit({
-    required this.qrCodeRepository,
-  }) : super(const QrCodeState()) {
+    required QrCodeRepository qrCodeRepository,
+  })  : _qrCodeRepository = qrCodeRepository,
+        super(const QrCodeState()) {
     fetchSeed();
   }
 
-  final QrCodeRepository qrCodeRepository;
+  final QrCodeRepository _qrCodeRepository;
   StreamSubscription<int>? _tickerSubscription;
 
   @override
@@ -26,7 +27,7 @@ class QrCodeCubit extends Cubit<QrCodeState> {
 
   Future<void> fetchSeed() async {
     try {
-      final qrCode = await qrCodeRepository.getSeed();
+      final qrCode = await _qrCodeRepository.getSeed();
 
       emit(
         state.copyWith(
@@ -39,7 +40,7 @@ class QrCodeCubit extends Cubit<QrCodeState> {
           .parse(qrCode.expiresAt!.toString(), true);
 
       await _tickerSubscription?.cancel();
-      _tickerSubscription = qrCodeRepository
+      _tickerSubscription = _qrCodeRepository
           .seedCountDown(expireDate: dateExpiresAt)
           .listen((duration) {
         countDown(duration: duration);

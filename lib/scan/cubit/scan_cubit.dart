@@ -6,16 +6,17 @@ part 'scan_state.dart';
 
 class ScanCubit extends Cubit<ScanState> {
   ScanCubit({
-    required this.qrCodeRepository,
-  }) : super(const ScanState());
+    required QrCodeRepository qrCodeRepository,
+  })  : _qrCodeRepository = qrCodeRepository,
+        super(const ScanState());
 
-  final QrCodeRepository qrCodeRepository;
+  final QrCodeRepository _qrCodeRepository;
 
   Future<void> validateQrCode({
     required String qrCode,
   }) async {
     try {
-      final validQrCode = await qrCodeRepository.validateQrCode();
+      final validQrCode = await _qrCodeRepository.validateQrCode();
 
       emit(
         state.copyWith(
