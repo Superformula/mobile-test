@@ -20,6 +20,9 @@ Below you can find all the information about the application.
 - I deployed this API using Google Cloud. The domain is : https://superformula-eegnmdthqa-ue.a.run.app/seed
 
 ## Architecture
+
+![architecture]
+
 - Data layer: This layer interacts directly with an API (REST API or a device API).
 - Domain layer: This layer transforms or manipulates the data that the API provides.
 - Presentation layer: This layer presents the app content and triggers events that modify the application state.
@@ -116,5 +119,6 @@ Widget build(BuildContext context) {
 
 
 [superformula_link]: https://avatars.githubusercontent.com/u/415147?s=200&v=4
+[architecture]: ../docs/folders.png
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
