@@ -18,6 +18,13 @@ void main() {
 
     setUp(() {
       qrCodeRepository = MockQrCodeRepository();
+
+      when(() => qrCodeRepository.getSeed()).thenAnswer((_) async => qrCode);
+      when(
+        () => qrCodeRepository.seedCountDown(
+          expireDate: any(named: 'expireDate'),
+        ),
+      ).thenAnswer((_) => const Stream<int>.empty());
     });
 
     QrCodeCubit buildCubit() => QrCodeCubit(qrCodeRepository: qrCodeRepository);

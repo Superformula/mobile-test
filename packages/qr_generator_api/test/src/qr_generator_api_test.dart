@@ -43,7 +43,7 @@ void main() {
 
         verify(
           () => httpClient.get(
-            Uri.https('-', 'seed'),
+            Uri.https('superformula-eegnmdthqa-ue.a.run.app', 'seed'),
           ),
         ).called(1);
       });
