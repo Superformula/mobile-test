@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:domain_models/domain_models.dart';
 import 'package:qr_code_repository/src/mappers/remote_to_remote.dart';
 import 'package:qr_generator_api/qr_generator_api.dart';
@@ -38,5 +40,12 @@ class QrCodeRepository {
 
     return Stream.periodic(const Duration(seconds: 1), (x) => ticks - x - 1)
         .take(ticks);
+  }
+
+  /// Validate a [String] from QRCode.
+  Future<bool> validateQrCode() async {
+    // Simulate random returns from the server
+    await Future<void>.delayed(const Duration(seconds: 1));
+    return Random().nextBool();
   }
 }
