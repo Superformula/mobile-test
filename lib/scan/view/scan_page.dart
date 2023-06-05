@@ -13,7 +13,7 @@ class ScanPage extends StatelessWidget {
         create: (_) => ScanCubit(
           qrCodeRepository: context.read<QrCodeRepository>(),
         ),
-        child: const ScanView(),
+        child: const ScanPage(),
       ),
     );
   }

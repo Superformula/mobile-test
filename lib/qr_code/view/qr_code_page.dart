@@ -13,7 +13,7 @@ class QrCodePage extends StatelessWidget {
         create: (_) => QrCodeCubit(
           qrCodeRepository: context.read<QrCodeRepository>(),
         ),
-        child: const QrCodeView(),
+        child: const QrCodePage(),
       ),
     );
   }
