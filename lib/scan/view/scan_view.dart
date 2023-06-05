@@ -19,7 +19,7 @@ class ScanView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          appLocalizations.qrCode,
+          appLocalizations.scan,
         ),
       ),
       body: BlocConsumer<ScanCubit, ScanState>(
