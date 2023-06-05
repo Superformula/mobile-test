@@ -14,5 +14,15 @@
   "failedFetchQrCode": "Failed to load Qr Code",
   "@failedFetchQrCode": {
     "description": "Failed to load Qr Code description"
+  },
+  "qrCodeValid": "{valid, select, true{QrCode is valid} other{QrCode is invalid}}",
+  "@qrCodeValid": {
+    "description": "QR Code validation description",
+    "placeholders": {
+      "valid": {
+        "type": "String"
+      }
+    }
   }
+
 }

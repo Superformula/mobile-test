@@ -2,5 +2,14 @@
     "home": "Home",
     "scan": "Escanear",
     "qrCode": "QRCode",
-    "failedFetchQrCode": "Falha ao carregar o Qr Code"
+    "failedFetchQrCode": "Falha ao carregar o Qr Code",
+    "qrCodeValid": "{valid, select, true{QrCode is valid} other{QrCode is invalid}}",
+    "@qrCodeValid": {
+        "description": "QR Code validation description",
+        "placeholders": {
+            "valid": {
+                "type": "String"
+            }
+        }
+    }
 }
