@@ -10,10 +10,10 @@ Below you can find all the information about the application.
 - To run the application, execute `make get`
 
 ## Features 🎯
-- Home Page
+- Home page
 - QR Code page
-- QR Code Scan Page
-- Auto refresh Strategy
+- QR Code Scan page
+- Auto refresh strategy
 
 # API
 - I built a simple API using Dart Frog to get the `/seed` endpoint. This API can be found in: [QR Server](https://github.com/dionesxxx/qr_server)
