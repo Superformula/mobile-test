@@ -28,7 +28,7 @@ Below you can find all the information about the application.
 - Presentation layer: This layer presents the app content and triggers events that modify the application state.
 
 The app was built to support packages, whenever you need a new repository you will create a new package to keep all dependencies consistent.
-The packages are as much as possible, so you have a finer-grained dependency control. Since each package has a separate pubspec.yaml.
+The packages are as much simple as possible, so you have a finer-grained dependency control. Since each package has a separate pubspec.yaml.
 In additiona it will be easy to all teams follow the pattern in the package approach.
 
 ## Application
