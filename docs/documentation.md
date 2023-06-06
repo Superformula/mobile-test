@@ -32,7 +32,7 @@ The packages are as much simple as possible, so you have a finer-grained depende
 In additiona it will be easy to all teams follow the pattern in the package approach.
 
 ## Application
-The application follow the patter page/view, each feature contains the patter feature_page.dart and feature_view.dart
+The application follow the pattern page/view, each feature contains the pattern feature_page.dart and feature_view.dart
 
 ```
 ├── lib
@@ -105,7 +105,7 @@ Widget build(BuildContext context) {
 ```
 
 ## Tests
-- To run the tests `make testing`
+- To run the tests execute `make testing`
 
 ## External packages
 - http: Network API calls.
