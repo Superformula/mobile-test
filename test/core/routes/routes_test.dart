@@ -6,12 +6,12 @@ import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/scan
 import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/timer/timer_cubit.dart';
 import 'package:superformula_leandro/features/qr_code_scan/presenter/pages/home/home_page.dart';
 
-import '../../mocks/mocktail.dart';
+import '../../features/qr_code_scan/mocks/mocktail.dart';
 
 void main() {
   final context = MockBuildContext();
 
-  group('Routes ||', () {
+  group('Routes |', () {
     test('Should return all routes with correct mappings', () {
       final routes = Routes.allRoutes(context);
 

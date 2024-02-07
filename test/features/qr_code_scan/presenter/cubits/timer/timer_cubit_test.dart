@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/timer/timer_cubit.dart';
 
 void main() {
-  group('TimerCubit ||', () {
+  group('TimerCubit |', () {
     late TimerCubit timerCubit;
 
     setUp(() {

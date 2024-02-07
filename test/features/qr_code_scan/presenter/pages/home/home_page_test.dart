@@ -5,10 +5,10 @@ import 'package:mocktail/mocktail.dart';
 import 'package:superformula_leandro/core/constants/strings_constants.dart';
 import 'package:superformula_leandro/features/qr_code_scan/presenter/pages/home/home_page.dart';
 
-import '../../../../../mocks/mocktail.dart';
+import '../../../mocks/mocktail.dart';
 
 void main() {
-  group('HomePage ||', () {
+  group('HomePage |', () {
     late final MockNavigatorObserver mockObserver;
     setUpAll(() {
       mockObserver = MockNavigatorObserver();

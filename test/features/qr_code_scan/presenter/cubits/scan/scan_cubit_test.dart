@@ -3,10 +3,10 @@ import 'package:mocktail/mocktail.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/scan/scan_cubit.dart';
 
-import '../../../../../mocks/mocktail.dart';
+import '../../../mocks/mocktail.dart';
 
 void main() {
-  group('ScanCubit ||', () {
+  group('ScanCubit |', () {
     late ScanCubit scanCubit;
     late MockQRViewController mockController;
 

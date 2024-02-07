@@ -6,7 +6,7 @@ import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/scan
 import 'package:superformula_leandro/features/qr_code_scan/presenter/pages/scan/scan_page.dart';
 
 void main() {
-  group('ScanPage ||', () {
+  group('ScanPage |', () {
     late final ScanCubit scanCubit;
 
     setUpAll(() {
