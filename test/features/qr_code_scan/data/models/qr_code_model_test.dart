@@ -9,7 +9,9 @@ void main() {
       final QrCodeModel qrCodeModel =
           QrCodeModel.fromMap(QrCodeScanMocks.qrCodeResponseMap);
 
-      expect(qrCodeModel, equals(QrCodeScanMocks.qrCodeModel));
+      final expected = QrCodeScanMocks.qrCodeModel;
+
+      expect(qrCodeModel, equals(expected));
     });
   });
 }

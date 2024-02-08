@@ -5,6 +5,6 @@ final class QrCodeModel extends QrCodeEntity {
 
   factory QrCodeModel.fromMap(Map<String, dynamic> map) => QrCodeModel(
         seed: map['seed'],
-        expireAt: map['expires_at'],
+        expireAt: DateTime.parse(map['expires_at']),
       );
 }

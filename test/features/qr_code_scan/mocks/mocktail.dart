@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -15,3 +16,5 @@ class MockRoute extends Fake implements Route {}
 class MockGetQrCodeRepository extends Mock implements GetQrCodeRepository {}
 
 class MockGetQrCodeDatasource extends Mock implements GetQrCodeDatasource {}
+
+class MockDio extends Mock implements Dio {}
