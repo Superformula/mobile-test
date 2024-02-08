@@ -17,7 +17,9 @@ void main() {
       usecase = GetQrCodeUsecaseImpl(getQrCodeRepository: mockRepository);
     });
 
-    test('should get QR code from the repository', () async {
+    test(
+        'should get QR code from the repository and check if it was called once',
+        () async {
       when(() => mockRepository())
           .thenAnswer((_) async => Right(QrCodeScanMocks.qrCodeEntity));
       final result = await usecase();
@@ -25,7 +27,9 @@ void main() {
       verify(() => mockRepository()).called(1);
     });
 
-    test('should return a failure when repository call fails', () async {
+    test(
+        'should return a failure when repository call fails and check if it was called once',
+        () async {
       const failure = QrCodeFailure(message: 'Failed to get QR code');
       when(() => mockRepository()).thenAnswer((_) async => const Left(failure));
       final result = await usecase();

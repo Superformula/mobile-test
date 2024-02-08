@@ -25,7 +25,8 @@ final class TimerCubit extends Cubit<TimerState> {
     }
   }
 
-  void startTimer({required int durationSeconds}) {
+  void startTimer({required DateTime finishAt}) {
+    final durationSeconds = finishAt.difference(DateTime.now()).inSeconds;
     emit(
       TimerInProgressState(
           remainingSeconds: durationSeconds, durationSeconds: durationSeconds),

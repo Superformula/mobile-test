@@ -17,6 +17,9 @@ dependencies:
   mocktail: ^1.0.3
   flutter_speed_dial: ^7.0.0
   qr_code_scanner: ^1.0.1
+  get_it: ^7.6.7
+  qr_flutter: ^4.1.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

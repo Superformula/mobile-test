@@ -18,7 +18,8 @@ void main() {
       repository = GetQrCodeRepositoryImpl(getQrCodeDatasource: mockDatasource);
     });
 
-    test('should return QrCodeEntity when datasource call is successful',
+    test(
+        'should return QrCodeEntity when datasource call is successful and check if it was called once',
         () async {
       when(() => mockDatasource())
           .thenAnswer((_) async => QrCodeScanMocks.qrCodeModel);
@@ -27,7 +28,8 @@ void main() {
       verify(() => mockDatasource()).called(1);
     });
 
-    test('should return QrCodeFailure when datasource call throws exception',
+    test(
+        'should return QrCodeFailure when datasource call throws exception and check if it was called once',
         () async {
       final exception = QrCodeException(
         message: 'Failed to fetch QR code',

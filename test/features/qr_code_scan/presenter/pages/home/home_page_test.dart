@@ -14,19 +14,19 @@ void main() {
       mockObserver = MockNavigatorObserver();
       registerFallbackValue(MockRoute());
     });
-    Future<void> pumpWidget(WidgetTester tester) async {
+    Future<void> pumpAndSettleWidget(WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: const HomePage(),
           navigatorObservers: [mockObserver],
         ),
       );
+      await tester.pumpAndSettle();
     }
 
     testWidgets('HomePage should display app bar and speed dial',
         (WidgetTester tester) async {
-      await pumpWidget(tester);
-      await tester.pumpAndSettle();
+      await pumpAndSettleWidget(tester);
 
       expect(find.text(StringsConstants.home), findsOneWidget);
       expect(find.byType(SpeedDial), findsOneWidget);
@@ -35,8 +35,7 @@ void main() {
     testWidgets(
         'should tap the Icons.camera_alt_outlined and navigate correctly',
         (WidgetTester tester) async {
-      await pumpWidget(tester);
-      await tester.pumpAndSettle();
+      await pumpAndSettleWidget(tester);
 
       final speedDialFinder = find.byType(SpeedDial);
       expect(speedDialFinder, findsOneWidget);
@@ -56,8 +55,7 @@ void main() {
     testWidgets(
         'should tap the Icons.qr_code_scanner_rounded and navigate correctly',
         (WidgetTester tester) async {
-      await pumpWidget(tester);
-      await tester.pumpAndSettle();
+      await pumpAndSettleWidget(tester);
 
       final speedDialFinder = find.byType(SpeedDial);
       expect(speedDialFinder, findsOneWidget);
