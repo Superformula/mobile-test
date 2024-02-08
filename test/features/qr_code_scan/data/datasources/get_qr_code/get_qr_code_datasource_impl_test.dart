@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:superformula_leandro/core/errors/exceptions/qr_code_exception.dart';
+import 'package:superformula_leandro/core/errors/exceptions/api_exception.dart';
+import 'package:superformula_leandro/core/errors/exceptions/generic_exception.dart';
 import 'package:superformula_leandro/features/qr_code_scan/data/datasources/get_qr_code/get_qr_code_datasource_impl.dart';
 import 'package:superformula_leandro/features/qr_code_scan/data/models/qr_code_model.dart';
 
@@ -28,13 +29,19 @@ void main() {
       final result = await datasource();
       expect(result, isA<QrCodeModel>());
     });
-
-    test('should throw a QrCodeException', () async {
+    test('should throw a ApiException', () async {
+      when(() => mockDio.get(any())).thenThrow(
+        DioException(requestOptions: RequestOptions()),
+      );
+      final result = datasource();
+      expect(result, throwsA(isA<ApiException>()));
+    });
+    test('should throw a GenericException', () async {
       when(() => mockDio.get(any())).thenThrow(
         Exception(),
       );
       final result = datasource();
-      expect(result, throwsA(isA<QrCodeException>()));
+      expect(result, throwsA(isA<GenericException>()));
     });
   });
 }
