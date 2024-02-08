@@ -12,15 +12,15 @@ This is an app to measure my engineering and development skills.
     - Developed a simple backend in NodeJS. You can find at _./mobile-test-backend_ folder
 - Call the Seed endpoint ✓
     - With the _QrCodeUsecase_ I make the request in my backend retrieving the _QrCodeEntity_ which has the _seed_ and _expiresAt_ variables
- - Scan ✓
+- Scan ✓
     - I developed the feature with the package *[qr_code_scanner](https://pub.dev/packages/qr_code_scanner)* and displaying the data to the user
- - UI requirements ✓
+- UI requirements ✓
     - I built the pages and components according with the provided mock-up
- - Documentation ✓
+- Documentation ✓
     - Described all features and how to execute the code
- - Tests ✓
+- Tests ✓
     - All unit and pages tests to ensure the app will work correctly
- - Clear commits ✓
+- Clear commits ✓
     - I'm always writing concise message in my commits to make an easier understanding for who is reading
 
 ## App Structure 📱
