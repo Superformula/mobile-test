@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     const date = new Date(dateNowMilliseconds);
     var formattedDate = date.toISOString().replace('Z', '')
     const seed = randomstring.generate();
-    res.json({'seed': seed, 'expire_at': formattedDate});
+    res.json({'seed': seed, 'expires_at': formattedDate});
 });
 
 module.exports = router;
