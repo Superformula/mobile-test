@@ -1,16 +1,16 @@
 base class QrCodeEntity {
-  const QrCodeEntity({required this.seed, required this.expireAt});
+  const QrCodeEntity({required this.seed, required this.expiresAt});
 
   final String seed;
-  final DateTime expireAt;
+  final DateTime expiresAt;
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is QrCodeEntity &&
           seed == other.seed &&
-          expireAt.isAtSameMomentAs(other.expireAt));
+          expiresAt.isAtSameMomentAs(other.expiresAt));
 
   @override
-  int get hashCode => seed.hashCode ^ expireAt.hashCode;
+  int get hashCode => seed.hashCode ^ expiresAt.hashCode;
 }

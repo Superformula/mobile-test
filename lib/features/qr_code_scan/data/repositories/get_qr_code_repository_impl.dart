@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:superformula_leandro/core/errors/exceptions/qr_code_exception.dart';
+import 'package:superformula_leandro/core/errors/exceptions/api_exception.dart';
+import 'package:superformula_leandro/core/errors/exceptions/generic_exception.dart';
 import 'package:superformula_leandro/core/errors/failures/failure.dart';
 import 'package:superformula_leandro/core/errors/failures/qr_code_failure.dart';
 import 'package:superformula_leandro/features/qr_code_scan/data/datasources/get_qr_code/get_qr_code_datasource.dart';
@@ -17,7 +18,9 @@ final class GetQrCodeRepositoryImpl implements GetQrCodeRepository {
     try {
       final result = await _getQrCodeDatasource();
       return Right(result);
-    } on QrCodeException catch (exception) {
+    } on ApiException catch (exception) {
+      return Left(QrCodeFailure(message: exception.message));
+    } on GenericException catch (exception) {
       return Left(QrCodeFailure(message: exception.message));
     }
   }

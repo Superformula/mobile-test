@@ -1,5 +1,5 @@
-final class QrCodeException implements Exception {
-  const QrCodeException({
+final class ApiException implements Exception {
+  const ApiException({
     required this.message,
     required this.error,
     required this.stackTrace,
