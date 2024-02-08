@@ -43,7 +43,7 @@ class _QrCodePageState extends State<QrCodePage> {
               currentState is QrCodeLoadedState,
           listener: (context, state) {
             if (state is QrCodeLoadedState) {
-              _timerCubit.startTimer(finishAt: state.qrCodeEntity.expireAt);
+              _timerCubit.startTimer(finishAt: state.qrCodeEntity.expiresAt);
             }
           },
         ),
