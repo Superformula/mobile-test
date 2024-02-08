@@ -15,6 +15,12 @@ final class ScanningState extends ScanState {
   const ScanningState();
 }
 
+final class ScanErrorState extends ScanState {
+  const ScanErrorState({required this.errorMessage});
+
+  final String errorMessage;
+}
+
 final class ScannedDataState extends ScanState {
   const ScannedDataState({required this.data});
 

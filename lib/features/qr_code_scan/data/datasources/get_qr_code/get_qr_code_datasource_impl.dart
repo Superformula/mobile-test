@@ -1,3 +1,4 @@
+import 'package:superformula_leandro/core/constants/strings_constants.dart';
 import 'package:superformula_leandro/core/errors/exceptions/qr_code_exception.dart';
 import 'package:superformula_leandro/features/qr_code_scan/data/datasources/get_qr_code/get_qr_code_datasource.dart';
 import 'package:superformula_leandro/features/qr_code_scan/data/models/qr_code_model.dart';
@@ -15,7 +16,7 @@ final class GetQrCodeDatasourceImpl implements GetQrCodeDatasource {
       return QrCodeModel.fromMap(responseMap);
     } catch (exception, stackTrace) {
       throw QrCodeException(
-        message: 'Something went wrong. Try again later.',
+        message: StringsConstants.somethingWentWrongTryAgainLater,
         error: exception,
         stackTrace: stackTrace,
       );

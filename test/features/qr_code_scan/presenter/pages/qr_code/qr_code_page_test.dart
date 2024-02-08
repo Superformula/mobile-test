@@ -9,6 +9,7 @@ import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/qr_c
 import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/timer/timer_cubit.dart';
 import 'package:superformula_leandro/features/qr_code_scan/presenter/pages/qr_code/qr_code_page.dart';
 
+import '../../../../../core/test_utils.dart';
 import '../../../mocks/mocks.dart';
 import '../../cubits/qr_code/qr_code_cubit_test.dart';
 
@@ -48,6 +49,7 @@ void main() {
     testWidgets(
         'should find the QrImageView widget when GetQrCode works correctly',
         (WidgetTester tester) async {
+      FlutterError.onError = TestUtils.ignoreOverflowErrors;
       when(() => mockGetQrCodeUsecase()).thenAnswer(
         (_) async => Right(QrCodeScanMocks.qrCodeEntity),
       );
@@ -57,6 +59,7 @@ void main() {
 
     testWidgets('should find the exact error message when GetQrCode went wrong',
         (WidgetTester tester) async {
+      FlutterError.onError = TestUtils.ignoreOverflowErrors;
       const qrCodeFailure =
           QrCodeFailure(message: 'Something went wrong. Try again later.');
       when(() => mockGetQrCodeUsecase()).thenAnswer(

@@ -27,6 +27,7 @@ void main() {
       build: () => scanCubit,
       act: (cubit) {
         final mockController = MockQRViewController();
+        when(() => mockController.hasPermissions).thenReturn(true);
         when(() => mockController.scannedDataStream).thenAnswer(
           (_) => Stream.fromIterable(
             [

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:superformula_leandro/core/constants/strings_constants.dart';
+import 'package:superformula_leandro/core/widgets/app_error_widget.dart';
+import 'package:superformula_leandro/core/widgets/app_primary_button.dart';
 import 'package:superformula_leandro/features/qr_code_scan/presenter/cubits/scan/scan_cubit.dart';
+import 'package:superformula_leandro/features/qr_code_scan/presenter/pages/scan/widgets/scanned_data_body_widget.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -35,18 +38,14 @@ class _ScanPageState extends State<ScanPage> {
             bloc: _scanCubit,
             builder: (context, state) {
               return switch (state) {
-                ScannedDataState() => Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(StringsConstants.scannedData),
-                      const SizedBox(height: 24),
-                      Text(state.data),
-                    ],
-                  ),
+                ScannedDataState() => ScannedDataBodyWidget(data: state.data),
+                ScanErrorState() =>
+                  AppErrorWidget(errorMessage: state.errorMessage),
                 _ => QRView(
                     key: _qrViewKey,
                     formatsAllowed: const [BarcodeFormat.qrcode],
                     onQRViewCreated: _scanCubit.onQRViewCreated,
+                    onPermissionSet: _scanCubit.onPermissionSet,
                   )
               };
             },
@@ -59,11 +58,9 @@ class _ScanPageState extends State<ScanPage> {
           return switch (state) {
             ScannedDataState() => Padding(
                 padding: const EdgeInsets.all(16),
-                child: ElevatedButton(
-                  onPressed: () {
-                    _scanCubit.startScan();
-                  },
-                  child: const Text(StringsConstants.scanAgain),
+                child: AppPrimaryButton(
+                  voidCallback: _scanCubit.startScan,
+                  text: StringsConstants.scanAgain,
                 ),
               ),
             _ => const SizedBox.shrink(),
